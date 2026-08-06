@@ -1,0 +1,20 @@
+.lake/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.elan/
+
+# Large generated proof artifacts live in GitHub Releases.
+r55/*.cnf
+r55/*.lrat
+!r55/lean_r33.cnf
+!r55/fresh_r33.lrat
+*.log
+*.jsonl
+*.zip
+
+# Local experiments and regenerated solver outputs.
+work/
+scratch/
+*.tmp
+*.bak

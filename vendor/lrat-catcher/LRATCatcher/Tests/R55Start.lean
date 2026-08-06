@@ -1,0 +1,35 @@
+import LRATCatcher.Showcases.Ramsey
+
+/-!
+  First formally checked milestones for the R(5,5) project.
+
+  * Replays a freshly generated CaDiCaL LRAT proof for R(3,3) = 6.
+  * Checks a published McKay 42-vertex witness, establishing R(5,5) >= 43
+    as a theorem about colorings inside Lean.
+-/
+
+namespace LRATCatcher.Tests
+
+open LRATCatcher.Ramsey
+
+-- Fresh certificate generated locally from the Lean-defined Ramsey encoder.
+ramsey_lrat r33_upper_fresh 6 3 3 "../../r55/fresh_r33.lrat"
+
+-- Row-major upper-triangle bits decoded from the first graph in McKay's
+-- official r55_42some.g6 catalogue.  Bit true means a red edge.
+def mckay42Bits : Array Bool :=
+  ("000011001111000011110111100101010010000100010011011001011100101101101000110001001001110100010000011111100001011101011010101110000001100011111000001011101011010011100011000100101000100011011110011101100100101001000100010000111110111011001001010110100011010001001100011100011010100100010010101000111010100000010000011101001010010011101000000000100111100001100011011101111110101111000101110001000101111101011100100011110010001110101101100100101110011110100001010010100011110010111010001111010000001110101111101000100110000111100010111001100100110011000110010010110110011011011100101110100000001111011110101110001000011001010001101101110110100011001001011110010100001100011111011101101000100000101100001001110110100100101101110011111010000101010110100000011101001011001101011011100111010110111011001010111011100110010111111000111110010110100010010101001011010100111".toList.map fun c => c == '1').toArray
+
+def mckay42Coloring : Nat -> Bool := fun v => (mckay42Bits[v]?).getD false
+
+theorem mckay42_size : mckay42Bits.size = numEdgeVars 42 := by
+  native_decide
+
+/-- A kernel-imported, computationally checked lower bound R(5,5) >= 43. -/
+theorem r55_lower_formal : hasRamseyFreeColoring 42 5 5 :=
+  witness_ramsey_free 42 5 5 mckay42Coloring (by native_decide)
+
+#print axioms r33_upper_fresh
+#print axioms r55_lower_formal
+
+end LRATCatcher.Tests

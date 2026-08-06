@@ -52,6 +52,29 @@ variables et 65 780 clauses. Une recherche monolithique reste `UNKNOWN` après
 `RAMSEY_BOUND_DIAGNOSTICS.md`. La prochaine tentative doit donc employer une
 réduction par symétrie ou une couverture de cubes vérifiée.
 
+### Pilote `R(4,5,25)`, degré racine 8
+
+Le pilote réduit la formule à 54 feuilles (`27 × 2`) et CaDiCaL les a toutes
+signalées UNSAT. Ce résultat solveur reste expérimental tant que toute la
+couverture et toutes les traces ne sont pas composées dans Lean.
+
+Lean certifie maintenant la feuille `d8_l22_r01` dans
+`R45DegreeEightPilot` :
+
+- CNF de 1 982 968 octets, SHA-256
+  `F2E1D012DEA5911F9F4D9F7B50641CA483ECE5F65B1F666E92BE61CF332AFEAF` ;
+- LRAT de 8 352 876 octets, SHA-256
+  `3EB38EFAEBDDE8E4B2EF0FD78B1AC5C6B449FC8E1A1D814A94511081290E9023`.
+
+`R45DegreeEightCover` certifie aussi la couverture gauche : une table relie
+les 179 représentants du catalogue exhaustif `R(3,5,8)` aux 27 parents
+`gen358` et prouve que tout graphe valide d'ordre 8 admet une complétion
+isomorphe entrant dans un parent concret.
+
+Restent la couverture exhaustive droite `gen4416`, le transport des
+isomorphismes en une permutation de `K25` qui préserve les deux blocs, et les
+53 traces LRAT non encore rejouées.
+
 ### Réduction structurelle
 
 Les cas racines utiles sont `d=18` et `d=20`. En choisissant, dans le

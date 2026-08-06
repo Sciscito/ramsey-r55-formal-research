@@ -104,15 +104,19 @@ Rapport détaillé :
 
 ## Verrou exact restant pour le degré 8
 
-Deux choses manquent avant d'écrire « preuve » :
+Trois obligations principales manquent avant d'écrire « preuve » :
 
-1. des traces LRAT pour les 54 feuilles, chacune rejouée par LRATCatcher ;
-2. un théorème de complétude des deux couvertures modulo les isomorphismes qui
-   préservent les blocs.
+1. des traces LRAT pour les 53 feuilles restantes, chacune rejouée par
+   LRATCatcher ;
+2. un théorème de complétude de la couverture droite `gen4416` ;
+3. le transport des deux isomorphismes locaux en une permutation qui préserve
+   les blocs, puis le raccord aux unités des feuilles.
 
-La couverture gauche est la plus accessible : le projet possède déjà la
-complétude Lean du catalogue `R(3,5,8)`. Il faut relier les 27 parents aux
-179 graphes certifiés.
+La couverture gauche est maintenant certifiée par
+`every_r35_order_eight_graph_enters_gen358` : tout graphe valide d'ordre 8
+entre, à isomorphisme près, dans l'un des 27 parents, via une table de 179
+témoins vérifiée par Lean. Le raccord du voisinage induit de `K25` à ce
+théorème et le relèvement de sa permutation appartiennent encore au point 3.
 
 La couverture droite est le vrai verrou. `gen4416` contient exactement les
 deux graphes connus à 16 sommets, mais ce petit fichier de 312 octets n'est pas
@@ -127,15 +131,17 @@ d'ordre 15 séparément, ou à obtenir des auteurs un export de la preuve HOL4.
 
 ## Ordre de travail recommandé
 
-1. Générer un LRAT sur une petite feuille degré 8 et le rejouer dans Lean pour
-   mesurer la taille réelle et valider l'interface.
-2. Formaliser la couverture gauche `gen358` grâce au catalogue
-   `R(3,5,8)` déjà certifié.
-3. Choisir la stratégie de couverture droite : traduction HOL4, certificat
+1. **Terminé :** générer et rejouer dans Lean le LRAT d'une petite feuille
+   degré 8 afin de valider l'interface.
+2. **Terminé :** formaliser la couverture gauche `gen358` grâce au catalogue
+   `R(3,5,8)` certifié.
+3. **Prochaine étape :** choisir la stratégie de couverture droite :
+   traduction HOL4, certificat
    d'énumération propre, ou export demandé aux auteurs.
-4. Produire et rejouer les 54 LRAT seulement après validation du prototype.
-5. Répéter ensuite pour les degrés 10 et 12.
-6. En parallèle, terminer le témoin auxiliaire partagé du bloc des 116 928
+4. Formaliser le raccord du voisinage d'ordre 8 et la permutation des blocs.
+5. Produire et rejouer les 53 LRAT restants.
+6. Répéter ensuite pour les degrés 10 et 12.
+7. En parallèle, terminer le témoin auxiliaire partagé du bloc des 116 928
    clauses pour la branche `R(5,5)`.
 
 Ne jamais annoncer une avancée mondiale ou `R(5,5)=43` avant la composition

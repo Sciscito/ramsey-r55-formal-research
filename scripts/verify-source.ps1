@@ -22,6 +22,16 @@ try {
     Pop-Location
 }
 
+Push-Location $repoRoot
+try {
+    & $PythonExecutable scripts\r45_d8_pilot\gen358_lean_certificate.py verify
+    if ($LASTEXITCODE -ne 0) {
+        throw 'gen358 Lean certificate verification failed.'
+    }
+} finally {
+    Pop-Location
+}
+
 Push-Location (Join-Path $repoRoot 'vendor\lrat-catcher')
 try {
     & $LakeExecutable build `
@@ -35,6 +45,7 @@ try {
         LRATCatcher.Tests.R55CanonicalRelabeling `
         LRATCatcher.Tests.RamseyUpperBounds `
         LRATCatcher.Tests.R55DegreeBounds `
+        LRATCatcher.Tests.R45DegreeEightCover `
         LRATCatcher.Tests.R45DegreeEightPilot
     if ($LASTEXITCODE -ne 0) {
         throw 'Lean integration build failed.'

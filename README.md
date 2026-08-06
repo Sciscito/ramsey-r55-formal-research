@@ -36,6 +36,14 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
 - compact certified upper bound `R(4,4) ≤ 18`: a 961,008-byte LRAT proof
   establishes `R(3,4) ≤ 9`, then `RamseyRecurrence.lean` proves the classical
   red/blue recurrence semantically in Lean;
+- certified `R(4,5,25)` degree-eight prototype leaf `d8_l22_r01`: an
+  8,352,876-byte LRAT trace is replayed against the exact 276-variable,
+  55,154-clause reduced CNF;
+- certified left cover for that degree-eight split: a generated table links
+  all 179 representatives of the exhaustive Lean `R(3,5,8)` catalogue to the
+  27 `gen358` parents, and
+  `every_r35_order_eight_graph_enters_gen358` covers every arbitrary valid
+  order-eight graph up to an explicit isomorphic completion;
 - conditional global degree theorem `allDegrees_le_twentyFour`: from
   `R(4,5) ≤ 25`, every vertex of a hypothetical `K43` counterexample has
   both red and blue degree at most 24;
@@ -119,7 +127,9 @@ lake build LRATCatcher.Tests.R35CatalogCheckpoint `
            LRATCatcher.Tests.R55ColoringPermutation `
            LRATCatcher.Tests.R55CanonicalRelabeling `
            LRATCatcher.Tests.RamseyUpperBounds `
-           LRATCatcher.Tests.R55DegreeBounds
+           LRATCatcher.Tests.R55DegreeBounds `
+           LRATCatcher.Tests.R45DegreeEightCover `
+           LRATCatcher.Tests.R45DegreeEightPilot
 ```
 
 Expected final theorem:
@@ -130,6 +140,12 @@ r35_catalogue_order_ten_complete :
 ```
 
 ## Next formal objective
+
+For the `R(4,5,25)` degree-eight split, the left `gen358` cover and one LRAT
+leaf are now certified. The next obligations are the exhaustive right
+`gen4416` cover, transport of the local isomorphisms into a block-preserving
+permutation of `K25`, the exact parent-unit bridge, and LRAT replay for the 53
+remaining leaves.
 
 The canonical local-graph construction, DIMACS unit-clause soundness bridge
 and WLOG relabeling are complete once an exact local degree-20/codegree-10

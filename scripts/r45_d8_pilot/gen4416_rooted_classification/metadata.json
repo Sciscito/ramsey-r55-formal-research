@@ -57,15 +57,37 @@
     ],
     "graphs": 2
   },
+  "lean_composition": {
+    "classification_module": "LRATCatcher.Tests.R44Gen4416Classification",
+    "cover_checker_module": "LRATCatcher.Tests.R44RootedGen4416Cover",
+    "target_audit_module": "LRATCatcher.Tests.R44Gen4416TargetAudit",
+    "theorem": "ramseyFree_isomorphic_to_gen4416"
+  },
+  "lean_cover_data": {
+    "bytes": 3597,
+    "canonical_labels": {
+      "anti": "7..14",
+      "left": "0..6",
+      "root": 15
+    },
+    "cover_witnesses": 64,
+    "module": "LRATCatcher.Tests.R44RootedGen4416CoverData",
+    "path": "vendor/lrat-catcher/LRATCatcher/Tests/R44RootedGen4416CoverData.lean",
+    "self_complement_witnesses": 2,
+    "sha256": "39A747796E2C3FE6FFB9CE2FDE541711A47487A035F4F0C7AB1981BA4243FAB3",
+    "target_counts": {
+      "0": 32,
+      "1": 32
+    }
+  },
   "lean_replay": {
     "module": "LRATCatcher.Tests.R44RootedGen4416Classifier",
     "scope": "unsatisfiability of the exact generated labelled CNF",
     "theorem": "LRATCatcher.Tests.r44_rooted_gen4416_classifier_unsat"
   },
   "limitations": [
-    "the Lean rooted reduction to the 27 selector pairs is separate",
-    "the 64 mask rows still need graph-isomorphism witnesses in Lean",
-    "the certified CNF alone does not prove exhaustive gen4416 coverage"
+    "this generated artifact covers the rooted finite CNF and witness data",
+    "separate Lean modules certify the catalogue reduction, finite cover, target audit, and unrooted complement composition"
   ],
   "recommended_lrat_command": "cadical --lrat --no-binary --checkproof=2 guarded_counterexample.cnf guarded_counterexample.lrat",
   "root_audit": [
@@ -645,7 +667,7 @@
       "sha256": "6832892B9953C2DBB34A2BD9C9E4B3E1C38BAD272993925C46A65F21F1D0F807"
     }
   },
-  "status": "CNF_UNSAT_CERTIFIED_IN_LEAN_SEMANTIC_COMPOSITION_PENDING",
+  "status": "ROOTED_CNF_UNSAT_WITH_REPRODUCIBLE_GEN4416_COVER_DATA",
   "variables": {
     "cross": 56,
     "cross_formula": "x(i,j) = 1 + 8*i + j",

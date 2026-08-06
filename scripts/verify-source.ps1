@@ -56,8 +56,20 @@ try {
         LRATCatcher.Tests.R55DegreeBounds `
         LRATCatcher.Tests.R44RootedR34Catalogue `
         LRATCatcher.Tests.R44RootedGen4416Classifier `
+        LRATCatcher.Tests.R44RootedGraphReduction `
+        LRATCatcher.Tests.R44RootedDegreeSplit `
+        LRATCatcher.Tests.R44RootedBlockCatalogues `
+        LRATCatcher.Tests.R44RootedGen4416Semantics `
+        LRATCatcher.Tests.R44RootedMixedClauses `
+        LRATCatcher.Tests.R44RootedMixedCNFSemantics `
+        LRATCatcher.Tests.R44RootedCanonicalRelabeling `
+        LRATCatcher.Tests.R44RootedGen4416CoverData `
+        LRATCatcher.Tests.R44RootedGen4416Cover `
+        LRATCatcher.Tests.R44Gen4416TargetAudit `
+        LRATCatcher.Tests.R44Gen4416Classification `
         LRATCatcher.Tests.R45DegreeEightCover `
         LRATCatcher.Tests.R45DegreeEightBridge `
+        LRATCatcher.Tests.R45DegreeEightGen4416Bridge `
         LRATCatcher.Tests.R45DegreeEightPilot
     if ($LASTEXITCODE -ne 0) {
         throw 'Lean integration build failed.'

@@ -8,7 +8,53 @@ SAT encodings and LRAT certificates.
 > `R(5,5)=43`. The currently verified public interval remains
 > `43 ≤ R(5,5) ≤ 46`.
 
-## Main verified milestone
+## Verified Lean/LRAT `R(4,4,16)` classification checkpoint
+
+The right-hand catalogue needed by the degree-eight `R(4,5,25)` split is now
+covered end to end in Lean. The terminal theorem is:
+
+```lean
+ramseyFree_isomorphic_to_gen4416
+    (coloring : Nat → Bool)
+    (hfree : isRamseyFree 16 4 4 coloring) :
+    ∃ targetIndex,
+      targetIndex < gen4416GraphIds.length ∧
+        GraphIsomorphicFin (coloringGraph 16 coloring)
+          (gen4416Graph targetIndex)
+```
+
+Thus every `(4,4)`-free coloring on sixteen vertices is strongly isomorphic
+to one of the two materialized `gen4416` targets. The statement is a finite
+cover by those two targets; it does not rely on, or claim, a separate formal
+proof that the targets are non-isomorphic.
+
+The proof composes the certified `R(3,4)` block catalogues, the exact
+10,880-clause guarded CNF and its LRAT replay, a Lean semantics proof for the
+four mixed-clique clause families, 64 checked mask-to-target permutations,
+two checked self-complement permutations, and the unrooted/complement
+reduction. `R44Gen4416TargetAudit` additionally proves that both materialized
+targets satisfy the required `R(4,4)` graph predicate.
+
+`R45DegreeEightGen4416Bridge` now composes this classification with the
+certified `gen358` cover. Its theorem
+`degree_eight_enters_gen358_and_gen4416` simultaneously returns a `gen358`
+parent for the red eight-vertex block and a `gen4416` target for the
+complemented blue sixteen-vertex block of every degree-eight `K25` branch.
+The source SHA-256 is
+`85B0DBF179D2DA759AA14D13E0834D788255E0B0F33003BDDD5937ABA4B031B5`.
+
+This is an independent machine-verifiable Lean/LRAT certification, not a claim
+of a first classification or a new mathematical result: McKay's
+[Ramsey graph catalogue](https://users.cecs.anu.edu.au/~bdm/data/ramsey.html)
+already lists two `R(4,4,16)` graphs, and Gauthier–Brown's
+[*A Formal Proof of R(4,5)=25*](https://arxiv.org/abs/2404.01761) formalizes
+the relevant enumeration and coverage in HOL4. A publication claim would
+therefore require a sufficiently distinct contribution in proof architecture,
+Lean/LRAT integration or certificate methodology. The result is **not** a new
+Ramsey-number bound, a proof of `R(4,5) ≤ 25`, or progress by itself on the
+exact value of `R(5,5)`.
+
+## Verified catalogue foundation
 
 The semantic exhaustiveness of the generated `R(3,5,n)` catalogues is now
 proved in Lean through order 10:
@@ -54,7 +100,12 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
 - certified guarded `gen4416` classifier CNF: 83 variables and 10,880 clauses
   cover the 27 rooted block pairs after blocking 64 labelled masks; its
   3,658,365-byte LRAT is replayed by
-  `r44_rooted_gen4416_classifier_unsat` (semantic composition still pending);
+  `r44_rooted_gen4416_classifier_unsat`;
+- certified semantic `gen4416` composition: the four mixed `K4`/independent
+  `4` families imply the exact generated CNF, all 64 allowed masks have
+  checked permutations to a target, both targets have checked
+  self-complement permutations, and
+  `ramseyFree_isomorphic_to_gen4416` covers every arbitrary free coloring;
 - conditional global degree theorem `allDegrees_le_twentyFour`: from
   `R(4,5) ≤ 25`, every vertex of a hypothetical `K43` counterexample has
   both red and blue degree at most 24;
@@ -141,32 +192,70 @@ lake build LRATCatcher.Tests.R35CatalogCheckpoint `
            LRATCatcher.Tests.R55DegreeBounds `
            LRATCatcher.Tests.R44RootedR34Catalogue `
            LRATCatcher.Tests.R44RootedGen4416Classifier `
+           LRATCatcher.Tests.R44Gen4416TargetAudit `
+           LRATCatcher.Tests.R44Gen4416Classification `
            LRATCatcher.Tests.R45DegreeEightCover `
            LRATCatcher.Tests.R45DegreeEightBridge `
+           LRATCatcher.Tests.R45DegreeEightGen4416Bridge `
            LRATCatcher.Tests.R45DegreeEightPilot
 ```
 
-Expected final theorem:
+Expected key theorems:
 
 ```text
 r35_catalogue_order_ten_complete :
   StrongCatalogueComplete 10 (catalogues.getD 10 [])
+
+ramseyFree_isomorphic_to_gen4416 :
+  ∀ coloring, isRamseyFree 16 4 4 coloring →
+    ∃ targetIndex, targetIndex < gen4416GraphIds.length ∧
+      GraphIsomorphicFin (coloringGraph 16 coloring)
+        (gen4416Graph targetIndex)
+
+degree_eight_enters_gen358_and_gen4416
+    {coloring : Nat → Bool}
+    (hfree : isRamseyFree 25 4 5 coloring)
+    (root : Nat) (hroot : root < 25)
+    (hdegree : (colorNeighbors coloring root false).length = 8) :
+    (∃ parentIndex, parentIndex < gen358ParentIds.length ∧
+      CoveredByGen358Parent
+        (redDegreeEightGraph coloring root hdegree)
+        (gen358ParentIds.getD parentIndex 0)) ∧
+      ∃ targetIndex, targetIndex < gen4416GraphIds.length ∧
+        GraphIsomorphicFin
+          (coloringGraph 16
+            (blueDegreeSixteenColoring coloring root hroot hdegree))
+          (gen4416Graph targetIndex)
 ```
+
+The generated rooted data can be regenerated and checked independently with:
+
+```powershell
+python -m unittest scripts.r45_d8_pilot.test_gen4416_rooted_classifier `
+  scripts.r45_d8_pilot.test_gen4416_rooted_proof_artifacts
+python scripts\r45_d8_pilot\gen4416_rooted_classifier.py verify
+```
+
+Relevant SHA-256 values are:
+`863C78226DDEFE17FEEF046F7F818D01ECFE63EE96663AEFEC1BE81EC591AAF4`
+for the guarded CNF,
+`786578E2E05E62E5B814BFC86656513E42A52D6467B190783637D6FC1AD33A61`
+for its LRAT,
+`1995924E5D942F437BF24A649A23EC9843A9375678DA8A044ABAD4FBF05E4670`
+for the 64-row table and
+`39A747796E2C3FE6FFB9CE2FDE541711A47487A035F4F0C7AB1981BA4243FAB3`
+for the generated Lean cover data.
 
 ## Next formal objective
 
-For the `R(4,5,25)` degree-eight split, the left `gen358` cover, its semantic
-connection to an actual `K25` neighbourhood, the complementary sixteen-vertex
-right block, and one LRAT leaf are now certified. The next obligations are the
-exhaustive right `gen4416` cover, transport of the local isomorphisms into a
-block-preserving permutation of `K25`, the exact parent-unit bridge, and LRAT
-replay for the 53 remaining leaves. The selected route for `gen4416` filters
-the certified `R(3,5)` catalogues down to `9 × 3` rooted `R(3,4)` block pairs
-and discharges a small guarded classifier. `R44RootedR34Catalogue` now
-certifies the filter and both completeness statements, while
-`R44RootedGen4416Classifier` replays the exact guarded LRAT. The remaining
-right-cover gap is semantic: prove the clause generator sound and complete,
-turn the 64 masks into graph-isomorphism witnesses, and handle complementation.
+For the `R(4,5,25)` degree-eight split,
+`degree_eight_enters_gen358_and_gen4416` now closes the existential
+composition of both certified local covers. The next obligation begins at
+transporting those two local isomorphisms into one block-preserving
+permutation of `K25`, followed by the exact parent-unit bridge and replay of
+the 53 remaining LRAT leaves. Completing those steps would turn the presently
+experimental 54/54 UNSAT computation into a composed Lean theorem excluding
+that root-degree case.
 
 The canonical local-graph construction, DIMACS unit-clause soundness bridge
 and WLOG relabeling are complete once an exact local degree-20/codegree-10
@@ -184,3 +273,9 @@ leaf.
 
 See [docs/GUIDE_REPRISE.md](docs/GUIDE_REPRISE.md) for exact environment,
 commands, hashes and trust-base caveats.
+
+For the new classification, `#print axioms` shows no `sorryAx`. Its trust
+boundary is the Lean kernel and standard classical/quotient axioms, plus the
+explicit native bridges used for LRAT replay and finite `native_decide`
+checks; consequently the native compiler/runtime are part of the practical
+trusted base unless the certificates are replayed in kernel-only mode.

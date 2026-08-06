@@ -82,7 +82,87 @@ class Gen4416RootedClassifierTests(unittest.TestCase):
                     flipped.add(variable)
                 self.assertTrue(classifier.clause_satisfied(blocker, flipped))
 
+    def test_each_allowed_model_has_a_checked_global_isomorphism(self) -> None:
+        witnesses = self.result.cover_witnesses
+        self.assertEqual(len(witnesses), 64)
+        self.assertEqual(
+            tuple(witness.model for witness in witnesses),
+            self.result.allowed_models,
+        )
+        self.assertEqual(
+            Counter(witness.graph_index for witness in witnesses),
+            {0: 32, 1: 32},
+        )
+
+        catalogue7 = classifier.read_catalogue(classifier.R35_7, 7)
+        catalogue8 = classifier.read_catalogue(classifier.R35_8, 8)
+        left_representatives = tuple(
+            catalogue7[index] for index in classifier.LEFT_CATALOGUE_INDICES
+        )
+        anti_representatives = tuple(
+            catalogue8[index] for index in classifier.ANTI_CATALOGUE_INDICES
+        )
+        gen_graphs = classifier.read_gen4416()
+        for witness in witnesses:
+            model = witness.model
+            self.assertEqual(
+                witness.graph_index,
+                classifier.target_index_for_model(model),
+            )
+            source = classifier.rooted_completion(
+                left_representatives[model.left_selector],
+                anti_representatives[model.anti_selector],
+                model.mask,
+            )
+            target = gen_graphs[witness.graph_index][1]
+            self.assertTrue(
+                classifier.is_isomorphism(source, target, witness.permutation)
+            )
+
+    def test_self_complement_witnesses_are_checked_and_minimal(self) -> None:
+        gen_graphs = classifier.read_gen4416()
+        witnesses = self.result.self_complement_permutations
+        self.assertEqual(len(witnesses), 2)
+        for (_graph_id, graph), witness in zip(gen_graphs, witnesses, strict=True):
+            complement = classifier.ramsey.complement_graph(graph)
+            isomorphisms = classifier.all_isomorphisms(complement, graph)
+            self.assertTrue(isomorphisms)
+            self.assertEqual(witness, min(isomorphisms))
+
+    def test_generated_lean_cover_data_is_exact(self) -> None:
+        self.assertEqual(
+            classifier.sha256_bytes(self.result.lean_data_bytes),
+            "39A747796E2C3FE6FFB9CE2FDE541711A47487A035F4F0C7AB1981BA4243FAB3",
+        )
+        self.assertEqual(
+            classifier.LEAN_COVER_DATA.read_bytes(),
+            self.result.lean_data_bytes,
+        )
+        lean_metadata = self.result.metadata["lean_cover_data"]
+        self.assertEqual(lean_metadata["cover_witnesses"], 64)
+        self.assertEqual(lean_metadata["target_counts"], {"0": 32, "1": 32})
+        self.assertEqual(lean_metadata["self_complement_witnesses"], 2)
+
     def test_generated_artifacts_rebuild_byte_for_byte(self) -> None:
+        self.assertEqual(
+            self.result.metadata["status"],
+            "ROOTED_CNF_UNSAT_WITH_REPRODUCIBLE_GEN4416_COVER_DATA",
+        )
+        self.assertEqual(
+            self.result.metadata["lean_composition"],
+            {
+                "cover_checker_module": (
+                    "LRATCatcher.Tests.R44RootedGen4416Cover"
+                ),
+                "target_audit_module": (
+                    "LRATCatcher.Tests.R44Gen4416TargetAudit"
+                ),
+                "classification_module": (
+                    "LRATCatcher.Tests.R44Gen4416Classification"
+                ),
+                "theorem": "ramseyFree_isomorphic_to_gen4416",
+            },
+        )
         report = classifier.verify(classifier.DEFAULT_OUTPUT)
         self.assertEqual(report["status"], "PASS")
         self.assertEqual(report["allowed_models"], 64)

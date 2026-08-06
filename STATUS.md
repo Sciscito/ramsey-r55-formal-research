@@ -85,14 +85,85 @@ modulo `GraphIsoFin`. `gen4416_rooted_classifier.py` reconstruit ensuite les
 10 880 clauses. Son LRAT de 3 658 365 octets est rejoué dans Lean par
 `r44_rooted_gen4416_classifier_unsat`.
 
-Ce dernier théorème certifie l'UNSAT du CNF exact, pas encore la couverture
-sémantique `gen4416`. Il reste à relier dans Lean les clauses aux recollements
-possibles, les 64 masques aux deux graphes via des permutations, et le cas
-complémenté.
+La couverture sémantique qui manquait est maintenant composée. Le théorème
+Lean terminal est :
 
-Restent la couverture exhaustive droite `gen4416`, le relèvement des
-isomorphismes en une permutation de `K25` qui préserve les deux blocs, le
-raccord exact aux unités, et les 53 traces LRAT non encore rejouées.
+```lean
+ramseyFree_isomorphic_to_gen4416
+    (coloring : Nat → Bool)
+    (hfree : isRamseyFree 16 4 4 coloring) :
+    ∃ targetIndex,
+      targetIndex < gen4416GraphIds.length ∧
+        GraphIsomorphicFin (coloringGraph 16 coloring)
+          (gen4416Graph targetIndex)
+```
+
+Il prouve donc que toute coloration `(4,4)`-libre de `K16` est fortement
+isomorphe à l'une des deux cibles matérialisées dans `gen4416`. L'énoncé est
+une couverture par ces deux cibles ; leur non-isomorphisme mutuel n'est pas
+utilisé et n'est pas encore un théorème Lean séparé.
+
+La chaîne certifiée est la suivante :
+
+1. `R44RootedDegreeSplit` oriente, par complémentation éventuelle, une racine
+   de degré 7 en n'utilisant que la borne certifiée `R(3,4) ≤ 9` ;
+2. `R44RootedBlockCatalogues` place le voisinage d'ordre 7 et le complément de
+   l'antivoisinage d'ordre 8 dans les catalogues exhaustifs de 9 et 3 types ;
+3. `R44RootedMixedCNFSemantics` relie les quatre familles sémantiques de
+   `K4`/ensembles indépendants mixtes au CNF gardé exact ;
+4. le LRAT de `R44RootedGen4416Classifier` force l'une des 64 lignes
+   autorisées ;
+5. `R44RootedGen4416Cover` vérifie 64 permutations vers les cibles et deux
+   permutations d'auto-complémentarité ;
+6. `R44RootedCanonicalRelabeling` et `R44Gen4416Classification` composent les
+   isomorphismes, désorientent le complément et concluent pour une coloration
+   arbitraire.
+
+`R44Gen4416TargetAudit` vérifie en outre que les deux cibles matérialisées sont
+elles-mêmes `R(4,4)`-valides. Les artefacts centraux ont pour SHA-256 :
+
+- CNF gardé :
+  `863C78226DDEFE17FEEF046F7F818D01ECFE63EE96663AEFEC1BE81EC591AAF4` ;
+- LRAT :
+  `786578E2E05E62E5B814BFC86656513E42A52D6467B190783637D6FC1AD33A61` ;
+- table des 64 lignes :
+  `1995924E5D942F437BF24A649A23EC9843A9375678DA8A044ABAD4FBF05E4670` ;
+- données Lean des 64 couvertures et 2 auto-compléments :
+  `39A747796E2C3FE6FFB9CE2FDE541711A47487A035F4F0C7AB1981BA4243FAB3`.
+
+Le nouveau module `R45DegreeEightGen4416Bridge` compose ensuite les deux
+couvertures locales dans la branche globale. Le théorème compilé
+`degree_eight_enters_gen358_and_gen4416` part d'une coloration `(4,5)`-libre
+de `K25` et d'une racine de degré rouge 8, puis fournit simultanément un parent
+`gen358` couvrant le bloc rouge et une cible `gen4416` fortement isomorphe au
+bloc bleu complémenté. Son SHA-256 source est
+`85B0DBF179D2DA759AA14D13E0834D788255E0B0F33003BDDD5937ABA4B031B5`.
+Cette composition existentielle est donc fermée ; elle ne construit pas encore
+la permutation unique de `K25` nécessaire aux unités des feuilles.
+
+Il n'y a aucun `sorry` ou `admit`. `#print axioms` expose les axiomes
+classiques/quotients usuels et les ponts natifs explicitement employés pour
+le rejeu LRAT et les contrôles finis par `native_decide`. La frontière de
+confiance pratique comprend donc le noyau Lean ainsi que le compilateur et le
+runtime natifs pour ces ponts ; un rejeu purement noyau demanderait un mode de
+certification plus coûteux.
+
+C'est une certification indépendante Lean/LRAT, formellement vérifiable, mais
+ni une première formalisation ni une nouveauté mathématique revendiquée. Le
+[catalogue de McKay](https://users.cecs.anu.edu.au/~bdm/data/ramsey.html)
+listait déjà deux graphes `R(4,4,16)`, et Gauthier–Brown,
+[*A Formal Proof of R(4,5)=25*](https://arxiv.org/abs/2404.01761), formalise en
+HOL4 l'énumération et la couverture pertinentes. Une publication ne serait
+défendable que si l'architecture Lean/LRAT ou la méthode de certification
+apporte une distinction suffisante. Ce n'est ni une nouvelle borne de Ramsey,
+ni une preuve de `R(4,5) ≤ 25`, ni une avancée directe sur la valeur exacte de
+`R(5,5)`.
+
+Pour le pilote degré 8, `degree_eight_enters_gen358_and_gen4416` ferme désormais
+la composition existentielle `gen358 ∧ gen4416`. La prochaine lacune commence
+au relèvement simultané des deux isomorphismes en une permutation
+bloc-diagonale de `K25`, puis au raccord exact aux unités des feuilles et aux
+53 LRAT non encore importés.
 
 ### Réduction structurelle
 
@@ -256,14 +327,34 @@ Fichiers principaux :
 - `work/vendor/lrat-catcher/LRATCatcher/Tests/R35CatalogCompleteness.lean` ;
 - `work/vendor/lrat-catcher/LRATCatcher/Tests/R35CatalogCheckpoint.lean` ;
 - `work/vendor/lrat-catcher/LRATCatcher/Tests/R55W5Symmetry.lean` ;
-- `work/vendor/lrat-catcher/LRATCatcher/Tests/R55Branch.lean`.
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R55Branch.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R44RootedMixedCNFSemantics.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R44RootedGen4416Cover.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R44Gen4416Classification.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R44Gen4416TargetAudit.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightGen4416Bridge.lean`.
 
-La suite locale contient 37 tests Python, tous réussis.
+La suite locale contient 37 tests Python historiques, tous réussis. Les huit
+contrôles de régression propres au classifieur enraciné réussissent également.
+Reproduction ciblée depuis la racine du dépôt :
+
+```powershell
+python -m unittest scripts.r45_d8_pilot.test_gen4416_rooted_classifier `
+  scripts.r45_d8_pilot.test_gen4416_rooted_proof_artifacts
+python scripts\r45_d8_pilot\gen4416_rooted_classifier.py verify
+
+cd vendor\lrat-catcher
+lake build LRATCatcher.Tests.R44Gen4416TargetAudit `
+  LRATCatcher.Tests.R44Gen4416Classification `
+  LRATCatcher.Tests.R45DegreeEightGen4416Bridge
+```
 
 ## Sources publiques
 
-- Catalogue Ramsey de Brendan McKay :
-  https://users.cecs.anu.edu.au/~bdm/data/ramsey.html
+- Catalogue Ramsey de Brendan McKay, qui liste déjà les deux graphes
+  `R(4,4,16)` : https://users.cecs.anu.edu.au/~bdm/data/ramsey.html
+- Gauthier–Brown, *A Formal Proof of R(4,5)=25*, formalisation HOL4 de
+  l'énumération/couverture : https://arxiv.org/abs/2404.01761
 - Borne supérieure `R(5,5) ≤ 46` :
   https://arxiv.org/abs/2409.15709
 - LRAT-Catcher :

@@ -11,12 +11,13 @@ The generated CNF selects one pair, enforces all mixed K4/independent-K4
 constraints, and then blocks the 64 cross masks obtained from the two
 ``gen4416`` graphs under every relevant local isomorphism.  UNSAT therefore
 certifies the finite, rooted cross-mask classification, conditional on the
-catalogue reduction represented by the selectors.  Connecting that finite
-statement to Lean is deliberately a later step.
+catalogue reduction represented by the selectors.  The generator also keeps
+one deterministic global isomorphism for every allowed mask and emits the
+small Lean data module used to check the two target graphs.
 
 Only repository inputs are used.  ``build`` never overwrites a differing
-artifact; ``verify`` reconstructs every byte and checks the mathematical
-invariants independently of stored metadata.
+artifact; ``verify`` reconstructs every byte, including the Lean cover data,
+and checks the mathematical invariants independently of stored metadata.
 """
 
 from __future__ import annotations
@@ -44,6 +45,14 @@ GEN4416 = HERE / "data" / "gen4416"
 R35_7 = R55 / "r35_7.g6"
 R35_8 = R55 / "r35_8.g6"
 DEFAULT_OUTPUT = HERE / "gen4416_rooted_classification"
+LEAN_COVER_DATA = (
+    REPOSITORY
+    / "vendor"
+    / "lrat-catcher"
+    / "LRATCatcher"
+    / "Tests"
+    / "R44RootedGen4416CoverData.lean"
+)
 
 ALLOWED_TABLE_NAME = "allowed_models.txt"
 CNF_NAME = "guarded_counterexample.cnf"
@@ -106,12 +115,22 @@ class RootAudit:
     distinct_masks: int
 
 
+@dataclass(frozen=True, order=True)
+class ModelCoverWitness:
+    model: AllowedModel
+    graph_index: int
+    permutation: tuple[int, ...]
+
+
 @dataclass(frozen=True)
 class BuildResult:
     allowed_models: tuple[AllowedModel, ...]
+    cover_witnesses: tuple[ModelCoverWitness, ...]
+    self_complement_permutations: tuple[tuple[int, ...], ...]
     clauses: tuple[tuple[int, ...], ...]
     table_bytes: bytes
     cnf_bytes: bytes
+    lean_data_bytes: bytes
     metadata_bytes: bytes
     metadata: dict[str, object]
 
@@ -358,11 +377,92 @@ def cross_mask(
     return mask
 
 
+def inverse_permutation(permutation: Sequence[int]) -> tuple[int, ...]:
+    if sorted(permutation) != list(range(len(permutation))):
+        raise ClassificationError("cannot invert a non-permutation")
+    inverse = [0] * len(permutation)
+    for source, target in enumerate(permutation):
+        inverse[target] = source
+    return tuple(inverse)
+
+
+def rooted_completion(
+    left_graph: Graph, anti_complement: Graph, mask: int
+) -> Graph:
+    """Materialize canonical labels L=0..6, A=7..14, root=15."""
+
+    if len(left_graph) != 7 or len(anti_complement) != 8:
+        raise ClassificationError("rooted completion expects orders seven and eight")
+    if not 0 <= mask < 1 << CROSS_VARIABLE_COUNT:
+        raise ClassificationError("rooted completion mask lies outside 56 bits")
+    rows = [0] * 16
+
+    def set_edge(left: int, right: int) -> None:
+        rows[left] |= 1 << right
+        rows[right] |= 1 << left
+
+    for left in range(7):
+        set_edge(left, 15)
+        for right in range(left + 1, 7):
+            if edge(left_graph, left, right):
+                set_edge(left, right)
+    for anti in range(8):
+        for other in range(anti + 1, 8):
+            # The selector stores complement(A), while this graph stores raw A.
+            if not edge(anti_complement, anti, other):
+                set_edge(7 + anti, 7 + other)
+    for left in range(7):
+        for anti in range(8):
+            if (mask >> (8 * left + anti)) & 1:
+                set_edge(left, 7 + anti)
+    result = tuple(rows)
+    ramsey.validate_graph(result)
+    return result
+
+
+def rooted_global_permutation(
+    root: int,
+    left_vertices: Sequence[int],
+    anti_vertices: Sequence[int],
+    left_isomorphism: Sequence[int],
+    anti_isomorphism: Sequence[int],
+) -> tuple[int, ...]:
+    """Map canonical L,A,root labels to the original gen4416 graph."""
+
+    if len(left_vertices) != 7 or len(anti_vertices) != 8:
+        raise ClassificationError("rooted global permutation expects a 7 + 8 split")
+    left_inverse = inverse_permutation(left_isomorphism)
+    anti_inverse = inverse_permutation(anti_isomorphism)
+    result = (
+        tuple(left_vertices[left_inverse[canonical]] for canonical in range(7))
+        + tuple(
+            anti_vertices[anti_inverse[canonical]] for canonical in range(8)
+        )
+        + (root,)
+    )
+    if sorted(result) != list(range(16)):
+        raise ClassificationError("rooted global map is not a permutation of 16")
+    return result
+
+
+def target_index_for_model(model: AllowedModel) -> int:
+    pair = (model.left_selector, model.anti_selector)
+    if pair == (0, 2):
+        return 1
+    if pair == (8, 0):
+        return 0
+    raise ClassificationError(f"allowed model has no gen4416 target: {pair}")
+
+
 def extract_allowed_models(
     gen_graphs: Sequence[tuple[int, Graph]],
     left_representatives: Sequence[Graph],
     anti_representatives: Sequence[Graph],
-) -> tuple[tuple[AllowedModel, ...], tuple[RootAudit, ...]]:
+) -> tuple[
+    tuple[AllowedModel, ...],
+    tuple[RootAudit, ...],
+    tuple[ModelCoverWitness, ...],
+]:
     left_lookup = {
         LEFT_CATALOGUE_INDICES[index]: index
         for index in range(len(LEFT_CATALOGUE_INDICES))
@@ -374,6 +474,9 @@ def extract_allowed_models(
     del left_lookup, anti_lookup  # indices are documented; matches below are explicit
 
     allowed: set[AllowedModel] = set()
+    cover_candidates: defaultdict[
+        AllowedModel, set[ModelCoverWitness]
+    ] = defaultdict(set)
     audits: list[RootAudit] = []
     for graph_index, (graph_id, graph) in enumerate(gen_graphs):
         degree_seven_roots = tuple(
@@ -424,18 +527,40 @@ def extract_allowed_models(
             root_models: set[AllowedModel] = set()
             for left_iso in left_isomorphisms:
                 for anti_iso in anti_isomorphisms:
-                    root_models.add(
-                        AllowedModel(
-                            left_selector,
-                            anti_selector,
-                            cross_mask(
-                                graph,
-                                left_vertices,
-                                anti_vertices,
-                                left_iso,
-                                anti_iso,
-                            ),
+                    model = AllowedModel(
+                        left_selector,
+                        anti_selector,
+                        cross_mask(
+                            graph,
+                            left_vertices,
+                            anti_vertices,
+                            left_iso,
+                            anti_iso,
+                        ),
+                    )
+                    permutation = rooted_global_permutation(
+                        root,
+                        left_vertices,
+                        anti_vertices,
+                        left_iso,
+                        anti_iso,
+                    )
+                    canonical = rooted_completion(
+                        left_representatives[left_selector],
+                        anti_representatives[anti_selector],
+                        model.mask,
+                    )
+                    if not is_isomorphism(canonical, graph, permutation):
+                        raise ClassificationError(
+                            "rooted global permutation is not an isomorphism"
                         )
+                    if target_index_for_model(model) != graph_index:
+                        raise ClassificationError(
+                            f"model {model} unexpectedly targets graph {graph_index}"
+                        )
+                    root_models.add(model)
+                    cover_candidates[model].add(
+                        ModelCoverWitness(model, graph_index, permutation)
                     )
             allowed.update(root_models)
             audits.append(
@@ -460,7 +585,31 @@ def extract_allowed_models(
         raise ClassificationError(
             f"unexpected allowed-model distribution: {len(result)}, {dict(counts)}"
         )
-    return result, tuple(audits)
+    if set(cover_candidates) != set(result):
+        raise ClassificationError("cover provenance does not match allowed models")
+    witnesses = tuple(
+        min(
+            cover_candidates[model],
+            key=lambda witness: (witness.graph_index, witness.permutation),
+        )
+        for model in result
+    )
+    return result, tuple(audits), witnesses
+
+
+def self_complement_permutations(
+    gen_graphs: Sequence[tuple[int, Graph]],
+) -> tuple[tuple[int, ...], ...]:
+    result: list[tuple[int, ...]] = []
+    for graph_index, (_graph_id, graph) in enumerate(gen_graphs):
+        complement = ramsey.complement_graph(graph)
+        isomorphisms = all_isomorphisms(complement, graph)
+        if not isomorphisms:
+            raise ClassificationError(
+                f"gen4416 graph {graph_index} is not self-complementary"
+            )
+        result.append(min(isomorphisms))
+    return tuple(result)
 
 
 def triples(vertices: range | Sequence[int]) -> Iterator[tuple[int, int, int]]:
@@ -614,6 +763,56 @@ def render_allowed_table(allowed_models: Sequence[AllowedModel]) -> bytes:
     ).encode("ascii")
 
 
+def lean_list(values: Sequence[int]) -> str:
+    return "[" + ",".join(map(str, values)) + "]"
+
+
+def render_lean_cover_data(
+    gen_graphs: Sequence[tuple[int, Graph]],
+    allowed_models: Sequence[AllowedModel],
+    cover_witnesses: Sequence[ModelCoverWitness],
+    complements: Sequence[Sequence[int]],
+    gen4416_sha256: str,
+    allowed_table_sha256: str,
+) -> bytes:
+    if tuple(witness.model for witness in cover_witnesses) != tuple(allowed_models):
+        raise ClassificationError("Lean cover witnesses are not model-aligned")
+    if len(gen_graphs) != 2 or len(complements) != 2:
+        raise ClassificationError("Lean cover data expects exactly two gen4416 graphs")
+    lines = [
+        "/- This file is generated by gen4416_rooted_classifier.py.",
+        f"   gen4416 SHA-256: {gen4416_sha256}",
+        f"   allowed_models.txt SHA-256: {allowed_table_sha256} -/",
+        "namespace LRATCatcher.Tests.R44RootedGen4416CoverData",
+        "",
+        "def gen4416GraphIds : List Nat := "
+        + lean_list([graph_id for graph_id, _graph in gen_graphs]),
+        "",
+        "def gen4416TargetIndexForSelectors",
+        "    (leftSelector antiSelector : Nat) : Nat :=",
+        "  if leftSelector == 0 && antiSelector == 2 then 1 else 0",
+        "",
+        "def gen4416CoverPermutations : List (List Nat) := [",
+    ]
+    for index, witness in enumerate(cover_witnesses):
+        suffix = "," if index + 1 < len(cover_witnesses) else ""
+        lines.append(f"  {lean_list(witness.permutation)}{suffix}")
+    lines.extend(
+        [
+            "]",
+            "",
+            "def gen4416SelfComplementPermutations : List (List Nat) := [",
+        ]
+    )
+    for index, permutation in enumerate(complements):
+        suffix = "," if index + 1 < len(complements) else ""
+        lines.append(f"  {lean_list(permutation)}{suffix}")
+    lines.extend(
+        ["]", "", "end LRATCatcher.Tests.R44RootedGen4416CoverData", ""]
+    )
+    return "\n".join(lines).encode("utf-8")
+
+
 def render_cnf(clauses: Sequence[Sequence[int]], source_hashes: dict[str, str]) -> bytes:
     lines = [
         "c rooted gen4416 counterexample classifier",
@@ -654,7 +853,8 @@ def build_result() -> BuildResult:
         raise ClassificationError("selected order-eight graph is not R(3,4)-free")
 
     gen_graphs = read_gen4416()
-    allowed_models, root_audits = extract_allowed_models(
+    complements = self_complement_permutations(gen_graphs)
+    allowed_models, root_audits, cover_witnesses = extract_allowed_models(
         gen_graphs, left_representatives, anti_representatives
     )
     clauses, breakdown, pair_metadata = generate_clauses(
@@ -666,10 +866,18 @@ def build_result() -> BuildResult:
     )
 
     table_bytes = render_allowed_table(allowed_models)
+    lean_data_bytes = render_lean_cover_data(
+        gen_graphs,
+        allowed_models,
+        cover_witnesses,
+        complements,
+        source_hashes["gen4416"],
+        sha256_bytes(table_bytes),
+    )
     cnf_bytes = render_cnf(clauses, source_hashes)
     metadata: dict[str, object] = {
         "schema_version": SCHEMA_VERSION,
-        "status": "CNF_UNSAT_CERTIFIED_IN_LEAN_SEMANTIC_COMPOSITION_PENDING",
+        "status": "ROOTED_CNF_UNSAT_WITH_REPRODUCIBLE_GEN4416_COVER_DATA",
         "scope": (
             "guarded finite cross-mask classification for a degree-seven root "
             "of an R(4,4,16) graph"
@@ -679,10 +887,22 @@ def build_result() -> BuildResult:
             "theorem": "LRATCatcher.Tests.r44_rooted_gen4416_classifier_unsat",
             "scope": "unsatisfiability of the exact generated labelled CNF",
         },
+        "lean_composition": {
+            "cover_checker_module": (
+                "LRATCatcher.Tests.R44RootedGen4416Cover"
+            ),
+            "target_audit_module": (
+                "LRATCatcher.Tests.R44Gen4416TargetAudit"
+            ),
+            "classification_module": (
+                "LRATCatcher.Tests.R44Gen4416Classification"
+            ),
+            "theorem": "ramseyFree_isomorphic_to_gen4416",
+        },
         "limitations": [
-            "the Lean rooted reduction to the 27 selector pairs is separate",
-            "the 64 mask rows still need graph-isomorphism witnesses in Lean",
-            "the certified CNF alone does not prove exhaustive gen4416 coverage",
+            "this generated artifact covers the rooted finite CNF and witness data",
+            "separate Lean modules certify the catalogue reduction, finite cover, "
+            "target audit, and unrooted complement composition",
         ],
         "sources": {
             name: {
@@ -730,6 +950,27 @@ def build_result() -> BuildResult:
             "table_bytes": len(table_bytes),
             "table_sha256": sha256_bytes(table_bytes),
         },
+        "lean_cover_data": {
+            "path": LEAN_COVER_DATA.relative_to(REPOSITORY).as_posix(),
+            "module": "LRATCatcher.Tests.R44RootedGen4416CoverData",
+            "bytes": len(lean_data_bytes),
+            "sha256": sha256_bytes(lean_data_bytes),
+            "cover_witnesses": len(cover_witnesses),
+            "target_counts": {
+                str(graph_index): count
+                for graph_index, count in sorted(
+                    Counter(
+                        witness.graph_index for witness in cover_witnesses
+                    ).items()
+                )
+            },
+            "self_complement_witnesses": len(complements),
+            "canonical_labels": {
+                "left": "0..6",
+                "anti": "7..14",
+                "root": 15,
+            },
+        },
         "root_audit": [audit.__dict__ for audit in root_audits],
         "cnf": {
             "file": CNF_NAME,
@@ -750,9 +991,12 @@ def build_result() -> BuildResult:
     ).encode("utf-8")
     return BuildResult(
         allowed_models=allowed_models,
+        cover_witnesses=cover_witnesses,
+        self_complement_permutations=complements,
         clauses=clauses,
         table_bytes=table_bytes,
         cnf_bytes=cnf_bytes,
+        lean_data_bytes=lean_data_bytes,
         metadata_bytes=metadata_bytes,
         metadata=metadata,
     )
@@ -871,6 +1115,7 @@ def write_new_or_equal(path: Path, data: bytes) -> None:
 def build(output: Path) -> dict[str, object]:
     result = build_result()
     write_new_or_equal(output / ALLOWED_TABLE_NAME, result.table_bytes)
+    write_new_or_equal(LEAN_COVER_DATA, result.lean_data_bytes)
     write_new_or_equal(output / CNF_NAME, result.cnf_bytes)
     write_new_or_equal(output / METADATA_NAME, result.metadata_bytes)
     return summary(result, output)
@@ -890,6 +1135,12 @@ def verify(output: Path) -> dict[str, object]:
         if path.read_bytes() != data:
             raise ClassificationError(f"artifact differs from deterministic rebuild: {path}")
 
+    if not LEAN_COVER_DATA.is_file():
+        raise ClassificationError(f"missing Lean cover data {LEAN_COVER_DATA}")
+    if LEAN_COVER_DATA.read_bytes() != result.lean_data_bytes:
+        raise ClassificationError(
+            f"Lean cover data differs from deterministic rebuild: {LEAN_COVER_DATA}"
+        )
     variables, parsed_clauses = parse_cnf((output / CNF_NAME).read_bytes())
     if variables != VARIABLE_COUNT or parsed_clauses != result.clauses:
         raise ClassificationError("parsed CNF differs from generated clause sequence")
@@ -911,6 +1162,8 @@ def summary(result: BuildResult, output: Path) -> dict[str, object]:
         "output": str(output),
         "selector_pairs": SELECTOR_COUNT,
         "allowed_models": len(result.allowed_models),
+        "cover_witnesses": len(result.cover_witnesses),
+        "lean_cover_data_sha256": sha256_bytes(result.lean_data_bytes),
         "allowed_counts_by_pair": allowed["counts_by_pair"],
         "allowed_table_sha256": allowed["table_sha256"],
         "cnf_variables": VARIABLE_COUNT,

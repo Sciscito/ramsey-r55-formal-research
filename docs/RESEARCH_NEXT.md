@@ -18,8 +18,9 @@ theorem every_r55_free_k43_enters_tight_manifest :
 The shortest route currently appears to be:
 
 1. formalize the minimum-degree anchor and its complement symmetry;
-2. derive the neighbourhood/non-neighbourhood `R(3,5)` and `R(4,5)` local
-   predicates;
+2. **partially done:** `R55DegreeBounds.lean` derives red and blue degree at
+   most 24 from `R(4,5) ≤ 25`; produce that remaining upper-bound certificate
+   using canonical root degrees and a checked symmetry/cube cover;
 3. **done for exact `d=20,c=10`:** use
    `r35_catalogue_order_ten_complete` for the common-neighbour type, via
    `d20c10_type_covered_by_orderTenCatalogue`;
@@ -31,6 +32,14 @@ The shortest route currently appears to be:
 The 313 `d=20,c=10` cases are already solver-UNSAT, but only two leaves have
 formal LRAT imports. Do not promote solver results to a global theorem without
 the coverage and composition steps above.
+
+The naive `R(4,5,25)` CNF is not a viable monolithic LRAT target: it remains
+`UNKNOWN` after five million conflicts, and one million conflicts already
+generate 448 MB of incomplete textual proof. See
+`RAMSEY_BOUND_DIAGNOSTICS.md`. A promising finite split fixes a root, uses
+`R(3,5) ≤ 14` and the now-certified `R(4,4) ≤ 18` to restrict its red degree
+to `7..13`, canonically relabels the two neighbourhoods, and certifies those
+seven branches plus the relabeling/coverage theorem.
 
 The canonical local constructor is now complete. `LocalD20C10Witness` asks
 only for `degree(root)=20`, `anchor ∈ N(root)` and

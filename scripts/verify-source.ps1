@@ -32,7 +32,9 @@ try {
         LRATCatcher.Tests.R55TypedUnitsBridge `
         LRATCatcher.Tests.R55CanonicalCommonIndex `
         LRATCatcher.Tests.R55ColoringPermutation `
-        LRATCatcher.Tests.R55CanonicalRelabeling
+        LRATCatcher.Tests.R55CanonicalRelabeling `
+        LRATCatcher.Tests.RamseyUpperBounds `
+        LRATCatcher.Tests.R55DegreeBounds
     if ($LASTEXITCODE -ne 0) {
         throw 'Lean integration build failed.'
     }

@@ -34,6 +34,24 @@ Nous n’avons pas encore obtenu cette décision globale.
 - Une preuve LRAT fraîche de `R(3,3) ≤ 6` a été rejouée dans Lean pour valider
   la chaîne solveur → certificat → vérificateur formel.
 
+### Petites bornes Ramsey et borne globale de degrés
+
+- `R(3,4) ≤ 9` est maintenant certifié par un LRAT complet de 961 008 octets
+  produit depuis l'encodeur Lean : 36 variables, 210 clauses, 8 937 conflits.
+- `RamseyRecurrence.lean` formalise la partition des 17 arêtes incidentes à un
+  sommet, la restriction à neuf voisins et le complément bleu. Avec le
+  certificat précédent, `r44_upper` prouve `R(4,4) ≤ 18`.
+- `R55DegreeBounds.lean` prouve conditionnellement que `R(4,5) ≤ 25` implique
+  que chaque sommet d'une hypothétique coloration `K43` sans `K5`
+  monochromatique a ses deux degrés, rouge et bleu, au plus égaux à 24.
+
+Le certificat `R(4,5) ≤ 25` reste à produire. Son CNF Lean exact a 300
+variables et 65 780 clauses. Une recherche monolithique reste `UNKNOWN` après
+5 000 000 conflits ; avec LRAT, un million de conflits produisait déjà
+448 054 388 octets sans clause vide. Les mesures complètes sont dans
+`RAMSEY_BOUND_DIAGNOSTICS.md`. La prochaine tentative doit donc employer une
+réduction par symétrie ou une couverture de cubes vérifiée.
+
 ### Réduction structurelle
 
 Les cas racines utiles sont `d=18` et `d=20`. En choisissant, dans le
@@ -170,8 +188,9 @@ soundness est donc le résidu précis ; elle n'est pas supposée implicitement.
    branches du problème `K43`.
 2. Relier les contraintes auxiliaires au graphe : complétude des compteurs de
    cardinalité, comparateurs lexicographiques et régularité.
-3. Formaliser la couverture des cas racines et les bornes extrémales utilisées
-   pour choisir l’ancrage minimal.
+3. Certifier `R(4,5) ≤ 25`, puis instancier la borne globale de degrés déjà
+   formalisée et couvrir les cas racines utilisés pour choisir l’ancrage
+   minimal.
 4. Produire puis rejouer les certificats UNSAT pour toutes les feuilles, pas
    seulement les deux feuilles déjà importées.
 5. Composer ces résultats en un théorème final sur le prédicat Ramsey, puis

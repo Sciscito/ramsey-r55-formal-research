@@ -33,6 +33,12 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
 
 ## Other verified results
 
+- compact certified upper bound `R(4,4) ≤ 18`: a 961,008-byte LRAT proof
+  establishes `R(3,4) ≤ 9`, then `RamseyRecurrence.lean` proves the classical
+  red/blue recurrence semantically in Lean;
+- conditional global degree theorem `allDegrees_le_twentyFour`: from
+  `R(4,5) ≤ 25`, every vertex of a hypothetical `K43` counterexample has
+  both red and blue degree at most 24;
 - explicit 42-vertex witness checked by Lean, hence `R(5,5) ≥ 43`;
 - canonical `K43` encoding: 903 variables and 1,925,196 clauses;
 - 1,509 tight structural branches;
@@ -111,7 +117,9 @@ lake build LRATCatcher.Tests.R35CatalogCheckpoint `
            LRATCatcher.Tests.R55CanonicalCommonIndex `
            LRATCatcher.Tests.R55TypedUnitsBridge `
            LRATCatcher.Tests.R55ColoringPermutation `
-           LRATCatcher.Tests.R55CanonicalRelabeling
+           LRATCatcher.Tests.R55CanonicalRelabeling `
+           LRATCatcher.Tests.RamseyUpperBounds `
+           LRATCatcher.Tests.R55DegreeBounds
 ```
 
 Expected final theorem:
@@ -123,10 +131,13 @@ r35_catalogue_order_ten_complete :
 
 ## Next formal objective
 
-The canonical local-graph construction and DIMACS unit-clause soundness
-bridge are now complete. Remaining
-The WLOG relabeling is now complete once an exact local degree-20/codegree-10
-witness is supplied. Remaining obligations include deriving and covering the
+The canonical local-graph construction, DIMACS unit-clause soundness bridge
+and WLOG relabeling are complete once an exact local degree-20/codegree-10
+witness is supplied. The global degree bound is also formal, conditional on
+the still-missing certificate `R(4,5) ≤ 25`. Direct monolithic runs are
+quantified in [RAMSEY_BOUND_DIAGNOSTICS.md](RAMSEY_BOUND_DIAGNOSTICS.md) and
+show that the next attempt should use symmetry breaking or a checked cube
+cover. Remaining obligations include deriving and covering the
 required local witnesses from every global branch, certifying that each
 external graph6/manifest index denotes the same packed Lean catalogue entry,
 the global degree/codegree reduction, soundness of the two type-0 counter

@@ -34,7 +34,8 @@ try {
         LRATCatcher.Tests.R55ColoringPermutation `
         LRATCatcher.Tests.R55CanonicalRelabeling `
         LRATCatcher.Tests.RamseyUpperBounds `
-        LRATCatcher.Tests.R55DegreeBounds
+        LRATCatcher.Tests.R55DegreeBounds `
+        LRATCatcher.Tests.R45DegreeEightPilot
     if ($LASTEXITCODE -ne 0) {
         throw 'Lean integration build failed.'
     }

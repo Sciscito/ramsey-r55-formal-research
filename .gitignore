@@ -16,5 +16,6 @@ r55/*.lrat
 # Local experiments and regenerated solver outputs.
 work/
 scratch/
+scripts/r45_d8_pilot/direct_lean_orientation/
 *.tmp
 *.bak

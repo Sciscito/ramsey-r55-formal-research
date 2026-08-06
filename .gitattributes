@@ -1,0 +1,6 @@
+# Certificate and graph data are byte-sensitive. In particular, Git for
+# Windows must not rewrite their LF endings when core.autocrlf is enabled.
+*.cnf binary
+*.g6 binary
+*.icnf binary
+*.lrat binary

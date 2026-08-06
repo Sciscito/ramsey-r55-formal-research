@@ -158,6 +158,21 @@ structure LocalD20C10Witness (coloring : Nat → Bool) where
   anchor_codegree :
     (rootAnchorCommonNeighbors coloring root anchor).length = 10
 
+/-- The canonical SAT branch fixes `N_R(0) = {1,…,20}` and the common red
+neighbourhood of `(0,1)` to `{2,…,11}`.  Those two exact list equalities
+already contain every fact needed by the minimal semantic witness. -/
+def LocalD20C10Witness.ofCanonicalBranch {coloring : Nat → Bool}
+    (hroot : rootRedNeighbors coloring 0 = List.range' 1 20)
+    (hcommon :
+      rootAnchorCommonNeighbors coloring 0 1 = List.range' 2 10) :
+    LocalD20C10Witness coloring where
+  root := 0
+  anchor := 1
+  root_bound := by omega
+  root_degree := by simp [hroot]
+  anchor_mem := by simp [hroot]
+  anchor_codegree := by simp [hcommon]
+
 /-- Expand the minimal local witness to the explicit exact-list interface. -/
 def LocalD20C10Witness.toExactLists {coloring : Nat → Bool}
     (witness : LocalD20C10Witness coloring) :
@@ -627,6 +642,23 @@ theorem LocalD20C10Witness.covered_by_orderTenCatalogue
       representative ∈ catalogues.getD 10 [] ∧
       GraphIsomorphicFin (inducedGraph witness.toExactLists) representative := by
   exact inducedGraph_covered_by_orderTenCatalogue hfree witness.toExactLists
+
+/-- End-to-end coverage theorem stated directly in the canonical labels used
+by the SAT branch. -/
+theorem canonicalBranch_covered_by_orderTenCatalogue
+    {coloring : Nat → Bool}
+    (hfree : isRamseyFree 43 5 5 coloring)
+    (hroot : rootRedNeighbors coloring 0 = List.range' 1 20)
+    (hcommon :
+      rootAnchorCommonNeighbors coloring 0 1 = List.range' 2 10) :
+    ∃ representative,
+      representative ∈ catalogues.getD 10 [] ∧
+      GraphIsomorphicFin
+        (inducedGraph
+          (LocalD20C10Witness.ofCanonicalBranch hroot hcommon).toExactLists)
+        representative := by
+  exact LocalD20C10Witness.covered_by_orderTenCatalogue hfree
+    (LocalD20C10Witness.ofCanonicalBranch hroot hcommon)
 
 end ExactLists
 

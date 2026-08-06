@@ -42,3 +42,18 @@ The immediate Lean lemma is therefore the global/branch reduction producing
 such a witness from `isRamseyFree 43 5 5` plus the selected `d=20,c=10`
 branch. After that, identify the representative index and connect it to the
 manifest/CNF branch semantics.
+
+For the canonically labelled branch,
+`LocalD20C10Witness.ofCanonicalBranch` and
+`canonicalBranch_covered_by_orderTenCatalogue` are complete. The next exact
+interface was also completed in `R55CanonicalUnitsBridge.lean`: satisfaction
+of the 42+19 DIMACS units yields both canonical list equalities, a local
+witness and catalogue coverage. The one-based DIMACS / zero-based Lean shift
+is explicit and independently audited.
+
+The next typed-branch bridge should prove
+`common units.toLocalWitness.toExactLists i = i.val + 2`, identify every bit
+of the induced graph with the unit emitted by `fixed_anchor_type_clauses`, and
+then connect a catalogue representative index to its exact manifest/CNF cube.
+In parallel, the WLOG/relabeling theorem must derive the 61 canonical units
+from an arbitrary relevant `K43` branch.

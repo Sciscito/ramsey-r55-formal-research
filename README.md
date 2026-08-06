@@ -47,6 +47,14 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
   local facts `degree(root)=20`, `anchor ∈ N(root)` and
   `codegree(root,anchor)=10`, it builds the exact lists and packed induced
   graph consumed by that bridge;
+- canonical-label specialization
+  `canonicalBranch_covered_by_orderTenCatalogue`, reducing the local branch
+  to the two exact equalities `N(0)=[1,…,20]` and
+  `N(0)∩N(1)=[2,…,11]`;
+- audited DIMACS semantics bridge `R55CanonicalUnitsBridge.lean`: the 42 root
+  units and 19 anchor units, including the one-based DIMACS to zero-based Lean
+  shift, imply those exact equalities and therefore certified catalogue
+  coverage;
 - 37 Python tests.
 
 ## Repository layout
@@ -78,7 +86,8 @@ Direct Lean integration check:
 cd vendor\lrat-catcher
 lake build LRATCatcher.Tests.R35CatalogCheckpoint `
            LRATCatcher.Tests.R55W5Symmetry `
-           LRATCatcher.Tests.R55CommonNeighborhoodBridge
+           LRATCatcher.Tests.R55CommonNeighborhoodBridge `
+           LRATCatcher.Tests.R55CanonicalUnitsBridge
 ```
 
 Expected final theorem:
@@ -90,11 +99,12 @@ r35_catalogue_order_ten_complete :
 
 ## Next formal objective
 
-Produce `LocalD20C10Witness` from every relevant `K43`-free branch, then
-connect the semantic catalogue representative to the corresponding SAT cube.
-The local graph construction itself is now formalized. The remaining
-obligations include the global degree/codegree reduction, cardinality
-encodings, regularity and lexicographic symmetry constraints, followed by
+The canonical local-graph construction and DIMACS unit-clause soundness
+bridge are now complete. Remaining
+obligations include the WLOG/relabeling theorem that produces those 61 units
+from an arbitrary relevant branch, the exact mapping from induced-graph bits
+to `fixed_anchor_type_clauses`, the global degree/codegree reduction,
+cardinality encodings, regularity and lexicographic symmetry constraints, and
 compositional LRAT coverage of every leaf.
 
 See [docs/GUIDE_REPRISE.md](docs/GUIDE_REPRISE.md) for exact environment,

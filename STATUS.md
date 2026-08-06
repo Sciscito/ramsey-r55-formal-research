@@ -134,6 +134,20 @@ induit empaqueté et toutes les obligations de bonne formation. Le théorème
 `LocalD20C10Witness.covered_by_orderTenCatalogue` ferme ensuite la couverture
 sémantique locale. Aucun `sorry`, `admit` ou nouvel axiome explicite.
 
+La spécialisation `LocalD20C10Witness.ofCanonicalBranch` construit ce témoin
+depuis les deux égalités de listes correspondant exactement au label SAT
+canonique, et `canonicalBranch_covered_by_orderTenCatalogue` compose ce
+constructeur avec la couverture.
+
+Ce raccord est maintenant prouvé dans `R55CanonicalUnitsBridge.lean` : les 42
+unités racine et 19 unités ancre sont reproduites exactement, leur satisfaction
+donne les deux listes canoniques, puis
+`CanonicalD20C10Units.covered_by_orderTenCatalogue` atteint le catalogue.
+L'audit indépendant a comparé les 61 littéraux Python et Lean, leurs polarités
+et indices, sans écart. Le prochain raccord concerne les unités de type
+`fixed_anchor_type_clauses`, puis la réduction WLOG qui produit les unités
+canoniques depuis une branche arbitraire.
+
 ## Ce qui manque avant toute annonce de `R(5,5)=43`
 
 1. Produire `LocalD20C10Witness` depuis les hypothèses globales/de branche et

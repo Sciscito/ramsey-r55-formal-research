@@ -4,3 +4,5 @@
 *.g6 binary
 *.icnf binary
 *.lrat binary
+scripts/r45_d8_pilot/guarded_master/*.json binary
+scripts/r45_d8_pilot/guarded_master/*.assumptions binary

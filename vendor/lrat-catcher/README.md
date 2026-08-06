@@ -76,6 +76,20 @@ def myCnf : Std.Sat.CNF Nat :=
 lrat_reflect_cnf tiny_def_cmd (myCnf) "LRATCatcher/Tests/tiny.lrat"
 ```
 
+For a large textual proof, `LRATCatcher.ReflectTrim` provides
+`lrat_reflect_trim` with the same file-based statement:
+
+```lean
+import LRATCatcher.ReflectTrim
+
+lrat_reflect_trim large_cmd "large.cnf" "large.lrat"
+```
+
+The command runs Lean's LRAT backward trimmer at elaboration time, embeds only
+the actions needed for the final empty clause, and replays that trimmed proof
+with the same checker. It also has a `+kernel` variant. Trimming changes proof
+size, not the theorem statement or trust model.
+
 Each command registers an ordinary Lean theorem, so the result is usable as a
 lemma in later proofs (here `tiny_def_cmd : myCnf.Unsat`):
 
@@ -95,10 +109,20 @@ Further commands, with worked examples under `LRATCatcher/Tests/`:
   cube-and-conquer path (`CoverTest.lean`). For runs with many cubes, build the
   per-cube refutations in parallel with `lratcatch-cover-parallel` (see
   [Parallel cube-and-conquer](#parallel-cube-and-conquer)).
+- `lrat_cover_reflect_trim`, from `LRATCatcher.CoverTrim`, is the native,
+  file-based cover command with the same theorem statement and DIMACS/iCNF
+  validation as `lrat_cover_reflect`. Invoke it as
+  `lrat_cover_reflect_trim name "base.cnf" "cubes.icnf" "leaf/prefix"
+  "cover.lrat"`; it trims every leaf proof and the final cover proof before
+  embedding and replaying them. This reduces the embedded payload and compiled
+  artifact size, but the original certificate files are still read and parsed
+  in full at elaboration time.
 
-Every command has a `+kernel` variant, for example
-`lrat_decide +kernel name "f.cnf"` (see Trust base). Certificate paths are
-relative to the directory where `lake` runs, which is the package root.
+The single-certificate commands have `+kernel` variants, for example
+`lrat_decide +kernel name "f.cnf"` (see Trust base). The cover commands,
+including `lrat_cover_reflect_trim`, are currently native-only. Certificate
+paths are relative to the directory where `lake` runs, which is the package
+root.
 
 ## Parallel cube-and-conquer
 
@@ -133,10 +157,10 @@ that, split it further (re-cube).
 
 - **Native mode** (default): the Lean kernel and the compiler. Each imported
   theorem carries one `native_decide` axiom, visible under `#print axioms`.
-- **Kernel mode** (`+kernel`): the Lean kernel alone, with the standard axioms
-  and no `native_decide` axiom. It is slower and embeds the CNF as a literal
-  term. Use it as a trust dial, and for the RAT cases that the configured native
-  path does not cover.
+- **Kernel mode** (`+kernel`): available for the single-certificate commands,
+  this uses the Lean kernel alone, with the standard axioms and no
+  `native_decide` axiom. It is slower and embeds the CNF as a literal term.
+  Cover-composition commands currently use native mode.
 
 In both modes the trusted statement contains the DIMACS parser, the CNF, or
 both, so the theorem says exactly what the input files say.

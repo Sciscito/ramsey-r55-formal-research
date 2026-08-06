@@ -1,8 +1,65 @@
 # Large proof artifacts
 
 Large generated CNF/LRAT files are intentionally excluded from Git history.
-They are preserved in the private Release `checkpoint-2026-08-06` as the
-single portable archive:
+Each artifact family below is tied to tracked SHA-256 manifests.
+
+## `R(4,5,25)` red-degree-eight guarded-master bundle
+
+The complete certificate consists of 59 leaf LRAT files and one cover LRAT
+file: 2,405,113,598 uncompressed bytes. Their canonical names, sizes and
+SHA-256 digests are tracked in
+`scripts/r45_d8_pilot/guarded_master/proof_bundle_manifest.json` (SHA-256
+`C4D7B5E1BD2030090963E30533DC2208CBD15A09A54DD487DEBA9E0FAFBBCB34`).
+
+Four ZIP64/Deflate archives were packed and independently
+decompressed and rehashed on 2026-08-06. Their verified container inventory
+is tracked in `proof_bundle_archives.json` next to that manifest (SHA-256
+`E0B0CF9C75B0D2185B8B2C30C8B12CE89B9277FF680AB80FDDA7806297D4062D`):
+
+```text
+202,595,839  08C9BE342A3ADF42044AA041FAB82D970DC519C0CB9E5AF6A476727AD16ABD46  r45-d8-lrat-v1-p01-leaves-01-20.zip
+179,153,713  01B52916487237FB6B44A45C62D49F1CA96845D2EBA54A3FEA7E2808471172CC  r45-d8-lrat-v1-p02-leaves-21-22.zip
+140,288,173  B03D3EA26EB8DEA13D441527233DC9BDD7B38062DCC3316DA6D2048FF33558B7  r45-d8-lrat-v1-p03-leaves-23-36.zip
+125,289,224  16C5782D3F47CC4754A49C1F22C0361111F518959C9C12884D41160D6FB2E5F1  r45-d8-lrat-v1-p04-leaves-37-59-cover.zip
+```
+
+The four archives total 647,326,949 bytes. They are prepared for the planned
+GitHub Release tag `r45-d8-guarded-master-lrat-v1`, but must not be described
+as publicly retrievable until the Release upload and redownload audit have
+completed.
+
+After downloading the four ZIP files beside one another, verify them without
+extracting:
+
+```powershell
+python scripts\r45_d8_pilot\proof_bundle.py verify `
+  --manifest scripts\r45_d8_pilot\guarded_master\proof_bundle_manifest.json `
+  --archives <external-archive-directory>
+```
+
+Install them into an explicit external SSD cache and create the ignored
+repository junction only after every member has been verified:
+
+```powershell
+python scripts\r45_d8_pilot\proof_bundle.py install `
+  --manifest scripts\r45_d8_pilot\guarded_master\proof_bundle_manifest.json `
+  --archives <external-archive-directory> `
+  --cache <external-SSD-cache-directory> `
+  --link
+```
+
+For the terminal audit, force Lean to reread the external certificates rather
+than trusting a cached `.olean`:
+
+```powershell
+cd vendor\lrat-catcher
+lake env lean LRATCatcher\Tests\R45DegreeEightGuardedMaster.lean
+```
+
+## Earlier `R(5,5)` checkpoint
+
+The large artifacts from the preceding `R(5,5)` milestone are preserved in
+the private Release `checkpoint-2026-08-06` as the portable archive:
 
 ```text
 R55_REPRISE_COMPLET_2026-08-06.zip

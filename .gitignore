@@ -18,5 +18,6 @@ r55/*.lrat
 work/
 scratch/
 scripts/r45_d8_pilot/direct_lean_orientation/
+scripts/r45_d8_pilot/guarded_master/proofs/
 *.tmp
 *.bak

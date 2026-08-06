@@ -52,19 +52,34 @@ variables et 65 780 clauses. Une recherche monolithique reste `UNKNOWN` après
 `RAMSEY_BOUND_DIAGNOSTICS.md`. La prochaine tentative doit donc employer une
 réduction par symétrie ou une couverture de cubes vérifiée.
 
-### Pilote `R(4,5,25)`, degré racine 8
+### Branche certifiée `R(4,5,25)`, degré racine 8
 
-Le pilote réduit la formule à 54 feuilles (`27 × 2`) et CaDiCaL les a toutes
-signalées UNSAT. Ce résultat solveur reste expérimental tant que toute la
-couverture et toutes les traces ne sont pas composées dans Lean.
+Le pilote à 54 couples (`27 × 2`) est maintenant fermé formellement. Une
+formule maître gardée partage les blocs d'unités, et une couverture de 59 cubes
+(54 codes admissibles plus cinq bloqueurs de codes invalides) a été rejouée
+dans Lean. Le théorème terminal exclut toute racine de degré rouge 8 d'une
+coloration `(4,5)`-libre de `K25`.
 
-Lean certifie maintenant la feuille `d8_l22_r01` dans
+Le premier jalon historique, la feuille `d8_l22_r01`, reste certifié dans
 `R45DegreeEightPilot` :
 
 - CNF de 1 982 968 octets, SHA-256
   `F2E1D012DEA5911F9F4D9F7B50641CA483ECE5F65B1F666E92BE61CF332AFEAF` ;
 - LRAT de 8 352 876 octets, SHA-256
   `3EB38EFAEBDDE8E4B2EF0FD78B1AC5C6B449FC8E1A1D814A94511081290E9023`.
+
+La fermeture complète utilise désormais `R45DegreeEightGuardedMasterSemantics`
+et `R45DegreeEightGuardedMaster` : la décomposition exacte a 282 variables et
+55 926 clauses (`55 006 + 675 + 240 + 5`), son UNSAT implique les 54
+contradictions admissibles, et `lrat_cover_reflect_trim` rejoue les 59 preuves
+de feuilles ainsi que le certificat de couverture. Le build terminal a réussi
+56/56 et `#print axioms` ne contient aucun `sorryAx`.
+Les 59 LRAT et le certificat de couverture totalisent 2 405 113 598 octets
+hors Git. Quatre archives ZIP64 totalisant 647 326 949 octets ont été créées
+sur SSD, puis entièrement redécompressées et rehachées avec succès. Leurs
+empreintes et l'outil `proof_bundle.py` sont versionnés; la portabilité publique
+reste conditionnée au téléversement puis au retéléchargement des quatre assets
+de la Release GitHub planifiée `r45-d8-guarded-master-lrat-v1`.
 
 `R45DegreeEightCover` certifie aussi la couverture gauche : une table relie
 les 179 représentants du catalogue exhaustif `R(3,5,8)` aux 27 parents
@@ -138,8 +153,52 @@ de `K25` et d'une racine de degré rouge 8, puis fournit simultanément un paren
 `gen358` couvrant le bloc rouge et une cible `gen4416` fortement isomorphe au
 bloc bleu complémenté. Son SHA-256 source est
 `85B0DBF179D2DA759AA14D13E0834D788255E0B0F33003BDDD5937ABA4B031B5`.
-Cette composition existentielle est donc fermée ; elle ne construit pas encore
-la permutation unique de `K25` nécessaire aux unités des feuilles.
+Cette composition existentielle est donc fermée. La couche suivante est
+maintenant matérialisée dans les sources :
+
+- `R45DegreeEightGlobalPermutation` construit la permutation globale de `K25`
+  qui fixe la racine et relabelle séparément les blocs de tailles 8 et 16 ;
+- `R45DegreeEightRawGen4416Bridge` transporte la classification du bloc bleu
+  complémenté vers ses couleurs ambiantes brutes ;
+- `R45DegreeEightPilotSemantics` reconstruit exactement les 55 154 clauses de
+  `d8_l22_r01` et isole les 148 unités de parents ;
+- `R45DegreeEightReducedAssignment` établit les trois obligations sémantiques
+  non unitaires de cette feuille pour la restriction canonique à `K24` ;
+- `R45DegreeEightGen358UnitsBridge` extrait de la couverture gauche une
+  permutation qui respecte chaque couleur fixée du parent `gen358` ;
+- `R45DegreeEightGen4416UnitsBridge` extrait la permutation cible-vers-bloc
+  brut et prouve la satisfaction littérale de toutes les unités droites
+  décalées ;
+- `R45DegreeEightLeafAssemblyCore` factorise la permutation globale et les
+  deux blocs d'unités pour tout couple admissible d'indices de parents ;
+- `R45DegreeEightBranchComposition` définit l'interface certificative unique
+  `AllAdmissibleDegreeEightPairsContradictory` et prouve qu'elle exclut toute
+  racine de degré rouge 8 ;
+- `R45DegreeEightGuardedMasterSemantics` prouve que l'UNSAT de la formule
+  maître gardée établit cette interface pour les 54 couples ;
+- `R45DegreeEightGuardedMaster` identifie exactement la CNF certifiée, compose
+  son rejeu cube-et-conquête et exporte
+  `no_root_has_redDegree_eight_certified` sans hypothèse résiduelle.
+
+`R45DegreeEightPilotAssembly` spécialise ce cœur générique. Son théorème
+terminal `no_degreeEight_l22r01_of_catalogue_witnesses` prouve la contradiction
+pour toute branche `(4,5)`-libre de `K25` de degré rouge 8 qui porte exactement
+les témoins `gen358` parent 22 et `gen4416` cible 1. Les 148 unités sont donc
+transportées et le LRAT est utilisé de bout en bout, sans hypothèse SAT de
+relabeling ajoutée à la main.
+
+La contradiction n'est plus limitée à une feuille étiquetée : le maître gardé
+et sa couverture fournissent maintenant
+`AllAdmissibleDegreeEightPairsContradictory`. Le théorème compilé
+`no_root_has_redDegree_eight_certified` ferme donc le cas degré rouge 8 pour
+toute racine, sans hypothèse certificative résiduelle.
+
+Le module `R45RemainingDegrees` compose cette fermeture avec la réduction de
+parité déjà certifiée aux degrés `{8, 10, 12}`. Le théorème
+`certified_exists_red_degree_ten_or_twelve` prouve désormais que tout
+contre-exemple hypothétique à `R(4,5) ≤ 25` possède un sommet de degré rouge
+10 ou 12. Il reste donc exactement ces deux branches structurelles à fermer,
+et non l'ensemble de la fenêtre `7..13`.
 
 Il n'y a aucun `sorry` ou `admit`. `#print axioms` expose les axiomes
 classiques/quotients usuels et les ponts natifs explicitement employés pour
@@ -159,11 +218,12 @@ apporte une distinction suffisante. Ce n'est ni une nouvelle borne de Ramsey,
 ni une preuve de `R(4,5) ≤ 25`, ni une avancée directe sur la valeur exacte de
 `R(5,5)`.
 
-Pour le pilote degré 8, `degree_eight_enters_gen358_and_gen4416` ferme désormais
-la composition existentielle `gen358 ∧ gen4416`. La prochaine lacune commence
-au relèvement simultané des deux isomorphismes en une permutation
-bloc-diagonale de `K25`, puis au raccord exact aux unités des feuilles et aux
-53 LRAT non encore importés.
+Pour le pilote degré 8, la chaîne catalogue → permutation globale → unités
+DIMACS → maître gardé → couverture LRAT → théorème terminal est complète sur
+les 54 couples. Cette fermeture est une certification Lean/LRAT indépendante,
+mais ni une preuve de `R(4,5) ≤ 25` ni une revendication de nouveauté
+mathématique globale. Les deux degrés racine 10 et 12 nécessaires à cette
+borne restent à traiter.
 
 ### Réduction structurelle
 
@@ -208,9 +268,11 @@ noyau Lean plus le compilateur, comme `native_decide`; `#print axioms` expose
 explicitement ce pont natif. Un rejeu `+kernel` éliminerait cette confiance
 additionnelle, mais serait beaucoup plus coûteux sur ce certificat.
 
-### Exhaustivité des catalogues `R(3,5,n)`, `n≤10`
+### Exhaustivité des catalogues `R(3,5,n)`, `n≤14`
 
-Un nouveau certificat par extensions d’un sommet couvre :
+Le certificat par extensions d’un sommet couvre les quinze niveaux jusqu’à
+l’ordre 14. Sa partie jusqu’à l’ordre 10, utilisée par la branche `R(5,5)`,
+contient :
 
 - 912 graphes de catalogue ;
 - 206 003 voisinages candidats réénumérés par le vérificateur ;
@@ -301,9 +363,9 @@ soundness est donc le résidu précis ; elle n'est pas supposée implicitement.
    branches du problème `K43`.
 2. Relier les contraintes auxiliaires au graphe : complétude des compteurs de
    cardinalité, comparateurs lexicographiques et régularité.
-3. Certifier `R(4,5) ≤ 25`, puis instancier la borne globale de degrés déjà
-   formalisée et couvrir les cas racines utilisés pour choisir l’ancrage
-   minimal.
+3. Certifier les autres cas de degré racine de `R(4,5,25)`, puis composer leur
+   couverture avec le cas degré 8 maintenant fermé pour obtenir
+   `R(4,5) ≤ 25` et instancier la borne globale de degrés déjà formalisée.
 4. Produire puis rejouer les certificats UNSAT pour toutes les feuilles, pas
    seulement les deux feuilles déjà importées.
 5. Composer ces résultats en un théorème final sur le prédicat Ramsey, puis
@@ -332,7 +394,18 @@ Fichiers principaux :
 - `work/vendor/lrat-catcher/LRATCatcher/Tests/R44RootedGen4416Cover.lean` ;
 - `work/vendor/lrat-catcher/LRATCatcher/Tests/R44Gen4416Classification.lean` ;
 - `work/vendor/lrat-catcher/LRATCatcher/Tests/R44Gen4416TargetAudit.lean` ;
-- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightGen4416Bridge.lean`.
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightGen4416Bridge.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightGlobalPermutation.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightRawGen4416Bridge.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightGen358UnitsBridge.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightGen4416UnitsBridge.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightLeafAssemblyCore.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightPilotSemantics.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightReducedAssignment.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightPilotAssembly.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightBranchComposition.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightGuardedMasterSemantics.lean` ;
+- `work/vendor/lrat-catcher/LRATCatcher/Tests/R45DegreeEightGuardedMaster.lean`.
 
 La suite locale contient 37 tests Python historiques, tous réussis. Les huit
 contrôles de régression propres au classifieur enraciné réussissent également.
@@ -346,7 +419,17 @@ python scripts\r45_d8_pilot\gen4416_rooted_classifier.py verify
 cd vendor\lrat-catcher
 lake build LRATCatcher.Tests.R44Gen4416TargetAudit `
   LRATCatcher.Tests.R44Gen4416Classification `
-  LRATCatcher.Tests.R45DegreeEightGen4416Bridge
+  LRATCatcher.Tests.R45DegreeEightGen4416Bridge `
+  LRATCatcher.Tests.R45DegreeEightGlobalPermutation `
+  LRATCatcher.Tests.R45DegreeEightRawGen4416Bridge `
+  LRATCatcher.Tests.R45DegreeEightGen358UnitsBridge `
+  LRATCatcher.Tests.R45DegreeEightGen4416UnitsBridge `
+  LRATCatcher.Tests.R45DegreeEightLeafAssemblyCore `
+  LRATCatcher.Tests.R45DegreeEightReducedAssignment `
+  LRATCatcher.Tests.R45DegreeEightPilotAssembly `
+  LRATCatcher.Tests.R45DegreeEightBranchComposition `
+  LRATCatcher.Tests.R45DegreeEightGuardedMasterSemantics `
+  LRATCatcher.Tests.R45DegreeEightGuardedMaster
 ```
 
 ## Sources publiques

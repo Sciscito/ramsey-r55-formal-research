@@ -1,5 +1,12 @@
 # Reprise R(5,5) après le crash — 6 août 2026
 
+> **Archive historique.** Les étapes ci-dessous décrivent la reprise initiale
+> et sont dépassées. Pour l'état courant et le prochain verrou exact, utiliser
+> [`../STATUS.md`](../STATUS.md) et [`RESEARCH_NEXT.md`](RESEARCH_NEXT.md) ; la
+> classification `gen4416`, l'assemblage générique des 54 couples et la
+> fermeture inconditionnelle du cas degré 8 sont maintenant acquis; la
+> réduction certifiée restante porte exactement sur les degrés 10 et 12.
+
 ## Point de départ sûr
 
 Dépôt privé :

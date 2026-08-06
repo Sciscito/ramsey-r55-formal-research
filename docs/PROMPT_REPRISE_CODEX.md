@@ -1,5 +1,10 @@
 # Prompt à coller dans Codex sur le nouveau PC
 
+> **Archive historique.** Ne pas employer ce prompt comme état courant. Lire
+> d'abord [`../STATUS.md`](../STATUS.md) et
+> [`RESEARCH_NEXT.md`](RESEARCH_NEXT.md), qui remplacent les obligations de
+> reprise ci-dessous.
+
 Copier tout le bloc ci-dessous dans une nouvelle tâche Codex après extraction
 de l’archive complète.
 

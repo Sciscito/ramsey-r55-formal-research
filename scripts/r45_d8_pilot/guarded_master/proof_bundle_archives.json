@@ -1,0 +1,107 @@
+{
+  "archives": [
+    {
+      "bytes": 202595839,
+      "members": [
+        "proofs/leaf_1.lrat",
+        "proofs/leaf_2.lrat",
+        "proofs/leaf_3.lrat",
+        "proofs/leaf_4.lrat",
+        "proofs/leaf_5.lrat",
+        "proofs/leaf_6.lrat",
+        "proofs/leaf_7.lrat",
+        "proofs/leaf_8.lrat",
+        "proofs/leaf_9.lrat",
+        "proofs/leaf_10.lrat",
+        "proofs/leaf_11.lrat",
+        "proofs/leaf_12.lrat",
+        "proofs/leaf_13.lrat",
+        "proofs/leaf_14.lrat",
+        "proofs/leaf_15.lrat",
+        "proofs/leaf_16.lrat",
+        "proofs/leaf_17.lrat",
+        "proofs/leaf_18.lrat",
+        "proofs/leaf_19.lrat",
+        "proofs/leaf_20.lrat"
+      ],
+      "name": "r45-d8-lrat-v1-p01-leaves-01-20.zip",
+      "sha256": "08C9BE342A3ADF42044AA041FAB82D970DC519C0CB9E5AF6A476727AD16ABD46"
+    },
+    {
+      "bytes": 179153713,
+      "members": [
+        "proofs/leaf_21.lrat",
+        "proofs/leaf_22.lrat"
+      ],
+      "name": "r45-d8-lrat-v1-p02-leaves-21-22.zip",
+      "sha256": "01B52916487237FB6B44A45C62D49F1CA96845D2EBA54A3FEA7E2808471172CC"
+    },
+    {
+      "bytes": 140288173,
+      "members": [
+        "proofs/leaf_23.lrat",
+        "proofs/leaf_24.lrat",
+        "proofs/leaf_25.lrat",
+        "proofs/leaf_26.lrat",
+        "proofs/leaf_27.lrat",
+        "proofs/leaf_28.lrat",
+        "proofs/leaf_29.lrat",
+        "proofs/leaf_30.lrat",
+        "proofs/leaf_31.lrat",
+        "proofs/leaf_32.lrat",
+        "proofs/leaf_33.lrat",
+        "proofs/leaf_34.lrat",
+        "proofs/leaf_35.lrat",
+        "proofs/leaf_36.lrat"
+      ],
+      "name": "r45-d8-lrat-v1-p03-leaves-23-36.zip",
+      "sha256": "B03D3EA26EB8DEA13D441527233DC9BDD7B38062DCC3316DA6D2048FF33558B7"
+    },
+    {
+      "bytes": 125289224,
+      "members": [
+        "proofs/leaf_37.lrat",
+        "proofs/leaf_38.lrat",
+        "proofs/leaf_39.lrat",
+        "proofs/leaf_40.lrat",
+        "proofs/leaf_41.lrat",
+        "proofs/leaf_42.lrat",
+        "proofs/leaf_43.lrat",
+        "proofs/leaf_44.lrat",
+        "proofs/leaf_45.lrat",
+        "proofs/leaf_46.lrat",
+        "proofs/leaf_47.lrat",
+        "proofs/leaf_48.lrat",
+        "proofs/leaf_49.lrat",
+        "proofs/leaf_50.lrat",
+        "proofs/leaf_51.lrat",
+        "proofs/leaf_52.lrat",
+        "proofs/leaf_53.lrat",
+        "proofs/leaf_54.lrat",
+        "proofs/leaf_55.lrat",
+        "proofs/leaf_56.lrat",
+        "proofs/leaf_57.lrat",
+        "proofs/leaf_58.lrat",
+        "proofs/leaf_59.lrat",
+        "proofs/cover.lrat"
+      ],
+      "name": "r45-d8-lrat-v1-p04-leaves-37-59-cover.zip",
+      "sha256": "16C5782D3F47CC4754A49C1F22C0361111F518959C9C12884D41160D6FB2E5F1"
+    }
+  ],
+  "format": {
+    "compression": "Deflate",
+    "compression_level": 6,
+    "container": "ZIP64",
+    "member_prefix": "proofs/",
+    "normalized_timestamp": "1980-01-01T00:00:00"
+  },
+  "proof_bytes": 2405113598,
+  "proof_files": 60,
+  "schema_version": 1,
+  "source_manifest": {
+    "name": "proof_bundle_manifest.json",
+    "sha256": "C4D7B5E1BD2030090963E30533DC2208CBD15A09A54DD487DEBA9E0FAFBBCB34"
+  },
+  "status": "PACKED_SOURCE_HASHES_VERIFIED"
+}

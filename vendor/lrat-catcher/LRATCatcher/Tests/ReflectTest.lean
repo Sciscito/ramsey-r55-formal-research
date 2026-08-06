@@ -1,7 +1,7 @@
-import LRATCatcher.Reflect
+import LRATCatcher.ReflectTrim
 
 /-!
-  Tests for the `lrat_reflect` / `lrat_reflect_cnf` commands on the tiny instance.
+  Tests for the reflection commands on the tiny instance.
 -/
 
 namespace LRATCatcher.Tests
@@ -19,5 +19,10 @@ def tinyDef : Std.Sat.CNF Nat :=
 lrat_reflect_cnf tiny_def_cmd (tinyDef) "LRATCatcher/Tests/tiny.lrat"
 
 #print axioms tiny_def_cmd
+
+-- Lean-defined CNF through the elaboration-time LRAT trimmer.
+lrat_reflect_trim_cnf tiny_def_trim_cmd (tinyDef) "LRATCatcher/Tests/tiny.lrat"
+
+#print axioms tiny_def_trim_cmd
 
 end LRATCatcher.Tests

@@ -87,7 +87,280 @@ structure DegreeTwentyCodegreeTenNeighborhood (coloring : Nat → Bool) where
     edge typeGraph left.val right.val =
       ramseyEdge 43 coloring (common left) (common right)
 
+/-- Natural list-level input for the `d=20,c=10` branch.
+
+Unlike `DegreeTwentyCodegreeTenNeighborhood`, this structure asks only for
+the two exact vertex lists occurring in the mathematical branch argument.
+The finite labelling of the common neighbourhood and its packed induced
+graph are derived canonically below. -/
+structure ExactD20C10NeighborhoodLists (coloring : Nat → Bool) where
+  root : Nat
+  anchor : Nat
+  rootNeighbors : List Nat
+  commonNeighbors : List Nat
+  root_bound : root < 43
+  anchor_bound : anchor < 43
+  rootNeighbors_length : rootNeighbors.length = 20
+  rootNeighbors_nodup : rootNeighbors.Nodup
+  root_not_mem : root ∉ rootNeighbors
+  anchor_mem : anchor ∈ rootNeighbors
+  rootNeighbors_bound : ∀ vertex, vertex ∈ rootNeighbors → vertex < 43
+  rootNeighbors_red : ∀ vertex, vertex ∈ rootNeighbors →
+    ramseyEdge 43 coloring root vertex = true
+  rootNeighbors_complete : ∀ vertex, vertex < 43 →
+    ramseyEdge 43 coloring root vertex = true → vertex ∈ rootNeighbors
+  commonNeighbors_length : commonNeighbors.length = 10
+  commonNeighbors_nodup : commonNeighbors.Nodup
+  commonNeighbors_mem : ∀ vertex, vertex ∈ commonNeighbors →
+    vertex ∈ rootNeighbors
+  commonNeighbors_red : ∀ vertex, vertex ∈ commonNeighbors →
+    ramseyEdge 43 coloring anchor vertex = true
+  commonNeighbors_complete : ∀ vertex, vertex ∈ rootNeighbors →
+    ramseyEdge 43 coloring anchor vertex = true →
+    vertex ∈ commonNeighbors
+
 namespace DegreeTwentyCodegreeTenNeighborhood
+
+namespace ExactLists
+
+/-- Canonical exact red neighbourhood inside the ambient `K₄₃`. -/
+def rootRedNeighbors (coloring : Nat → Bool) (root : Nat) : List Nat :=
+  (List.range 43).filter fun vertex =>
+    ramseyEdge 43 coloring root vertex
+
+@[simp] theorem mem_rootRedNeighbors (coloring : Nat → Bool)
+    (root vertex : Nat) :
+    vertex ∈ rootRedNeighbors coloring root ↔
+      vertex < 43 ∧ ramseyEdge 43 coloring root vertex = true := by
+  simp [rootRedNeighbors]
+
+/-- Canonical exact common red neighbourhood of `root` and `anchor`. -/
+def rootAnchorCommonNeighbors (coloring : Nat → Bool)
+    (root anchor : Nat) : List Nat :=
+  (rootRedNeighbors coloring root).filter fun vertex =>
+    ramseyEdge 43 coloring anchor vertex
+
+@[simp] theorem mem_rootAnchorCommonNeighbors (coloring : Nat → Bool)
+    (root anchor vertex : Nat) :
+    vertex ∈ rootAnchorCommonNeighbors coloring root anchor ↔
+      vertex ∈ rootRedNeighbors coloring root ∧
+        ramseyEdge 43 coloring anchor vertex = true := by
+  simp [rootAnchorCommonNeighbors]
+
+/-- Minimal local witness for the `d=20,c=10` branch.  All lists and all
+structural invariants are computed from these four facts. -/
+structure LocalD20C10Witness (coloring : Nat → Bool) where
+  root : Nat
+  anchor : Nat
+  root_bound : root < 43
+  root_degree : (rootRedNeighbors coloring root).length = 20
+  anchor_mem : anchor ∈ rootRedNeighbors coloring root
+  anchor_codegree :
+    (rootAnchorCommonNeighbors coloring root anchor).length = 10
+
+/-- Expand the minimal local witness to the explicit exact-list interface. -/
+def LocalD20C10Witness.toExactLists {coloring : Nat → Bool}
+    (witness : LocalD20C10Witness coloring) :
+    ExactD20C10NeighborhoodLists coloring where
+  root := witness.root
+  anchor := witness.anchor
+  rootNeighbors := rootRedNeighbors coloring witness.root
+  commonNeighbors :=
+    rootAnchorCommonNeighbors coloring witness.root witness.anchor
+  root_bound := witness.root_bound
+  anchor_bound := (mem_rootRedNeighbors coloring witness.root witness.anchor).mp
+    witness.anchor_mem |>.1
+  rootNeighbors_length := witness.root_degree
+  rootNeighbors_nodup := (List.nodup_range (n := 43)).filter _
+  root_not_mem := by simp
+  anchor_mem := witness.anchor_mem
+  rootNeighbors_bound := by
+    intro vertex hvertex
+    exact (mem_rootRedNeighbors coloring witness.root vertex).mp hvertex |>.1
+  rootNeighbors_red := by
+    intro vertex hvertex
+    exact (mem_rootRedNeighbors coloring witness.root vertex).mp hvertex |>.2
+  rootNeighbors_complete := by
+    intro vertex hbound hred
+    exact (mem_rootRedNeighbors coloring witness.root vertex).mpr ⟨hbound, hred⟩
+  commonNeighbors_length := witness.anchor_codegree
+  commonNeighbors_nodup :=
+    ((List.nodup_range (n := 43)).filter _).filter _
+  commonNeighbors_mem := by
+    intro vertex hvertex
+    exact (mem_rootAnchorCommonNeighbors coloring witness.root witness.anchor vertex).mp
+      hvertex |>.1
+  commonNeighbors_red := by
+    intro vertex hvertex
+    exact (mem_rootAnchorCommonNeighbors coloring witness.root witness.anchor vertex).mp
+      hvertex |>.2
+  commonNeighbors_complete := by
+    intro vertex hroot hred
+    exact (mem_rootAnchorCommonNeighbors coloring witness.root witness.anchor vertex).mpr
+      ⟨hroot, hred⟩
+
+/-- Canonical `Fin 10` labelling supplied by the exact common-neighbour
+list. -/
+def common {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) (index : Fin 10) : Nat :=
+  data.commonNeighbors[index.val]'(by
+    rw [data.commonNeighbors_length]
+    exact index.isLt)
+
+/-- Little-endian packed adjacency row of one labelled common neighbour. -/
+def inducedRowBits {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) (left : Fin 10) :
+    List Bool :=
+  List.ofFn fun right : Fin 10 =>
+    ramseyEdge 43 coloring (common data left) (common data right)
+
+def inducedRow {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) (left : Fin 10) : Nat :=
+  (BitVec.ofBoolListLE (inducedRowBits data left)).toNat
+
+/-- Packed adjacency matrix induced by the exact common-neighbour list. -/
+def inducedGraph {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) : Graph :=
+  List.ofFn fun left : Fin 10 => inducedRow data left
+
+@[simp] theorem inducedRowBits_length {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) (left : Fin 10) :
+    (inducedRowBits data left).length = 10 := by
+  simp [inducedRowBits]
+
+@[simp] theorem inducedGraph_length {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) :
+    (inducedGraph data).length = 10 := by
+  simp [inducedGraph]
+
+theorem common_mem {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) (index : Fin 10) :
+    common data index ∈ data.commonNeighbors := by
+  exact List.getElem_mem _
+
+theorem common_injective {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) :
+    Function.Injective (common data) := by
+  intro left right hequal
+  apply Fin.ext
+  exact (List.getElem_inj data.commonNeighbors_nodup).mp hequal
+
+theorem inducedRow_lt {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) (left : Fin 10) :
+    inducedRow data left < 2 ^ 10 := by
+  unfold inducedRow
+  simpa using (BitVec.ofBoolListLE (inducedRowBits data left)).isLt
+
+theorem inducedGraph_getD {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) (left : Nat)
+    (hleft : left < 10) :
+    (inducedGraph data).getD left 0 = inducedRow data ⟨left, hleft⟩ := by
+  rw [← List.getElem_eq_getD
+    (l := inducedGraph data) (i := left)
+    (h := by simpa using hleft) 0]
+  change (List.ofFn fun left : Fin 10 => inducedRow data left)[left] = _
+  rw [List.getElem_ofFn]
+
+/-- Reading a packed induced-graph bit recovers the ambient Ramsey edge. -/
+theorem edge_inducedGraph {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring)
+    (left right : Fin 10) :
+    edge (inducedGraph data) left.val right.val =
+      ramseyEdge 43 coloring (common data left) (common data right) := by
+  rw [edge, inducedGraph_getD data left.val left.isLt]
+  unfold inducedRow
+  rw [BitVec.testBit_toNat, BitVec.getLsbD_ofBoolListLE]
+  rw [← List.getElem_eq_getD
+    (l := inducedRowBits data left) (i := right.val)
+    (h := by simp) false]
+  change
+    (List.ofFn fun right : Fin 10 =>
+      ramseyEdge 43 coloring (common data left) (common data right))[right.val] = _
+  rw [List.getElem_ofFn]
+
+/-- The canonically packed induced graph is well formed. -/
+theorem inducedGraph_wellFormed {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) :
+    wellFormedGraph 10 (inducedGraph data) = true := by
+  simp only [wellFormedGraph, Bool.and_eq_true, beq_iff_eq]
+  refine ⟨⟨inducedGraph_length data, ?_⟩, ?_⟩
+  · rw [List.all_eq_true]
+    intro left hleft
+    have hleftBound : left < 10 := by simpa using hleft
+    simp only [Bool.and_eq_true, decide_eq_true_eq]
+    constructor
+    · rw [inducedGraph_getD data left hleftBound]
+      exact inducedRow_lt data ⟨left, hleftBound⟩
+    · have hedge := edge_inducedGraph data
+          ⟨left, hleftBound⟩ ⟨left, hleftBound⟩
+      rw [hedge, ramseyEdge_self]
+      decide
+  · rw [List.all_eq_true]
+    intro vertices hvertices
+    obtain ⟨hlength, hbound, hnodup⟩ :=
+      subsets_valid 10 2 vertices hvertices
+    match vertices with
+    | [left, right] =>
+      have hleft : left < 10 := hbound left (by simp)
+      have hright : right < 10 := hbound right (by simp)
+      simp only [beq_iff_eq]
+      rw [edge_inducedGraph data ⟨left, hleft⟩ ⟨right, hright⟩,
+        edge_inducedGraph data ⟨right, hright⟩ ⟨left, hleft⟩]
+      exact ramseyEdge_comm 43 coloring _ _
+    | [] => simp at hlength
+    | [_] => simp at hlength
+    | _ :: _ :: _ :: _ => simp at hlength
+
+/-- Package natural exact lists into the semantic branch structure consumed
+by the order-ten catalogue bridge. -/
+def package {coloring : Nat → Bool}
+    (data : ExactD20C10NeighborhoodLists coloring) :
+    DegreeTwentyCodegreeTenNeighborhood coloring where
+  root := data.root
+  anchor := data.anchor
+  rootNeighbors := data.rootNeighbors
+  root_bound := data.root_bound
+  anchor_bound := data.anchor_bound
+  rootNeighbors_length := data.rootNeighbors_length
+  rootNeighbors_nodup := data.rootNeighbors_nodup
+  root_not_mem := data.root_not_mem
+  anchor_mem := data.anchor_mem
+  rootNeighbors_bound := data.rootNeighbors_bound
+  rootNeighbors_red := data.rootNeighbors_red
+  rootNeighbors_complete := data.rootNeighbors_complete
+  common := common data
+  common_injective := common_injective data
+  common_bound := fun index =>
+    data.rootNeighbors_bound _ (data.commonNeighbors_mem _ (common_mem data index))
+  common_mem := fun index => data.commonNeighbors_mem _ (common_mem data index)
+  anchor_common_red := fun index => data.commonNeighbors_red _ (common_mem data index)
+  common_complete := by
+    intro vertex hroot hred
+    obtain ⟨index, hindex, hequal⟩ :=
+      List.getElem_of_mem (data.commonNeighbors_complete vertex hroot hred)
+    have hindexTen : index < 10 := by
+      simpa [data.commonNeighbors_length] using hindex
+    exact ⟨⟨index, hindexTen⟩, hequal⟩
+  root_ne_anchor := fun hequal => data.root_not_mem (hequal ▸ data.anchor_mem)
+  root_ne_common := fun index hequal =>
+    data.root_not_mem (hequal ▸ data.commonNeighbors_mem _ (common_mem data index))
+  anchor_ne_common := by
+    intro index hequal
+    have hred := data.commonNeighbors_red _ (common_mem data index)
+    rw [← hequal, ramseyEdge_self] at hred
+    contradiction
+  typeGraph := inducedGraph data
+  type_wellFormed := inducedGraph_wellFormed data
+  type_edge := edge_inducedGraph data
+
+/-- Build the fully packaged branch from only the root degree and one edge
+codegree. -/
+def LocalD20C10Witness.package {coloring : Nat → Bool}
+    (witness : LocalD20C10Witness coloring) :
+    DegreeTwentyCodegreeTenNeighborhood coloring :=
+  ExactLists.package witness.toExactLists
+
+end ExactLists
 
 /-- Total version of the common-neighbour labelling.  Out-of-range index
 indices are sent above the ambient K43 range, which makes this extension
@@ -329,6 +602,33 @@ theorem d20c10_type_covered_by_orderTenCatalogue
       GraphIsomorphicFin branch.typeGraph representative := by
   exact r35_catalogue_order_ten_complete branch.typeGraph
     (typeGraph_validAt hfree branch)
+
+namespace ExactLists
+
+/-- End-to-end list-level entry point: exact natural neighbourhood lists
+produce their packed induced graph and immediately obtain catalogue
+coverage. -/
+theorem inducedGraph_covered_by_orderTenCatalogue
+    {coloring : Nat → Bool}
+    (hfree : isRamseyFree 43 5 5 coloring)
+    (data : ExactD20C10NeighborhoodLists coloring) :
+    ∃ representative,
+      representative ∈ catalogues.getD 10 [] ∧
+      GraphIsomorphicFin (inducedGraph data) representative := by
+  simpa [package] using
+    d20c10_type_covered_by_orderTenCatalogue hfree (package data)
+
+/-- Minimal end-to-end entry point for the `d=20,c=10` branch. -/
+theorem LocalD20C10Witness.covered_by_orderTenCatalogue
+    {coloring : Nat → Bool}
+    (hfree : isRamseyFree 43 5 5 coloring)
+    (witness : LocalD20C10Witness coloring) :
+    ∃ representative,
+      representative ∈ catalogues.getD 10 [] ∧
+      GraphIsomorphicFin (inducedGraph witness.toExactLists) representative := by
+  exact inducedGraph_covered_by_orderTenCatalogue hfree witness.toExactLists
+
+end ExactLists
 
 end DegreeTwentyCodegreeTenNeighborhood
 

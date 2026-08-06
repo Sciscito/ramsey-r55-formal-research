@@ -120,10 +120,25 @@ Le module Lean `w5_signature_symmetry_checked` vérifie :
 - que les clauses choisissent exactement le minimum de chaque orbite ;
 - que toute orbite contient une signature acceptée.
 
+### Pont local degré 20 / codegré 10
+
+`R55CommonNeighborhoodBridge.lean` prouve désormais qu'un voisinage rouge
+commun exact de taille 10 dans une coloration `K5/K5`-libre ne contient ni
+triangle rouge ni ensemble bleu de taille 5, puis applique
+`r35_catalogue_order_ten_complete` pour obtenir un représentant certifié.
+
+Le constructeur canonique `LocalD20C10Witness.package` part seulement des
+trois faits locaux `degree(root)=20`, `anchor ∈ N(root)` et
+`codegree(root,anchor)=10`. Il construit en Lean les listes exactes, le graphe
+induit empaqueté et toutes les obligations de bonne formation. Le théorème
+`LocalD20C10Witness.covered_by_orderTenCatalogue` ferme ensuite la couverture
+sémantique locale. Aucun `sorry`, `admit` ou nouvel axiome explicite.
+
 ## Ce qui manque avant toute annonce de `R(5,5)=43`
 
-1. Relier l’exhaustivité désormais prouvée des catalogues à la couverture des
-   1 509 branches du problème `K43`.
+1. Produire `LocalD20C10Witness` depuis les hypothèses globales/de branche et
+   étendre cette réduction aux autres valeurs de degré/codegré des 1 509
+   branches du problème `K43`.
 2. Relier les contraintes auxiliaires au graphe : complétude des compteurs de
    cardinalité, comparateurs lexicographiques et régularité.
 3. Formaliser la couverture des cas racines et les bornes extrémales utilisées

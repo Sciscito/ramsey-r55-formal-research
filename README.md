@@ -43,6 +43,10 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
 - W5 symmetry check: 320 automorphisms, 1,024 signatures and 39 orbits;
 - semantic Lean bridge from every exact `d=20,c=10` common neighbourhood to
   one of the certified order-10 catalogue representatives;
+- canonical Lean constructor `LocalD20C10Witness.package`: from the three
+  local facts `degree(root)=20`, `anchor ∈ N(root)` and
+  `codegree(root,anchor)=10`, it builds the exact lists and packed induced
+  graph consumed by that bridge;
 - 37 Python tests.
 
 ## Repository layout
@@ -86,11 +90,12 @@ r35_catalogue_order_ten_complete :
 
 ## Next formal objective
 
-Construct the exact local-neighbourhood structure from every relevant
-`K43`-free branch, then connect the semantic catalogue representative to the
-corresponding SAT cube. The remaining obligations include degree/codegree
-bounds, cardinality encodings, regularity and lexicographic symmetry
-constraints, followed by compositional LRAT coverage of every leaf.
+Produce `LocalD20C10Witness` from every relevant `K43`-free branch, then
+connect the semantic catalogue representative to the corresponding SAT cube.
+The local graph construction itself is now formalized. The remaining
+obligations include the global degree/codegree reduction, cardinality
+encodings, regularity and lexicographic symmetry constraints, followed by
+compositional LRAT coverage of every leaf.
 
 See [docs/GUIDE_REPRISE.md](docs/GUIDE_REPRISE.md) for exact environment,
 commands, hashes and trust-base caveats.

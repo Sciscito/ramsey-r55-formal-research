@@ -32,7 +32,13 @@ The 313 `d=20,c=10` cases are already solver-UNSAT, but only two leaves have
 formal LRAT imports. Do not promote solver results to a global theorem without
 the coverage and composition steps above.
 
-The immediate Lean lemma is now the constructor from an `isRamseyFree 43 5 5`
-colouring plus the rooted `d=20,c=10` hypotheses to
-`DegreeTwentyCodegreeTenNeighborhood`; after that, identify the representative
-index and connect it to the manifest/CNF branch semantics.
+The canonical local constructor is now complete. `LocalD20C10Witness` asks
+only for `degree(root)=20`, `anchor ∈ N(root)` and
+`codegree(root,anchor)=10`; `LocalD20C10Witness.package` builds the exact
+lists and induced graph, and
+`LocalD20C10Witness.covered_by_orderTenCatalogue` proves catalogue coverage.
+
+The immediate Lean lemma is therefore the global/branch reduction producing
+such a witness from `isRamseyFree 43 5 5` plus the selected `d=20,c=10`
+branch. After that, identify the representative index and connect it to the
+manifest/CNF branch semantics.

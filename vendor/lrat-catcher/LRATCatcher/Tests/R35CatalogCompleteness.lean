@@ -7,7 +7,8 @@ import LRATCatcher.Tests.R35CatalogValidityInvariant
   End-to-end semantic completeness of the checked R(3,5,n) catalogues.
 
   This module discharges the final neighbourhood-mask transport hypothesis and
-  instantiates the certified induction through every generated level.
+  instantiates the certified induction through every generated level, ending
+  at the empty order-14 catalogue.
 -/
 
 namespace LRATCatcher.Tests.R35
@@ -77,19 +78,38 @@ theorem r35_catalogues_complete :
       StrongCatalogueComplete order (catalogues.getD order []) :=
   catalogueCompleteness_upto_of_mask_transport certifiedMaskTransport
 
-/-- The checked certificate contains transitions 0→1 through 9→10. -/
-theorem extensionWitnesses_length_eq_ten :
-    extensionWitnesses.length = 10 := by
-  native_decide
-
-/-- Main result: the generated order-10 R(3,5) catalogue is exhaustive, not
-merely extension-closed for its listed representatives. -/
+/-- The generated order-10 R(3,5) catalogue remains available as an
+intermediate exhaustive level for the R(5,5) branch analysis. -/
 theorem r35_catalogue_order_ten_complete :
     StrongCatalogueComplete 10 (catalogues.getD 10 []) := by
   apply r35_catalogues_complete 10
-  rw [extensionWitnesses_length_eq_ten]
-  exact Nat.le_refl 10
+  rw [extensionWitnesses_length_eq_fourteen]
+  omega
 
 #print axioms r35_catalogue_order_ten_complete
+
+/-- The generated order-14 R(3,5) catalogue is exhaustive. -/
+theorem r35_catalogue_order_fourteen_complete :
+    StrongCatalogueComplete 14 (catalogues.getD 14 []) := by
+  apply r35_catalogues_complete 14
+  rw [extensionWitnesses_length_eq_fourteen]
+  exact Nat.le_refl 14
+
+/-- There are no representatives at order 14. -/
+theorem r35_catalogue_order_fourteen_eq_nil :
+    catalogues.getD 14 [] = [] := by
+  native_decide
+
+/-- Catalogue-level semantic consequence: no well-formed order-14 graph can
+avoid both a triangle and an independent set of size five. -/
+theorem no_graph_valid_at_fourteen :
+    ¬ ∃ graph, GraphValidAt 14 graph := by
+  rintro ⟨graph, hgraph⟩
+  obtain ⟨representative, hrepresentative, _⟩ :=
+    r35_catalogue_order_fourteen_complete graph hgraph
+  rw [r35_catalogue_order_fourteen_eq_nil] at hrepresentative
+  simp at hrepresentative
+
+#print axioms no_graph_valid_at_fourteen
 
 end LRATCatcher.Tests.R35

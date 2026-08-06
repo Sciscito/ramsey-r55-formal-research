@@ -3,7 +3,7 @@ import LRATCatcher.Tests.R35CatalogData
 
 /-!
   Machine-checked extension certificate for the complete R(3,5,n)
-  catalogues through n=10.
+  catalogues through n=14.  The final order-14 catalogue is empty.
 
   For every catalogue representative of order n and every one-vertex
   neighbourhood mask, `validPairs` independently decides whether the
@@ -106,24 +106,126 @@ def checkTransition
     (pairs.zip witnesses).all fun pair =>
       checkWitness parents targets pair.1 pair.2
 
+def checkCatalogueLevel (order : Nat) : Bool :=
+  (catalogues.getD order []).all fun graph =>
+    wellFormedGraph order graph && validGraph graph
+
+def checkTransitionLevel (order : Nat) : Bool :=
+  checkTransition
+    (catalogues.getD order [])
+    (catalogues.getD (order + 1) [])
+    (extensionWitnesses.getD order [])
+
 def checkCatalogues : Bool :=
   let catalogueDataValid :=
-    (List.range catalogues.length).all fun order =>
-      (catalogues.getD order []).all fun graph =>
-        wellFormedGraph order graph && validGraph graph
+    (List.range catalogues.length).all checkCatalogueLevel
   let transitionsValid :=
-    (List.range extensionWitnesses.length).all fun order =>
-      checkTransition
-        (catalogues.getD order [])
-        (catalogues.getD (order + 1) [])
-        (extensionWitnesses.getD order [])
+    (List.range extensionWitnesses.length).all checkTransitionLevel
   catalogues.length == extensionWitnesses.length + 1 &&
     catalogueDataValid && transitionsValid
+
+/-!
+  Keep the native computations deliberately split by level.  A single
+  `native_decide` over the complete order-14 object exceeded the reliable
+  loading envelope of the Windows native evaluator (0xC0000005 on the
+  recovery machine).  These lemmas check exactly the same Boolean predicates,
+  but each native object is small enough to load independently; the global
+  theorem below is then assembled propositionally.
+-/
+
+theorem catalogues_length_eq_fifteen : catalogues.length = 15 := by
+  native_decide
+
+theorem extensionWitnesses_length_eq_fourteen :
+    extensionWitnesses.length = 14 := by
+  native_decide
+
+theorem r35_catalogue_level_0_checked : checkCatalogueLevel 0 = true := by native_decide
+theorem r35_catalogue_level_1_checked : checkCatalogueLevel 1 = true := by native_decide
+theorem r35_catalogue_level_2_checked : checkCatalogueLevel 2 = true := by native_decide
+theorem r35_catalogue_level_3_checked : checkCatalogueLevel 3 = true := by native_decide
+theorem r35_catalogue_level_4_checked : checkCatalogueLevel 4 = true := by native_decide
+theorem r35_catalogue_level_5_checked : checkCatalogueLevel 5 = true := by native_decide
+theorem r35_catalogue_level_6_checked : checkCatalogueLevel 6 = true := by native_decide
+theorem r35_catalogue_level_7_checked : checkCatalogueLevel 7 = true := by native_decide
+theorem r35_catalogue_level_8_checked : checkCatalogueLevel 8 = true := by native_decide
+theorem r35_catalogue_level_9_checked : checkCatalogueLevel 9 = true := by native_decide
+theorem r35_catalogue_level_10_checked : checkCatalogueLevel 10 = true := by native_decide
+theorem r35_catalogue_level_11_checked : checkCatalogueLevel 11 = true := by native_decide
+theorem r35_catalogue_level_12_checked : checkCatalogueLevel 12 = true := by native_decide
+theorem r35_catalogue_level_13_checked : checkCatalogueLevel 13 = true := by native_decide
+theorem r35_catalogue_level_14_checked : checkCatalogueLevel 14 = true := by native_decide
+
+theorem r35_transition_level_0_checked : checkTransitionLevel 0 = true := by native_decide
+theorem r35_transition_level_1_checked : checkTransitionLevel 1 = true := by native_decide
+theorem r35_transition_level_2_checked : checkTransitionLevel 2 = true := by native_decide
+theorem r35_transition_level_3_checked : checkTransitionLevel 3 = true := by native_decide
+theorem r35_transition_level_4_checked : checkTransitionLevel 4 = true := by native_decide
+theorem r35_transition_level_5_checked : checkTransitionLevel 5 = true := by native_decide
+theorem r35_transition_level_6_checked : checkTransitionLevel 6 = true := by native_decide
+theorem r35_transition_level_7_checked : checkTransitionLevel 7 = true := by native_decide
+theorem r35_transition_level_8_checked : checkTransitionLevel 8 = true := by native_decide
+theorem r35_transition_level_9_checked : checkTransitionLevel 9 = true := by native_decide
+theorem r35_transition_level_10_checked : checkTransitionLevel 10 = true := by native_decide
+theorem r35_transition_level_11_checked : checkTransitionLevel 11 = true := by native_decide
+theorem r35_transition_level_12_checked : checkTransitionLevel 12 = true := by native_decide
+theorem r35_transition_level_13_checked : checkTransitionLevel 13 = true := by native_decide
+
+theorem r35_catalogue_levels_checked :
+    (List.range catalogues.length).all checkCatalogueLevel = true := by
+  rw [List.all_eq_true]
+  intro order horder
+  rw [catalogues_length_eq_fifteen, List.mem_range] at horder
+  have hcases :
+      order = 0 ∨ order = 1 ∨ order = 2 ∨ order = 3 ∨ order = 4 ∨
+      order = 5 ∨ order = 6 ∨ order = 7 ∨ order = 8 ∨ order = 9 ∨
+      order = 10 ∨ order = 11 ∨ order = 12 ∨ order = 13 ∨ order = 14 := by
+    omega
+  rcases hcases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl |
+      rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+    simp only [
+      r35_catalogue_level_0_checked, r35_catalogue_level_1_checked,
+      r35_catalogue_level_2_checked, r35_catalogue_level_3_checked,
+      r35_catalogue_level_4_checked, r35_catalogue_level_5_checked,
+      r35_catalogue_level_6_checked, r35_catalogue_level_7_checked,
+      r35_catalogue_level_8_checked, r35_catalogue_level_9_checked,
+      r35_catalogue_level_10_checked, r35_catalogue_level_11_checked,
+      r35_catalogue_level_12_checked, r35_catalogue_level_13_checked,
+      r35_catalogue_level_14_checked]
+
+theorem r35_transition_levels_checked :
+    (List.range extensionWitnesses.length).all checkTransitionLevel = true := by
+  rw [List.all_eq_true]
+  intro order horder
+  rw [extensionWitnesses_length_eq_fourteen, List.mem_range] at horder
+  have hcases :
+      order = 0 ∨ order = 1 ∨ order = 2 ∨ order = 3 ∨ order = 4 ∨
+      order = 5 ∨ order = 6 ∨ order = 7 ∨ order = 8 ∨ order = 9 ∨
+      order = 10 ∨ order = 11 ∨ order = 12 ∨ order = 13 := by
+    omega
+  rcases hcases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl |
+      rfl | rfl | rfl | rfl | rfl | rfl <;>
+    simp only [
+      r35_transition_level_0_checked, r35_transition_level_1_checked,
+      r35_transition_level_2_checked, r35_transition_level_3_checked,
+      r35_transition_level_4_checked, r35_transition_level_5_checked,
+      r35_transition_level_6_checked, r35_transition_level_7_checked,
+      r35_transition_level_8_checked, r35_transition_level_9_checked,
+      r35_transition_level_10_checked, r35_transition_level_11_checked,
+      r35_transition_level_12_checked, r35_transition_level_13_checked]
 
 set_option maxRecDepth 1000000 in
 set_option maxHeartbeats 0 in
 theorem r35_catalogue_extensions_checked : checkCatalogues = true := by
-  native_decide
+  unfold checkCatalogues
+  rw [Bool.and_eq_true]
+  constructor
+  · rw [Bool.and_eq_true]
+    constructor
+    · simp [catalogues_length_eq_fifteen,
+        extensionWitnesses_length_eq_fourteen]
+    · exact r35_catalogue_levels_checked
+  · exact r35_transition_levels_checked
 
 #print axioms r35_catalogue_extensions_checked
 

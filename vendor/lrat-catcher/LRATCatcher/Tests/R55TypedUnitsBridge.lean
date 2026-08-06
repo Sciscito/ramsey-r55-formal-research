@@ -251,7 +251,7 @@ theorem orderTenCatalogueType_wellFormed (typeIndex : Nat)
     (hindex : typeIndex < (catalogues.getD 10 []).length) :
     wellFormedGraph 10 (orderTenCatalogueType typeIndex) = true := by
   have horder : 10 < catalogues.length := by
-    rw [catalogues_length_eq, extensionWitnesses_length_eq_ten]
+    rw [catalogues_length_eq, extensionWitnesses_length_eq_fourteen]
     omega
   have hmember : orderTenCatalogueType typeIndex ∈ catalogues.getD 10 [] := by
     unfold orderTenCatalogueType

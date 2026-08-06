@@ -1,0 +1,32 @@
+{
+  "leaf_run": {
+    "command": [
+      "C:\\Users\\pc3dt\\Documents\\Codex\\2026-08-06\\yu\\work\\toolchains\\elan-home\\toolchains\\leanprover--lean4---v4.30.0\\bin\\cadical.exe",
+      "--stats",
+      "--no-witness",
+      "--no-colors",
+      "--unsat",
+      "-c",
+      "5000000",
+      "C:\\Users\\pc3dt\\Documents\\Codex\\2026-08-06\\yu\\work\\scratch\\r45_d8_54_pilot\\direct_lean_orientation\\runs\\single_d8_l10_r01_c5000000_t180\\d8_l10_r01.cnf"
+    ],
+    "conflict_limit": 5000000,
+    "conflicts": 2453795,
+    "fixed_literals": 144,
+    "gen358_parent_id": "25374743716097",
+    "gen4416_parent_id": "3583333758674368197732360914071565186738705964924502796773",
+    "immediately_falsified_base_clauses": 0,
+    "leaf": "d8_l10_r01",
+    "leaf_cnf_sha256": "919DB72BC23C8FD4E83DFBA955880CD6A0E322B4B5F7ADA656BE17B16F743497",
+    "left_parent_holes": 4,
+    "left_record_zero_based": 10,
+    "log": "C:\\Users\\pc3dt\\Documents\\Codex\\2026-08-06\\yu\\work\\scratch\\r45_d8_54_pilot\\direct_lean_orientation\\runs\\single_d8_l10_r01_c5000000_t180\\d8_l10_r01.log",
+    "returncode": 20,
+    "right_parent_holes": 0,
+    "right_record_zero_based": 1,
+    "solver_seconds": 128.27,
+    "status": "UNSAT",
+    "timeout_seconds": 180.0,
+    "wall_seconds": 132.00510200000008
+  }
+}

@@ -26,3 +26,13 @@ Files kept in the Release rather than Git:
 After downloading the Release, compare its SHA-256 with
 `R55_REPRISE_COMPLET_2026-08-06.zip.sha256.txt`, extract it under a short path,
 then run `VERIFY_AND_SMOKE_TEST.ps1 -HashesOnly`.
+
+The release-dependent Lean modules `R55MinLeafBridge.lean` and
+`R55MinLeafSemantics.lean` replay the type-0 certificate. To build them from a
+Git clone, copy these extracted files into the clone's `r55/` directory:
+
+- `min_d20_c10.cnf`;
+- `min_d20_c10_t0.lrat`.
+
+They are intentionally not part of the default lightweight smoke test because
+the proof replay takes several minutes and the two artifacts are release-only.

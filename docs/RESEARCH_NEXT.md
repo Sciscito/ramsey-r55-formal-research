@@ -76,3 +76,11 @@ permutation of all 43 vertices, preserves Ramsey-freeness, and proves the 61
 canonical root/anchor units. The remaining global-coverage task is to derive
 the appropriate local witness (or the alternative degree/codegree branches)
 from an arbitrary hypothetical `K43` Ramsey-free coloring.
+
+The certified type-0 leaf is now decomposed exactly by
+`R55MinLeafBridge.lean` and `R55MinLeafSemantics.lean`. The terminal theorem
+derives contradiction from Ramsey-freeness, canonical/type-0 units, and the
+explicit hypothesis `CounterBlocksSatisfied`. Consequently the semantic
+residue for this leaf is no longer vague: prove soundness and witness
+extension for exactly the rooted-degree counter block (116,928 clauses) and
+minimum-internal-degree block (5,149 clauses).

@@ -156,6 +156,13 @@ toujours Ramsey-libre et les 61 unités canoniques. Il reste à obtenir ces
 témoins locaux dans la couverture globale de toutes les branches et à relier
 les formules renforcées/LRAT.
 
+Pour la feuille `t0`, `R55MinLeafBridge.lean` et
+`R55MinLeafSemantics.lean` isolent exactement la formule certifiée :
+1 925 196 clauses Ramsey, 116 928 clauses de compteur de degrés, 5 149 clauses
+de minimum interne et 106 unités canoniques/type. Le théorème terminal obtient
+une contradiction sous satisfaction explicite des deux blocs compteurs. Leur
+soundness est donc le résidu précis ; elle n'est pas supposée implicitement.
+
 ## Ce qui manque avant toute annonce de `R(5,5)=43`
 
 1. Produire `LocalD20C10Witness` depuis les hypothèses globales/de branche et

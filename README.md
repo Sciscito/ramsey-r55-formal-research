@@ -70,6 +70,11 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
   degree-20/codegree-10 witness yields a genuine permutation of all 43
   vertices, a globally relabeled Ramsey-free coloring, and satisfaction of
   the 61 canonical root/anchor units;
+- exact type-0 leaf decomposition in `R55MinLeafBridge.lean` and
+  `R55MinLeafSemantics.lean`: the 2,047,379-clause certified CNF is split into
+  its Ramsey, two auxiliary-counter, and 106 unit clauses; contradiction is
+  proved from the semantic branch plus explicit satisfaction of the two
+  counter blocks, without claiming their soundness prematurely;
 - 37 Python tests.
 
 ## Repository layout
@@ -124,7 +129,8 @@ The WLOG relabeling is now complete once an exact local degree-20/codegree-10
 witness is supplied. Remaining obligations include deriving and covering the
 required local witnesses from every global branch, certifying that each
 external graph6/manifest index denotes the same packed Lean catalogue entry,
-the global degree/codegree reduction, cardinality encodings, regularity and
+the global degree/codegree reduction, soundness of the two type-0 counter
+encodings, regularity and
 lexicographic symmetry constraints, and compositional LRAT coverage of every
 leaf.
 

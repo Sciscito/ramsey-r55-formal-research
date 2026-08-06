@@ -69,3 +69,10 @@ must derive the canonical units from an arbitrary relevant `K43` branch.
 for every finite vertex permutation. The remaining WLOG task is to instantiate
 such a permutation from the exact degree-20/codegree-10 witness and prove that
 the resulting coloring satisfies the canonical units.
+
+That instantiation is now complete in `R55CanonicalRelabeling.lean`.
+`LocalD20C10Witness.canonical_ramseyFree_and_units` constructs a genuine
+permutation of all 43 vertices, preserves Ramsey-freeness, and proves the 61
+canonical root/anchor units. The remaining global-coverage task is to derive
+the appropriate local witness (or the alternative degree/codegree branches)
+from an arbitrary hypothetical `K43` Ramsey-free coloring.

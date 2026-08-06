@@ -148,6 +148,14 @@ et indices, sans écart. Le prochain raccord concerne les unités de type
 `fixed_anchor_type_clauses`, puis la réduction WLOG qui produit les unités
 canoniques depuis une branche arbitraire.
 
+Depuis, `R55TypedUnitsBridge.lean` traite exactement les 45 unités de type et
+`R55ColoringPermutation.lean` prouve l'invariance Ramsey sous toute permutation
+des 43 sommets. Enfin `R55CanonicalRelabeling.lean` construit, depuis un témoin
+local degré 20/codegré 10, une permutation globale, une coloration réétiquetée
+toujours Ramsey-libre et les 61 unités canoniques. Il reste à obtenir ces
+témoins locaux dans la couverture globale de toutes les branches et à relier
+les formules renforcées/LRAT.
+
 ## Ce qui manque avant toute annonce de `R(5,5)=43`
 
 1. Produire `LocalD20C10Witness` depuis les hypothèses globales/de branche et

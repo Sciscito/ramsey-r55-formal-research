@@ -66,6 +66,10 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
 - full vertex-permutation invariance `R55ColoringPermutation.lean`: relabeling
   all 43 vertices preserves `isRamseyFree 43 5 5` in both directions, using
   an exhaustively checked decoder for the 903 edge variables;
+- constructive WLOG `R55CanonicalRelabeling.lean`: every exact local
+  degree-20/codegree-10 witness yields a genuine permutation of all 43
+  vertices, a globally relabeled Ramsey-free coloring, and satisfaction of
+  the 61 canonical root/anchor units;
 - 37 Python tests.
 
 ## Repository layout
@@ -101,7 +105,8 @@ lake build LRATCatcher.Tests.R35CatalogCheckpoint `
            LRATCatcher.Tests.R55CanonicalUnitsBridge `
            LRATCatcher.Tests.R55CanonicalCommonIndex `
            LRATCatcher.Tests.R55TypedUnitsBridge `
-           LRATCatcher.Tests.R55ColoringPermutation
+           LRATCatcher.Tests.R55ColoringPermutation `
+           LRATCatcher.Tests.R55CanonicalRelabeling
 ```
 
 Expected final theorem:
@@ -115,11 +120,13 @@ r35_catalogue_order_ten_complete :
 
 The canonical local-graph construction and DIMACS unit-clause soundness
 bridge are now complete. Remaining
-obligations include the WLOG/relabeling theorem that produces the canonical
-units from an arbitrary relevant branch, certification that each external
-graph6/manifest index denotes the same packed Lean catalogue entry, the global
-degree/codegree reduction, cardinality encodings, regularity and lexicographic
-symmetry constraints, and compositional LRAT coverage of every leaf.
+The WLOG relabeling is now complete once an exact local degree-20/codegree-10
+witness is supplied. Remaining obligations include deriving and covering the
+required local witnesses from every global branch, certifying that each
+external graph6/manifest index denotes the same packed Lean catalogue entry,
+the global degree/codegree reduction, cardinality encodings, regularity and
+lexicographic symmetry constraints, and compositional LRAT coverage of every
+leaf.
 
 See [docs/GUIDE_REPRISE.md](docs/GUIDE_REPRISE.md) for exact environment,
 commands, hashes and trust-base caveats.

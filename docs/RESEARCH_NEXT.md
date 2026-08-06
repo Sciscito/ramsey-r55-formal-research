@@ -63,5 +63,9 @@ The remaining external-index obligation is to certify that graph6 record `i`
 and manifest `type_index=i` denote `orderTenCatalogueType i`, and that the CNF
 contains the corresponding 45 units. In parallel, the WLOG/relabeling theorem
 must derive the canonical units from an arbitrary relevant `K43` branch.
-In parallel, the WLOG/relabeling theorem must derive the 61 canonical units
-from an arbitrary relevant `K43` branch.
+
+`R55ColoringPermutation.lean` now proves the full equivalence
+`isRamseyFree 43 5 5 coloring ↔ isRamseyFree 43 5 5 (permuteColoring p coloring)`
+for every finite vertex permutation. The remaining WLOG task is to instantiate
+such a permutation from the exact degree-20/codegree-10 witness and prove that
+the resulting coloring satisfies the canonical units.

@@ -63,6 +63,9 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
   canonical induced packed graph and the selected order-10 catalogue type;
 - concrete kernel proof that zero-based type index `312` is the W5 graph used
   by the hard symmetry-certified branch;
+- full vertex-permutation invariance `R55ColoringPermutation.lean`: relabeling
+  all 43 vertices preserves `isRamseyFree 43 5 5` in both directions, using
+  an exhaustively checked decoder for the 903 edge variables;
 - 37 Python tests.
 
 ## Repository layout
@@ -97,7 +100,8 @@ lake build LRATCatcher.Tests.R35CatalogCheckpoint `
            LRATCatcher.Tests.R55CommonNeighborhoodBridge `
            LRATCatcher.Tests.R55CanonicalUnitsBridge `
            LRATCatcher.Tests.R55CanonicalCommonIndex `
-           LRATCatcher.Tests.R55TypedUnitsBridge
+           LRATCatcher.Tests.R55TypedUnitsBridge `
+           LRATCatcher.Tests.R55ColoringPermutation
 ```
 
 Expected final theorem:

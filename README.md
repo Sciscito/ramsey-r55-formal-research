@@ -58,6 +58,11 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
 - exact index bridge `R55CanonicalCommonIndex.lean`: local vertex `i : Fin 10`
   is global vertex `i+2`, and every induced-graph bit is the corresponding
   ambient Ramsey edge;
+- exact 45-literal type bridge `R55TypedUnitsBridge.lean`: satisfaction of
+  `fixed_anchor_type_clauses` is equivalent to literal equality between the
+  canonical induced packed graph and the selected order-10 catalogue type;
+- concrete kernel proof that zero-based type index `312` is the W5 graph used
+  by the hard symmetry-certified branch;
 - 37 Python tests.
 
 ## Repository layout
@@ -90,7 +95,9 @@ cd vendor\lrat-catcher
 lake build LRATCatcher.Tests.R35CatalogCheckpoint `
            LRATCatcher.Tests.R55W5Symmetry `
            LRATCatcher.Tests.R55CommonNeighborhoodBridge `
-           LRATCatcher.Tests.R55CanonicalUnitsBridge
+           LRATCatcher.Tests.R55CanonicalUnitsBridge `
+           LRATCatcher.Tests.R55CanonicalCommonIndex `
+           LRATCatcher.Tests.R55TypedUnitsBridge
 ```
 
 Expected final theorem:
@@ -104,11 +111,11 @@ r35_catalogue_order_ten_complete :
 
 The canonical local-graph construction and DIMACS unit-clause soundness
 bridge are now complete. Remaining
-obligations include the WLOG/relabeling theorem that produces those 61 units
-from an arbitrary relevant branch, the exact mapping from induced-graph bits
-to the literals of `fixed_anchor_type_clauses`, the global degree/codegree reduction,
-cardinality encodings, regularity and lexicographic symmetry constraints, and
-compositional LRAT coverage of every leaf.
+obligations include the WLOG/relabeling theorem that produces the canonical
+units from an arbitrary relevant branch, certification that each external
+graph6/manifest index denotes the same packed Lean catalogue entry, the global
+degree/codegree reduction, cardinality encodings, regularity and lexicographic
+symmetry constraints, and compositional LRAT coverage of every leaf.
 
 See [docs/GUIDE_REPRISE.md](docs/GUIDE_REPRISE.md) for exact environment,
 commands, hashes and trust-base caveats.

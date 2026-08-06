@@ -54,8 +54,14 @@ is explicit and independently audited.
 `R55CanonicalCommonIndex.lean` now proves
 `common units.toLocalWitness.toExactLists i = i.val + 2` and identifies every
 bit of the induced graph with its ambient edge on vertices `2,…,11`. The next
-typed-branch bridge must connect those edges to the exact literals emitted by
-`fixed_anchor_type_clauses`, then connect a catalogue representative index to
-its manifest/CNF cube.
+typed-branch bridge is now complete in `R55TypedUnitsBridge.lean`: all 45
+literals emitted by `fixed_anchor_type_clauses` are characterized, and their
+satisfaction is equivalent to literal packed-graph equality with the chosen
+Lean catalogue entry. Index 312 is proved to equal W5.
+
+The remaining external-index obligation is to certify that graph6 record `i`
+and manifest `type_index=i` denote `orderTenCatalogueType i`, and that the CNF
+contains the corresponding 45 units. In parallel, the WLOG/relabeling theorem
+must derive the canonical units from an arbitrary relevant `K43` branch.
 In parallel, the WLOG/relabeling theorem must derive the 61 canonical units
 from an arbitrary relevant `K43` branch.

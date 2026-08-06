@@ -28,7 +28,8 @@ try {
         LRATCatcher.Tests.R35CatalogCheckpoint `
         LRATCatcher.Tests.R55W5Symmetry `
         LRATCatcher.Tests.R55CommonNeighborhoodBridge `
-        LRATCatcher.Tests.R55CanonicalUnitsBridge
+        LRATCatcher.Tests.R55CanonicalUnitsBridge `
+        LRATCatcher.Tests.R55CanonicalCommonIndex
     if ($LASTEXITCODE -ne 0) {
         throw 'Lean integration build failed.'
     }

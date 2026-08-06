@@ -51,9 +51,11 @@ of the 42+19 DIMACS units yields both canonical list equalities, a local
 witness and catalogue coverage. The one-based DIMACS / zero-based Lean shift
 is explicit and independently audited.
 
-The next typed-branch bridge should prove
-`common units.toLocalWitness.toExactLists i = i.val + 2`, identify every bit
-of the induced graph with the unit emitted by `fixed_anchor_type_clauses`, and
-then connect a catalogue representative index to its exact manifest/CNF cube.
+`R55CanonicalCommonIndex.lean` now proves
+`common units.toLocalWitness.toExactLists i = i.val + 2` and identifies every
+bit of the induced graph with its ambient edge on vertices `2,…,11`. The next
+typed-branch bridge must connect those edges to the exact literals emitted by
+`fixed_anchor_type_clauses`, then connect a catalogue representative index to
+its manifest/CNF cube.
 In parallel, the WLOG/relabeling theorem must derive the 61 canonical units
 from an arbitrary relevant `K43` branch.

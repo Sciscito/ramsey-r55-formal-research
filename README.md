@@ -55,6 +55,9 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
   units and 19 anchor units, including the one-based DIMACS to zero-based Lean
   shift, imply those exact equalities and therefore certified catalogue
   coverage;
+- exact index bridge `R55CanonicalCommonIndex.lean`: local vertex `i : Fin 10`
+  is global vertex `i+2`, and every induced-graph bit is the corresponding
+  ambient Ramsey edge;
 - 37 Python tests.
 
 ## Repository layout
@@ -103,7 +106,7 @@ The canonical local-graph construction and DIMACS unit-clause soundness
 bridge are now complete. Remaining
 obligations include the WLOG/relabeling theorem that produces those 61 units
 from an arbitrary relevant branch, the exact mapping from induced-graph bits
-to `fixed_anchor_type_clauses`, the global degree/codegree reduction,
+to the literals of `fixed_anchor_type_clauses`, the global degree/codegree reduction,
 cardinality encodings, regularity and lexicographic symmetry constraints, and
 compositional LRAT coverage of every leaf.
 

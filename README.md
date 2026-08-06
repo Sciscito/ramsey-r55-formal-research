@@ -44,6 +44,17 @@ strong graph isomorphisms. There are no `sorry` or `admit` placeholders.
   27 `gen358` parents, and
   `every_r35_order_eight_graph_enters_gen358` covers every arbitrary valid
   order-eight graph up to an explicit isomorphic completion;
+- certified semantic split for every actual degree-eight `K25` branch:
+  `degree_eight_local_split` sends the red block into `gen358`, constructs the
+  exact sixteen-vertex blue block, and proves its complemented coloring is
+  `R(4,4,16)`-free while relating it to the raw DIMACS convention;
+- certified rooted `R(3,4)` subcatalogues: filtering the exhaustive `R(3,5)`
+  catalogues leaves exactly 9 order-seven and 3 order-eight classes, with
+  completeness modulo `GraphIsoFin` for the planned `gen4416` classifier;
+- certified guarded `gen4416` classifier CNF: 83 variables and 10,880 clauses
+  cover the 27 rooted block pairs after blocking 64 labelled masks; its
+  3,658,365-byte LRAT is replayed by
+  `r44_rooted_gen4416_classifier_unsat` (semantic composition still pending);
 - conditional global degree theorem `allDegrees_le_twentyFour`: from
   `R(4,5) ≤ 25`, every vertex of a hypothetical `K43` counterexample has
   both red and blue degree at most 24;
@@ -128,7 +139,10 @@ lake build LRATCatcher.Tests.R35CatalogCheckpoint `
            LRATCatcher.Tests.R55CanonicalRelabeling `
            LRATCatcher.Tests.RamseyUpperBounds `
            LRATCatcher.Tests.R55DegreeBounds `
+           LRATCatcher.Tests.R44RootedR34Catalogue `
+           LRATCatcher.Tests.R44RootedGen4416Classifier `
            LRATCatcher.Tests.R45DegreeEightCover `
+           LRATCatcher.Tests.R45DegreeEightBridge `
            LRATCatcher.Tests.R45DegreeEightPilot
 ```
 
@@ -141,11 +155,18 @@ r35_catalogue_order_ten_complete :
 
 ## Next formal objective
 
-For the `R(4,5,25)` degree-eight split, the left `gen358` cover and one LRAT
-leaf are now certified. The next obligations are the exhaustive right
-`gen4416` cover, transport of the local isomorphisms into a block-preserving
-permutation of `K25`, the exact parent-unit bridge, and LRAT replay for the 53
-remaining leaves.
+For the `R(4,5,25)` degree-eight split, the left `gen358` cover, its semantic
+connection to an actual `K25` neighbourhood, the complementary sixteen-vertex
+right block, and one LRAT leaf are now certified. The next obligations are the
+exhaustive right `gen4416` cover, transport of the local isomorphisms into a
+block-preserving permutation of `K25`, the exact parent-unit bridge, and LRAT
+replay for the 53 remaining leaves. The selected route for `gen4416` filters
+the certified `R(3,5)` catalogues down to `9 × 3` rooted `R(3,4)` block pairs
+and discharges a small guarded classifier. `R44RootedR34Catalogue` now
+certifies the filter and both completeness statements, while
+`R44RootedGen4416Classifier` replays the exact guarded LRAT. The remaining
+right-cover gap is semantic: prove the clause generator sound and complete,
+turn the 64 masks into graph-isomorphism witnesses, and handle complementation.
 
 The canonical local-graph construction, DIMACS unit-clause soundness bridge
 and WLOG relabeling are complete once an exact local degree-20/codegree-10

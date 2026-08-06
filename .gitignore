@@ -10,6 +10,7 @@ r55/*.lrat
 !r55/lean_r33.cnf
 !r55/fresh_r33.lrat
 *.log
+!scripts/r45_d8_pilot/gen4416_rooted_classification/solver.log
 *.jsonl
 *.zip
 

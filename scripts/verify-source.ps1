@@ -24,9 +24,18 @@ try {
 
 Push-Location $repoRoot
 try {
+    & $PythonExecutable -m unittest discover `
+        -s scripts\r45_d8_pilot -p 'test_gen4416_rooted*.py'
+    if ($LASTEXITCODE -ne 0) {
+        throw 'gen4416 rooted classifier tests failed.'
+    }
     & $PythonExecutable scripts\r45_d8_pilot\gen358_lean_certificate.py verify
     if ($LASTEXITCODE -ne 0) {
         throw 'gen358 Lean certificate verification failed.'
+    }
+    & $PythonExecutable scripts\r45_d8_pilot\gen4416_rooted_classifier.py verify
+    if ($LASTEXITCODE -ne 0) {
+        throw 'gen4416 rooted classifier verification failed.'
     }
 } finally {
     Pop-Location
@@ -45,7 +54,10 @@ try {
         LRATCatcher.Tests.R55CanonicalRelabeling `
         LRATCatcher.Tests.RamseyUpperBounds `
         LRATCatcher.Tests.R55DegreeBounds `
+        LRATCatcher.Tests.R44RootedR34Catalogue `
+        LRATCatcher.Tests.R44RootedGen4416Classifier `
         LRATCatcher.Tests.R45DegreeEightCover `
+        LRATCatcher.Tests.R45DegreeEightBridge `
         LRATCatcher.Tests.R45DegreeEightPilot
     if ($LASTEXITCODE -ne 0) {
         throw 'Lean integration build failed.'

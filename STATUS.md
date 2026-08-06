@@ -71,9 +71,28 @@ les 179 représentants du catalogue exhaustif `R(3,5,8)` aux 27 parents
 `gen358` et prouve que tout graphe valide d'ordre 8 admet une complétion
 isomorphe entrant dans un parent concret.
 
-Restent la couverture exhaustive droite `gen4416`, le transport des
-isomorphismes en une permutation de `K25` qui préserve les deux blocs, et les
-53 traces LRAT non encore rejouées.
+`R45DegreeEightBridge` raccorde maintenant cette couverture à une vraie
+branche de `K25`. Le théorème `degree_eight_local_split` envoie les huit
+voisins rouges dans `gen358`, construit les seize voisins bleus, prouve que
+leur coloration complémentée est `(4,4)`-libre, et formalise la relation avec
+les couleurs brutes attendues par les unités DIMACS.
+
+La stratégie droite retenue évite le catalogue géant `R(4,4,15)`.
+`R44RootedR34Catalogue` certifie le filtrage des catalogues `R(3,5)` :
+exactement 9 représentants `R(3,4,7)` et 3 représentants `R(3,4,8)`, complets
+modulo `GraphIsoFin`. `gen4416_rooted_classifier.py` reconstruit ensuite les
+27 paires, exactement 64 masques autorisés et un CNF gardé de 83 variables et
+10 880 clauses. Son LRAT de 3 658 365 octets est rejoué dans Lean par
+`r44_rooted_gen4416_classifier_unsat`.
+
+Ce dernier théorème certifie l'UNSAT du CNF exact, pas encore la couverture
+sémantique `gen4416`. Il reste à relier dans Lean les clauses aux recollements
+possibles, les 64 masques aux deux graphes via des permutations, et le cas
+complémenté.
+
+Restent la couverture exhaustive droite `gen4416`, le relèvement des
+isomorphismes en une permutation de `K25` qui préserve les deux blocs, le
+raccord exact aux unités, et les 53 traces LRAT non encore rejouées.
 
 ### Réduction structurelle
 

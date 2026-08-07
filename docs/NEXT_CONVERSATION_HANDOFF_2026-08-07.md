@@ -1,5 +1,52 @@
 # Handoff — recherche R(5,5) / R(4,5,25)
 
+## Mise a jour prioritaire - fin du 7 aout 2026
+
+Cette mise a jour est la source de verite et remplace les anciens compteurs
+7/13 cover6 et 1 509 branches actives encore conserves plus bas.
+
+1. Cover6 d8 complet au niveau solveur. Les 13/13 residuelles exactes sont
+   verifiees et UNSAT_WITHOUT_PROOF. Total : 19 657 663 clauses,
+   1 077 652 051 octets, 9 889 conflits. Manifeste formule SHA-256
+   DDAF42888C6A77C432EC9AA4799D6A24EEDB2088AA25C97C251A82D3986DFB8C;
+   batch SHA-256
+   AA5E11028D9B8A228E2F6EB7E5F11D0C740BBFDEED9315134C3F1DED8BB1E492.
+   Aucun LRAT cover6 et aucun theoreme universel ne sont encore revendiques.
+2. Strate minimum-anchor d20,c10 vide. Le record officiel unique
+   R(4,5,20,e=100) a les degres 9^2 10^16 11^2, donc aucun voisinage de
+   minimum 10. SHA du record :
+   D1D1FF46BD5D153B51D7DA094F6BF459BCEAEFDA65EB4941EAD0BB9B09C897CD.
+   Totaux corriges : K43 1509 -> 1196; squelette K45 1815 -> 1502.
+3. Ecran K43 negatif mais informatif. Sur huit feuilles representatives,
+   une est UNSAT sans LRAT (95 conflits) et sept sont UNKNOWN a 100 000
+   conflits. Toutes les CNF temporaires ont ete supprimees. Journal SHA-256
+   4B8F4F8ED8A7A937AA0127FB7732F375202E68CDF818EAA6F3EF1D511074A5C6.
+4. K45. L'identite d'exces n'elimine aucun degre avec les seules bornes e/E,
+   malgre une contrainte de voisinage quasi extremal. La generation brute a
+   ete abandonnee et le fichier partiel de 114 449 417 octets nettoye.
+
+Artefacts lourds :
+S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-cover5-closed-universal\cover6_closed_two_center_d8
+et
+S:\CodexResearchCache\ramsey-r55-k43-screen\pilot-v1.
+L'archive officielle r45extreme.tar.gz reste sur S: (90 599 728 octets,
+SHA-256
+9CFAC9DBD1C209CFA342E5D5424DF2A7A3FBB008CA00BF0A992E5BBE72F925B6).
+
+Prochaine sequence recommandee :
+
+1. produire les 13 LRAT cover6-d8 et les rejouer;
+2. formaliser le pont CNF/reduction/deux-centres;
+3. traiter cover6 d7 puis d6 et le transport par complement;
+4. pour K43, concevoir un nouveau split cible sur les petites codegrees;
+5. pour K45, exploiter les voisinages quasi extremaux avant toute nouvelle
+   generation CNF massive.
+
+Fichiers suivis a lire en premier :
+docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md,
+r55/K43_SCREEN_2026-08-07.json et
+scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json.
+
 Checkpoint scientifique du 7 août 2026. Ce fichier est la source de reprise
 condensée pour la prochaine conversation. Les rapports spécialisés gardent les
 tables complètes.

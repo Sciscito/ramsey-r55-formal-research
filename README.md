@@ -1,5 +1,31 @@
 # Formal research on `R(5,5)`
 
+## Research update - later 2026-08-07
+
+This update supersedes the earlier 7/13 cover6 and 1,509 active-branch
+counts retained below as historical checkpoint detail.
+
+- The complement-closed cover6 degree-eight split is now generated and
+  independently verified for all 13 two-centre cases. CaDiCaL returns
+  UNSAT_WITHOUT_PROOF on 13/13 cases (58--3,073 conflicts), but no LRAT or
+  Lean composition is claimed.
+- The published extremal R(4,5,20) classification makes the
+  minimum-anchor layer d=20,c=10 empty before SAT: minimum degree 10 would
+  force a 10-regular 100-edge graph, while the unique published extremal
+  class has degree sequence 9^2 10^16 11^2. This removes 313 branches:
+  K43: 1,509 -> 1,196 and the new K45 skeleton 1,815 -> 1,502.
+- A bounded eight-leaf screen of the remaining K43 space produced one
+  proof-free UNSAT and seven UNKNOWN results at 100,000 conflicts. Raising
+  budgets is therefore not the next strategy.
+- The K45 excess identity yields useful near-extremal-neighbourhood
+  constraints but eliminates no degree by itself.
+
+Exact tracked summaries are
+r55/K43_SCREEN_2026-08-07.json,
+scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json, and
+docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md.
+No new Ramsey-number bound is claimed.
+
 Private, reproducible research workspace for the exact diagonal Ramsey number
 `R(5,5)`, combining Lean proofs, independently checked catalogue certificates,
 SAT encodings and LRAT certificates.

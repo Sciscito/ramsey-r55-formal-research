@@ -1,5 +1,71 @@
 # Projet R(5,5) — état vérifiable
 
+## Mise a jour de recherche - fin du 7 aout 2026
+
+Cette section remplace les compteurs 7/13 et 1 509 encore presents plus
+bas comme historique du checkpoint precedent.
+
+### Cover6 universel, degre 8
+
+Les 13 CNF residuelles a deux centres sont maintenant presentes sur S:,
+rehachees et verifiees ligne par ligne. Chaque formule contient exactement
+les 21 unites attendues. Ensemble, elles totalisent 19 657 663 clauses et
+1 077 652 051 octets. Le manifeste externe a pour SHA-256
+DDAF42888C6A77C432EC9AA4799D6A24EEDB2088AA25C97C251A82D3986DFB8C.
+
+CaDiCaL 2.1.2 a rendu UNSAT_WITHOUT_PROOF sur 13/13 cas, avec 58 a 3 073
+conflits et 9 889 conflits cumules. Le manifeste du batch a pour SHA-256
+AA5E11028D9B8A228E2F6EB7E5F11D0C740BBFDEED9315134C3F1DED8BB1E492.
+Aucun LRAT n'a ete demande. Ce resultat ferme l'ecran solveur, pas encore le
+theoreme universel : restent les LRAT, leurs replays et le pont semantique
+entre reduction CNF, branches a deux centres et evitement des motifs.
+
+### Lemme extremal minimum-anchor
+
+Dans le schema serre, c est le degre interne minimal du voisinage racine G.
+Pour d=20,c=10, la poignee de main impose e(G)>=100; la classification
+officielle actuelle donne E(4,5,20)=100, donc G devrait etre 10-regulier.
+L'unique classe d'isomorphisme officielle au niveau 100, authentifiee par le
+record SHA-256
+D1D1FF46BD5D153B51D7DA094F6BF459BCEAEFDA65EB4941EAD0BB9B09C897CD,
+a pourtant les degres 9^2 10^16 11^2. La strate minimum-anchor est vide.
+
+Le gain exact est de 313 types : le probleme K43 passe de 1 509 a 1 196
+branches non vacues; le squelette K45 de 1 815 a 1 502. Cette conclusion
+depend de l'exhaustivite publiee par le catalogue ANU mis a jour; le papier de
+1995 seul ne donnait pas encore l'egalite E=100.
+
+### Ecrans K43 et K45
+
+Huit feuilles representatives K43 ont ete testees avec ancre minimale
+specialisee, ordre lexicographique des signatures, 100 000 conflits et
+1 000 Mio par processus. d18_c9_t195 est UNSAT sans LRAT en 95 conflits;
+les sept autres sont UNKNOWN a la limite, en 35,19--54,76 s de solveur. Les
+CNF ont ete supprimees. Journal externe : 55 466 octets, SHA-256
+4B8F4F8ED8A7A937AA0127FB7732F375202E68CDF818EAA6F3EF1D511074A5C6.
+
+Pour K45, parite et complementation reduisent une racine paire a d=20 ou
+d=22. Apres le lemme precedent, le schema type contient 1 502 branches.
+L'identite d'exces donne
+sum Delta = 6(n20+n24) + 15/2(n21+n23) + 8n22, mais les seules bornes
+extremales e/E n'eliminent aucun degre : les 106 076 distributions de degres
+compatibles avec la parite restent faisables dans cette relaxation. Elle
+force toutefois au moins 18 des 90 voisinages orientes a deficit au plus 4;
+hors du cas 22-regulier, un deficit au plus 3 existe. Une generation CNF K45
+brute a ete arretee a 114 449 417 octets partiels puis entierement nettoyee :
+la prochaine etape doit exploiter la structure, pas produire les 1 502
+grosses formules.
+
+### Evaluation scientifique
+
+L'intervalle public reste 43 <= R(5,5) <= 46; aucune nouvelle borne n'est
+obtenue. La fermeture solveur 13/13 de cover6-d8 rapproche un lemme
+computationnel publiable, mais il manque la certification LRAT/Lean. La
+vacuite d20,c10 est une simplification de preuve importante, probablement
+implicite dans les donnees publiees plutot qu'une nouveaute mathematique
+majeure. L'ecran K43 montre qu'une percee demandera un nouveau split pour les
+petites codegrees, pas seulement davantage de conflits.
+
 Date de l’audit : 7 août 2026.
 
 ## Résultat public et cible

@@ -19,5 +19,9 @@ scripts/r45_d12_cover9_universal/scan_small_r44_covers.py -text
 scripts/r45_d12_cover9_universal/augment_small_r44_covers.py -text
 scripts/r45_d12_cover9_universal/independent_replay_small_r44_covers.py -text
 scripts/r45_d12_cover9_universal/cover6_toy_chain.py -text
+scripts/r45_d12_cover9_universal/exact_replay_cover6_d8.py -text
+scripts/r45_d12_cover9_universal/test_exact_replay_cover6_d8.py -text
+scripts/r45_d12_cover9_universal/COVER6_D8_SEMANTIC_REPLAY_V1.json -text
 vendor/lrat-catcher/LRATCatcher/Tests/R44Cover6ToyChain.lean -text
+vendor/lrat-catcher/LRATCatcher/Tests/R44Cover6MotifBridge.lean -text
 vendor/lrat-catcher/LRATCatcher/Tests/R55ExclusiveBlockR44.lean -text

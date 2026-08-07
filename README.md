@@ -6,17 +6,25 @@ This update supersedes the earlier 7/13 cover6 and 1,509 active-branch
 counts retained below as historical checkpoint detail.
 
 - The complement-closed cover6 degree-eight split is now generated for all
-  13 two-centre cases. The current verifier checks DIMACS syntax, dimensions,
-  frozen hashes and the 21 branch units, but does not yet independently
-  reconstruct every global clause or the source-to-residual reduction.
-  CaDiCaL returns UNSAT_WITHOUT_PROOF on 13/13 cases (58--3,073 conflicts),
-  but no LRAT or Lean composition is claimed.
+  13 two-centre cases. A standalone deterministic reimplementation now checks
+  all `2^21` local assignments, reconstructs the ordered 3,367,437-clause
+  source byte for byte, and separately executes simplification,
+  deduplication and insertion of the 21 units for all 13 residuals. Every
+  frozen residual agrees byte for byte. This closes the finite CNF audit, not
+  the mathematical theorem: CaDiCaL returns `UNSAT_WITHOUT_PROOF` on 13/13
+  cases (58--3,073 conflicts), but no cover6 LRAT or Lean composition is
+  claimed.
 - The exact universal statement, polarity convention and remaining semantic
   gaps are frozen in
   `docs/R44_COVER6_D8_SEMANTIC_TARGET_2026-08-07.md`. A deliberately small
   `R(3,3,5)`/induced-`P3` analogue now closes the complete declarative
   encoding -> DIMACS -> LRAT -> Lean chain, including negative mutation
   tests. This is a level-4 result for the toy theorem only.
+- Lean now materializes the six exact cover6 graph6 records, checks the three
+  complement pairs, and proves that a full 21-literal DIMACS blocker is false
+  exactly on an induced labelled occurrence. The remaining bridge is the
+  expansion of the conditioned partial cubes into the global source and its
+  composition with the two-centre branches.
 - The published extremal R(4,5,20) classification makes the
   minimum-anchor layer d=20,c=10 empty before SAT: minimum degree 10 would
   force a 10-regular 100-edge graph, while the unique published extremal
@@ -37,7 +45,8 @@ counts retained below as historical checkpoint detail.
 
 Exact tracked summaries are
 r55/K43_SCREEN_2026-08-07.json,
-scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json, and
+scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json,
+scripts/r45_d12_cover9_universal/COVER6_D8_SEMANTIC_REPLAY_V1.json, and
 docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md.
 The structural pilot is documented in
 docs/R45_EXCLUSIVE_R44_MOTIF_QUOTIENT_2026-08-07.md.
@@ -105,17 +114,21 @@ syntactically complement-closed partial cubes (SHA-256
 The predicted conditioned `K_12` formula sizes are 4,858,890, 4,312,419 and
 3,367,437 clauses for degrees 6, 7 and 8 respectively. A historical checkpoint
 called the degree-eight source formula "independently verified twice"; the
-later audit showed that this was too strong. Its verifier checks syntax,
-dimensions and a frozen hash, but does not reconstruct the global clauses or
-the source-to-residual reductions. All 13 residuals now return proof-free
-UNSAT and contain the expected 21 branch units. No cover6 LRAT exists, and
-this is not yet an UNSAT theorem.
+later audit showed that this was too strong. That concrete gap is now closed
+by a separate deterministic code path: it reconstructs the ordered source,
+recomputes all 13 reductions and compares every DIMACS byte. The tracked
+report has SHA-256
+`5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024`.
+The implementation deliberately shares the frozen representatives and
+expected hashes, so it is not described as a low-common-mode independent
+derivation. All 13 residuals return proof-free UNSAT. No cover6 LRAT exists,
+and this is not yet an UNSAT theorem.
 
 Accordingly the global progress count is still **0/12 complete degree-twelve
 mathematical cases**, and no new Ramsey-number bound is claimed. The cover6
-minimum and solver checkpoint are research leads, not exact-CNF certification;
-a broader literature review and the missing semantic compositions are required
-before making a novelty or breakthrough claim. See
+minimum and solver checkpoint are research leads; the exact-CNF audit is now
+acquired, while the graph/DIMACS/Lean composition, certified UNSAT and broader
+literature review remain required before any novelty or breakthrough claim. See
 `docs/NEXT_CONVERSATION_HANDOFF_2026-08-07.md` for the precise restart state
 and `docs/R45_D12_STRUCTURAL_COVER9_2026-08-07.md` for the structural audit.
 

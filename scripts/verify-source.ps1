@@ -250,6 +250,7 @@ try {
         LRATCatcher.Tests.R44OrderTwelveDegreeBounds `
         LRATCatcher.Tests.R44OrderTwelveTwoCenterSymmetry `
         LRATCatcher.Tests.R44OrderTwelveTwoCenterCases `
+        LRATCatcher.Tests.R44Cover6MotifBridge `
         LRATCatcher.Tests.R44Cover6ToyChain `
         LRATCatcher.Tests.R55ExclusiveBlockR44
     if ($LASTEXITCODE -ne 0) {
@@ -264,6 +265,15 @@ try {
     }
     Assert-AllowedLeanAxioms $toyLeanOutput `
         'Cover6 toy terminal theorem'
+    $cover6MotifLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6MotifBridge.lean 2>&1)
+    $cover6MotifLeanExit = $LASTEXITCODE
+    $cover6MotifLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6MotifLeanExit -ne 0) {
+        throw 'Cover6 motif bridge forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6MotifLeanOutput `
+        'Cover6 motif blocker bridge'
     $exclusiveBlockLeanOutput = @(& $LakeExecutable env lean `
         LRATCatcher/Tests/R55ExclusiveBlockR44.lean 2>&1)
     $exclusiveBlockLeanExit = $LASTEXITCODE

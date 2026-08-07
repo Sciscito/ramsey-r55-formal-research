@@ -17,11 +17,25 @@ CaDiCaL 2.1.2 a rendu UNSAT_WITHOUT_PROOF sur 13/13 cas, avec 58 a 3 073
 conflits et 9 889 conflits cumules. Le manifeste du batch a pour SHA-256
 AA5E11028D9B8A228E2F6EB7E5F11D0C740BBFDEED9315134C3F1DED8BB1E492.
 Aucun LRAT n'a ete demande. Ce resultat ferme l'ecran solveur, pas encore le
-theoreme universel. L'audit a precise une lacune anterieurement sous-estimee :
-le verificateur ne regenere pas encore clause par clause la grosse formule,
-et ne reconstruit pas independamment sa simplification vers les 13
-residuelles. Restent donc d'abord ce pont semantique exact, puis seulement les
-LRAT, leurs replays et la composition avec les branches a deux centres.
+theoreme universel. La lacune de reconstruction CNF anterieurement identifiee
+est maintenant fermee par une reimplementation deterministe autonome des
+generateurs du projet. Elle verifie exhaustivement les 2^21 affectations
+locales, retrouve 923 012 affectations R(4,4) et exactement 25 200 motifs,
+reconstruit les 3 367 437 clauses source dans leur ordre, puis reproduit pour
+les 13 cas la simplification, le dedoublonnage et l'ajout des 21 unites. Les
+comparaisons sont exactes octet par octet. Le rapport suivi, de SHA-256
+5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024,
+explicite la limite : ce certificat fini partage les representants et hashes
+geles et ne constitue ni un LRAT, ni un pont Lean, ni le theoreme cover6-d8.
+Restent le pont graphes/motifs/DIMACS vers Lean, les LRAT, leurs replays et la
+composition avec les branches a deux centres.
+
+Un premier maillon Lean de ce pont est acquis : `R44Cover6MotifBridge`
+decode les six graph6, controle leurs matrices et leurs trois paires
+complementaires, puis prouve l'equivalence entre la faussete du bloqueur
+DIMACS complet de 21 litteraux et une occurrence induite etiquetee. Il reste a
+relier les cubes partiels conditionnes a ces bloqueurs, puis a la formule
+globale et aux branches `TwoCenterBranch`.
 
 Une chaine jouet ferme maintenant la methode sur K5 : toute coloration sans
 triangle monochromatique contient un P3 positif induit. Les 80 clauses sont
@@ -103,9 +117,10 @@ B85E57FA3D7D25A901DD98E387264B8B47FB6CC71F8721FA7CD07BD7DC1E3203.
 ### Evaluation scientifique
 
 L'intervalle public reste 43 <= R(5,5) <= 46; aucune nouvelle borne n'est
-obtenue. La fermeture solveur 13/13 de cover6-d8 rapproche un lemme
-computationnel publiable, mais il manque la certification LRAT/Lean. La
-vacuite d20,c10 est une simplification de preuve importante, probablement
+obtenue. La fermeture solveur 13/13 et le replay CNF exact de cover6-d8
+rapprochent un lemme computationnel publiable, mais il manque encore la
+certification LRAT/Lean. La vacuite d20,c10 est une simplification de preuve
+importante, probablement
 implicite dans les donnees publiees plutot qu'une nouveaute mathematique
 majeure. L'ecran K43 montre qu'une percee demandera un nouveau split pour les
 petites codegrees, pas seulement davantage de conflits.
@@ -184,13 +199,16 @@ Les tailles calculées sont 4 858 890, 4 312 419 et 3 367 437 clauses.
 L'ancienne formulation « CNF de degré 8 doublement vérifiée » était trop
 forte. Le fichier gelé fait 189 298 232 octets, SHA-256
 `64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`,
-mais son vérificateur ne reconstruit ni chaque clause globale ni les
-réductions vers les résiduelles.
+et l'ancien vérificateur ne reconstruisait ni chaque clause globale ni les
+réductions vers les résiduelles. Cette lacune est désormais fermée par le
+replay autonome décrit en tête de fichier : source ordonnée et treize
+réductions correspondent octet par octet aux artefacts gelés.
 
 Les 13/13 résiduelles à deux centres existent désormais, contiennent chacune
-les 21 unités attendues et ont rendu UNSAT sans preuve. Leur provenance exacte
-depuis la source reste à certifier et aucun LRAT cover6 n'existe. Il ne s'agit
-donc pas d'un théorème UNSAT complet.
+les 21 unités attendues et ont rendu UNSAT sans preuve. Leur provenance finie
+depuis la source est certifiée au niveau du replay Python, mais son lien avec
+les graphes et les branches Lean reste à composer. Aucun LRAT cover6 n'existe;
+il ne s'agit donc pas d'un théorème UNSAT complet.
 
 Le compteur global demeure donc **0/12 cas mathématiques de degré 12
 fermés**. Aucune nouvelle borne de Ramsey n’est revendiquée. Le minimum

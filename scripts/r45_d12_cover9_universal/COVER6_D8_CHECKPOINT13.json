@@ -23,6 +23,17 @@
     "bytes": 1077652051,
     "exact_units_per_case": 21
   },
+  "finite_cnf_replay": {
+    "report": "COVER6_D8_SEMANTIC_REPLAY_V1.json",
+    "bytes": 8464,
+    "sha256": "5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024",
+    "implementation": "standalone deterministic reimplementation with shared frozen representatives and hashes",
+    "local_cube_semantics": "PASS_EXACT_ON_ALL_2097152_ASSIGNMENTS",
+    "ordered_source_comparison": "PASS_BYTE_FOR_BYTE",
+    "source_to_residual_comparisons": 13,
+    "all_residual_comparisons": "PASS_BYTE_FOR_BYTE",
+    "claim_boundary": "Finite CNF source and reduction audit only; no SAT certificate, LRAT, Lean semantic composition, or cover6-d8 theorem."
+  },
   "solver": {
     "name": "CaDiCaL",
     "version": "2.1.2",
@@ -57,6 +68,6 @@
     {"p":3,"q":3,"clauses":1477475,"bytes":81762901,"sha256":"DDBE87B5B39D03BB9ACE059FC996D5B4437D8CEA65994FBAFCCF3BE4877D0719","conflicts":3073,"seconds":6.696}
   ],
   "result_status_for_every_case": "UNSAT_WITHOUT_PROOF",
-  "formal_bridge_status": "The 13-case arithmetic and units are executable; CNF reduction and Lean transport/composition remain unconnected.",
-  "next_required_step": "Generate and replay LRAT for all 13 cases, then formalize the semantic bridge before claiming universal UNSAT."
+  "formal_bridge_status": "The finite source formula and all 13 reductions are reconstructed exactly. Lean now formalizes the six motifs and full 21-literal blocker semantics. Partial-cube expansion, global formula equality, TwoCenterBranch composition, and UNSAT certificates remain unconnected.",
+  "next_required_step": "Connect conditioned partial cubes and the global source to the formal blocker, then compose the 13 branches; generate and replay LRAT only against that exact bridge before claiming universal UNSAT."
 }

@@ -64,3 +64,28 @@ yet the global universal induced-cover theorem: the remaining obligations are
 the CNF semantic bridge (including restriction and deduplication), composition
 of each replay with the corresponding graph branch, and root degrees 3
 through 7.
+
+## Complement-closed `cover6`, degree eight
+
+The degree-eight complement-closed route is a separate target in this same
+directory. Its source has 3,367,437 clauses and its two-centre split has 13
+residuals. `exact_replay_cover6_d8.py` is a standalone deterministic
+reimplementation: it imports no project generator, checks all `2^21` local
+assignments, reconstructs the ordered source, recomputes every reduction and
+compares all frozen DIMACS files byte for byte. It deliberately shares the
+frozen motif representatives and expected hashes, so it is not a
+low-common-mode independent derivation.
+
+```powershell
+python -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 preflight
+python -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 all `
+  --artifact-root S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-cover5-closed-universal
+```
+
+The portable report is `COVER6_D8_SEMANTIC_REPLAY_V1.json`, SHA-256
+`5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024`.
+This closes finite CNF reconstruction only. The 13 solver results still have
+no LRAT. Lean's `R44Cover6MotifBridge` now decodes the six graph6 motifs,
+checks their complement pairs, and proves the full 21-literal blocker
+equivalent to a labelled induced occurrence; partial-cube expansion, global
+formula equality and branch composition remain open.

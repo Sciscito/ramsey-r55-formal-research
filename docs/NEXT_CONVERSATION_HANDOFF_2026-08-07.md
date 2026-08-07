@@ -7,8 +7,19 @@ Cette mise a jour est la source de verite et remplace les anciens compteurs
 
 1. Cover6 d8 complet au niveau solveur. Les 13/13 residuelles gelees sont
    parsees, rehachees, controlees pour leurs 21 unites et UNSAT_WITHOUT_PROOF.
-   Elles ne sont pas encore regenerees clause par clause par un verificateur
-   independant, et la reduction depuis la source n'est pas reconstruite.
+   Une reimplementation deterministe autonome reconstruit maintenant les
+   3 367 437 clauses source dans leur ordre, puis les 13 simplifications,
+   dedoublonnages et ajouts des 21 unites, avec comparaison octet par octet.
+   Elle controle aussi exhaustivement les 2^21 affectations locales : 923 012
+   sont R(4,4) et les cubes rejettent exactement les 25 200 motifs attendus.
+   Rapport SHA-256
+   5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024.
+   Cette voie partage les representants et hashes geles : elle ferme l'audit
+   fini CNF, pas un audit a faible mode commun ni le pont mathematique.
+   Le module Lean `R44Cover6MotifBridge` decode par ailleurs les six graph6,
+   controle les trois paires complementaires et prouve l'equivalence entre le
+   bloqueur DIMACS complet de 21 litteraux et l'occurrence induite. Il reste a
+   relier les cubes partiels et la formule globale a ce bloqueur.
    Total : 19 657 663 clauses,
    1 077 652 051 octets, 9 889 conflits. Manifeste formule SHA-256
    DDAF42888C6A77C432EC9AA4799D6A24EEDB2088AA25C97C251A82D3986DFB8C;
@@ -58,11 +69,11 @@ SHA-256
 
 Prochaine sequence recommandee :
 
-1. reconstruire independamment chaque clause de F8 et chaque reduction
-   F8 -> F(p,q), avec comparaison exacte aux artefacts geles;
-2. formaliser le pont DIMACS/polarites/unites/deux-centres et materialiser la
-   disjonction des six motifs dans Lean;
-3. produire les 13 LRAT cover6-d8 seulement apres fermeture de ces maillons,
+1. relire le rapport de replay exact et conserver son test exhaustif local
+   comme garde-fou de la provenance F8 -> F(p,q);
+2. terminer le pont DIMACS/polarites/unites/deux-centres et composer en Lean
+   la disjonction des six motifs deja materialises;
+3. produire les 13 LRAT cover6-d8 seulement apres fermeture de ce pont,
    puis les rejouer et composer le theorem d8;
 4. traiter cover6 d7 puis d6 et le transport par complement;
 5. pour K45, implementer une seule obligation motif-conditionnee sans
@@ -82,12 +93,13 @@ scripts/r45_d12_cover9_universal/R44_SMALL_ORDER_MOTIF_COVERS_2026-08-07.json.
 
 Validation du checkpoint courant :
 
-- suite Python cover9-universal canonique : 83 tests PASS, 1 externe ignore,
-  131,18 s;
+- suite Python cover9-universal canonique : 93 tests PASS, 2 externes ignores,
+  135,32 s;
 - jouet : 12 modeles R(3,3)-libres, 0 contre-exemple, identites du manifeste,
   CNF, LRAT, source Lean et programme controlees;
-- build cible et compilations Lean forcees : PASS pour
-  `R44Cover6ToyChain` et `R55ExclusiveBlockR44`; aucun `sorry`/`admit`;
+- build cible et compilations Lean directes : PASS pour
+  `R44Cover6ToyChain`, `R44Cover6MotifBridge` et `R55ExclusiveBlockR44`;
+  aucun `sorry`/`admit`;
 - rejeu catalogue final : 103 706 + 546 356 records R(4,4), zero trou,
   70,65 s; rapport SHA-256
   B85E57FA3D7D25A901DD98E387264B8B47FB6CC71F8721FA7CD07BD7DC1E3203;
@@ -98,7 +110,7 @@ Validation du checkpoint courant :
 Le `verify-source.ps1` historique complet n'a pas ete relance : il rehache et
 rejoue notamment 2,4 Gio de preuves sans rapport avec les fichiers modifies.
 Les chemins touches ont ete testes directement, et le script integre desormais
-les deux modules Lean avec compilation forcee hors cache.
+les trois modules Lean avec compilation forcee hors cache.
 
 Checkpoint scientifique du 7 août 2026. Ce fichier est la source de reprise
 condensée pour la prochaine conversation. Les rapports spécialisés gardent les
@@ -256,15 +268,22 @@ exhaustivement 923 012 affectations locales `R(4,4)`, 25 200 motifs et
 L'ancienne formulation « CNF d8 doublement vérifiée » était trop forte. Le
 fichier gelé compte 3 367 438 lignes et 189 298 232 octets, SHA
 `64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`,
-mais le vérificateur contrôle seulement syntaxe, dimensions et hash. Il ne
-reconstruit pas les clauses globales ni les réductions vers les résiduelles.
+et l'ancien vérificateur contrôlait seulement syntaxe, dimensions et hash.
+La lacune est désormais fermée par `exact_replay_cover6_d8.py`, une
+réimplémentation déterministe autonome qui reconstruit la source ordonnée et
+les treize réductions, puis les compare octet par octet. Son rapport suivi
+`COVER6_D8_SEMANTIC_REPLAY_V1.json` a pour SHA-256
+`5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024`.
+Cette voie partage les représentants et les hashes gelés : elle réduit le mode
+commun du code, mais n'est pas présentée comme une dérivation indépendante.
 
 Les 13/13 résiduelles existent désormais, contiennent chacune les 21 unités
 attendues et ont rendu `UNSAT_WITHOUT_PROOF`. Le snapshot 7/13
 `COVER6_D8_CHECKPOINT7.json` et ses hashes restent un journal historique,
 supersédé par `COVER6_D8_CHECKPOINT13.json`. Aucun LRAT n'a été demandé.
 
-Aucun LRAT cover6, pont Lean ou résultat universel complet n’est revendiqué.
+Aucun LRAT cover6, composition Lean des branches ou résultat universel complet
+n’est revendiqué.
 
 ## Pistes négatives — ne pas répéter sans idée nouvelle
 
@@ -290,9 +309,9 @@ Le prototype fermeture brute cover5, 8 classes/30 240 masques, et les scripts
 
 ## Prochaine priorité, sans dispersion
 
-1. reconstruire clause par clause la source d8 et ses 13 réductions ;
+1. conserver vert le replay exact de la source d8 et de ses 13 réductions ;
 2. formaliser le pont DIMACS, unités, deux centres et disjonction des motifs ;
-3. produire les 13 LRAT et les rejouer seulement après cette comparaison ;
+3. produire les 13 LRAT et les rejouer seulement après ce pont ;
 4. générer/certifier d7 (17 cas), puis d6 (20 cas) ;
 5. formaliser le transport global par complément `d ↔ 11-d` ;
 6. composer replays et branches Lean ;
@@ -343,12 +362,14 @@ git -c "safe.directory=C:/Users/migra/Documents/Codex/2026-08-06/on-va-reprendre
 & $py -B -m scripts.r45_d12_cover9_universal.verify_complement_closed_cover6_branches preflight
 & $py -B -m scripts.r45_d12_cover9_universal.generate_complement_closed_cover6_branches verify --output $out6 --degree 8
 & $py -B -m scripts.r45_d12_cover9_universal.verify_complement_closed_cover6_branches formula --output $out6 --degree 8
+& $py -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 preflight
+& $py -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 all --artifact-root $out6
 ```
 
-Les 13 cas sont déjà produits. Avant tout LRAT, faire reconstruire et comparer
-exactement les 13 réductions avec
-`generate_complement_closed_cover6_two_center verify`. Le runner refuse
-d’écraser un batch : choisir un nouveau `--batch-name`.
+Les 13 cas sont déjà produits et leur replay exact est acquis. Avant tout LRAT,
+rehacher le rapport suivi, rejouer `exact_replay_cover6_d8 all`, puis relier la
+formule exacte aux objets graphes/motifs dans Lean. Le runner refuse d’écraser
+un batch : choisir un nouveau `--batch-name`.
 
 ## Sources primaires pour l’audit
 

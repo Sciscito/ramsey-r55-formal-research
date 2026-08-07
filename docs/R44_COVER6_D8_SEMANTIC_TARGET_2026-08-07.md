@@ -87,28 +87,47 @@ et les littéraux faux, en dédoublonnant, puis en ajoutant les 21 unités exact
 des deux centres. Les treize fichiers totalisent 19 657 663 clauses et
 1 077 652 051 octets. CaDiCaL les déclare tous UNSAT, sans LRAT.
 
+Une réimplémentation déterministe autonome, sans import du générateur du
+projet, reconstruit maintenant la source ordonnée et ces treize réductions,
+puis compare chaque fichier octet par octet. Elle rejoue aussi l'exactitude
+locale sur les `2^21` affectations : 923 012 sont `R44` et les cubes rejettent
+exactement les 25 200 masques motifs, sans extra ni manque. Son rapport
+`COVER6_D8_SEMANTIC_REPLAY_V1.json` a pour SHA-256
+`5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024`.
+Le code partage les représentants et hashes gelés ; il s'agit d'un audit fini
+à chemin de code séparé, pas d'une dérivation à faible mode commun.
+
 ## Frontière de confiance actuelle
 
 Les ingrédients ne sont pas encore composés :
 
-1. Le vérificateur indépendant reconstruit motifs, cubes, exactitude locale et
-   comptes globaux, mais son contrôle du gros DIMACS se limite encore à la
-   syntaxe, aux dimensions et au hash gelé ; il ne régénère pas chaque clause.
-2. Les métriques de la reprise `F8 → F(p,q)` n'ont pas été conservées. Le
-   vérificateur des résiduelles contrôle hashes et unités, pas une seconde
-   reconstruction de la simplification et du dédoublonnage.
-3. Les six motifs ne sont pas encore matérialisés en Lean, et leur disjonction
-   n'est pas reliée aux bloqueurs.
-4. Le décalage DIMACS un-vers-zéro, les polarités et les 21 unités ne sont pas
-   encore reliés formellement à `TwoCenterBranch`.
-5. Aucun LRAT cover6 n'existe ; aucun des treize UNSAT n'est donc au-dessus du
+1. Le maillon fini Python source `F8 → F(p,q)` est maintenant exact, avec les
+   métriques de chaque simplification et dédoublonnage conservées. Il demeure
+   extérieur à Lean et partage les constantes gelées avec la génération.
+2. `R44Cover6MotifBridge.lean` matérialise les six graphes graph6, vérifie leurs
+   trois paires complémentaires et prouve que le bloqueur DIMACS complet de 21
+   littéraux est faux exactement sur une occurrence induite étiquetée. Les
+   cubes partiels conditionnés et leur expansion dans les 3 367 437 clauses ne
+   sont pas encore reliés à ce bloqueur déclaratif.
+3. Le décalage DIMACS un-vers-zéro, les polarités, les 21 unités et l'égalité de
+   la formule globale ne sont pas encore composés avec `TwoCenterBranch`.
+4. Aucun LRAT cover6 n'existe ; aucun des treize UNSAT n'est donc au-dessus du
    niveau 2.
-6. La racine arbitraire, le transport par complément, `d6`, `d7` et le gluing
+5. La racine arbitraire, le transport par complément, `d6`, `d7` et le gluing
    global `R(4,5,25)` restent séparés.
 
 En conséquence, le théorème `cover6-d8` lui-même demeure une cible, pas un
 résultat démontré. Les niveaux 2, 3 et 4 atteints par des sous-maillons ne
 s'additionnent pas en un niveau global.
+
+Reproduction ciblée des deux nouveaux maillons :
+
+```powershell
+python -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 preflight
+python -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 all --artifact-root $out6
+cd vendor/lrat-catcher
+lake env lean LRATCatcher/Tests/R44Cover6MotifBridge.lean
+```
 
 ## Chaîne jouet fermée
 

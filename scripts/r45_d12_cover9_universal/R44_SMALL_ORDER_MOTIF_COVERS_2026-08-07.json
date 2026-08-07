@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "status": "CATALOGUE_RELATIVE_CANDIDATE_COVERS",
+  "proof_level": 1,
+  "scope_warning": "These are explicit greedy upper covers of frozen official catalogues. Minimality, catalogue completeness inside Lean, SAT effectiveness, a K45 semantic bridge, and any new Ramsey bound are not claimed.",
+  "official_sources": {
+    "r44_7": {
+      "records": 362,
+      "bytes": 2172,
+      "sha256": "6A3DA7F0687C392420F190DB0643B5C5B7ECB1A3C5ED098C7D96200185A5F010"
+    },
+    "r44_10_gzip": {
+      "records": 103706,
+      "bytes": 443274,
+      "sha256": "C34980E1CE734573D3A92486C6071144E154EE53E049B0E050CB1F8FFE0F6691"
+    },
+    "r44_11_gzip": {
+      "records": 546356,
+      "bytes": 2605345,
+      "sha256": "05EEC90C5C14659E31F5E2C31A810B75649BA7D670D01A079ED9AABF17A3BBBC"
+    }
+  },
+  "pilot_reports_on_s": {
+    "R44_SMALL_COVER_PILOT_2026-08-07.json": {
+      "bytes": 11502,
+      "sha256": "D8701ACA0D1B5EC77EDED32924DA42E89D6FE9126D474340375B620748897B00"
+    },
+    "R44_SMALL_COVER_GREEDY_2026-08-07.json": {
+      "bytes": 12443,
+      "sha256": "BDA31C3B2346B06CF85311C11C5E1A2CBC338E79D5C01E634FA1F5999CED2268"
+    }
+  },
+  "programs": {
+    "scan_small_r44_covers.py": {
+      "bytes": 7842,
+      "sha256": "241091D38A83DB5A2BB12DDEA1B06456698A2260B94DA5F86A070CA4F491AE3B"
+    },
+    "augment_small_r44_covers.py": {
+      "bytes": 11486,
+      "sha256": "2216C801AA3C12BD88B4C9B086EFD3FC8856FD2E472CBD812EC55AA5C8CCF23B"
+    },
+    "independent_replay_small_r44_covers.py": {
+      "bytes": 14096,
+      "sha256": "5660F4609A832828C25FF36325D3A06C2549C5A7C5EEDF7EC9B9E5775083A81D"
+    }
+  },
+  "replay_environment": {
+    "python": "CPython 3.12.13",
+    "command": "python -B -m scripts.r45_d12_cover9_universal.independent_replay_small_r44_covers --source10 S:\\CodexResearchCache\\ramsey-formal\\catalogues\\r44_10.g6.gz --source11 S:\\CodexResearchCache\\ramsey-formal\\catalogues\\r44_11.g6.gz",
+    "report_identity_recorded_in": "R44_SMALL_ORDER_MOTIF_COVERS_REPLAY_2026-08-07.sha256"
+  },
+  "dependencies": {
+    "eliminated_q9_stratum": {"degree": 20, "common": 10, "q": 9},
+    "minimum_anchor_vacuity_document": {
+      "path": "../../docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md",
+      "sha256": "9BCBCA7EC54226C7A7A86546EA29B3CFD2229A9D93166AD72B11C1FF951EFBCC"
+    },
+    "r44_12_catalogue": {
+      "records": 1449166,
+      "sha256": "C6A60EE177E00C1168259A5BD464F9CFA5A5B471AE2BA1811E7B3FAF23144E7A"
+    },
+    "cover5_order12_replay": {
+      "tsv_path": "../r45_d12_gluing_aware_cover/cover5_order7.tsv",
+      "tsv_sha256": "CEAE61F737722C6D1392B5C8D654FC1B09D482AA3C76222EE2D9CBFF3CA5E288",
+      "induced_witness_sha256": "36EC5E95D8599F6AE8099A6D3376D0E3F43269059FC644A1A3F96C52846414CB",
+      "report_path": "../r45_d12_gluing_aware_cover/REPORT.md",
+      "report_sha256": "BC041DE2EB4BFD3EAF0C35190CF1168320D80703BAFAE235A778A4687DB3FD97"
+    },
+    "cover6_order12_replay": {
+      "tsv_path": "../r45_d12_complement_closed_minimum/cover6_complement_closed.tsv",
+      "tsv_sha256": "404E49E3218424FCB73314ADEE42CC873CD3F8D67E4615653A8BC0210F61AD16",
+      "manifest_path": "../r45_d12_complement_closed_minimum/MANIFEST.json",
+      "manifest_sha256": "B27CD8D1F0FF5D6E58B67AC9F0B74FE5139D932698D9F1AFD8DF0C64A2AE8FCF",
+      "direct_scan_covered": 1449166
+    }
+  },
+  "q_at_least_12": {
+    "individual_family": "tracked catalogue-relative cover5 on R(4,4;12)",
+    "individual_records": ["F@h^g", "FCUrO", "FDLmW", "FG`Xo", "FdW}w"],
+    "individual_motifs": 5,
+    "complement_closed_records": ["F@h^g", "FKDhw", "FG`Xo", "FdW}w", "FHFLw", "FIIXw"],
+    "complement_closed_motifs": 6,
+    "numerical_strata": 12
+  },
+  "q11": {
+    "individual_records": [
+      "F@h^g", "FKDhw", "FG`Xo", "FdW}w", "FHFLw", "FIIXw",
+      "F`o~_", "FCxvg", "FAYto", "FALzo", "FGC[W", "FsXXw",
+      "F@NAw", "F@h^w"
+    ],
+    "individual_motifs": 14,
+    "complement_closed_records": [
+      "F@h^g", "FKDhw", "FG`Xo", "FdW}w", "FHFLw", "FIIXw",
+      "F`o~_", "FqOxo", "FK`Xo", "F`luW", "F@NAw", "FBdnW",
+      "F@MAG", "F]qzw"
+    ],
+    "complement_closed_motifs": 14,
+    "strata_multiplicity": 2
+  },
+  "q10": {
+    "individual_records": [
+      "F@h^g", "FKDhw", "FG`Xo", "FdW}w", "FHFLw", "FIIXw",
+      "F@Vdo", "FPO]w", "FDxZg", "F`FHw", "FqOxo", "FK`Xo",
+      "F_GZ_", "FIM^W", "F`GOW", "FoDPW", "FHFHw", "F@vvo",
+      "F`o~_", "FC~rw", "FoDPO", "F@MAG", "FsXXw", "FANcw"
+    ],
+    "individual_motifs": 24,
+    "complement_closed_records": [
+      "F@h^g", "FKDhw", "FG`Xo", "FdW}w", "FHFLw", "FIIXw",
+      "F_Lto", "FgEzo", "F@vvo", "FgCXW", "FHFHw", "FII\\w",
+      "F`o~_", "FqOxo", "FANbw", "FIG\\w", "FAN~o", "F_GXw",
+      "F@YQw", "FIM^W", "FANno", "FPDIw", "F_Ezo", "F_Mzo",
+      "F@NAw", "FBdnW"
+    ],
+    "complement_closed_motifs": 26,
+    "strata_multiplicity": 1
+  },
+  "k45_architecture": {
+    "typed_minimum_anchor_branches_before": 1502,
+    "active_strata": [
+      {"degree": 20, "common": 2, "q": 17, "typed_types": 2},
+      {"degree": 20, "common": 3, "q": 16, "typed_types": 3},
+      {"degree": 20, "common": 4, "q": 15, "typed_types": 7},
+      {"degree": 20, "common": 5, "q": 14, "typed_types": 13},
+      {"degree": 20, "common": 6, "q": 13, "typed_types": 32},
+      {"degree": 20, "common": 7, "q": 12, "typed_types": 71},
+      {"degree": 20, "common": 8, "q": 11, "typed_types": 179},
+      {"degree": 20, "common": 9, "q": 10, "typed_types": 290},
+      {"degree": 22, "common": 4, "q": 17, "typed_types": 7},
+      {"degree": 22, "common": 5, "q": 16, "typed_types": 13},
+      {"degree": 22, "common": 6, "q": 15, "typed_types": 32},
+      {"degree": 22, "common": 7, "q": 14, "typed_types": 71},
+      {"degree": 22, "common": 8, "q": 13, "typed_types": 179},
+      {"degree": 22, "common": 9, "q": 12, "typed_types": 290},
+      {"degree": 22, "common": 10, "q": 11, "typed_types": 313}
+    ],
+    "individual_motif_obligations": 112,
+    "individual_route_name": "hybrid individual route: cover5 for q>=12, augmented cover6 for q=10,11",
+    "individual_formula": "12*5 + 2*14 + 24",
+    "complement_closed_motif_obligations": 126,
+    "complement_closed_formula": "12*6 + 2*14 + 26",
+    "semantic_conditions": [
+      "The motif split replaces rather than multiplies the R(3,5,c) type split.",
+      "The common block C stays untyped.",
+      "All 21 edge and non-edge literals of the induced motif are fixed.",
+      "The motif relabeling inside the exclusive block must be reconciled with or replace rooted_signature_lex_encoding.",
+      "Catalogue-relative covers must be upgraded to universal or independently certified catalogue-completeness statements before a formal K45 theorem."
+    ]
+  }
+}

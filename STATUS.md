@@ -8,8 +8,8 @@ bas comme historique du checkpoint precedent.
 ### Cover6 universel, degre 8
 
 Les 13 CNF residuelles a deux centres sont maintenant presentes sur S:,
-rehachees et verifiees ligne par ligne. Chaque formule contient exactement
-les 21 unites attendues. Ensemble, elles totalisent 19 657 663 clauses et
+rehachees et parsees. Chaque formule contient exactement les 21 unites
+attendues. Ensemble, elles totalisent 19 657 663 clauses et
 1 077 652 051 octets. Le manifeste externe a pour SHA-256
 DDAF42888C6A77C432EC9AA4799D6A24EEDB2088AA25C97C251A82D3986DFB8C.
 
@@ -17,8 +17,23 @@ CaDiCaL 2.1.2 a rendu UNSAT_WITHOUT_PROOF sur 13/13 cas, avec 58 a 3 073
 conflits et 9 889 conflits cumules. Le manifeste du batch a pour SHA-256
 AA5E11028D9B8A228E2F6EB7E5F11D0C740BBFDEED9315134C3F1DED8BB1E492.
 Aucun LRAT n'a ete demande. Ce resultat ferme l'ecran solveur, pas encore le
-theoreme universel : restent les LRAT, leurs replays et le pont semantique
-entre reduction CNF, branches a deux centres et evitement des motifs.
+theoreme universel. L'audit a precise une lacune anterieurement sous-estimee :
+le verificateur ne regenere pas encore clause par clause la grosse formule,
+et ne reconstruit pas independamment sa simplification vers les 13
+residuelles. Restent donc d'abord ce pont semantique exact, puis seulement les
+LRAT, leurs replays et la composition avec les branches a deux centres.
+
+Une chaine jouet ferme maintenant la methode sur K5 : toute coloration sans
+triangle monochromatique contient un P3 positif induit. Les 80 clauses sont
+reconstruites declarativement, la semantique des deux composants est verifiee
+sur les 1 024 affectations, le LRAT est rejoue par Lean et le theoreme terminal
+compile. Des mutants controlent polarites, indexation, preuve et cas crucial
+d'une mauvaise formule rendue trivialement UNSAT, rejetee avant tout replay;
+ainsi un certificat valide eventuel ne pourrait pas masquer l'erreur
+d'encodage. Niveau 4 pour ce jouet uniquement; aucune conclusion cover6-d8 ou
+R(5,5) n'en decoule. Le rejeu Lean est force hors cache par `lake env lean`.
+Voir
+docs/R44_COVER6_D8_SEMANTIC_TARGET_2026-08-07.md.
 
 ### Lemme extremal minimum-anchor
 
@@ -55,6 +70,35 @@ hors du cas 22-regulier, un deficit au plus 3 existe. Une generation CNF K45
 brute a ete arretee a 114 449 417 octets partiels puis entierement nettoyee :
 la prochaine etape doit exploiter la structure, pas produire les 1 502
 grosses formules.
+
+### Quotient K45 par bloc exclusif R(4,4)
+
+Pour une arete racine-ancre de couleur chi, le bloc des voisins chi de la
+racine qui sont non-voisins chi de l'ancre est un graphe R(4,4) de taille
+q=d-1-c. Cette observation permet de remplacer le type complet R(3,5,c) par
+une occurrence induite d'un petit motif, en laissant C non type.
+Le lemme local est formalise dans
+`R55ExclusiveBlockR44.redEdge_exclusiveBlock_isRamseyFree`, qui conclut le
+predicat standard `isRamseyFree 4 4 4`; ce maillon seul est niveau 4.
+
+Des copies locales gelees des catalogues officiels R(4,4;10) et R(4,4;11)
+ont ete scannees puis rejouees par une seconde implementation sans import du
+generateur. Les familles explicites couvrent 103 706/103 706 et
+546 356/546 356 records; chaque record a aussi ete revalide R(4,4). Avec le
+cover5 d'ordre 12 et la vacuite d20,c10, la voie hybride catalogue-relative
+compte 112 obligations motif-conditionnees au lieu de 1 502 types; une version
+fermee par complement en compte 126.
+
+Covers et quotient restent niveau 1 et non une fermeture : la completude et
+la provenance des catalogues ne sont pas reliees a Lean, le pont K45 n'existe
+pas, `signature_lex` peut entrer en conflit avec la normalisation du motif, et
+aucun gain SAT n'est mesure. Voir
+docs/R45_EXCLUSIVE_R44_MOTIF_QUOTIENT_2026-08-07.md et le manifeste
+scripts/r45_d12_cover9_universal/R44_SMALL_ORDER_MOTIF_COVERS_2026-08-07.json.
+Manifeste SHA-256 :
+C17EA950F1E02AAF1223AA9E230208498D2ADC7AAA7077A488435D371FE8B614;
+rejeu final externe SHA-256 :
+B85E57FA3D7D25A901DD98E387264B8B47FB6CC71F8721FA7CD07BD7DC1E3203.
 
 ### Evaluation scientifique
 
@@ -136,12 +180,17 @@ La fermeture par complément réduit la future preuve universelle aux degrés
 représentatifs 6, 7 et 8. Deux implémentations indépendantes valident
 exhaustivement 25 200 cubes locaux fermés par complément, de SHA-256
 `0239E74AC009B28173E59C3293F7F9C9370A99832B19BB28205EF449E6238F7D`.
-Les tailles calculées sont 4 858 890, 4 312 419 et 3 367 437 clauses. La CNF
-de degré 8 est générée et doublement vérifiée : 189 298 232 octets, SHA-256
-`64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`.
-Sept de ses 13 résiduelles à deux centres ont déjà rendu UNSAT sans preuve
-en 2,34 à 3,30 s ; six restent à générer et aucun LRAT cover6 n’existe
-encore. Il ne s’agit donc pas d’un théorème UNSAT complet.
+Les tailles calculées sont 4 858 890, 4 312 419 et 3 367 437 clauses.
+L'ancienne formulation « CNF de degré 8 doublement vérifiée » était trop
+forte. Le fichier gelé fait 189 298 232 octets, SHA-256
+`64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`,
+mais son vérificateur ne reconstruit ni chaque clause globale ni les
+réductions vers les résiduelles.
+
+Les 13/13 résiduelles à deux centres existent désormais, contiennent chacune
+les 21 unités attendues et ont rendu UNSAT sans preuve. Leur provenance exacte
+depuis la source reste à certifier et aucun LRAT cover6 n'existe. Il ne s'agit
+donc pas d'un théorème UNSAT complet.
 
 Le compteur global demeure donc **0/12 cas mathématiques de degré 12
 fermés**. Aucune nouvelle borne de Ramsey n’est revendiquée. Le minimum

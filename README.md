@@ -5,10 +5,18 @@
 This update supersedes the earlier 7/13 cover6 and 1,509 active-branch
 counts retained below as historical checkpoint detail.
 
-- The complement-closed cover6 degree-eight split is now generated and
-  independently verified for all 13 two-centre cases. CaDiCaL returns
-  UNSAT_WITHOUT_PROOF on 13/13 cases (58--3,073 conflicts), but no LRAT or
-  Lean composition is claimed.
+- The complement-closed cover6 degree-eight split is now generated for all
+  13 two-centre cases. The current verifier checks DIMACS syntax, dimensions,
+  frozen hashes and the 21 branch units, but does not yet independently
+  reconstruct every global clause or the source-to-residual reduction.
+  CaDiCaL returns UNSAT_WITHOUT_PROOF on 13/13 cases (58--3,073 conflicts),
+  but no LRAT or Lean composition is claimed.
+- The exact universal statement, polarity convention and remaining semantic
+  gaps are frozen in
+  `docs/R44_COVER6_D8_SEMANTIC_TARGET_2026-08-07.md`. A deliberately small
+  `R(3,3,5)`/induced-`P3` analogue now closes the complete declarative
+  encoding -> DIMACS -> LRAT -> Lean chain, including negative mutation
+  tests. This is a level-4 result for the toy theorem only.
 - The published extremal R(4,5,20) classification makes the
   minimum-anchor layer d=20,c=10 empty before SAT: minimum degree 10 would
   force a 10-regular 100-edge graph, while the unique published extremal
@@ -17,6 +25,13 @@ counts retained below as historical checkpoint detail.
 - A bounded eight-leaf screen of the remaining K43 space produced one
   proof-free UNSAT and seven UNKNOWN results at 100,000 conflicts. Raising
   budgets is therefore not the next strategy.
+- An exclusive-neighbourhood lemma places a block of size `q=d-1-c` in
+  `R(4,4,q)`. Frozen local copies of the official order-10 and order-11
+  catalogues admit explicit augmented order-seven motif covers. An independent
+  implementation rechecked every source graph and every declared cover,
+  yielding a catalogue-relative K45 architecture with 112 motif obligations
+  (126 when complement closure is imposed), instead of 1,502 typed cases. No
+  SAT obligation is closed and no universal or formal K45 reduction is claimed.
 - The K45 excess identity yields useful near-extremal-neighbourhood
   constraints but eliminates no degree by itself.
 
@@ -24,6 +39,8 @@ Exact tracked summaries are
 r55/K43_SCREEN_2026-08-07.json,
 scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json, and
 docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md.
+The structural pilot is documented in
+docs/R45_EXCLUSIVE_R44_MOTIF_QUOTIENT_2026-08-07.md.
 No new Ramsey-number bound is claimed.
 
 Private, reproducible research workspace for the exact diagonal Ramsey number
@@ -86,19 +103,19 @@ implementations exhaust all `2^21` local assignments and agree on 25,200
 syntactically complement-closed partial cubes (SHA-256
 `0239E74AC009B28173E59C3293F7F9C9370A99832B19BB28205EF449E6238F7D`).
 The predicted conditioned `K_12` formula sizes are 4,858,890, 4,312,419 and
-3,367,437 clauses for degrees 6, 7 and 8 respectively. The degree-eight
-formula has been generated and independently verified twice: 189,298,232
-bytes, SHA-256
-`64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`.
-This is a verified encoding. Seven of its 13 two-centre residuals have
-returned proof-free solver UNSAT in 2.34--3.30 seconds; six residuals and
-all cover6 LRAT certificates remain. This is not yet an UNSAT theorem.
+3,367,437 clauses for degrees 6, 7 and 8 respectively. A historical checkpoint
+called the degree-eight source formula "independently verified twice"; the
+later audit showed that this was too strong. Its verifier checks syntax,
+dimensions and a frozen hash, but does not reconstruct the global clauses or
+the source-to-residual reductions. All 13 residuals now return proof-free
+UNSAT and contain the expected 21 branch units. No cover6 LRAT exists, and
+this is not yet an UNSAT theorem.
 
 Accordingly the global progress count is still **0/12 complete degree-twelve
 mathematical cases**, and no new Ramsey-number bound is claimed. The cover6
-minimum and the 13/13 exact-CNF certification are potentially publishable
-computational lemmas; a broader literature review and the missing semantic
-compositions are required before making a novelty or breakthrough claim. See
+minimum and solver checkpoint are research leads, not exact-CNF certification;
+a broader literature review and the missing semantic compositions are required
+before making a novelty or breakthrough claim. See
 `docs/NEXT_CONVERSATION_HANDOFF_2026-08-07.md` for the precise restart state
 and `docs/R45_D12_STRUCTURAL_COVER9_2026-08-07.md` for the structural audit.
 

@@ -249,10 +249,30 @@ try {
         LRATCatcher.Tests.R44OrderTwelveRootSymmetryTransport `
         LRATCatcher.Tests.R44OrderTwelveDegreeBounds `
         LRATCatcher.Tests.R44OrderTwelveTwoCenterSymmetry `
-        LRATCatcher.Tests.R44OrderTwelveTwoCenterCases
+        LRATCatcher.Tests.R44OrderTwelveTwoCenterCases `
+        LRATCatcher.Tests.R44Cover6ToyChain `
+        LRATCatcher.Tests.R55ExclusiveBlockR44
     if ($LASTEXITCODE -ne 0) {
         throw 'Lean integration build failed.'
     }
+    $toyLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6ToyChain.lean 2>&1)
+    $toyLeanExit = $LASTEXITCODE
+    $toyLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($toyLeanExit -ne 0) {
+        throw 'Cover6 toy forced Lean replay failed.'
+    }
+    Assert-AllowedLeanAxioms $toyLeanOutput `
+        'Cover6 toy terminal theorem'
+    $exclusiveBlockLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R55ExclusiveBlockR44.lean 2>&1)
+    $exclusiveBlockLeanExit = $LASTEXITCODE
+    $exclusiveBlockLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($exclusiveBlockLeanExit -ne 0) {
+        throw 'Exclusive-block forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $exclusiveBlockLeanOutput `
+        'Exclusive-block R44 theorem'
     if ($hasGuardedProofBundle) {
         $guardedLeanOutput = @(& $LakeExecutable env lean `
             LRATCatcher/Tests/R45DegreeEightGuardedMaster.lean 2>&1)

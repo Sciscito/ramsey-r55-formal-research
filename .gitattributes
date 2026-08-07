@@ -8,3 +8,16 @@ scripts/r45_d8_pilot/guarded_master/*.json binary
 scripts/r45_d8_pilot/guarded_master/*.assumptions binary
 scripts/r45_d12_gluing_aware_cover/cover5_order7.tsv binary
 scripts/r45_d12_complement_closed_minimum/cover6_complement_closed.tsv binary
+
+# These tracked text files are hashed byte-for-byte by manifests or reports.
+# Keep them diffable, but disable platform EOL conversion.
+docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md -text
+scripts/r45_d12_gluing_aware_cover/REPORT.md -text
+scripts/r45_d12_complement_closed_minimum/MANIFEST.json -text
+scripts/r45_d12_cover9_universal/R44_SMALL_ORDER_MOTIF_COVERS_2026-08-07.json -text
+scripts/r45_d12_cover9_universal/scan_small_r44_covers.py -text
+scripts/r45_d12_cover9_universal/augment_small_r44_covers.py -text
+scripts/r45_d12_cover9_universal/independent_replay_small_r44_covers.py -text
+scripts/r45_d12_cover9_universal/cover6_toy_chain.py -text
+vendor/lrat-catcher/LRATCatcher/Tests/R44Cover6ToyChain.lean -text
+vendor/lrat-catcher/LRATCatcher/Tests/R55ExclusiveBlockR44.lean -text

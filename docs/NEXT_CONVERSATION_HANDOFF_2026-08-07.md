@@ -5,8 +5,11 @@
 Cette mise a jour est la source de verite et remplace les anciens compteurs
 7/13 cover6 et 1 509 branches actives encore conserves plus bas.
 
-1. Cover6 d8 complet au niveau solveur. Les 13/13 residuelles exactes sont
-   verifiees et UNSAT_WITHOUT_PROOF. Total : 19 657 663 clauses,
+1. Cover6 d8 complet au niveau solveur. Les 13/13 residuelles gelees sont
+   parsees, rehachees, controlees pour leurs 21 unites et UNSAT_WITHOUT_PROOF.
+   Elles ne sont pas encore regenerees clause par clause par un verificateur
+   independant, et la reduction depuis la source n'est pas reconstruite.
+   Total : 19 657 663 clauses,
    1 077 652 051 octets, 9 889 conflits. Manifeste formule SHA-256
    DDAF42888C6A77C432EC9AA4799D6A24EEDB2088AA25C97C251A82D3986DFB8C;
    batch SHA-256
@@ -24,28 +27,78 @@ Cette mise a jour est la source de verite et remplace les anciens compteurs
 4. K45. L'identite d'exces n'elimine aucun degre avec les seules bornes e/E,
    malgre une contrainte de voisinage quasi extremal. La generation brute a
    ete abandonnee et le fichier partiel de 114 449 417 octets nettoye.
+5. Chaine jouet semantique fermee. Sur K5, l'encodage declaratif de l'absence
+   de triangle monochromatique et de P3 positif induit donne exactement 80
+   clauses; le LRAT CaDiCaL est rejoue dans Lean jusqu'au theoreme terminal.
+   Les tests mutants rejettent notamment, avant replay, une formule rendue
+   trivialement UNSAT par une clause vide; un certificat valide eventuel ne
+   pourrait donc pas masquer cette mauvaise formule. Le rejeu Lean est force
+   hors cache avec `lake env lean`. Ceci valide le noyau declaratif au niveau
+   4 pour le jouet seulement, pas les etapes deux-centres de cover6.
+6. Quotient K45 catalogue-relatif. Le bloc exclusif d'une arete est R(4,4).
+   Ce lemme local est maintenant un theoreme Lean niveau 4 dans
+   `R55ExclusiveBlockR44`; le quotient qui l'utilise ne l'est pas.
+   Des covers explicites des copies locales gelees des catalogues officiels
+   d'ordres 10 et 11, rejoues par une implementation independante, reduisent
+   conceptuellement 1 502 types a 112 obligations motif-conditionnees, ou 126
+   si la fermeture par complement est imposee. Niveau 1 : aucun pont K45,
+   aucune fermeture SAT et aucune completude de catalogue formelle ne sont
+   revendiques. Le total 112 depend aussi du cover5 d'ordre 12 et de la vacuite
+   d20,c10.
 
 Artefacts lourds :
 S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-cover5-closed-universal\cover6_closed_two_center_d8
 et
 S:\CodexResearchCache\ramsey-r55-k43-screen\pilot-v1.
+Les catalogues et rapports du nouveau pilote restent sous
+S:\CodexResearchCache\ramsey-formal\catalogues.
 L'archive officielle r45extreme.tar.gz reste sur S: (90 599 728 octets,
 SHA-256
 9CFAC9DBD1C209CFA342E5D5424DF2A7A3FBB008CA00BF0A992E5BBE72F925B6).
 
 Prochaine sequence recommandee :
 
-1. produire les 13 LRAT cover6-d8 et les rejouer;
-2. formaliser le pont CNF/reduction/deux-centres;
-3. traiter cover6 d7 puis d6 et le transport par complement;
-4. pour K43, concevoir un nouveau split cible sur les petites codegrees;
-5. pour K45, exploiter les voisinages quasi extremaux avant toute nouvelle
-   generation CNF massive.
+1. reconstruire independamment chaque clause de F8 et chaque reduction
+   F8 -> F(p,q), avec comparaison exacte aux artefacts geles;
+2. formaliser le pont DIMACS/polarites/unites/deux-centres et materialiser la
+   disjonction des six motifs dans Lean;
+3. produire les 13 LRAT cover6-d8 seulement apres fermeture de ces maillons,
+   puis les rejouer et composer le theorem d8;
+4. traiter cover6 d7 puis d6 et le transport par complement;
+5. pour K45, implementer une seule obligation motif-conditionnee sans
+   `signature_lex` et mesurer son gain face a la branche typee; arret sans
+   extension si le gain est inferieur a x2;
+6. pour K43, conserver DLS13 et la coupure additive comme conjectures a
+   falsifier, sans augmenter aveuglement les budgets.
 
 Fichiers suivis a lire en premier :
 docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md,
 r55/K43_SCREEN_2026-08-07.json et
-scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json.
+scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json. Lire aussi
+docs/R44_COVER6_D8_SEMANTIC_TARGET_2026-08-07.md et le manifeste leger
+scripts/r45_d12_cover9_universal/toy_cover6/MANIFEST.json, puis
+docs/R45_EXCLUSIVE_R44_MOTIF_QUOTIENT_2026-08-07.md et
+scripts/r45_d12_cover9_universal/R44_SMALL_ORDER_MOTIF_COVERS_2026-08-07.json.
+
+Validation du checkpoint courant :
+
+- suite Python cover9-universal canonique : 83 tests PASS, 1 externe ignore,
+  131,18 s;
+- jouet : 12 modeles R(3,3)-libres, 0 contre-exemple, identites du manifeste,
+  CNF, LRAT, source Lean et programme controlees;
+- build cible et compilations Lean forcees : PASS pour
+  `R44Cover6ToyChain` et `R55ExclusiveBlockR44`; aucun `sorry`/`admit`;
+- rejeu catalogue final : 103 706 + 546 356 records R(4,4), zero trou,
+  70,65 s; rapport SHA-256
+  B85E57FA3D7D25A901DD98E387264B8B47FB6CC71F8721FA7CD07BD7DC1E3203;
+- manifeste structural SHA-256
+  C17EA950F1E02AAF1223AA9E230208498D2ADC7AAA7077A488435D371FE8B614;
+- parse PowerShell, AST Python, JSON et whitespace : PASS.
+
+Le `verify-source.ps1` historique complet n'a pas ete relance : il rehache et
+rejoue notamment 2,4 Gio de preuves sans rapport avec les fichiers modifies.
+Les chemins touches ont ete testes directement, et le script integre desormais
+les deux modules Lean avec compilation forcee hors cache.
 
 Checkpoint scientifique du 7 août 2026. Ce fichier est la source de reprise
 condensée pour la prochaine conversation. Les rapports spécialisés gardent les
@@ -57,15 +110,15 @@ tables complètes.
   `C:\Users\migra\Documents\Codex\2026-08-06\on-va-reprendre-de-la-recherche\work\ramsey-r55-formal-research-lf`
 - Remote : `git@github.com:Sciscito/ramsey-r55-formal-research.git`
 - Branche : `agent/r45-d12-guarded-master`
-- PR brouillon : <https://github.com/Sciscito/ramsey-r55-formal-research/pull/1>
-- Commit de ce checkpoint : `bf8628d83b2816ca7cdc82a43ed02b39a881b6be`
+- PR brouillon a mettre a jour : <https://github.com/Sciscito/ramsey-r55-formal-research/pull/2>
+- Commit de depart audite : `84ae9d865258b8a4a1358b63f2f3256965627d5e`
 - Règle stricte : Git ne contient que sources, petits certificats, manifests et
   rapports. Toutes les CNF, LRAT, sorties solveur et données temporaires lourdes
   restent sous `S:\CodexResearchCache\ramsey-formal`.
 - Dernier audit avant intégration : aucun fichier source supérieur à 10 MiB.
   Les 13 LRAT cover9 totalisant 222 740 623 octets sont tous sur `S:`.
   `.lake\build` et les builds vendor sont des jonctions vers `S:`.
-- Espace libre au dernier audit : C: 2,84 GiB ; S: 465,42 GiB.
+- Espace libre au dernier audit : C: 6,06 GiB ; S: 464,88 GiB.
 
 ## État scientifique global et non-revendications
 
@@ -200,23 +253,16 @@ exhaustivement 923 012 affectations locales `R(4,4)`, 25 200 motifs et
 - d7 : 4 312 419 clauses, 17 cas
 - d8 : 3 367 437 clauses, 13 cas
 
-La CNF d8 est doublement vérifiée : 3 367 438 lignes, 189 298 232 octets,
-SHA
-`64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`.
+L'ancienne formulation « CNF d8 doublement vérifiée » était trop forte. Le
+fichier gelé compte 3 367 438 lignes et 189 298 232 octets, SHA
+`64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`,
+mais le vérificateur contrôle seulement syntaxe, dimensions et hash. Il ne
+reconstruit pas les clauses globales ni les réductions vers les résiduelles.
 
-Pour geler rapidement la conversation, 7/13 résiduelles ont été générées et
-vérifiées, chacune avec 21 unités exactes :
-`(0,2),(0,3),(1,1),(1,2),(1,3),(2,0),(2,1)`. Les six cas
-`(2,2),(2,3),(3,0),(3,1),(3,2),(3,3)` restent à produire.
-
-Les 7 pilotes CaDiCaL 2.1.2 ont rendu `UNSAT_WITHOUT_PROOF`, entre 58 et
-609 conflits et 2,34–3,30 s par cas. Aucun LRAT n’a été demandé. Le snapshot
-suivi `COVER6_D8_CHECKPOINT7.json` a pour SHA
-`7DEB286B0E9729B0C8C16A2F69EC4503870D32D37D7A3B7C6ABDCCE03101EF29`.
-Il fige le manifeste partiel externe
-`8036E96769D6F6EEFDB5D1C653EFD57141235B863BC7290B8A61BB1EE7A0A534`
-et le batch
-`ABCC63345BD1278C630F0BFDBECA086EA629BA00C3A2A1D043C7E5DE643BDCE3`.
+Les 13/13 résiduelles existent désormais, contiennent chacune les 21 unités
+attendues et ont rendu `UNSAT_WITHOUT_PROOF`. Le snapshot 7/13
+`COVER6_D8_CHECKPOINT7.json` et ses hashes restent un journal historique,
+supersédé par `COVER6_D8_CHECKPOINT13.json`. Aucun LRAT n'a été demandé.
 
 Aucun LRAT cover6, pont Lean ou résultat universel complet n’est revendiqué.
 
@@ -244,12 +290,11 @@ Le prototype fermeture brute cover5, 8 classes/30 240 masques, et les scripts
 
 ## Prochaine priorité, sans dispersion
 
-1. produire les six résiduelles cover6 d8 manquantes et refaire la vérification
-   13/13 ;
-2. si les 13 sont UNSAT, produire LRAT + replay Lean ;
-3. générer/certifier d7 (17 cas), puis d6 (20 cas) ;
-4. formaliser le transport global par complément `d ↔ 11-d` ;
-5. formaliser cubes, 792 instanciations, restriction et dédoublonnage CNF ;
+1. reconstruire clause par clause la source d8 et ses 13 réductions ;
+2. formaliser le pont DIMACS, unités, deux centres et disjonction des motifs ;
+3. produire les 13 LRAT et les rejouer seulement après cette comparaison ;
+4. générer/certifier d7 (17 cas), puis d6 (20 cas) ;
+5. formaliser le transport global par complément `d ↔ 11-d` ;
 6. composer replays et branches Lean ;
 7. réinjecter seulement ensuite ce lemme dans les 12 gluings globaux ;
 8. audit bibliographique élargi et paquet portable avant publication.
@@ -300,7 +345,8 @@ git -c "safe.directory=C:/Users/migra/Documents/Codex/2026-08-06/on-va-reprendre
 & $py -B -m scripts.r45_d12_cover9_universal.verify_complement_closed_cover6_branches formula --output $out6 --degree 8
 ```
 
-Après production complète des six cas manquants, lancer
+Les 13 cas sont déjà produits. Avant tout LRAT, faire reconstruire et comparer
+exactement les 13 réductions avec
 `generate_complement_closed_cover6_two_center verify`. Le runner refuse
 d’écraser un batch : choisir un nouveau `--batch-name`.
 
@@ -312,7 +358,11 @@ d’écraser un batch : choisir un nouveau `--batch-name`.
 - formalisation HOL4/ITP :
   <https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITP.2024.16>
 
-## Validation finale de ce checkpoint
+## Validation finale historique du checkpoint precedent
+
+Les lignes suivantes décrivent le checkpoint `bf8628d...` et l'ancienne PR 1;
+elles sont conservées comme journal historique et ne sont pas l'état
+courant défini en tête de fichier.
 
 - suite universelle : 72 tests PASS, 1 test externe ignoré, 128,815 s ;
 - suite cover6-minimum : 9 tests PASS, 2 tests externes ignorés ;

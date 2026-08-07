@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "status": "PARTIAL_EXPLORATORY_D8_CHECKPOINT",
+  "warning": "Seven of thirteen cases are solver-UNSAT without proof. This is not a complete case cover, LRAT certificate, Lean theorem, or universal UNSAT result.",
+  "source_cover6": {
+    "records": ["F@h^g", "FKDhw", "FG`Xo", "FdW}w", "FHFLw", "FIIXw"],
+    "sha256": "404E49E3218424FCB73314ADEE42CC873CD3F8D67E4615653A8BC0210F61AD16"
+  },
+  "local_reduction": {
+    "labelled_masks": 25200,
+    "mask_sha256": "04B9688924BFC2EF6F92FB5734B19E7E771C37446DD3E442ECED8648BE1CBDD7",
+    "cubes": 25200,
+    "cube_sha256": "0239E74AC009B28173E59C3293F7F9C9370A99832B19BB28205EF449E6238F7D",
+    "closed_under_complement": true,
+    "exact_on_923012_local_r44_assignments": true
+  },
+  "predicted_degree_clause_counts": {
+    "6": 4858890,
+    "7": 4312419,
+    "8": 3367437
+  },
+  "generated_degree_8_formula": {
+    "clauses": 3367437,
+    "bytes": 189298232,
+    "sha256": "64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A",
+    "generator_verification": "PASS",
+    "independent_stdlib_verification": "PASS"
+  },
+  "two_center_split": {
+    "requested_cases": 13,
+    "completed_cases": [[0, 2], [0, 3], [1, 1], [1, 2], [1, 3], [2, 0], [2, 1]],
+    "missing_cases": [[2, 2], [2, 3], [3, 0], [3, 1], [3, 2], [3, 3]],
+    "explicit_unit_clauses_per_case": 21,
+    "partial_manifest_sha256": "8036E96769D6F6EEFDB5D1C653EFD57141235B863BC7290B8A61BB1EE7A0A534"
+  },
+  "solver": {
+    "name": "CaDiCaL",
+    "version": "2.1.2",
+    "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "profile": "unsat",
+    "conflict_limit": 100000,
+    "timeout_seconds_per_case": 60,
+    "proof_emitted": false,
+    "batch_manifest_sha256": "ABCC63345BD1278C630F0BFDBECA086EA629BA00C3A2A1D043C7E5DE643BDCE3"
+  },
+  "cases": [
+    {
+      "p": 0,
+      "q": 2,
+      "clauses": 1583681,
+      "bytes": 85636007,
+      "sha256": "3FB10F899BE8887090DF7C9A440F04765AAC8FF05E803AFA1265C626AC0EC423",
+      "status": "UNSAT_WITHOUT_PROOF",
+      "conflicts": 79,
+      "elapsed_seconds": 2.5060743000358343
+    },
+    {
+      "p": 0,
+      "q": 3,
+      "clauses": 1553085,
+      "bytes": 84743919,
+      "sha256": "2D03534CE14E55C20C96AEB2015D05BA83BA8FAAB1022B101BAC1A4EE0E68AE8",
+      "status": "UNSAT_WITHOUT_PROOF",
+      "conflicts": 110,
+      "elapsed_seconds": 2.4605504000210203
+    },
+    {
+      "p": 1,
+      "q": 1,
+      "clauses": 1558127,
+      "bytes": 84437459,
+      "sha256": "2A18FFC8600C7E955A4ACC85EF1A15EEBA1181B97D9F0950093E4422C7C588D4",
+      "status": "UNSAT_WITHOUT_PROOF",
+      "conflicts": 305,
+      "elapsed_seconds": 3.29956100002164
+    },
+    {
+      "p": 1,
+      "q": 2,
+      "clauses": 1531509,
+      "bytes": 83727795,
+      "sha256": "FF45ADE6E6B0C1D82ABA5FA79E759CD9BE509836842D6BC70BAA111CC97DF1D4",
+      "status": "UNSAT_WITHOUT_PROOF",
+      "conflicts": 58,
+      "elapsed_seconds": 2.336281500000041
+    },
+    {
+      "p": 1,
+      "q": 3,
+      "clauses": 1518153,
+      "bytes": 83431811,
+      "sha256": "2337D8B2AAEFF130E4B838D602973DB63AB5EBA918FA684FD4B65D1FF25722D2",
+      "status": "UNSAT_WITHOUT_PROOF",
+      "conflicts": 125,
+      "elapsed_seconds": 2.3849131999886595
+    },
+    {
+      "p": 2,
+      "q": 0,
+      "clauses": 1527527,
+      "bytes": 83021526,
+      "sha256": "59FE553DBB88E433F8B853B2CEBFF6AECFA2748CEAD9C5B76DA1963C800EC905",
+      "status": "UNSAT_WITHOUT_PROOF",
+      "conflicts": 609,
+      "elapsed_seconds": 2.7212948000524193
+    },
+    {
+      "p": 2,
+      "q": 1,
+      "clauses": 1506520,
+      "bytes": 82549815,
+      "sha256": "2BD3AEE53473C6EAC92F9A1AC67D9996A934C8269904BCA1044F0AD878A58F17",
+      "status": "UNSAT_WITHOUT_PROOF",
+      "conflicts": 437,
+      "elapsed_seconds": 2.823669700010214
+    }
+  ],
+  "certified": false,
+  "lrat_status": "not generated",
+  "formal_bridge_status": "not connected"
+}

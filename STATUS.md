@@ -1,6 +1,6 @@
 # Projet R(5,5) — état vérifiable
 
-Date de l’audit : 6 août 2026.
+Date de l’audit : 7 août 2026.
 
 ## Résultat public et cible
 
@@ -19,6 +19,71 @@ La cible exacte est de décider s’il existe un tel graphe à 43 sommets :
   `R(5,5) = 43`.
 
 Nous n’avons pas encore obtenu cette décision globale.
+
+## Point de recherche vérifié — branche de degré 12
+
+La branche de degré rouge 12 de `R(4,5,25)` possède un échafaudage
+sémantique Lean compilé : partition `1+12+12`, sélection exhaustive des 12
+types `R(3,5,12)`, permutation globale de `Fin 25`, 66 unités exactes du
+bloc gauche et pont générique pour les motifs partiels du bloc droit. La
+formule gardée compte 280 variables et 54 638 clauses. Ses quatre codes de
+sélecteur invalides sont certifiés, mais **aucun des 12 cas mathématiques
+globaux n’est encore fermé**.
+
+Deux résultats structurels nouveaux changent toutefois nettement la qualité
+de la piste.
+
+Premièrement, la cible universelle `cover9`, indépendante du catalogue
+d’ordre 12, est certifiée au niveau CNF exact pour toute la tranche de degré
+racine 8. Les 13 cas à deux centres ont tous un LRAT CaDiCaL rejoué
+indépendamment par LRAT-Catcher/Lean. Les preuves totalisent 222 740 623
+octets et leur manifeste portable a pour SHA-256
+`77FE47B5BC73865EDB0405DFC2D3B0A367C2A757B27A83CDC981D5958F80DE23`.
+Lean formalise séparément une vraie permutation fixant la racine, les bornes
+de degré, la normalisation du second centre, la disjonction exacte des 13 cas
+et le transport de la liberté `R(4,4)` et des motifs induits. Il manque
+encore le pont sémantique entre les CNF résiduelles générées et
+`TwoCenterBranch`, puis la composition avec les 13 replays. Les degrés
+racine 3 à 7 de `cover9` ne sont pas certifiés.
+
+Deuxièmement, une recherche exacte trouve le minimum sous fermeture par
+complément : **trois paires, donc six motifs d’ordre 7**, couvrent les
+1 449 166 enregistrements du `r44_12.g6` officiel gelé. Les paires sont
+`F@h^g`/`FKDhw`, ``FG`Xo``/`FdW}w` et `FHFLw`/`FIIXw`. Le
+TSV a pour SHA-256
+`404E49E3218424FCB73314ADEE42CC873CD3F8D67E4615653A8BC0210F61AD16`
+et sa fermeture étiquetée de 25 200 masques a pour SHA-256
+`04B9688924BFC2EF6F92FB5734B19E7E771C37446DD3E442ECED8648BE1CBDD7`.
+
+La borne supérieure a été rejouée directement sur les 1 449 166 graphes, avec
+792 sous-ensembles testés par graphe, sans lire la matrice d’incidence ni un
+témoin : zéro trou en 167,14 s. La borne inférieure autonome reconstruit les
+`2^21` graphes étiquetés d’ordre 7, les 923 012 graphes `R(4,4)`, les 181
+paires de compléments et 23 760 sous-graphes induits d’un noyau explicite de
+30 graphes `R(4,4,12)`. Elle exclut les 16 471 choix d’au plus deux paires.
+Le noyau, deletion-irréductible, a pour SHA-256
+`EB61306B5DA0F15DC1112D82007BB29CD2FD3AEE460FD1C0D62E24401C66C8CC`.
+La borne inférieure est absolue sur ces graphes explicites ; l’upper reste
+explicitement relatif au catalogue officiel gelé.
+
+La fermeture par complément réduit la future preuve universelle aux degrés
+représentatifs 6, 7 et 8. Deux implémentations indépendantes valident
+exhaustivement 25 200 cubes locaux fermés par complément, de SHA-256
+`0239E74AC009B28173E59C3293F7F9C9370A99832B19BB28205EF449E6238F7D`.
+Les tailles calculées sont 4 858 890, 4 312 419 et 3 367 437 clauses. La CNF
+de degré 8 est générée et doublement vérifiée : 189 298 232 octets, SHA-256
+`64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`.
+Sept de ses 13 résiduelles à deux centres ont déjà rendu UNSAT sans preuve
+en 2,34 à 3,30 s ; six restent à générer et aucun LRAT cover6 n’existe
+encore. Il ne s’agit donc pas d’un théorème UNSAT complet.
+
+Le compteur global demeure donc **0/12 cas mathématiques de degré 12
+fermés**. Aucune nouvelle borne de Ramsey n’est revendiquée. Le minimum
+cover6 et la certification cover9 degré 8 sont des lemmes computationnels
+potentiellement publiables, sous réserve d’un audit bibliographique plus large
+et des compositions sémantiques manquantes. Le relais complet pour la
+prochaine conversation est
+`docs/NEXT_CONVERSATION_HANDOFF_2026-08-07.md`.
 
 ## Jalons effectivement vérifiés
 

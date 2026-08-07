@@ -5,6 +5,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+$env:PYTHONDONTWRITEBYTECODE = '1'
 $repoRoot = Split-Path -Parent $PSScriptRoot
 
 function Assert-AllowedLeanAxioms {
@@ -66,12 +67,12 @@ foreach ($artifact in $proofArtifacts) {
 
 Push-Location (Join-Path $repoRoot 'r55')
 try {
-    & $PythonExecutable -m unittest `
+    & $PythonExecutable -B -m unittest `
         test_catalog_certificate test_ramsey test_pilot_runner
     if ($LASTEXITCODE -ne 0) {
         throw 'Python tests failed.'
     }
-    & $PythonExecutable catalog_certificate.py verify `
+    & $PythonExecutable -B catalog_certificate.py verify `
         . r35_extension_certificate.json
     if ($LASTEXITCODE -ne 0) {
         throw 'Catalogue certificate verification failed.'
@@ -82,29 +83,71 @@ try {
 
 Push-Location $repoRoot
 try {
-    & $PythonExecutable -m unittest discover `
+    & $PythonExecutable -B -m unittest discover `
         -s scripts\r45_d8_pilot -p 'test_gen4416_rooted*.py'
     if ($LASTEXITCODE -ne 0) {
         throw 'gen4416 rooted classifier tests failed.'
     }
-    & $PythonExecutable scripts\r45_d8_pilot\gen358_lean_certificate.py verify
+    & $PythonExecutable -B scripts\r45_d8_pilot\gen358_lean_certificate.py verify
     if ($LASTEXITCODE -ne 0) {
         throw 'gen358 Lean certificate verification failed.'
     }
-    & $PythonExecutable scripts\r45_d8_pilot\gen4416_rooted_classifier.py verify
+    & $PythonExecutable -B scripts\r45_d8_pilot\gen4416_rooted_classifier.py verify
     if ($LASTEXITCODE -ne 0) {
         throw 'gen4416 rooted classifier verification failed.'
     }
-    & $PythonExecutable -m unittest `
+    & $PythonExecutable -B -m unittest `
         scripts.r45_d8_pilot.test_guarded_master `
         scripts.r45_d8_pilot.test_run_guarded_cover_lrat `
         scripts.r45_d8_pilot.test_proof_bundle
     if ($LASTEXITCODE -ne 0) {
         throw 'Guarded-master generator/runner tests failed.'
     }
-    & $PythonExecutable scripts\r45_d8_pilot\generate_guarded_master.py verify
+    & $PythonExecutable -B scripts\r45_d8_pilot\generate_guarded_master.py verify
     if ($LASTEXITCODE -ne 0) {
         throw 'Guarded-master frozen artifact verification failed.'
+    }
+    & $PythonExecutable -B -m unittest `
+        scripts.r45_d12_pilot.test_guarded_master `
+        scripts.r45_d12_pilot.test_run_guarded_cover_lrat
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Degree-twelve guarded-master generator/runner tests failed.'
+    }
+    & $PythonExecutable -B -m unittest discover `
+        -s scripts\r45_d12_solver_strategy -p 'test_*.py'
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Degree-twelve solver-strategy tests failed.'
+    }
+    & $PythonExecutable -B -m unittest discover `
+        -s scripts\r45_d12_conditioned_cover -p 'test_*.py'
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Degree-twelve conditioned-cover tests failed.'
+    }
+    & $PythonExecutable -B -m unittest discover `
+        -s scripts\r45_d12_two_center_cover -p 'test_*.py'
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Degree-twelve two-center-cover tests failed.'
+    }
+    & $PythonExecutable -B -m unittest discover `
+        -s scripts\r45_d12_structural_cover -t . -p 'test_*.py'
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Degree-twelve structural-cover tests failed.'
+    }
+    & $PythonExecutable -B -m unittest discover `
+        -s scripts\r45_d12_gluing_aware_cover -t . -p 'test_*.py'
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Degree-twelve gluing-aware-cover tests failed.'
+    }
+    $cover9UniversalTests = @(Get-ChildItem -LiteralPath (Join-Path $repoRoot 'scripts\r45_d12_cover9_universal') -File -Filter 'test_*.py' | Sort-Object Name | ForEach-Object {
+            "scripts.r45_d12_cover9_universal.$($_.BaseName)"
+        })
+    & $PythonExecutable -B -m unittest @cover9UniversalTests
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Degree-twelve cover9-universal tests failed.'
+    }
+    & $PythonExecutable -B -m unittest scripts.r45_d12_complement_closed_minimum.test_complement_closed_minimum
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Complement-closed minimum tests failed.'
     }
 } finally {
     Pop-Location
@@ -142,7 +185,7 @@ if (-not $hasGuardedProofBundle -and -not $AllowMissingGuardedProofBundle) {
     throw 'Guarded-master proof bundle is absent. Install it with proof_bundle.py, or pass -AllowMissingGuardedProofBundle for a non-publication smoke test.'
 }
 if ($hasGuardedProofBundle) {
-    & $PythonExecutable `
+    & $PythonExecutable -B `
         (Join-Path $repoRoot 'scripts\r45_d8_pilot\run_guarded_cover_lrat.py') `
         --output $proofBundleDirectory --verify-bundle
     if ($LASTEXITCODE -ne 0) {
@@ -194,7 +237,19 @@ try {
         LRATCatcher.Tests.R45DegreeEightReducedAssignment `
         LRATCatcher.Tests.R45DegreeEightPilotAssembly `
         LRATCatcher.Tests.R45DegreeEightBranchComposition `
-        LRATCatcher.Tests.R45DegreeEightGuardedMasterSemantics
+        LRATCatcher.Tests.R45DegreeEightGuardedMasterSemantics `
+        LRATCatcher.Tests.R45RootDegreeCore `
+        LRATCatcher.Tests.R45DegreeTwelveBridge `
+        LRATCatcher.Tests.R45DegreeTwelveSelectorBridge `
+        LRATCatcher.Tests.R45DegreeTwelveGlobalPermutation `
+        LRATCatcher.Tests.R45DegreeTwelveCatalogueUnitsBridge `
+        LRATCatcher.Tests.R45DegreeTwelvePartialBlueUnitsBridge `
+        LRATCatcher.Tests.R45DegreeTwelveRawBlueBridge `
+        LRATCatcher.Tests.R44OrderTwelveRootSymmetry `
+        LRATCatcher.Tests.R44OrderTwelveRootSymmetryTransport `
+        LRATCatcher.Tests.R44OrderTwelveDegreeBounds `
+        LRATCatcher.Tests.R44OrderTwelveTwoCenterSymmetry `
+        LRATCatcher.Tests.R44OrderTwelveTwoCenterCases
     if ($LASTEXITCODE -ne 0) {
         throw 'Lean integration build failed.'
     }

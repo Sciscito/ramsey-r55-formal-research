@@ -4,9 +4,77 @@ Private, reproducible research workspace for the exact diagonal Ramsey number
 `R(5,5)`, combining Lean proofs, independently checked catalogue certificates,
 SAT encodings and LRAT certificates.
 
-> **Scientific status — 2026-08-06:** this repository does **not** prove
+> **Scientific status — 2026-08-07:** this repository does **not** prove
 > `R(5,5)=43`. The currently verified public interval remains
 > `43 ≤ R(5,5) ≤ 46`.
+
+## Degree-twelve research checkpoint
+
+The red-degree-twelve branch of `R(4,5,25)` has a compiled semantic scaffold,
+but it is **not closed**. Lean constructs the exact `1 + 12 + 12` global
+relabeling, selects one of the twelve exhaustive `R(3,5,12)` types, proves
+the 66 left-block units, and handles partial right-block patterns with both
+raw and complemented polarities explicit. The 280-variable, 54,638-clause
+guarded formula closes its four invalid selector codes, but still closes
+**0/12 mathematical selector cases**.
+
+The strongest new finite result is an exact minimum complement-closed cover
+of the frozen `r44_12.g6` catalogue by six order-seven motifs, arranged as
+three exact complement pairs. The records are `F@h^g`/`FKDhw`,
+``FG`Xo``/`FdW}w`, and `FHFLw`/`FIIXw`. A direct standard-library
+verifier reads all 1,449,166 order-twelve records and checks all 792
+seven-subsets per record, obtaining zero holes without reading the discovery
+incidence matrix or a witness file. An independent 30-graph kernel excludes
+every choice of at most two complement pairs after reconstructing all `2^21`
+labelled order-seven graphs, the 923,012 valid `R(4,4)` graphs, and all 181
+complement pairs. Thus the minimum is exactly three pairs, or six motif
+classes, for the frozen catalogue. This statement remains explicitly
+**catalogue-relative** until catalogue completeness is connected to a
+proof-independent universal argument.
+
+The six-record cover has SHA-256
+`404E49E3218424FCB73314ADEE42CC873CD3F8D67E4615653A8BC0210F61AD16`;
+its labelled closure contains 25,200 masks and has SHA-256
+`04B9688924BFC2EF6F92FB5734B19E7E771C37446DD3E442ECED8648BE1CBDD7`;
+the 30-graph kernel has SHA-256
+`EB61306B5DA0F15DC1112D82007BB29CD2FD3AEE460FD1C0D62E24401C66C8CC`.
+The earlier unrestricted order-seven minimum remains five, with cover SHA
+`CEAE61F737722C6D1392B5C8D654FC1B09D482AA3C76222EE2D9CBFF3CA5E288`
+and no-cover4 LRAT SHA
+`4FD1F02297F5019B9EADBE9BC20E29DF326B0B7F99B8A539C140FD9911F15793`.
+
+The catalogue-independent universal `cover9` target has advanced from
+solver evidence to exact certification for root degree eight. Its 13
+exhaustive two-centre residual CNFs all have CaDiCaL LRAT refutations
+independently replayed by LRAT-Catcher/Lean. The 13 proofs total 222,740,623
+bytes on `S:`; their portable manifest has SHA-256
+`77FE47B5BC73865EDB0405DFC2D3B0A367C2A757B27A83CDC981D5958F80DE23`.
+Lean separately formalizes the root permutation, degree bounds, two-centre
+normalization and the exact 13-case disjunction. What remains is the semantic
+bridge from the generated residual CNFs to motif avoidance, composition with
+the 13 replay theorems, and the other root degrees.
+
+The complement-closed cover6 supplies a sharper universal route: complement
+symmetry reduces degrees `3..8` to representatives `6,7,8`. Two independent
+implementations exhaust all `2^21` local assignments and agree on 25,200
+syntactically complement-closed partial cubes (SHA-256
+`0239E74AC009B28173E59C3293F7F9C9370A99832B19BB28205EF449E6238F7D`).
+The predicted conditioned `K_12` formula sizes are 4,858,890, 4,312,419 and
+3,367,437 clauses for degrees 6, 7 and 8 respectively. The degree-eight
+formula has been generated and independently verified twice: 189,298,232
+bytes, SHA-256
+`64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A`.
+This is a verified encoding. Seven of its 13 two-centre residuals have
+returned proof-free solver UNSAT in 2.34--3.30 seconds; six residuals and
+all cover6 LRAT certificates remain. This is not yet an UNSAT theorem.
+
+Accordingly the global progress count is still **0/12 complete degree-twelve
+mathematical cases**, and no new Ramsey-number bound is claimed. The cover6
+minimum and the 13/13 exact-CNF certification are potentially publishable
+computational lemmas; a broader literature review and the missing semantic
+compositions are required before making a novelty or breakthrough claim. See
+`docs/NEXT_CONVERSATION_HANDOFF_2026-08-07.md` for the precise restart state
+and `docs/R45_D12_STRUCTURAL_COVER9_2026-08-07.md` for the structural audit.
 
 ## Verified Lean/LRAT red-degree-eight branch of `R(4,5,25)`
 

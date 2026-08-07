@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-07",
+  "status": "PASS",
+  "claim": "Every one of the 1,449,166 frozen R(4,4,12) catalogue records contains, as a raw-graph6 induced subgraph, at least one of the nine listed R(4,4,7) motifs.",
+  "scope": {
+    "catalogue_relative": true,
+    "catalogue_completeness_certified_here": false,
+    "r45_degree_twelve_closed": false,
+    "r45_upper_bound_proved": false,
+    "minimum_cover_size_claimed": false,
+    "displayed_cover_irredundant": true
+  },
+  "supersession_note": "This manifest freezes the fully witnessed cover9 artifact. It is superseded in cardinality by an exact unrestricted minimum-five cover and an exact complement-closed minimum-six cover; cover9 remains relevant to the separately certified universal degree-eight residual split.",
+  "storage": {
+    "policy": "Large catalogues, incidences, witnesses, CNFs and logs live on the external SSD; Git stores only source, tests and small reports.",
+    "external_root": "S:\\CodexResearchCache\\ramsey-formal"
+  },
+  "catalogues": {
+    "r44_7.g6": {
+      "bytes": 2172,
+      "records": 362,
+      "sha256": "6A3DA7F0687C392420F190DB0643B5C5B7ECB1A3C5ED098C7D96200185A5F010"
+    },
+    "r44_8.g6": {
+      "bytes": 14553,
+      "records": 2079,
+      "sha256": "B27389F7B1C70F823161A2CCA629BED3F4FBF058A43907637C0F9CE2E0CC4AB3"
+    },
+    "r44_12.g6": {
+      "bytes": 18839158,
+      "records": 1449166,
+      "sha256": "C6A60EE177E00C1168259A5BD464F9CFA5A5B471AE2BA1811E7B3FAF23144E7A"
+    }
+  },
+  "cover": {
+    "file": {
+      "path": "scripts/r45_d12_structural_cover/cover9.tsv",
+      "bytes": 215,
+      "sha256": "5A2B4F3824FFFEF9BC6048C0B881F5BC7E2C90D85024485422C7A9B096EF5B12"
+    },
+    "size": 9,
+    "motifs": [
+      {"id": 0, "graph6": "FiIXw", "edges": 11, "labelled_closure": 5040, "incidence": 1439206, "removal_holes": 6, "assigned_witnesses": 396157},
+      {"id": 1, "graph6": "FANbw", "edges": 11, "labelled_closure": 2520, "incidence": 1333405, "removal_holes": 50, "assigned_witnesses": 247776},
+      {"id": 2, "graph6": "F@Y]w", "edges": 11, "labelled_closure": 5040, "incidence": 1406032, "removal_holes": 12, "assigned_witnesses": 256312},
+      {"id": 3, "graph6": "FqhXw", "edges": 12, "labelled_closure": 2520, "incidence": 1423783, "removal_holes": 9, "assigned_witnesses": 124548},
+      {"id": 4, "graph6": "FFhmw", "edges": 13, "labelled_closure": 2520, "incidence": 1112269, "removal_holes": 1, "assigned_witnesses": 7806},
+      {"id": 5, "graph6": "FqHXw", "edges": 11, "labelled_closure": 2520, "incidence": 1275634, "removal_holes": 5, "assigned_witnesses": 260279},
+      {"id": 6, "graph6": "FQl~_", "edges": 13, "labelled_closure": 2520, "incidence": 1270258, "removal_holes": 1, "assigned_witnesses": 30476},
+      {"id": 7, "graph6": "FIiZw", "edges": 12, "labelled_closure": 2520, "incidence": 1268997, "removal_holes": 1, "assigned_witnesses": 107174},
+      {"id": 8, "graph6": "Fqoxw", "edges": 12, "labelled_closure": 1260, "incidence": 1031848, "removal_holes": 1, "assigned_witnesses": 18638}
+    ],
+    "covered_records": 1449166,
+    "uncovered_records": 0,
+    "labelled_closure_total": 26460
+  },
+  "complement_cover": {
+    "file": {
+      "path": "scripts/r45_d12_structural_cover/cover9_complement.tsv",
+      "bytes": 224,
+      "sha256": "943563F7A4CA67D0E756BAA799F1586A5B0EB346664A2F058420BED56DA389E3"
+    },
+    "records": ["FTte?", "F|o[?", "F}d`?", "FLUe?", "FwUP?", "FLue?", "FlQ?W", "FtTc?", "FLNE?"],
+    "covered_records": 1449166,
+    "uncovered_records": 0,
+    "incidence": {
+      "bytes": 1630640,
+      "sha256": "D2B2330FBDE43AD96C5435C9F0AC8DF4B444813C694E7A69C5A226684E9FDD0B"
+    },
+    "analysis_report": {
+      "bytes": 5902,
+      "sha256": "24CE642667350685E6E1C1B2025F9C81BC220B054F6E655F493848F91A4FF0E1"
+    }
+  },
+  "native_verification": {
+    "scanner_source": {
+      "path": "scripts/r45_d12_structural_cover/r44_cover_scan.c",
+      "bytes": 16770,
+      "sha256": "30E50CDFCD3D26090E3CEB3835C0323F6110FBDBBCD83CF13604C50578CB7DB8"
+    },
+    "scanner_binary": {
+      "compiler": "Lean 4.30.0 bundled clang 19, -O3 -mbmi2",
+      "bytes": 95232,
+      "sha256": "8C953034C8EF6D20BA7406EBFB06FE5D0B22DAB469AF57E4D8754B27060151BB",
+      "self_test": "PASS"
+    },
+    "incidence": {
+      "format": "R44COV1\\0; little-endian <8sQQQQIIII>; 24-byte candidate records; candidate-major uint64 bitsets",
+      "bytes": 1630640,
+      "words_per_candidate": 22644,
+      "sha256": "D5E50DFF135023BF934D75078DDA74173C182EDB49B7048B207A6A1046EB83BC",
+      "padding_bits_zero": true
+    },
+    "verification_report": {
+      "bytes": 2880,
+      "sha256": "7B64658A57EC44C7EBA5B79EE0DBE7F9C71AE299D2801FA77FB0823517988D1B"
+    }
+  },
+  "witness_verification": {
+    "witness": {
+      "format": "R44WIT1\\0; little-endian <8sQII>; 24 bytes per candidate; then uint8 motif id plus little-endian uint16 subset id per graph",
+      "subset_order": "lexicographic itertools.combinations(range(12), 7)",
+      "bytes": 4347738,
+      "entries": 1449166,
+      "sha256": "A5C8BFC67618FB5345AD072E07237271390068B0883C12B04D4B0BEE4E379B96"
+    },
+    "verifier_source": {
+      "path": "scripts/r45_d12_structural_cover/verify_witness.py",
+      "bytes": 8542,
+      "sha256": "1DCBCAF9CC0EE54AAB7CC34C7DC163CFDE3BBB4874AD1C74CA6646BF0E421D67"
+    },
+    "algorithm": "Independent Python graph6 decoder, exact labelled closures, direct comparison of all 21 induced edge bits for every entry.",
+    "valid_entries": 1449166,
+    "invalid_entries": 0,
+    "corruption_rejected": true,
+    "report": {
+      "bytes": 1419,
+      "sha256": "FD9683FD6E47363386109049E711EE33C4CBA1F10F12B80712F327A5CC5B510D"
+    }
+  },
+  "independent_cross_check": {
+    "algorithm": "Pure-Python exhaustive permutation oracle versus native incidence on four mixed order-7/order-8 motifs and three synthetic order-12 graphs.",
+    "status": "PASS",
+    "padding_bits_zero": true,
+    "candidates_sha256": "0284964F11794FC0645233CA66758ED03E8F89A10537F91369F20C8EE6E0CB91",
+    "input_sha256": "8087EB65619B5577EC0D410320AF451F11DB4C304FB770E5774A1B894D08CA34",
+    "incidence_sha256": "14693F2502DB588D9E4C159EFC5480F7ECC4A256D3DD17293A939ADC20A7F810",
+    "report_sha256": "315E0A2C90C85F01B1C53DEB6815E5896B0CDC5AD413023AF73AC12BCC609B22"
+  },
+  "test_run": {
+    "command_scope": "All five structural-cover unittest modules with real SSD source, native scanner, raw incidence, complement incidence and witness variables set.",
+    "tests": 13,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 16.464,
+    "status": "PASS"
+  },
+  "color_convention": {
+    "checked_relation": "raw graph6 adjacency",
+    "project_dimacs": "graph6 edge = positive literal = red",
+    "historical_hol4_numeric": "1 = blue, 2 = red",
+    "opposite_orientation_requires_explicit_complement": true
+  },
+  "universal_cnf_estimate": {
+    "status": "SIZED_ONLY_NOT_GENERATED_OR_SOLVED",
+    "variables": 66,
+    "ramsey_clauses": 990,
+    "seven_subsets": 792,
+    "labelled_motif_masks": 26460,
+    "induced_pattern_blocking_clauses": 20956320,
+    "total_clauses": 20957310,
+    "purpose": "An UNSAT plus checked LRAT would remove reliance on external R(4,4,12) catalogue completeness."
+  },
+  "historical_comparison": "McKay--Radziszowski (1995) report 23 order-7 plus 51 order-8 motifs selected for gluing, but do not publish the records. This list was found independently. No indexed prior match was found in the limited audit; that audit is incomplete, so novelty and identity with the historical list are not claimed."
+}

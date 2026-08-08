@@ -1,6 +1,6 @@
 # Formal research on `R(5,5)`
 
-## Research update - later 2026-08-07
+## Research update - night of 2026-08-08
 
 This update supersedes the earlier 7/13 cover6 and 1,509 active-branch
 counts retained below as historical checkpoint detail.
@@ -10,21 +10,56 @@ counts retained below as historical checkpoint detail.
   all `2^21` local assignments, reconstructs the ordered 3,367,437-clause
   source byte for byte, and separately executes simplification,
   deduplication and insertion of the 21 units for all 13 residuals. Every
-  frozen residual agrees byte for byte. This closes the finite CNF audit, not
-  the mathematical theorem: CaDiCaL returns `UNSAT_WITHOUT_PROOF` on 13/13
-  cases (58--3,073 conflicts), but no cover6 LRAT or Lean composition is
-  claimed.
+  frozen residual agrees byte for byte. CaDiCaL returns
+  `UNSAT_WITHOUT_PROOF` on 13/13 cases (58--3,073 conflicts). A later single
+  normalized Master8 formula has a compact 6,152-clause core, two LRAT replays
+  in Lean, and a complete semantic composition; the theorem
+  `degreeEight_has_cover6_motif` now closes the local degree-eight statement.
 - The exact universal statement, polarity convention and remaining semantic
   gaps are frozen in
   `docs/R44_COVER6_D8_SEMANTIC_TARGET_2026-08-07.md`. A deliberately small
   `R(3,3,5)`/induced-`P3` analogue now closes the complete declarative
   encoding -> DIMACS -> LRAT -> Lean chain, including negative mutation
   tests. This is a level-4 result for the toy theorem only.
-- Lean now materializes the six exact cover6 graph6 records, checks the three
-  complement pairs, and proves that a full 21-literal DIMACS blocker is false
-  exactly on an induced labelled occurrence. The remaining bridge is the
-  expansion of the conditioned partial cubes into the global source and its
-  composition with the two-centre branches.
+- Lean materializes the six exact cover6 graph6 records, checks the three
+  complement pairs, proves the partial-cube semantics and `S7` transport, and
+  decodes the 3,514 K7 plus 2,409 projected-K6 witnesses selected by the
+  compact core. Together with the two-centre normalization this proves that a
+  positive root degree of eight forces an induced occurrence of one of the
+  six motifs. This is a local level-4 theorem, not a Ramsey-number bound.
+- For root degree seven, Lean now proves that the normalized seven-vertex
+  neighbourhood has a vertex of internal degree one or two. A second audited
+  Lean module moves that witness to the second centre, performs the independent
+  `6+4` sort, derives `p in {1,2}` and `p+q >= 2`, and proves satisfaction of
+  the exact nine DIMACS normalization clauses. A third module closes the
+  wrapper, enters the exhaustive `R(3,4;7)` catalogue, lifts the resulting
+  `S7` isomorphism back to twelve vertices in the correct inverse direction,
+  and fixes the 21 branch variables. A lazy indexed source materializes the
+  exact F7 and its nine 21-unit branches. A separate
+  finite audit reconstructs the exact nine-case Master7 source
+  (4,312,428 clauses, SHA-256
+  `DFA3F7C3C1ADF2F6C8855FA5F08D11D54BFC826205246E68DAD5F4F5D46A5BBE`).
+  The direct Master7 pilot stopped UNKNOWN at 100,003 conflicts. A more
+  structural incremental screen fixes in turn the nine exhaustive
+  `R(3,4;7)` representatives modulo `S7`; all nine cubes are UNSAT in 16,893
+  conflicts and 29.16 seconds. Lean closes the oracle branch ``FG`Xo`` directly
+  because that positive neighbourhood is itself one of the six induced motifs.
+  The first nontrivial certified representative, ``F`GOW``, has a tracked
+  compact all-RUP core: 5,807 selected source clauses and 9,475 derived
+  additions. Its LRAT replay passes in Lean in 2.99 seconds at about 200 MiB;
+  a dedicated module proves that those exact indices form a sub-CNF of the
+  lazy ``F`GOW`` branch source. A second compact witness module proves the
+  semantics of exactly the 168 base, 3,227 K7, 2,396 K6 and 16 unit clauses
+  selected by the core, then composes the relabelled colouring with LRAT UNSAT
+  to close this leaf completely. A second nontrivial representative, `FoDPO`,
+  now has a portable 7,686-clause all-RUP core with 12,107 derived additions,
+  a tracked Lean replay, and 7,485 compact semantic witnesses for the exact
+  `183 + 4221 + 3264 + 18` selected clauses. Lean composes that branch to
+  contradiction in 593.87 seconds under the 600-second cap. `FCUj_` also has
+  an independently replayed 1,104-clause core; 990 witnesses now compose its
+  semantics to contradiction in 82.26 seconds. Five nontrivial representatives and the
+  final composition modulo `S7` remain. No terminal `cover6-d7`
+  theorem, global gluing or new Ramsey bound is claimed.
 - The published extremal R(4,5,20) classification makes the
   minimum-anchor layer d=20,c=10 empty before SAT: minimum degree 10 would
   force a 10-regular 100-edge graph, while the unique published extremal
@@ -46,8 +81,32 @@ counts retained below as historical checkpoint detail.
 Exact tracked summaries are
 r55/K43_SCREEN_2026-08-07.json,
 scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json,
-scripts/r45_d12_cover9_universal/COVER6_D8_SEMANTIC_REPLAY_V1.json, and
-docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md.
+scripts/r45_d12_cover9_universal/COVER6_D8_SEMANTIC_REPLAY_V1.json,
+scripts/r45_d12_cover9_universal/COVER6_CONDITIONED_ORBIT_WITNESSES_V1.json,
+scripts/r45_d12_cover9_universal/master8_core/MANIFEST.json,
+vendor/lrat-catcher/LRATCatcher/Tests/R44Cover6ConditionedWitnesses.lean, and
+docs/R45_D20_C10_MINIMUM_ANCHOR_VACUITY_2026-08-07.md. The degree-seven
+follow-up is frozen in
+scripts/r45_d12_cover9_universal/COVER6_D7_MIN_CENTER_SOURCE_AUDIT_V1.json,
+scripts/r45_d12_cover9_universal/MASTER7_MIN_CENTER_PILOT_V1.json,
+scripts/r45_d12_cover9_universal/MASTER7_R34_CATALOGUE9_PILOT_V1.json,
+scripts/r45_d12_cover9_universal/MASTER7_R34_FGRAVEGOW_LRAT_CORE_V1.json,
+scripts/r45_d12_cover9_universal/master7_r34_fgravegow_core/MANIFEST.json,
+  scripts/r45_d12_cover9_universal/MASTER7_R34_FODPO_LRAT_CORE_V1.json,
+  scripts/r45_d12_cover9_universal/master7_r34_fodpo_core/MANIFEST.json,
+  scripts/r45_d12_cover9_universal/MASTER7_R34_FCUJ_LRAT_CORE_V1.json,
+  scripts/r45_d12_cover9_universal/master7_r34_fcuj_core/MANIFEST.json,
+vendor/lrat-catcher/LRATCatcher/Tests/R44Cover6DegreeSevenMinCenter.lean and
+vendor/lrat-catcher/LRATCatcher/Tests/R44Cover6DegreeSevenNormalization.lean,
+`R44Cover6DegreeSevenR34Normalization.lean` and
+`R44Cover6Master7R34IndexedSource.lean`,
+`R44Cover6DegreeSevenR34Oracle.lean` and
+`R44Cover6Master7R34FgraveGowCore.lean` and
+`R44Cover6Master7R34FgraveGowSemantics.lean`, plus
+`R44Cover6Master7R34FoDPOCore.lean` and
+`R44Cover6Master7R34FoDPOSemantics.lean`, plus
+`R44Cover6Master7R34FCUjCore.lean` and
+`R44Cover6Master7R34FCUjSemantics.lean`.
 The structural pilot is documented in
 docs/R45_EXCLUSIVE_R44_MOTIF_QUOTIENT_2026-08-07.md.
 No new Ramsey-number bound is claimed.
@@ -121,14 +180,16 @@ report has SHA-256
 `5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024`.
 The implementation deliberately shares the frozen representatives and
 expected hashes, so it is not described as a low-common-mode independent
-derivation. All 13 residuals return proof-free UNSAT. No cover6 LRAT exists,
-and this is not yet an UNSAT theorem.
+derivation. All 13 residuals return proof-free UNSAT and still have no
+individual LRAT. The normalized Master8 route instead has a compact LRAT core,
+an exact indexed Lean source and the terminal semantic theorem
+`degreeEight_has_cover6_motif`.
 
 Accordingly the global progress count is still **0/12 complete degree-twelve
-mathematical cases**, and no new Ramsey-number bound is claimed. The cover6
-minimum and solver checkpoint are research leads; the exact-CNF audit is now
-acquired, while the graph/DIMACS/Lean composition, certified UNSAT and broader
-literature review remain required before any novelty or breakthrough claim. See
+mathematical cases**, and no new Ramsey-number bound is claimed. The local
+degree-eight cover6 theorem is acquired; degrees seven and six, complement
+transport, the global gluing cases and broader literature review remain before
+any claim about `R(5,5) <= 45`. See
 `docs/NEXT_CONVERSATION_HANDOFF_2026-08-07.md` for the precise restart state
 and `docs/R45_D12_STRUCTURAL_COVER9_2026-08-07.md` for the structural audit.
 

@@ -1,6 +1,6 @@
 # Projet R(5,5) — état vérifiable
 
-## Mise a jour de recherche - fin du 7 aout 2026
+## Mise a jour de recherche - nuit du 7 au 8 aout 2026
 
 Cette section remplace les compteurs 7/13 et 1 509 encore presents plus
 bas comme historique du checkpoint precedent.
@@ -16,26 +16,180 @@ DDAF42888C6A77C432EC9AA4799D6A24EEDB2088AA25C97C251A82D3986DFB8C.
 CaDiCaL 2.1.2 a rendu UNSAT_WITHOUT_PROOF sur 13/13 cas, avec 58 a 3 073
 conflits et 9 889 conflits cumules. Le manifeste du batch a pour SHA-256
 AA5E11028D9B8A228E2F6EB7E5F11D0C740BBFDEED9315134C3F1DED8BB1E492.
-Aucun LRAT n'a ete demande. Ce resultat ferme l'ecran solveur, pas encore le
-theoreme universel. La lacune de reconstruction CNF anterieurement identifiee
-est maintenant fermee par une reimplementation deterministe autonome des
-generateurs du projet. Elle verifie exhaustivement les 2^21 affectations
+Pris isolément, ce batch historique fermait seulement l'ecran solveur : aucun
+LRAT individuel n'avait ete demande. La lacune de reconstruction CNF alors
+identifiee a ensuite ete fermee par une reimplementation deterministe autonome
+des generateurs du projet. Elle verifie exhaustivement les 2^21 affectations
 locales, retrouve 923 012 affectations R(4,4) et exactement 25 200 motifs,
 reconstruit les 3 367 437 clauses source dans leur ordre, puis reproduit pour
 les 13 cas la simplification, le dedoublonnage et l'ajout des 21 unites. Les
 comparaisons sont exactes octet par octet. Le rapport suivi, de SHA-256
 5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024,
-explicite la limite : ce certificat fini partage les representants et hashes
-geles et ne constitue ni un LRAT, ni un pont Lean, ni le theoreme cover6-d8.
-Restent le pont graphes/motifs/DIMACS vers Lean, les LRAT, leurs replays et la
-composition avec les branches a deux centres.
+explicite sa propre limite : ce certificat fini partage les representants et
+hashes geles et ne constitue pas, a lui seul, un LRAT ou un pont Lean. Cette
+limite historique est desormais depassee par le coeur LRAT, la source indexee
+et la composition semantique decrits plus bas.
 
 Un premier maillon Lean de ce pont est acquis : `R44Cover6MotifBridge`
 decode les six graph6, controle leurs matrices et leurs trois paires
 complementaires, puis prouve l'equivalence entre la faussete du bloqueur
-DIMACS complet de 21 litteraux et une occurrence induite etiquetee. Il reste a
-relier les cubes partiels conditionnes a ces bloqueurs, puis a la formule
-globale et aux branches `TwoCenterBranch`.
+DIMACS complet de 21 litteraux et une occurrence induite etiquetee.
+`R44Cover6CubeBridge` compile aussi et prouve generiquement qu'un bloqueur de
+cube partiel est faux exactement lorsque tous ses bits fixes correspondent;
+sous une hypothese explicite de surete du cube, il fournit ensuite
+l'occurrence induite.
+
+Le certificat Python suivi `COVER6_CUBE_MOTIF_BRIDGE_V1.json` verifie les six
+representants, leur unique completion `R(4,4)`, le transport `S7` bijectif vers
+25 200 cubes et 25 200 masques motifs distincts, puis les conditionnements par
+334 orbites stabilisatrices sans racine et 38 avec racine projetee. Sa portee
+est strictement finie et Python : aucun SAT, LRAT, rejeu Lean, egalite DIMACS
+parsee ou theoreme cover6-d8 n'en decoule. Le module Lean
+`R44Cover6RepresentativeCubes` compile et traite maintenant les six
+representants : bonne formation, 16 a 64 completions, unique completion
+`R(4,4)` et permutation explicite vers le motif correspondant.
+`R44Cover6S7Transport` prouve en plus symboliquement l'invariance `R(4,4)`,
+le transport bit-a-bit des masques, l'invariance de `CubeMatchesLocal` et le
+fait que tout cube muni d'un temoin d'orbite vers l'un des six representants
+force le motif transporte. Le certificat suivi
+`COVER6_CONDITIONED_ORBIT_WITNESSES_V1.json` fournit maintenant 32 880
+temoins K7 et 1 200 lifts K6 dans un flux de 15 bits par entree. Son test
+exhaustif verifie les 34 080 lignes, puis la vue ordonnee des 3 514 clauses K7
+et 2 409 clauses K6 retenues par le coeur. Le rapport a pour SHA-256
+`0F04DC3992BE3E87493E369305FB608DD44AE1205363CCBCCCAC601C5CDFB34B`.
+Le module
+`R44Cover6ConditionedWitnesses` decode maintenant ce flux dans Lean, controle
+les clauses et les lifts par deux certificats `native_decide` agreges, puis
+construit le fournisseur semantique complet. Le parseur est fail-closed pour
+les 5 923 egalites utilisees par la preuve; l'identite octet par octet et les
+metadonnees du JSON restent controlees separement par les tests Python.
+
+Un pilote `Master8` remplace par ailleurs les treize residuelles par une seule
+formule : `F8`, onze unites de racine, huit clauses de prefixe et trois clauses
+de bornes. L'audit des `2^10` affectations retrouve exactement les treize
+couples historiques. La formule a 3 367 459 clauses, 189 298 375 octets et le
+SHA-256
+`3E725132C29E1CAA9D5FD5EA0AD67D8A5A80E61A1241768D36A910DD23FD329D`.
+CaDiCaL 2.1.2 la declare UNSAT en 4 598 conflits et a produit un LRAT unique de
+128 131 809 octets, SHA-256
+`B2ECDACD2D99CD6EA2929C0B370C6AAFD74FE78FDE20FFBDFE68B7D0EF860505`,
+avec `--checkproof=2`. Le rejeu Lean brut a ete arrete au plafond de 3 Gio sans
+diagnostic ni theorem. Une fermeture de dependances RUP a depuis extrait un
+coeur de 6 152 clauses initiales et 7 061 additions. Le CNF reduit fait
+292 093 octets; son LRAT remappe fait 754 043 octets. Ce LRAT et un second LRAT
+regenere par CaDiCaL sur le meme coeur ont tous deux ete rejoues directement
+par LRATCatcher en quelques secondes. Le mapping de 6 152 lignes est une
+sous-sequence ordonnee exacte du DIMACS Master8 gele. Le manifeste suivi est
+`scripts/r45_d12_cover9_universal/master8_core/MANIFEST.json`.
+
+Ce nouveau resultat certifie l'UNSAT du coeur DIMACS et, au niveau fini, du
+Master8 gele qui le contient. Le pont est maintenant aussi formel :
+`R44Cover6Master8IndexedSource` definit paresseusement les 3 367 459 clauses,
+prouve que les 6 152 indices selectionnent exactement le coeur rejoue, puis
+etablit `master8Source_unsat`. Surtout, la voie certifiee ne retient que sept
+clauses de tri et `-15`, qui lui suffisent : aucune unite de racine, aucune
+borne croisee et aucune disjonction des treize cas. La source normalisee
+`F8 + core8` a 3 367 445 clauses, SHA-256
+`0133D40DC0458E7CD426F22DA08B525B4197467E539E4446AE94A38E84D7341E`,
+et Lean prouve `normalizedSource_unsat`.
+
+`R44Cover6SemanticComposition` prouve la satisfaction des 717
+clauses de base et des huit clauses finales, certifie la taxonomie ordonnee
+`221 + 3 514 + 2 409 + 8` du coeur et compose ces familles avec
+`TwoCenterBranch` et l'UNSAT rejouee. `R44Cover6ConditionedWitnesses` instancie
+le `CoreBlockerWitnessProvider` et ferme enfin le theorem terminal
+`degreeEight_has_cover6_motif` : toute coloration `R(4,4)`-libre sur 12
+sommets dont la racine 0 a degre positif 8 contient une occurrence induite de
+l'un des six motifs. La compilation directe passe en 468,853 s, avec un pic
+observe de 822,3 Mio et aucun `sorryAx`; le module a pour SHA-256
+`55B50818D9C231AF1105B526B4389F68EAB52C70EDCF090C4E16BFAD717007B3`.
+C'est un resultat local niveau 4;
+`d7`, `d6`, la complementation globale et les gluings K25 restent ouverts, et
+aucune nouvelle borne sur `R(5,5)` n'en decoule.
+
+### Cover6, degre 7 : centre minimal et pilote exact
+
+`R44Cover6DegreeSevenMinCenter` prouve maintenant dans Lean qu'apres le tri
+de la racine 0 de degre positif 7, le voisinage de sept sommets contient un
+centre de degre interne 1 ou 2. Le module final, SHA-256
+`16448C8ECA7D22DDAAF734C481553A750FE1857D23F8288C180EECB2759DB6AF`,
+a ete recompile sur ces octets exacts en 221,131 s, avec un pic de 823 Mio et
+aucun `sorryAx`. `R44Cover6DegreeSevenNormalization` construit maintenant la
+permutation qui place ce temoin en sommet 1, le tri final `6+4`, la
+decomposition du degre `1+p+q`, les neuf cas et la satisfaction des neuf
+clauses DIMACS exactes. Son SHA-256 est
+`D9A0BABC4DACDE65404E0C719DF076B2EAC5D0362D5698B8BE8E4F3A34207679`;
+la compilation directe et un audit independant passent sans `sorryAx`.
+`R44Cover6DegreeSevenR34Normalization`, SHA-256
+`1CF0DA9E2B47ED6F502AD1A7701F06D04E36C3DEA9BBE995825B8C1C4FA996B2`,
+ferme le wrapper, entre dans le catalogue exhaustif `R(3,4;7)`, releve vers
+douze sommets l'isomorphisme inverse correct et fixe les 21 variables de la
+branche. `R44Cover6Master7R34IndexedSource`, SHA-256
+`6B1650D87BE0F4CC931DF21F180C48451097180D6DFBE09866A0C0B8FCB25A60`,
+materialise paresseusement F7 et les neuf sources de branche exactes.
+
+Un auditeur Python separe reconstruit F7 puis les neuf clauses correspondant
+exactement aux couples `(1,1..4)` et `(2,0..4)`. F7 a 4 312 419 clauses,
+246 507 515 octets et le SHA-256
+`85A93BEEA81BC890E3343A5A52094380446432F81AF9B28A2A35F9B76CAC920C`;
+le Master7 a 4 312 428 clauses, 246 507 588 octets et le SHA-256
+`DFA3F7C3C1ADF2F6C8855FA5F08D11D54BFC826205246E68DAD5F4F5D46A5BBE`.
+Un second chemin les reproduit octet par octet. Le rapport suivi a pour
+SHA-256 `3CBEF9CAC765E5D9D09E4FF1620D6EFBF31FA31F28136D77C61F17419AB381FF`.
+
+Le premier pilote CaDiCaL, sans LRAT, s'arrete `UNKNOWN` au plafond de
+100 003 conflits en 263,82 s, avec 927,67 Mio signales par le solveur. Aucun
+budget n'est augmente : ce resultat de niveau 1 indique qu'il faut un split ou
+une symetrie supplementaire. Le manifeste suivi
+`MASTER7_MIN_CENTER_PILOT_V1.json` a pour SHA-256
+`12492F5291582AB59D204EF064CE3A794DD83814E388CF28991259DA8363E5B3`.
+Ce premier pilote n'avait produit ni UNSAT, ni LRAT, ni theorem terminal.
+
+Un second pilote plus structurel remplace les neuf couples faibles par les
+neuf classes exhaustives `R(3,4;7)` modulo `S7`. Le flux incremental exact a
+246 508 227 octets et le SHA-256
+`CD4C3BB7D0850F75028346B6CD1AA4493D9FD837BFC595503D3E5DA750703180`.
+CaDiCaL ferme les neuf cubes sur neuf, sans inconclusif, en 16 893 conflits,
+29,16 s reels et 1 083,19 Mio maximum. Le premier cube, le motif exact
+``FG`Xo``, ferme sans conflit et sert d'oracle de polarite. Lean ferme aussi
+directement cette branche par une occurrence induite dans
+`R44Cover6DegreeSevenR34Oracle`, SHA-256
+`F8F041AB29F7DC1181380F8D15E696E20EB906112EF653F63366F825CE5E4404`.
+Le rapport suivi
+`MASTER7_R34_CATALOGUE9_PILOT_V1.json` a pour SHA-256
+`205E5F05132D7EDDA4C8ED14A8773CA12EB7BAEC2CB79EEC3391DD855071C323`.
+Le premier representant non trivial certifie est ``F`GOW``. Son coeur suivi
+contient 5 807 clauses initiales, 9 475 additions RUP et zero etape RAT; le
+replay LRAT Lean passe en 2,9858 s avec 209 424 384 octets au pic. Le manifeste
+portable a pour SHA-256
+`8A7E66C31F1AF2E8BA81F4FE765D6D1D1EAC2C457EB8FCEB80C1DCC1313C1409`
+et le rapport suivi
+`MASTER7_R34_FGRAVEGOW_LRAT_CORE_V1.json` a pour SHA-256
+`2AA548863E6CD3D4BB78910AB289F9EB2F76A0D6DBF2D0F85E3C9E6CBFFD028E`.
+`R44Cover6Master7R34FgraveGowCore`, SHA-256
+`3266F3DACE0854B665FA2374B0742D5FA0BBD0D4AB79B49BC32DDA21A4320C29`,
+verifie en plus que les 5 807 indices selectionnent exactement ce coeur depuis
+la source de branche F7+21, rejoue le LRAT et prouve cette source complete
+UNSAT. `R44Cover6Master7R34FgraveGowSemantics`, SHA-256
+`9608990A7CD482A3526E7A7A788D8ED158F3FF3C34E9AA57087B331A4BB20493`,
+ajoute 5 623 temoins compacts pour les 168 clauses de base, 3 227 bloqueurs K7,
+2 396 bloqueurs K6 et 16 unites du coeur, puis compose leur semantique avec
+l'UNSAT LRAT jusqu'a la contradiction. La feuille ``F`GOW`` est donc fermee
+semantiquement. La feuille `FoDPO` est maintenant fermee de la meme facon :
+son coeur portable contient 7 686 clauses initiales et 12 107 additions RUP,
+son replay Lean suivi passe, et 7 485 temoins certifient exactement les
+183 clauses de base, 4 221 bloqueurs K7, 3 264 bloqueurs K6 et 18 unites.
+`R44Cover6Master7R34FoDPOCore`, SHA-256
+`09F9244CD512AEDE1BFCDF6434E893F9695B6E08B703DC3D87E598B5083540B8`,
+et `R44Cover6Master7R34FoDPOSemantics`, SHA-256
+`5C41697844EB1CBB0C31A5F8F93F158407979A28973D637027623A419096FDC4`,
+composent cette branche jusqu'a False. Le manifeste du coeur a pour SHA-256
+`5E215018884DEA2708EE184E084D3F74F3D0D7AC9EFD8D234EB57404B0E516EF`.
+La feuille `FCUj_` est aussi fermee : coeur de 1 104 clauses rejoue par Lean,
+990 temoins, puis typecheck semantique en 82,26 s. Cinq representants non
+triviaux et la composition du catalogue avec `S7` restent ouverts. Il n'existe
+encore ni theorem Lean
+`cover6-d7`, ni nouvelle borne de Ramsey.
 
 Une chaine jouet ferme maintenant la methode sur K5 : toute coloration sans
 triangle monochromatique contient un P3 positif induit. Les 80 clauses sont
@@ -118,9 +272,10 @@ B85E57FA3D7D25A901DD98E387264B8B47FB6CC71F8721FA7CD07BD7DC1E3203.
 
 L'intervalle public reste 43 <= R(5,5) <= 46; aucune nouvelle borne n'est
 obtenue. La fermeture solveur 13/13 et le replay CNF exact de cover6-d8
-rapprochent un lemme computationnel publiable, mais il manque encore la
-certification LRAT/Lean. La vacuite d20,c10 est une simplification de preuve
-importante, probablement
+ont depuis ete completes par le coeur LRAT et le theorem Lean local de niveau
+4 decrit en tete de fichier. Ce resultat est publiable comme certificat local
+apres audit documentaire, mais ne ferme ni d7/d6 ni un gluing global. La
+vacuite d20,c10 est une simplification de preuve importante, probablement
 implicite dans les donnees publiees plutot qu'une nouveaute mathematique
 majeure. L'ecran K43 montre qu'une percee demandera un nouveau split pour les
 petites codegrees, pas seulement davantage de conflits.
@@ -206,15 +361,16 @@ réductions correspondent octet par octet aux artefacts gelés.
 
 Les 13/13 résiduelles à deux centres existent désormais, contiennent chacune
 les 21 unités attendues et ont rendu UNSAT sans preuve. Leur provenance finie
-depuis la source est certifiée au niveau du replay Python, mais son lien avec
-les graphes et les branches Lean reste à composer. Aucun LRAT cover6 n'existe;
-il ne s'agit donc pas d'un théorème UNSAT complet.
+depuis la source est certifiée au niveau du replay Python. Elles n'ont toujours
+pas de LRAT individuel; cette route est toutefois supersédée par le Master8
+normalisé, son cœur LRAT rejoué et la composition Lean complète décrite en
+tête de fichier, qui prouve le théorème local `cover6-d8`.
 
 Le compteur global demeure donc **0/12 cas mathématiques de degré 12
 fermés**. Aucune nouvelle borne de Ramsey n’est revendiquée. Le minimum
 cover6 et la certification cover9 degré 8 sont des lemmes computationnels
 potentiellement publiables, sous réserve d’un audit bibliographique plus large
-et des compositions sémantiques manquantes. Le relais complet pour la
+et de leur injection dans les degrés restants et les gluings globaux. Le relais complet pour la
 prochaine conversation est
 `docs/NEXT_CONVERSATION_HANDOFF_2026-08-07.md`.
 

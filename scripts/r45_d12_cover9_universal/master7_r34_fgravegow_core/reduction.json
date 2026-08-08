@@ -1,0 +1,149 @@
+{
+  "artifacts": {
+    "cnf": {
+      "bytes": 289163,
+      "clauses": 5807,
+      "lines": 5808,
+      "name": "cover6_closed_f7_r34_i6_FgraveGOW_core.cnf",
+      "sha256": "2DD4F2F3359A78163B20B7103804A34E081F71CE436D8332DAE71309A54C0B6E",
+      "variables": 66
+    },
+    "gitattributes": {
+      "bytes": 78,
+      "lines": 6,
+      "name": ".gitattributes",
+      "sha256": "0D3A87415F0DD8A34B869279597919CB8F2F7843D82BD4AAEDA98C1307F19650"
+    },
+    "initial_clause_mapping": {
+      "bytes": 450424,
+      "lines": 5808,
+      "name": "core_clause_map.tsv",
+      "rows": 5807,
+      "sha256": "4324BD649921CA8EF00673A002D051C7046FE0B5D31144B59A07FAD7BF73D992"
+    },
+    "lrat": {
+      "additions": 9475,
+      "bytes": 864692,
+      "deleted_identifiers": 9758,
+      "deletion_actions": 8283,
+      "lines": 17758,
+      "name": "cover6_closed_f7_r34_i6_FgraveGOW_core.lrat",
+      "sha256": "2663E5943CE593EB7E9C3E21D588601AFFD528C419C946CE3B337D4649A1D188"
+    },
+    "replay_module": {
+      "bytes": 520,
+      "lines": 12,
+      "name": "Replay.lean",
+      "sha256": "B4FC1D0B115D6A334C19B1B1D55F5B29916DBDEBD5D955AD18D3DB05FCEADAAD"
+    }
+  },
+  "caps": {
+    "limits": {
+      "clauses": 50000,
+      "cnf_bytes": 33554432,
+      "lrat_bytes": 134217728
+    },
+    "observed": {
+      "clauses": 5807,
+      "cnf_bytes": 289163,
+      "lrat_bytes": 864692
+    },
+    "status": "PASS_COMPACT_CORE_CAPS"
+  },
+  "dependency_core": {
+    "dependency_edges": 72001,
+    "derived_additions": 9475,
+    "initial_clauses": 5807,
+    "retained_deleted_identifiers": 9758,
+    "retained_deletion_actions": 8283
+  },
+  "formal_boundary": "portable tracked copy of the exact frozen F`GOW leaf core only; tracked-path Lean replay pending; no S7 orbit composition, cover6-d7 theorem, global gluing, or Ramsey bound",
+  "reducer_implementation": {
+    "algorithm": "all-RUP full index, backward closure, dense id remap v1",
+    "core_library": {
+      "bytes": 32225,
+      "name": "reduce_master8_lrat_core.py",
+      "sha256": "7FEC161DE7A29F9F6D1C383CB0E8571BE7C508F330AFD5CEB975AF3FA459BFC3"
+    },
+    "reducer": {
+      "bytes": 79015,
+      "name": "reduce_cover6_d7_r34_fgravegow_lrat_core.py",
+      "sha256": "641B1ECCB9A0E02B16F699FB23BD694292E6A4D04B8592B5E232F33C3928F031"
+    }
+  },
+  "schema_version": 1,
+  "source": {
+    "cnf": {
+      "bytes": 246507635,
+      "sha256": "78D066E03B1F55FACBF8839BCC409E0D45BABF93FA6D266628BB526D2F5E5971"
+    },
+    "initial_clauses": 4312440,
+    "lrat": {
+      "bytes": 73928822,
+      "sha256": "580D4B8FC24BCE446D2DF22370C4D56397EE54E7272A4A48796A86962E5D5A3A"
+    },
+    "variables": 66
+  },
+  "source_run_report": {
+    "bytes": 4898,
+    "name": "cover6_closed_f7_r34_i6_FgraveGOW_c25k.lrat-run.json",
+    "sha256": "BEB9352364B9EA0B860E69B7FB65DD142207F935C73D0B488AD4E3086C5A5DFD"
+  },
+  "status": "PASS_TRACKED_FGRAVEGOW_CORE_REPLAY_REQUIRED",
+  "validation": {
+    "external_certified_core_manifest": {
+      "bytes": 9715,
+      "lines": 257,
+      "name": "MANIFEST.json",
+      "sha256": "4D0BABD9CED3154291B7C81675EE8E4F644A649AFE8315E7BB773E9D26412036"
+    },
+    "mapping": {
+      "core_clauses": 5807,
+      "core_variables": 66,
+      "mapping": {
+        "bytes": 450424,
+        "sha256": "4324BD649921CA8EF00673A002D051C7046FE0B5D31144B59A07FAD7BF73D992"
+      },
+      "master_clauses": 4312440,
+      "master_variables": 66,
+      "rows": 5807,
+      "status": "PASS_EXACT_ORDERED_SUBSEQUENCE"
+    },
+    "reduced_pair": {
+      "core": {
+        "dependency_edges": 72001,
+        "derived_additions": 9475,
+        "initial_clauses": 5807,
+        "retained_deleted_identifiers": 9758,
+        "retained_deletion_actions": 8283
+      },
+      "input": {
+        "cnf": {
+          "bytes": 289163,
+          "sha256": "2DD4F2F3359A78163B20B7103804A34E081F71CE436D8332DAE71309A54C0B6E"
+        },
+        "initial_clauses": 5807,
+        "lrat": {
+          "bytes": 864692,
+          "sha256": "2663E5943CE593EB7E9C3E21D588601AFFD528C419C946CE3B337D4649A1D188"
+        },
+        "variables": 66
+      },
+      "proof": {
+        "additions": 9475,
+        "deleted_identifiers": 9758,
+        "deletion_actions": 8283,
+        "final_empty_id": 15282,
+        "first_addition_id": 5808,
+        "lines": 17758,
+        "rat_additions": 0,
+        "rup_additions": 9475
+      },
+      "rat_policy": "safe RUP-only remap; RAT input is detected and reduction is refused",
+      "schema_version": 1,
+      "scope": "syntactic LRAT dependency extraction only; the reduced pair must be replayed by a trusted LRAT checker",
+      "status": "PASS_CLOSED_RUP_DEPENDENCY_CORE_REPLAY_STILL_REQUIRED"
+    },
+    "tracked_lean_replay": "PENDING"
+  }
+}

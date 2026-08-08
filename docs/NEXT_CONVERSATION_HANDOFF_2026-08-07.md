@@ -1,6 +1,6 @@
 # Handoff — recherche R(5,5) / R(4,5,25)
 
-## Mise a jour prioritaire - fin du 7 aout 2026
+## Mise a jour prioritaire - nuit du 7 au 8 aout 2026
 
 Cette mise a jour est la source de verite et remplace les anciens compteurs
 7/13 cover6 et 1 509 branches actives encore conserves plus bas.
@@ -18,27 +18,130 @@ Cette mise a jour est la source de verite et remplace les anciens compteurs
    fini CNF, pas un audit a faible mode commun ni le pont mathematique.
    Le module Lean `R44Cover6MotifBridge` decode par ailleurs les six graph6,
    controle les trois paires complementaires et prouve l'equivalence entre le
-   bloqueur DIMACS complet de 21 litteraux et l'occurrence induite. Il reste a
-   relier les cubes partiels et la formule globale a ce bloqueur.
+   bloqueur DIMACS complet de 21 litteraux et l'occurrence induite.
+   `R44Cover6CubeBridge` compile et ferme generiquement la semantique du
+   bloqueur partiel : faussete si et seulement si les bits fixes du cube
+   correspondent, puis occurrence sous une hypothese explicite de surete.
+   Cette hypothese est desormais etablie pour les cubes concrets effectivement
+   retenus par le coeur, via les temoins conditionnes decrits ci-dessous.
+   Le certificat Python `COVER6_CUBE_MOTIF_BRIDGE_V1.json` controle les six
+   representants, leur unique completion R(4,4), le transport S7 bijectif vers
+   25 200 cubes et motifs distincts, ainsi que 334 orbites stabilisatrices sans
+   racine et 38 orbites projetees avec racine. Il importe le replay exact et sa
+   portee exclut SAT, LRAT, egalite DIMACS parsee, rejeu Lean et theoreme d8.
+   `R44Cover6RepresentativeCubes` compile et certifie maintenant les six
+   representants : bonne formation, completions finies, cible R(4,4) unique et
+   permutation explicite vers le motif. `R44Cover6S7Transport` prouve
+   symboliquement l'invariance R(4,4), le transport des masques et de
+   `CubeMatchesLocal`, puis propage les six preuves a tout cube muni d'un
+   temoin d'orbite. `COVER6_CONDITIONED_ORBIT_WITNESSES_V1.json` fournit
+   maintenant 32 880 temoins K7 et 1 200 lifts K6 en 15 bits par entree. Le
+   test exhaustif verifie les 34 080 lignes et la vue exacte des 3 514 + 2 409
+   bloqueurs retenus par le coeur. Rapport SHA-256
+   0F04DC3992BE3E87493E369305FB608DD44AE1205363CCBCCCAC601C5CDFB34B.
+   `R44Cover6ConditionedWitnesses` decode ces
+   donnees dans Lean, controle les egalites et lifts par deux certificats
+   natifs agreges et construit le fournisseur semantique complet.
+   Un pilote `Master8` reunit exactement les 13 branches dans une formule de
+   3 367 459 clauses. CaDiCaL la ferme en 4 598 conflits et a produit un LRAT
+   unique de 128 131 809 octets (SHA-256
+   B2ECDACD2D99CD6EA2929C0B370C6AAFD74FE78FDE20FFBDFE68B7D0EF860505).
+   Le rejeu Lean brut a ete arrete a 3 Gio sans theorem. La fermeture RUP a
+   ensuite extrait 6 152 clauses initiales et 7 061 additions. Le LRAT remappe
+   et un LRAT regenere independamment par CaDiCaL sur ce meme coeur sont tous
+   deux acceptes par LRATCatcher. Le mapping est une sous-sequence ordonnee
+   exacte du DIMACS Master8 gele; voir
+   `scripts/r45_d12_cover9_universal/master8_core/MANIFEST.json`.
+   `R44Cover6Master8CoreBridge` prouve la monotonie UNSAT pour une source CNF
+   indexee paresseuse. `R44Cover6Master8IndexedSource` instancie maintenant
+   cette source, verifie clause par clause la selection des 6 152 indices et
+   etablit en Lean `master8Source_unsat`.
+   La taxonomie du coeur montre en outre que seules sept clauses de tri et
+   `-15` sont retenues. Cette voie certifiee n'emploie donc ni unite racine,
+   ni borne croisee, ni disjonction des treize cas. La variante normalisee
+   `F8 + core8` a 3 367 445 clauses, SHA-256
+   0133D40DC0458E7CD426F22DA08B525B4197467E539E4446AE94A38E84D7341E,
+   et Lean prouve `normalizedSource_unsat`.
    Total : 19 657 663 clauses,
    1 077 652 051 octets, 9 889 conflits. Manifeste formule SHA-256
    DDAF42888C6A77C432EC9AA4799D6A24EEDB2088AA25C97C251A82D3986DFB8C;
    batch SHA-256
    AA5E11028D9B8A228E2F6EB7E5F11D0C740BBFDEED9315134C3F1DED8BB1E492.
-   Aucun LRAT cover6 et aucun theoreme universel ne sont encore revendiques.
-2. Strate minimum-anchor d20,c10 vide. Le record officiel unique
+   Les 13 LRAT residuels ne sont toujours pas produits, mais ils ne sont plus
+   requis par la voie normalisee. `R44Cover6SemanticComposition` ferme deja
+   les 717 clauses de base et les huit extras, certifie la partition ordonnee
+   221/3514/2409/8 du coeur et derive la contradiction contre
+   `normalizedCoreSelection_unsat` sous une interface explicite de temoins.
+   Cette interface est maintenant instanciee et le theorem Lean
+   `degreeEight_has_cover6_motif` est compile : toute coloration R(4,4)-libre
+   sur 12 sommets avec racine 0 de degre positif 8 contient l'un des six motifs
+   induits. Module SHA-256
+   55B50818D9C231AF1105B526B4389F68EAB52C70EDCF090C4E16BFAD717007B3.
+   C'est le theorem local `cover6-d8` niveau 4, pas un resultat d6/d7,
+   un gluing K25 ou une nouvelle borne sur R(5,5).
+2. Cover6 d7 progresse sans etre ferme. Le module Lean
+   `R44Cover6DegreeSevenMinCenter` prouve, pour une racine 0 de degre positif
+   7, l'existence dans son voisinage d'un centre de degre interne 1 ou 2.
+   SHA-256 final recompile :
+   16448C8ECA7D22DDAAF734C481553A750FE1857D23F8288C180EECB2759DB6AF.
+   `R44Cover6DegreeSevenNormalization`, SHA-256
+   D9A0BABC4DACDE65404E0C719DF076B2EAC5D0362D5698B8BE8E4F3A34207679,
+   ferme ensuite la permutation du temoin, le tri `6+4`, les neuf cas et les
+   neuf clauses DIMACS exactes. Le wrapper est maintenant ferme dans
+   `R44Cover6DegreeSevenR34Normalization` : il entre dans le catalogue
+   exhaustif R(3,4;7), releve l'isomorphisme inverse correct vers Fin 12 et
+   fixe les 21 variables de branche. `R44Cover6Master7R34IndexedSource`
+   fournit ensuite F7 et les neuf sources de branche exactes, paresseusement.
+   L'audit fini separe reconstruit F7 (4 312 419 clauses, SHA
+   85A93BEEA81BC890E3343A5A52094380446432F81AF9B28A2A35F9B76CAC920C)
+   et le Master7 exact a neuf couples (4 312 428 clauses, SHA
+   DFA3F7C3C1ADF2F6C8855FA5F08D11D54BFC826205246E68DAD5F4F5D46A5BBE).
+   Le premier pilote CaDiCaL sans LRAT reste UNKNOWN a 100 003 conflits en
+   263,82 s; il ne justifie pas une hausse de budget. Rapport pilote SHA-256
+   12492F5291582AB59D204EF064CE3A794DD83814E388CF28991259DA8363E5B3.
+   Le split structurel suivant fixe les neuf classes exhaustives R(3,4;7)
+   modulo S7 : 9/9 cubes UNSAT, 0 inconclusif, 16 893 conflits et 29,16 s.
+   Rapport SHA-256
+   205E5F05132D7EDDA4C8ED14A8773CA12EB7BAEC2CB79EEC3391DD855071C323.
+   La branche oracle ``FG`Xo`` est maintenant fermee directement dans Lean
+   comme occurrence induite, sans SAT; module SHA-256
+   F8F041AB29F7DC1181380F8D15E696E20EB906112EF653F63366F825CE5E4404.
+   Le premier representant non trivial, ``F`GOW``, possede maintenant un coeur
+   suivi de 5 807 clauses initiales et 9 475 additions RUP, rejoue par Lean en
+   2,9858 s avec environ 200 Mio. Manifeste SHA-256
+   8A7E66C31F1AF2E8BA81F4FE765D6D1D1EAC2C457EB8FCEB80C1DCC1313C1409.
+   `R44Cover6Master7R34FgraveGowCore`, SHA-256
+   3266F3DACE0854B665FA2374B0742D5FA0BBD0D4AB79B49BC32DDA21A4320C29,
+   relie formellement les 5 807 indices a la source F7+21 et prouve cette source
+   de branche UNSAT. `R44Cover6Master7R34FgraveGowSemantics`, SHA-256
+   9608990A7CD482A3526E7A7A788D8ED158F3FF3C34E9AA57087B331A4BB20493,
+   certifie 5 623 temoins pour les 5 807 clauses selectionnees et compose la
+   coloration relabellisee jusqu'a False. `FoDPO` est maintenant la seconde
+   feuille non triviale fermee : coeur portable de 7 686 clauses et 12 107
+   additions RUP, replay Lean suivi, puis 7 485 temoins pour les
+   183+4 221+3 264+18 clauses selectionnees. Les modules
+   `R44Cover6Master7R34FoDPOCore` et
+   `R44Cover6Master7R34FoDPOSemantics` ont respectivement les SHA-256
+   09F9244CD512AEDE1BFCDF6434E893F9695B6E08B703DC3D87E598B5083540B8 et
+   5C41697844EB1CBB0C31A5F8F93F158407979A28973D637027623A419096FDC4.
+   Le second typecheck passe en 593,867 s sous le cap de 600 s. `FCUj_` est
+   maintenant la troisieme feuille non triviale fermee : coeur de 1 104 clauses
+   rejoue par Lean, 990 temoins, puis composition semantique jusqu'a False en
+   82,26 s. Cinq feuilles non triviales et la composition catalogue/S7 restent
+   ouvertes.
+3. Strate minimum-anchor d20,c10 vide. Le record officiel unique
    R(4,5,20,e=100) a les degres 9^2 10^16 11^2, donc aucun voisinage de
    minimum 10. SHA du record :
    D1D1FF46BD5D153B51D7DA094F6BF459BCEAEFDA65EB4941EAD0BB9B09C897CD.
    Totaux corriges : K43 1509 -> 1196; squelette K45 1815 -> 1502.
-3. Ecran K43 negatif mais informatif. Sur huit feuilles representatives,
+4. Ecran K43 negatif mais informatif. Sur huit feuilles representatives,
    une est UNSAT sans LRAT (95 conflits) et sept sont UNKNOWN a 100 000
    conflits. Toutes les CNF temporaires ont ete supprimees. Journal SHA-256
    4B8F4F8ED8A7A937AA0127FB7732F375202E68CDF818EAA6F3EF1D511074A5C6.
-4. K45. L'identite d'exces n'elimine aucun degre avec les seules bornes e/E,
+5. K45. L'identite d'exces n'elimine aucun degre avec les seules bornes e/E,
    malgre une contrainte de voisinage quasi extremal. La generation brute a
    ete abandonnee et le fichier partiel de 114 449 417 octets nettoye.
-5. Chaine jouet semantique fermee. Sur K5, l'encodage declaratif de l'absence
+6. Chaine jouet semantique fermee. Sur K5, l'encodage declaratif de l'absence
    de triangle monochromatique et de P3 positif induit donne exactement 80
    clauses; le LRAT CaDiCaL est rejoue dans Lean jusqu'au theoreme terminal.
    Les tests mutants rejettent notamment, avant replay, une formule rendue
@@ -46,7 +149,7 @@ Cette mise a jour est la source de verite et remplace les anciens compteurs
    pourrait donc pas masquer cette mauvaise formule. Le rejeu Lean est force
    hors cache avec `lake env lean`. Ceci valide le noyau declaratif au niveau
    4 pour le jouet seulement, pas les etapes deux-centres de cover6.
-6. Quotient K45 catalogue-relatif. Le bloc exclusif d'une arete est R(4,4).
+7. Quotient K45 catalogue-relatif. Le bloc exclusif d'une arete est R(4,4).
    Ce lemme local est maintenant un theoreme Lean niveau 4 dans
    `R55ExclusiveBlockR44`; le quotient qui l'utilise ne l'est pas.
    Des covers explicites des copies locales gelees des catalogues officiels
@@ -60,6 +163,8 @@ Cette mise a jour est la source de verite et remplace les anciens compteurs
 Artefacts lourds :
 S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-cover5-closed-universal\cover6_closed_two_center_d8
 et
+S:\CodexResearchCache\ramsey-formal\lrat-work\r45-cover6-master7-mincenter-v1
+et
 S:\CodexResearchCache\ramsey-r55-k43-screen\pilot-v1.
 Les catalogues et rapports du nouveau pilote restent sous
 S:\CodexResearchCache\ramsey-formal\catalogues.
@@ -69,13 +174,14 @@ SHA-256
 
 Prochaine sequence recommandee :
 
-1. relire le rapport de replay exact et conserver son test exhaustif local
-   comme garde-fou de la provenance F8 -> F(p,q);
-2. terminer le pont DIMACS/polarites/unites/deux-centres et composer en Lean
-   la disjonction des six motifs deja materialises;
-3. produire les 13 LRAT cover6-d8 seulement apres fermeture de ce pont,
-   puis les rejouer et composer le theorem d8;
-4. traiter cover6 d7 puis d6 et le transport par complement;
+1. conserver verts le replay exact d8, le coeur LRAT compact, la source Lean
+   indexee et le theorem terminal `degreeEight_has_cover6_motif`;
+2. conserver verts MinCenter, la normalisation `6+4`, le wrapper catalogue R34
+   et la source F7 indexee;
+3. produire et rejouer les cinq certificats non triviaux encore ouverts
+   (`FG`Xo` est un motif direct; `F`GOW`, `FoDPO` et `FCUj_` sont fermes), puis
+   composer completude du catalogue et invariance S7;
+4. formaliser le transport global par complement;
 5. pour K45, implementer une seule obligation motif-conditionnee sans
    `signature_lex` et mesurer son gain face a la branche typee; arret sans
    extension si le gain est inferieur a x2;
@@ -88,6 +194,33 @@ r55/K43_SCREEN_2026-08-07.json et
 scripts/r45_d12_cover9_universal/COVER6_D8_CHECKPOINT13.json. Lire aussi
 docs/R44_COVER6_D8_SEMANTIC_TARGET_2026-08-07.md et le manifeste leger
 scripts/r45_d12_cover9_universal/toy_cover6/MANIFEST.json, puis
+scripts/r45_d12_cover9_universal/COVER6_CUBE_MOTIF_BRIDGE_V1.json,
+`COVER6_CONDITIONED_ORBIT_WITNESSES_V1.json`,
+`COVER6_D7_MIN_CENTER_SOURCE_AUDIT_V1.json`,
+`MASTER7_MIN_CENTER_PILOT_V1.json`,
+`MASTER7_R34_CATALOGUE9_PILOT_V1.json`,
+`MASTER7_R34_FGRAVEGOW_LRAT_CORE_V1.json`,
+`scripts/r45_d12_cover9_universal/master7_r34_fgravegow_core/MANIFEST.json`,
+`MASTER7_R34_FODPO_LRAT_CORE_V1.json`,
+`scripts/r45_d12_cover9_universal/master7_r34_fodpo_core/MANIFEST.json`,
+`MASTER7_R34_FCUJ_LRAT_CORE_V1.json`,
+`scripts/r45_d12_cover9_universal/master7_r34_fcuj_core/MANIFEST.json`,
+`MASTER8_CORE_TAXONOMY_V1.json`,
+`scripts/r45_d12_cover9_universal/master8_core/MANIFEST.json` et les modules
+Lean `R44Cover6CubeBridge`, `R44Cover6RepresentativeCubes`,
+`R44Cover6S7Transport`, `R44Cover6Master8IndexedSource`,
+`R44Cover6SemanticComposition`, `R44Cover6ConditionedWitnesses`,
+`R44Cover6DegreeSevenMinCenter`,
+`R44Cover6DegreeSevenNormalization`,
+`R44Cover6DegreeSevenR34Normalization`,
+`R44Cover6Master7R34IndexedSource`,
+`R44Cover6DegreeSevenR34Oracle`,
+`R44Cover6Master7R34FgraveGowCore`,
+`R44Cover6Master7R34FgraveGowSemantics`,
+`R44Cover6Master7R34FoDPOCore`,
+`R44Cover6Master7R34FoDPOSemantics`,
+`R44Cover6Master7R34FCUjCore`,
+`R44Cover6Master7R34FCUjSemantics`, puis
 docs/R45_EXCLUSIVE_R44_MOTIF_QUOTIENT_2026-08-07.md et
 scripts/r45_d12_cover9_universal/R44_SMALL_ORDER_MOTIF_COVERS_2026-08-07.json.
 
@@ -100,6 +233,30 @@ Validation du checkpoint courant :
 - build cible et compilations Lean directes : PASS pour
   `R44Cover6ToyChain`, `R44Cover6MotifBridge` et `R55ExclusiveBlockR44`;
   aucun `sorry`/`admit`;
+- compilations Lean directes supplementaires : PASS pour
+  `R44Cover6CubeBridge`, `R44Cover6RepresentativeCubes` et
+  `R44Cover6S7Transport`; le dernier transporte les six preuves a toute orbite
+  munie d'un temoin explicite;
+- coeur Master8 : mapping exact 6 152 clauses, LRAT remappe de 754 043 octets
+  et LRAT CaDiCaL regenere de 777 661 octets; les deux replays Lean directs
+  passent. `R44Cover6Master8CoreBridge` fournit le transfert generique et
+  `R44Cover6Master8IndexedSource` compile directement avec les theoremes
+  `master8Source_unsat` et `normalizedSource_unsat`;
+- taxonomie du coeur : 221 clauses base, 3 514 bloqueurs K7, 2 409 bloqueurs
+  K6 et 8 finales; replay integral opt-in et empreinte core8 exacts;
+- composition terminale : les 34 080 temoins conditionnes passent le controle
+  exhaustif; `R44Cover6SemanticComposition` compile directement en 4,6 s et
+  `R44Cover6ConditionedWitnesses` compile directement en 468,853 s puis via le
+  build cible en 472,229 s, sans `sorryAx` et avec un pic d'environ 822 Mio;
+- d7 : audit source complet et deux empreintes exactes PASS; MinCenter,
+  normalisation, wrapper catalogue R34 et source indexee compilent sans
+  `sorryAx`; le split structurel ferme 9/9 au solveur. La feuille non triviale
+  ``F`GOW`` a maintenant un coeur 5 807 + 9 475 all-RUP suivi et un replay Lean
+  PASS en 2,9858 s, pic 209 424 384 octets; le pont source/coeur et la
+  semantique des 5 807 clauses selectionnees compilent jusqu'a la contradiction
+  en 497,34 s, sans `sorryAx`. `FoDPO` ferme de meme 7 686 clauses selectionnees
+  et 7 485 temoins en 593,867 s; `FCUj_` ferme 1 104 clauses et 990 temoins en
+  82,257 s. Les trois replays et compositions n'utilisent aucun `sorryAx`;
 - rejeu catalogue final : 103 706 + 546 356 records R(4,4), zero trou,
   70,65 s; rapport SHA-256
   B85E57FA3D7D25A901DD98E387264B8B47FB6CC71F8721FA7CD07BD7DC1E3203;
@@ -110,9 +267,12 @@ Validation du checkpoint courant :
 Le `verify-source.ps1` historique complet n'a pas ete relance : il rehache et
 rejoue notamment 2,4 Gio de preuves sans rapport avec les fichiers modifies.
 Les chemins touches ont ete testes directement, et le script integre desormais
-les trois modules Lean avec compilation forcee hors cache.
+  les modules Lean locaux ainsi que les replays de coeur d8, ``F`GOW``, `FoDPO`
+  et `FCUj_` avec
+compilation forcee hors cache, car Lake ne suit pas les octets CNF/LRAT comme
+dependances.
 
-Checkpoint scientifique du 7 août 2026. Ce fichier est la source de reprise
+Checkpoint scientifique de la nuit du 7 au 8 août 2026. Ce fichier est la source de reprise
 condensée pour la prochaine conversation. Les rapports spécialisés gardent les
 tables complètes.
 
@@ -262,7 +422,9 @@ exhaustivement 923 012 affectations locales `R(4,4)`, 25 200 motifs et
   `0239E74AC009B28173E59C3293F7F9C9370A99832B19BB28205EF449E6238F7D`
 - largeurs : 15 → 5 040, 16 → 10 080, 17 → 10 080
 - d6 : 4 858 890 clauses, 20 cas à deux centres
-- d7 : 4 312 419 clauses, 17 cas
+- d7 : 4 312 419 clauses, 17 cas dans le découpage générique historique;
+  l'argument centre-minimal audité réduit la future normalisation à 9 cas,
+  mais son générateur et sa preuve Lean ne sont pas encore construits
 - d8 : 3 367 437 clauses, 13 cas
 
 L'ancienne formulation « CNF d8 doublement vérifiée » était trop forte. Le
@@ -282,8 +444,10 @@ attendues et ont rendu `UNSAT_WITHOUT_PROOF`. Le snapshot 7/13
 `COVER6_D8_CHECKPOINT7.json` et ses hashes restent un journal historique,
 supersédé par `COVER6_D8_CHECKPOINT13.json`. Aucun LRAT n'a été demandé.
 
-Aucun LRAT cover6, composition Lean des branches ou résultat universel complet
-n’est revendiqué.
+Cette note est désormais supersédée pour la voie normalisée : les treize
+LRAT résiduels n'existent toujours pas, mais le cœur Master8 possède deux
+rejeux LRAT Lean et la composition sémantique ferme `cover6-d8`. Aucun
+résultat universel tous degrés ni nouvelle borne n'est revendiqué.
 
 ## Pistes négatives — ne pas répéter sans idée nouvelle
 
@@ -309,14 +473,17 @@ Le prototype fermeture brute cover5, 8 classes/30 240 masques, et les scripts
 
 ## Prochaine priorité, sans dispersion
 
-1. conserver vert le replay exact de la source d8 et de ses 13 réductions ;
-2. formaliser le pont DIMACS, unités, deux centres et disjonction des motifs ;
-3. produire les 13 LRAT et les rejouer seulement après ce pont ;
-4. générer/certifier d7 (17 cas), puis d6 (20 cas) ;
-5. formaliser le transport global par complément `d ↔ 11-d` ;
-6. composer replays et branches Lean ;
-7. réinjecter seulement ensuite ce lemme dans les 12 gluings globaux ;
-8. audit bibliographique élargi et paquet portable avant publication.
+1. conserver verts le replay exact d8, le cœur Master8, sa source Lean et le
+   théorème terminal `degreeEight_has_cover6_motif` ;
+2. conserver verts MinCenter, la normalisation d7, le wrapper catalogue R34,
+   la source F7 indexée et les feuilles closes ``F`GOW`` / `FoDPO` / `FCUj_` ;
+3. certifier les cinq feuilles R34 non triviales encore ouvertes, puis composer
+   catalogue, symétrie `S7` et sémantique en un
+   théorème local d7 ;
+4. formaliser le transport global par complément `d ↔ 11-d` ;
+5. composer replays et branches Lean, puis réinjecter le lemme dans les 12
+   gluings globaux ;
+6. audit bibliographique élargi et paquet portable avant publication.
 
 Le seuil d’un article de certificat computationnel devient crédible si la
 route cover6 universelle est fermée et la nouveauté confirmée. Le seuil d’une
@@ -331,6 +498,8 @@ gluings globaux.
   `S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-cover9-universal`
 - cover6 universel, nom historique :
   `S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-cover5-closed-universal`
+- Master7 centre minimal :
+  `S:\CodexResearchCache\ramsey-formal\lrat-work\r45-cover6-master7-mincenter-v1`
 - minimum cover6 :
   `S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-complement-closed-minimum`
 - temporaire :
@@ -349,6 +518,7 @@ $lake = 'S:\CodexResearchCache\ramsey-formal\lean-toolchains\leanprover--lean4--
 $src = 'S:\CodexResearchCache\ramsey-formal\sources\mckay-r44'
 $out6 = 'S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-cover5-closed-universal'
 $out9 = 'S:\CodexResearchCache\ramsey-formal\lrat-work\r45-d12-cover9-universal'
+$out7 = 'S:\CodexResearchCache\ramsey-formal\lrat-work\r45-cover6-master7-mincenter-v1'
 $env:PYTHONDONTWRITEBYTECODE = '1'
 $env:TEMP = 'S:\CodexResearchCache\ramsey-formal\tmp\r45-d12-finalize'
 $env:TMP = $env:TEMP
@@ -364,12 +534,16 @@ git -c "safe.directory=C:/Users/migra/Documents/Codex/2026-08-06/on-va-reprendre
 & $py -B -m scripts.r45_d12_cover9_universal.verify_complement_closed_cover6_branches formula --output $out6 --degree 8
 & $py -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 preflight
 & $py -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 all --artifact-root $out6
+& $py -B -m scripts.r45_d12_cover9_universal.audit_cover6_d7_min_center_source quick
+& $py -B -m scripts.r45_d12_cover9_universal.materialize_cover6_d7_min_center_master verify --directory $out7
 ```
 
-Les 13 cas sont déjà produits et leur replay exact est acquis. Avant tout LRAT,
-rehacher le rapport suivi, rejouer `exact_replay_cover6_d8 all`, puis relier la
-formule exacte aux objets graphes/motifs dans Lean. Le runner refuse d’écraser
-un batch : choisir un nouveau `--batch-name`.
+Les 13 cas sont déjà produits et leur replay exact est acquis. La voie Master8
+normalisée possède désormais son coeur LRAT, sa source indexée et son théorème
+sémantique Lean; il n'est donc pas utile de produire treize LRAT individuels
+pour fermer d8. Avant toute régénération historique, rehacher le rapport suivi
+et rejouer `exact_replay_cover6_d8 all`. Le runner refuse d’écraser un batch :
+choisir un nouveau `--batch-name`. La priorité nouvelle est d7 à neuf cas.
 
 ## Sources primaires pour l’audit
 

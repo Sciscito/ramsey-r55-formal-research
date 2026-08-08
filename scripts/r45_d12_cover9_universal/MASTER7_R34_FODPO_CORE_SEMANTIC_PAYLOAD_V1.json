@@ -1,0 +1,263 @@
+{
+  "algorithm": "cover6-d7-r34-selected-core-semantics-v1",
+  "inputs": {
+    "catalogue_payloads": {
+      "d7_new_cube_asset": {
+        "bytes": 110880,
+        "name": "COVER6_D7_NEW_CUBE_PAYLOAD_V1.bin",
+        "sha256": "D1C8FD62254BA0F4DE852F6817F1CA2BD68C12958F8C41AF733C732F321A0446"
+      },
+      "full_k7": {
+        "characters": 338520,
+        "entries": 48360,
+        "section_counts": {
+          "3": 15480,
+          "4": 15480,
+          "5": 10200,
+          "6": 4680,
+          "7": 2520
+        },
+        "sha256": "50891F9AD69F4AA260835028BF750F7CD993DE6246178A46DA0D3D7CB21004F3"
+      },
+      "master8_indexed_source": {
+        "bytes": 305809,
+        "lines": 814,
+        "name": "R44Cover6Master8IndexedSource.lean",
+        "sha256": "9B1430855269F2E1A9A12AF3B7D32CB3A579EC2036B24B85598DE8CD01D0C72E"
+      },
+      "projected_k6": {
+        "characters": 10920,
+        "entries": 1560,
+        "section_counts": {
+          "2": 360,
+          "3": 540,
+          "4": 360,
+          "5": 300
+        },
+        "sha256": "9C040F9FBDF2A6FE1EF214FED5C084B5EBB19D6EADB5E722AB7B8C417F42F81F"
+      }
+    },
+    "core_clause_mapping": {
+      "bytes": 596608,
+      "lines": 7687,
+      "name": "core_clause_map.tsv",
+      "sha256": "D1BE4CB5C4F2DC989A70C58E95A386F360FCF2D5351108545F435BA8B2EE62D8"
+    },
+    "core_cnf": {
+      "bytes": 388178,
+      "lines": 7687,
+      "name": "cover6_closed_f7_r34_i7_FoDPO_core.cnf",
+      "sha256": "5AD1DA30B83A78BE10A9029D4B885B233F0FCDE6F57747260231DFFBA6063B45"
+    },
+    "generator": {
+      "bytes": 44145,
+      "lines": 1129,
+      "name": "generate_cover6_d7_r34_core_semantic_payload.py",
+      "sha256": "9E361CDAA9ACE242A2518A67099359782BEDB39B6A2D3A359F9A91D5D3A5EE9F"
+    },
+    "master7_indexed_source": {
+      "bytes": 14239,
+      "lines": 384,
+      "name": "R44Cover6Master7R34IndexedSource.lean",
+      "sha256": "6B1650D87BE0F4CC931DF21F180C48451097180D6DFBE09866A0C0B8FCB25A60"
+    }
+  },
+  "lean_consumer_contract": {
+    "core_index_reference": null,
+    "logical_chunk_size": 1800,
+    "logical_chunks": 11,
+    "raw_payload_is_ascii_include_str_compatible": true,
+    "rendered_pure_data_module_sha256": "D9B92BCF8806E93BAF5AA1DC773C9E3BA2AE563B3F2710F64AD7D55FD05B72C7",
+    "witness_table_reference": null
+  },
+  "schema_version": 1,
+  "scope": "Exact selected-core taxonomy, branchSource clause reconstruction, and orbit/full-lift witness generation only. No solver or S: access; no LRAT checking; no S7 catalogue composition, cover6-d7 theorem, global gluing, Ramsey-number bound, or discovery claim.",
+  "selection": {
+    "branch_source_clauses": 4312440,
+    "catalogue_index_zero_based": 6,
+    "incremental_position_one_based": 7,
+    "record": "FoDPO",
+    "representative_units": [
+      12,
+      13,
+      -14,
+      -15,
+      -16,
+      -17,
+      -22,
+      -23,
+      -24,
+      25,
+      -26,
+      -31,
+      -32,
+      -33,
+      34,
+      39,
+      40,
+      -41,
+      -46,
+      47,
+      -52
+    ],
+    "slug": "FoDPO"
+  },
+  "status": "PASS_EXACT_D7_R34_SELECTED_CORE_SEMANTIC_PAYLOAD",
+  "taxonomy": {
+    "all_selected_clauses_equal_exact_python_reconstruction_of_branchSource": true,
+    "families": {
+      "base": {
+        "clause_widths": {
+          "3": 6,
+          "6": 177
+        },
+        "core_clause_id_span": [
+          1,
+          183
+        ],
+        "retained_clauses": 183,
+        "selected_source_clause_ids_sha256": "E8BFE9034CA95CC8CBB8864CC390B4F679A63251C090BCD6190FF2BD0C6D05D2",
+        "source_clause_id_span": [
+          61,
+          699
+        ]
+      },
+      "root_containing_k6": {
+        "clause_widths": {
+          "10": 271,
+          "11": 1562,
+          "12": 963,
+          "13": 468
+        },
+        "core_clause_id_span": [
+          4405,
+          7668
+        ],
+        "retained_clauses": 3264,
+        "selected_source_clause_ids_sha256": "2D224E02FE639B5322B09F2FDEF4CF73AA6DF0F839D56667B16F88739A67B87F",
+        "source_clause_id_span": [
+          4128474,
+          4312251
+        ]
+      },
+      "root_free_k7": {
+        "clause_widths": {
+          "15": 477,
+          "16": 2492,
+          "17": 1252
+        },
+        "core_clause_id_span": [
+          184,
+          4404
+        ],
+        "retained_clauses": 4221,
+        "selected_source_clause_ids_sha256": "D209AA4CAE71931CEFB9F19BA386168EA6815D49ACC8A1318B74F55A29ABCF8C",
+        "source_clause_id_span": [
+          43606,
+          4127055
+        ]
+      },
+      "unit": {
+        "clause_widths": {
+          "1": 18
+        },
+        "core_clause_id_span": [
+          7669,
+          7686
+        ],
+        "retained_clauses": 18,
+        "selected_source_clause_ids_sha256": "05087742DFD03D2907116F2D399A683A97385FE77BE0EFD9E7708E6D6A61168F",
+        "source_clause_id_span": [
+          4312420,
+          4312440
+        ]
+      }
+    },
+    "family_counts": {
+      "base": 183,
+      "root_containing_k6": 3264,
+      "root_free_k7": 4221,
+      "unit": 18
+    },
+    "ordered_semantic_view_sha256": "A929C65B050615DB4019E508180471DDDD02DA6386CD4A58BAC0ABE1183638D5",
+    "ordering": "strict branchSource clause-id order",
+    "selected_clauses": 7686,
+    "unit_tail": {
+      "retained_literals": [
+        12,
+        13,
+        -14,
+        -15,
+        -16,
+        -17,
+        -23,
+        -24,
+        25,
+        -26,
+        -31,
+        -32,
+        -33,
+        34,
+        40,
+        -41,
+        47,
+        -52
+      ],
+      "retained_positions_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        19,
+        20
+      ]
+    }
+  },
+  "witness_payload": {
+    "characters": 18713,
+    "distinct_witnesses": 2939,
+    "encoding": "15-bit little-endian records packed into the alphabet 0-9A-Za-z-_ ; code = representative + 6 * itertools-permutation-rank",
+    "entries": 7485,
+    "name": null,
+    "permutation_rank_span": [
+      0,
+      5038
+    ],
+    "representative_counts": {
+      "0": 790,
+      "1": 652,
+      "2": 1867,
+      "3": 2013,
+      "4": 1368,
+      "5": 795
+    },
+    "round_trip_exact": true,
+    "sections": {
+      "root_containing_k6": {
+        "canonical_lift_order": "minimum (fixed, ones)",
+        "entries": 3264,
+        "entry_offset": 4221,
+        "lift_multiplicity_counts": {
+          "1": 3264
+        }
+      },
+      "root_free_k7": {
+        "entries": 4221,
+        "entry_offset": 0
+      }
+    },
+    "sha256": "A58428A50A1977ACF3237917107E4462110EAA4B1A62E7B22DD9DC3C17A9D5A2"
+  }
+}

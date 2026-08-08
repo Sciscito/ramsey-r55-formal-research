@@ -251,6 +251,24 @@ try {
         LRATCatcher.Tests.R44OrderTwelveTwoCenterSymmetry `
         LRATCatcher.Tests.R44OrderTwelveTwoCenterCases `
         LRATCatcher.Tests.R44Cover6MotifBridge `
+        LRATCatcher.Tests.R44Cover6CubeBridge `
+        LRATCatcher.Tests.R44Cover6RepresentativeCubes `
+        LRATCatcher.Tests.R44Cover6Master8CoreBridge `
+        LRATCatcher.Tests.R44Cover6Master8IndexedSource `
+        LRATCatcher.Tests.R44Cover6S7Transport `
+        LRATCatcher.Tests.R44Cover6SemanticComposition `
+        LRATCatcher.Tests.R44Cover6ConditionedWitnesses `
+        LRATCatcher.Tests.R44Cover6DegreeSevenMinCenter `
+        LRATCatcher.Tests.R44Cover6DegreeSevenNormalization `
+        LRATCatcher.Tests.R44Cover6DegreeSevenR34Normalization `
+        LRATCatcher.Tests.R44Cover6Master7R34IndexedSource `
+        LRATCatcher.Tests.R44Cover6DegreeSevenR34Oracle `
+        LRATCatcher.Tests.R44Cover6Master7R34FgraveGowCore `
+        LRATCatcher.Tests.R44Cover6Master7R34FgraveGowSemantics `
+        LRATCatcher.Tests.R44Cover6Master7R34FoDPOCore `
+        LRATCatcher.Tests.R44Cover6Master7R34FoDPOSemantics `
+        LRATCatcher.Tests.R44Cover6Master7R34FCUjCore `
+        LRATCatcher.Tests.R44Cover6Master7R34FCUjSemantics `
         LRATCatcher.Tests.R44Cover6ToyChain `
         LRATCatcher.Tests.R55ExclusiveBlockR44
     if ($LASTEXITCODE -ne 0) {
@@ -274,6 +292,204 @@ try {
     }
     Assert-AllowedLeanAxioms $cover6MotifLeanOutput `
         'Cover6 motif blocker bridge'
+    $cover6CubeLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6CubeBridge.lean 2>&1)
+    $cover6CubeLeanExit = $LASTEXITCODE
+    $cover6CubeLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6CubeLeanExit -ne 0) {
+        throw 'Cover6 partial-cube bridge forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6CubeLeanOutput `
+        'Cover6 partial-cube bridge'
+    $cover6RepresentativeLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6RepresentativeCubes.lean 2>&1)
+    $cover6RepresentativeLeanExit = $LASTEXITCODE
+    $cover6RepresentativeLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6RepresentativeLeanExit -ne 0) {
+        throw 'Cover6 representative-cube forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6RepresentativeLeanOutput `
+        'Cover6 representative-cube certificate'
+    $master8CoreBridgeLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master8CoreBridge.lean 2>&1)
+    $master8CoreBridgeLeanExit = $LASTEXITCODE
+    $master8CoreBridgeLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($master8CoreBridgeLeanExit -ne 0) {
+        throw 'Master8 core-subset bridge forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $master8CoreBridgeLeanOutput `
+        'Master8 core-subset bridge'
+    $master8IndexedSourceLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master8IndexedSource.lean 2>&1)
+    $master8IndexedSourceLeanExit = $LASTEXITCODE
+    $master8IndexedSourceLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($master8IndexedSourceLeanExit -ne 0) {
+        throw 'Master8 indexed-source forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $master8IndexedSourceLeanOutput `
+        'Master8 indexed-source UNSAT bridge'
+    $cover6S7LeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6S7Transport.lean 2>&1)
+    $cover6S7LeanExit = $LASTEXITCODE
+    $cover6S7LeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6S7LeanExit -ne 0) {
+        throw 'Cover6 S7 transport forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6S7LeanOutput `
+        'Cover6 S7 cube-to-motif transport'
+    $cover6SemanticLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6SemanticComposition.lean 2>&1)
+    $cover6SemanticLeanExit = $LASTEXITCODE
+    $cover6SemanticLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6SemanticLeanExit -ne 0) {
+        throw 'Cover6 semantic composition forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6SemanticLeanOutput `
+        'Cover6 conditional semantic composition'
+    $cover6ConditionedLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6ConditionedWitnesses.lean 2>&1)
+    $cover6ConditionedLeanExit = $LASTEXITCODE
+    $cover6ConditionedLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6ConditionedLeanExit -ne 0) {
+        throw 'Cover6 conditioned-witness forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6ConditionedLeanOutput `
+        'Cover6 degree-eight conditioned witness theorem'
+    $cover6DegreeSevenLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6DegreeSevenMinCenter.lean 2>&1)
+    $cover6DegreeSevenLeanExit = $LASTEXITCODE
+    $cover6DegreeSevenLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6DegreeSevenLeanExit -ne 0) {
+        throw 'Cover6 degree-seven minimum-centre forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6DegreeSevenLeanOutput `
+        'Cover6 degree-seven minimum-centre theorem'
+    $cover6DegreeSevenNormalizationLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6DegreeSevenNormalization.lean 2>&1)
+    $cover6DegreeSevenNormalizationLeanExit = $LASTEXITCODE
+    $cover6DegreeSevenNormalizationLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6DegreeSevenNormalizationLeanExit -ne 0) {
+        throw 'Cover6 degree-seven normalization forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6DegreeSevenNormalizationLeanOutput `
+        'Cover6 degree-seven exact nine-case normalization'
+    $cover6DegreeSevenR34NormalizationLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6DegreeSevenR34Normalization.lean 2>&1)
+    $cover6DegreeSevenR34NormalizationLeanExit = $LASTEXITCODE
+    $cover6DegreeSevenR34NormalizationLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6DegreeSevenR34NormalizationLeanExit -ne 0) {
+        throw 'Cover6 degree-seven R34 normalization forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6DegreeSevenR34NormalizationLeanOutput `
+        'Cover6 degree-seven R34 catalogue normalization'
+    $cover6Master7R34IndexedSourceLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master7R34IndexedSource.lean 2>&1)
+    $cover6Master7R34IndexedSourceLeanExit = $LASTEXITCODE
+    $cover6Master7R34IndexedSourceLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6Master7R34IndexedSourceLeanExit -ne 0) {
+        throw 'Cover6 Master7 R34 indexed-source forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6Master7R34IndexedSourceLeanOutput `
+        'Cover6 Master7 R34 indexed source'
+    $cover6DegreeSevenR34OracleLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6DegreeSevenR34Oracle.lean 2>&1)
+    $cover6DegreeSevenR34OracleLeanExit = $LASTEXITCODE
+    $cover6DegreeSevenR34OracleLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6DegreeSevenR34OracleLeanExit -ne 0) {
+        throw 'Cover6 degree-seven R34 oracle forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6DegreeSevenR34OracleLeanOutput `
+        'Cover6 degree-seven direct R34 motif oracle'
+    $cover6Master7FgraveGowLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master7R34FgraveGowCore.lean 2>&1)
+    $cover6Master7FgraveGowLeanExit = $LASTEXITCODE
+    $cover6Master7FgraveGowLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6Master7FgraveGowLeanExit -ne 0) {
+        throw 'Cover6 Master7 F`GOW source/core bridge forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6Master7FgraveGowLeanOutput `
+        'Cover6 Master7 F`GOW source/core UNSAT bridge'
+    $cover6Master7FgraveGowSemanticsLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master7R34FgraveGowSemantics.lean 2>&1)
+    $cover6Master7FgraveGowSemanticsLeanExit = $LASTEXITCODE
+    $cover6Master7FgraveGowSemanticsLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6Master7FgraveGowSemanticsLeanExit -ne 0) {
+        throw 'Cover6 Master7 F`GOW semantic closure forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6Master7FgraveGowSemanticsLeanOutput `
+        'Cover6 Master7 F`GOW semantic leaf closure'
+    $cover6Master7FoDPOLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master7R34FoDPOCore.lean 2>&1)
+    $cover6Master7FoDPOLeanExit = $LASTEXITCODE
+    $cover6Master7FoDPOLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6Master7FoDPOLeanExit -ne 0) {
+        throw 'Cover6 Master7 FoDPO source/core bridge forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6Master7FoDPOLeanOutput `
+        'Cover6 Master7 FoDPO source/core UNSAT bridge'
+    $cover6Master7FoDPOSemanticsLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master7R34FoDPOSemantics.lean 2>&1)
+    $cover6Master7FoDPOSemanticsLeanExit = $LASTEXITCODE
+    $cover6Master7FoDPOSemanticsLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6Master7FoDPOSemanticsLeanExit -ne 0) {
+        throw 'Cover6 Master7 FoDPO semantic closure forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6Master7FoDPOSemanticsLeanOutput `
+        'Cover6 Master7 FoDPO semantic leaf closure'
+    $cover6Master7FCUjLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master7R34FCUjCore.lean 2>&1)
+    $cover6Master7FCUjLeanExit = $LASTEXITCODE
+    $cover6Master7FCUjLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6Master7FCUjLeanExit -ne 0) {
+        throw 'Cover6 Master7 FCUj source/core bridge forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6Master7FCUjLeanOutput `
+        'Cover6 Master7 FCUj source/core UNSAT bridge'
+    $cover6Master7FCUjSemanticsLeanOutput = @(& $LakeExecutable env lean `
+        LRATCatcher/Tests/R44Cover6Master7R34FCUjSemantics.lean 2>&1)
+    $cover6Master7FCUjSemanticsLeanExit = $LASTEXITCODE
+    $cover6Master7FCUjSemanticsLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($cover6Master7FCUjSemanticsLeanExit -ne 0) {
+        throw 'Cover6 Master7 FCUj semantic closure forced Lean check failed.'
+    }
+    Assert-AllowedLeanAxioms $cover6Master7FCUjSemanticsLeanOutput `
+        'Cover6 Master7 FCUj semantic leaf closure'
+    $master8CoreReplayLeanOutput = @(& $LakeExecutable env lean `
+        ../../scripts/r45_d12_cover9_universal/master8_core/Replay.lean 2>&1)
+    $master8CoreReplayLeanExit = $LASTEXITCODE
+    $master8CoreReplayLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($master8CoreReplayLeanExit -ne 0) {
+        throw 'Master8 reduced-core forced Lean replay failed.'
+    }
+    Assert-AllowedLeanAxioms $master8CoreReplayLeanOutput `
+        'Master8 reduced-core dual replay'
+    $master7FgraveGowCoreReplayLeanOutput = @(& $LakeExecutable env lean `
+        ../../scripts/r45_d12_cover9_universal/master7_r34_fgravegow_core/Replay.lean 2>&1)
+    $master7FgraveGowCoreReplayLeanExit = $LASTEXITCODE
+    $master7FgraveGowCoreReplayLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($master7FgraveGowCoreReplayLeanExit -ne 0) {
+        throw 'Master7 F`GOW reduced-core forced Lean replay failed.'
+    }
+    Assert-AllowedLeanAxioms $master7FgraveGowCoreReplayLeanOutput `
+        'Master7 F`GOW reduced-core replay'
+    $master7FoDPOCoreReplayLeanOutput = @(& $LakeExecutable env lean `
+        ../../scripts/r45_d12_cover9_universal/master7_r34_fodpo_core/Replay.lean 2>&1)
+    $master7FoDPOCoreReplayLeanExit = $LASTEXITCODE
+    $master7FoDPOCoreReplayLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($master7FoDPOCoreReplayLeanExit -ne 0) {
+        throw 'Master7 FoDPO reduced-core forced Lean replay failed.'
+    }
+    Assert-AllowedLeanAxioms $master7FoDPOCoreReplayLeanOutput `
+        'Master7 FoDPO reduced-core replay'
+    $master7FCUjCoreReplayLeanOutput = @(& $LakeExecutable env lean `
+        ../../scripts/r45_d12_cover9_universal/master7_r34_fcuj_core/Replay.lean 2>&1)
+    $master7FCUjCoreReplayLeanExit = $LASTEXITCODE
+    $master7FCUjCoreReplayLeanOutput | ForEach-Object { Write-Host $_ }
+    if ($master7FCUjCoreReplayLeanExit -ne 0) {
+        throw 'Master7 FCUj reduced-core forced Lean replay failed.'
+    }
+    Assert-AllowedLeanAxioms $master7FCUjCoreReplayLeanOutput `
+        'Master7 FCUj reduced-core replay'
     $exclusiveBlockLeanOutput = @(& $LakeExecutable env lean `
         LRATCatcher/Tests/R55ExclusiveBlockR44.lean 2>&1)
     $exclusiveBlockLeanExit = $LASTEXITCODE

@@ -97,37 +97,110 @@ exactement les 25 200 masques motifs, sans extra ni manque. Son rapport
 Le code partage les représentants et hashes gelés ; il s'agit d'un audit fini
 à chemin de code séparé, pas d'une dérivation à faible mode commun.
 
+Le certificat Python compact
+`COVER6_CUBE_MOTIF_BRIDGE_V1.json` vérifie un autre maillon fini : les six
+représentants ont chacun une unique complétion `R44`, puis l'action de `S7`
+donne bijectivement 25 200 cubes et 25 200 masques motifs distincts. Pour le
+conditionnement de `F8`, il réduit les blocs sans racine à 334 représentants
+d'orbites de stabilisateur et les blocs contenant la racine à 38 représentants
+d'orbites projetés, avec les lifts contrôlés dans son modèle Python. Ce
+programme importe
+`exact_replay_cover6_d8`; ce n'est donc pas une implémentation indépendante.
+Sa portée exclut explicitement SAT, LRAT, égalité au DIMACS parsé, rejeu Lean
+et théorème `cover6-d8`.
+
 ## Frontière de confiance actuelle
 
-Les ingrédients ne sont pas encore composés :
+Les ingrédients sont désormais composés pour le théorème local `cover6-d8`;
+la liste suivante sépare les contrôles finis, le rejeu LRAT et les maillons
+sémantiques afin de rendre explicite la base de confiance :
 
 1. Le maillon fini Python source `F8 → F(p,q)` est maintenant exact, avec les
    métriques de chaque simplification et dédoublonnage conservées. Il demeure
    extérieur à Lean et partage les constantes gelées avec la génération.
 2. `R44Cover6MotifBridge.lean` matérialise les six graphes graph6, vérifie leurs
    trois paires complémentaires et prouve que le bloqueur DIMACS complet de 21
-   littéraux est faux exactement sur une occurrence induite étiquetée. Les
-   cubes partiels conditionnés et leur expansion dans les 3 367 437 clauses ne
-   sont pas encore reliés à ce bloqueur déclaratif.
-3. Le décalage DIMACS un-vers-zéro, les polarités, les 21 unités et l'égalité de
-   la formule globale ne sont pas encore composés avec `TwoCenterBranch`.
-4. Aucun LRAT cover6 n'existe ; aucun des treize UNSAT n'est donc au-dessus du
-   niveau 2.
-5. La racine arbitraire, le transport par complément, `d6`, `d7` et le gluing
+   littéraux est faux exactement sur une occurrence induite étiquetée.
+3. `R44Cover6CubeBridge.lean` compile et prouve génériquement qu'un bloqueur de
+   cube partiel est faux exactement lorsque ses bits fixes correspondent. Il
+   transforme aussi une hypothèse séparée de sûreté du cube en occurrence de
+   motif.
+4. `R44Cover6RepresentativeCubes.lean` compile et certifie les six constantes :
+   bonne formation, énumération de 16 à 64 complétions, unique complétion
+   `R44` et identification de chaque cible par une permutation explicite.
+   `R44Cover6S7Transport.lean` prouve désormais l'invariance `R44`, le
+   transport bit-à-bit des masques et de `CubeMatchesLocal`, puis le fait que
+   tout cube accompagné d'un témoin d'orbite vers l'un des six représentants
+   force le motif transporté. Le certificat
+   `COVER6_CONDITIONED_ORBIT_WITNESSES_V1.json` fournit maintenant les
+   32 880 témoins K7 et 1 200 lifts K6, puis vérifie la vue ordonnée des
+   3 514 + 2 409 bloqueurs retenus par le cœur.
+   `R44Cover6ConditionedWitnesses.lean` décode ce flux, contrôle les clauses
+   et lifts par deux certificats finis agrégés et construit le fournisseur
+   sémantique dans Lean.
+5. Le décalage DIMACS un-vers-zéro et l'égalité des 6 152 clauses du cœur à la
+   sélection de la source Lean sont maintenant formalisés.
+   `R44Cover6SemanticComposition.lean` ferme les 717 clauses de base et les
+   huit extras, certifie la découpe 221/3514/2409/8, puis compose un
+   `CoreBlockerWitnessProvider` avec `TwoCenterBranch` et l'UNSAT du cœur.
+   Le module conditionné instancie cet endpoint et prouve le corollaire positif
+   `degreeEight_has_cover6_motif`.
+6. Un pilote `Master8` exact réunit les treize affectations dans une formule de
+   3 367 459 clauses. CaDiCaL la ferme en 4 598 conflits et produit un LRAT
+   unique de 128 131 809 octets avec `--checkproof=2`. Le rejeu Lean brut a
+   d'abord été arrêté au plafond de 3 Gio avant tout théorème. Une fermeture
+   des dépendances, sûre ici parce que les 1 182 841 additions sont toutes
+   RUP, réduit ensuite la source à 6 152 clauses et la preuve à 7 061
+   additions. Le LRAT remappé et un second LRAT régénéré par CaDiCaL sur le
+   cœur sont tous deux acceptés par LRATCatcher. Le mapping vers le DIMACS
+   Master8 gelé est une sous-séquence ordonnée exacte.
+7. `R44Cover6Master8CoreBridge.lean` prouve génériquement que l'UNSAT d'une
+   sélection indexée transfère à la CNF complète.
+   `R44Cover6Master8IndexedSource.lean` définit ensuite la source Master8 par
+   sections et unranking, vérifie exactement la sélection des 6 152 clauses,
+   rejoue le LRAT et prouve `master8Source_unsat`. La taxonomie révèle une voie
+   plus simple : `F8` plus sept tris et `-15`, sans unités racine, bornes
+   croisées ni treize cas. Cette source a 3 367 445 clauses, SHA-256
+   `0133D40DC0458E7CD426F22DA08B525B4197467E539E4446AE94A38E84D7341E`,
+   et Lean prouve `normalizedSource_unsat`.
+8. La racine arbitraire, le transport par complément, `d6`, `d7` et le gluing
    global `R(4,5,25)` restent séparés.
 
-En conséquence, le théorème `cover6-d8` lui-même demeure une cible, pas un
-résultat démontré. Les niveaux 2, 3 et 4 atteints par des sous-maillons ne
-s'additionnent pas en un niveau global.
+En conséquence, le théorème local `cover6-d8` est maintenant démontré au
+niveau 4 : `isRamseyFree 12 4 4` et un degré positif 8 de la racine 0
+impliquent une occurrence induite de l'un des six motifs. Cette conclusion ne
+s'étend pas encore à une racine arbitraire dans l'API terminale, aux degrés 6
+et 7, au transport global par complément, au gluing `R(4,5,25)` ou à une
+nouvelle borne sur `R(5,5)`.
 
-Reproduction ciblée des deux nouveaux maillons :
+Reproduction ciblée des maillons locaux :
 
 ```powershell
 python -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 preflight
 python -B -m scripts.r45_d12_cover9_universal.exact_replay_cover6_d8 all --artifact-root $out6
+python -B -m scripts.r45_d12_cover9_universal.certify_cover6_cube_motif_bridge check
+python -B -m unittest scripts.r45_d12_cover9_universal.test_cover6_conditioned_orbit_witnesses
+python -B -m scripts.r45_d12_cover9_universal.master8_prefix_pilot preflight
+python -B -m unittest scripts.r45_d12_cover9_universal.test_reduce_master8_lrat_core
+python -B -m unittest scripts.r45_d12_cover9_universal.test_master8_core_taxonomy
 cd vendor/lrat-catcher
 lake env lean LRATCatcher/Tests/R44Cover6MotifBridge.lean
+lake env lean LRATCatcher/Tests/R44Cover6CubeBridge.lean
+lake env lean LRATCatcher/Tests/R44Cover6RepresentativeCubes.lean
+lake env lean LRATCatcher/Tests/R44Cover6Master8CoreBridge.lean
+lake env lean LRATCatcher/Tests/R44Cover6Master8IndexedSource.lean
+lake env lean LRATCatcher/Tests/R44Cover6S7Transport.lean
+lake env lean LRATCatcher/Tests/R44Cover6SemanticComposition.lean
+lake env lean LRATCatcher/Tests/R44Cover6ConditionedWitnesses.lean
+lake env lean ../../scripts/r45_d12_cover9_universal/master8_core/Replay.lean
 ```
+
+Le test exhaustif cubes/motifs est activé séparément par
+`RAMSEY_COVER6_BRIDGE_FULL=1`; il régénère et compare alors exactement le JSON
+compact suivi. Les tests longs du cœur Master8 sont eux aussi opt-in et sont
+documentés dans leur module de test. Le recalcul des 34 080 témoins
+conditionnés est activé par
+`RAMSEY_COVER6_CONDITIONED_WITNESSES_FULL=1`.
 
 ## Chaîne jouet fermée
 

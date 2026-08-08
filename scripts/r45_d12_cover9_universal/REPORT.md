@@ -1,5 +1,14 @@
 # Universal `cover9` experiment
 
+> **Supersession note (2026-08-08).** This report preserves the historical
+> cover9/catalogue checkpoint. The later complement-closed cover6 Master8
+> route has a compact LRAT core, an exact indexed Lean source, checked
+> conditioned witnesses and the terminal theorem
+> `degreeEight_has_cover6_motif`. Thus the local cover6 degree-eight statement
+> is closed at level 4. Degrees six and seven, complement transport into a
+> universal theorem, global gluings and any new Ramsey-number bound remain
+> open.
+
 Status: deterministic CNF generated and structurally verified; all 13
 two-centre residual CNFs for root degree eight have Lean-replayed LRAT
 certificates.  The global semantic bridge and root degrees 3 through 7 remain.

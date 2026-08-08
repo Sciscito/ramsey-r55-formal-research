@@ -2,16 +2,16 @@
 
 (() => {
   const root = document.getElementById('quest-hud');
-  const state = window.RAMSEY_QUEST_STATE;
+  const state = window.QUEST_HUD_STATE || window.RAMSEY_QUEST_STATE;
 
   if (!root || !state) {
-    throw new Error('Ramsey Quest HUD: #quest-hud or RAMSEY_QUEST_STATE is missing.');
+    throw new Error('Quest HUD: #quest-hud or QUEST_HUD_STATE is missing.');
   }
 
   const requiredArrays = ['stages', 'inventory', 'events'];
   requiredArrays.forEach((key) => {
     if (!Array.isArray(state[key])) {
-      throw new TypeError(`Ramsey Quest HUD: ${key} must be an array.`);
+      throw new TypeError(`Quest HUD: ${key} must be an array.`);
     }
   });
 
@@ -37,6 +37,8 @@
     : 0;
 
   root.style.setProperty('--gate-fill', `${(fillRatio * 100).toFixed(2)}%`);
+  document.title = state.project.documentTitle || `${state.project.title} HUD`;
+  root.setAttribute('aria-label', state.project.ariaLabel || 'Suivi ludique du projet');
 
   setText('quest-kicker', state.project.kicker);
   setText('quest-title', state.project.title);
@@ -119,13 +121,14 @@
   const eventConsole = root.querySelector('.event-console');
   const hero = byId('pixel-hero');
   const sparkField = byId('spark-field');
-  let eventIndex = Math.min(doneCount, Math.max(0, state.events.length - 1));
+  let eventIndex = 0;
   let eventTimer = null;
+  let hasBeenVisible = !document.hidden;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const launchSparks = () => {
-    if (prefersReducedMotion) return;
+    if (reducedMotionQuery.matches) return;
     sparkField.replaceChildren();
     for (let index = 0; index < 9; index += 1) {
       const spark = document.createElement('span');
@@ -162,7 +165,7 @@
   };
 
   const startEventLoop = () => {
-    if (eventTimer || state.events.length < 2) return;
+    if (document.hidden || eventTimer || state.events.length < 2) return;
     const interval = Math.max(3000, Number(state.timing?.eventIntervalMs) || 6500);
     eventTimer = window.setInterval(nextEvent, interval);
   };
@@ -177,7 +180,8 @@
     if (document.hidden) {
       stopEventLoop();
     } else {
-      nextEvent();
+      if (hasBeenVisible) nextEvent();
+      hasBeenVisible = true;
       startEventLoop();
     }
   });

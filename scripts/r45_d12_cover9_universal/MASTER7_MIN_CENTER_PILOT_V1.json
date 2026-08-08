@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "status": "UNKNOWN_AT_CONFLICT_LIMIT",
+  "scope": "Bounded solver pilot on the exact normalized Master7 formula only; no SAT model, UNSAT result, LRAT, Lean composition, global gluing, or new Ramsey-number bound.",
+  "date": "2026-08-08",
+  "formula": {
+    "source_f7": {
+      "name": "cover6_closed_block_degree_d7.cnf",
+      "variables": 66,
+      "clauses": 4312419,
+      "bytes": 246507515,
+      "sha256": "85A93BEEA81BC890E3343A5A52094380446432F81AF9B28A2A35F9B76CAC920C",
+      "manifest_sha256": "FED895B4BC955F76EFD0ABA9135394C39E66C7B2FD534EF4BC089570915E611F"
+    },
+    "master7": {
+      "name": "cover6_closed_master_d7_min_center9.cnf",
+      "variables": 66,
+      "clauses": 4312428,
+      "bytes": 246507588,
+      "sha256": "DFA3F7C3C1ADF2F6C8855FA5F08D11D54BFC826205246E68DAD5F4F5D46A5BBE",
+      "body_reused_byte_for_byte": true,
+      "normalization_clauses": 9,
+      "normalization_suffix_bytes": 73
+    },
+    "external_cache_directory": "S:\\CodexResearchCache\\ramsey-formal\\lrat-work\\r45-cover6-master7-mincenter-v1"
+  },
+  "normalization": {
+    "pairs": [
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [2, 4]
+    ],
+    "source_audit_report": "COVER6_D7_MIN_CENTER_SOURCE_AUDIT_V1.json",
+    "source_audit_report_sha256": "3CBEF9CAC765E5D9D09E4FF1620D6EFBF31FA31F28136D77C61F17419AB381FF",
+    "lean_min_center_module": "R44Cover6DegreeSevenMinCenter.lean",
+    "lean_min_center_sha256": "16448C8ECA7D22DDAAF734C481553A750FE1857D23F8288C180EECB2759DB6AF",
+    "lean_min_center_scope": "Root sorting and existence of an internal-degree-one-or-two centre are formalized; the centre permutation and final 6+4 sorting are not yet composed."
+  },
+  "solver": {
+    "name": "CaDiCaL",
+    "version": "2.1.2",
+    "binary_sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "flags": [
+      "--unsat",
+      "--walk=false",
+      "-c",
+      "100000"
+    ],
+    "lrat_requested": false,
+    "jobs": 1
+  },
+  "supervision": {
+    "pid": 15132,
+    "wall_limit_seconds": 600,
+    "rss_limit_mib": 1536,
+    "artifact_limit_gib": 2,
+    "wrapper_stop_reason": null,
+    "wrapper_wall_seconds": 265.676,
+    "wrapper_sampled_peak_rss_mib": 726.4,
+    "free_space_before_gib": {
+      "C": 6.45,
+      "S": 464.56
+    }
+  },
+  "result": {
+    "solver_status": "UNKNOWN",
+    "termination": "conflict limit",
+    "conflicts": 100003,
+    "decisions": 113312,
+    "fixed_variables": 5,
+    "learned_clauses": 98887,
+    "process_seconds": 262.44,
+    "real_seconds": 263.82,
+    "solver_reported_maximum_resident_set_mib": 927.67,
+    "proof_status": "none",
+    "scientific_interpretation": "The exact nine-case master is substantially harder for direct CaDiCaL than Master8. Raising the conflict budget or requesting LRAT is not justified before a structural or branchwise split."
+  },
+  "logs": {
+    "stdout": {
+      "name": "master7_pilot.stdout.log",
+      "bytes": 6763,
+      "sha256": "52FF29331AD7DC096B932984CB2D902E5287CE87B5140F2A84C5C2867F87B735"
+    },
+    "stderr": {
+      "name": "master7_pilot.stderr.log",
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    }
+  },
+  "next_action": "Formalize the centre permutation and 6+4 sort, then test a branchwise or otherwise symmetry-strengthened pilot instead of increasing the direct Master7 budget."
+}

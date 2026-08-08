@@ -41,7 +41,14 @@ modifie la barre native de Codex ou de GitHub.
 ## Réutiliser pour un autre projet
 
 Copier ce dossier puis éditer **uniquement `ramsey-state.js`**. Le moteur
-`hud.js`, la feuille `styles.css` et `index.html` sont génériques.
+`hud.js`, la feuille `styles.css` et `index.html` sont génériques. Le titre de
+la page et le libellé d'accessibilité se règlent également depuis ce fichier,
+via `project.documentTitle` et `project.ariaLabel`.
+
+Par défaut, le thème pixel-art et la mise en page sont gelés entre deux
+reprises : on actualise les données de quête, pas l'apparence. Ne modifier les
+trois fichiers génériques que si l'utilisateur demande explicitement une
+évolution du composant lui-même.
 
 Les sections à adapter sont :
 

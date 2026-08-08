@@ -1,0 +1,281 @@
+{
+  "algorithm": "cover6-d7-r34-selected-core-semantics-v1",
+  "inputs": {
+    "catalogue_payloads": {
+      "d7_new_cube_asset": {
+        "bytes": 110880,
+        "name": "COVER6_D7_NEW_CUBE_PAYLOAD_V1.bin",
+        "sha256": "D1C8FD62254BA0F4DE852F6817F1CA2BD68C12958F8C41AF733C732F321A0446"
+      },
+      "full_k7": {
+        "characters": 338520,
+        "entries": 48360,
+        "section_counts": {
+          "3": 15480,
+          "4": 15480,
+          "5": 10200,
+          "6": 4680,
+          "7": 2520
+        },
+        "sha256": "50891F9AD69F4AA260835028BF750F7CD993DE6246178A46DA0D3D7CB21004F3"
+      },
+      "master8_indexed_source": {
+        "bytes": 305809,
+        "lines": 814,
+        "name": "R44Cover6Master8IndexedSource.lean",
+        "sha256": "9B1430855269F2E1A9A12AF3B7D32CB3A579EC2036B24B85598DE8CD01D0C72E"
+      },
+      "projected_k6": {
+        "characters": 10920,
+        "entries": 1560,
+        "section_counts": {
+          "2": 360,
+          "3": 540,
+          "4": 360,
+          "5": 300
+        },
+        "sha256": "9C040F9FBDF2A6FE1EF214FED5C084B5EBB19D6EADB5E722AB7B8C417F42F81F"
+      }
+    },
+    "core_clause_mapping": {
+      "bytes": 450424,
+      "lines": 5808,
+      "name": "core_clause_map.tsv",
+      "sha256": "4324BD649921CA8EF00673A002D051C7046FE0B5D31144B59A07FAD7BF73D992"
+    },
+    "core_cnf": {
+      "bytes": 289163,
+      "lines": 5808,
+      "name": "cover6_closed_f7_r34_i6_FgraveGOW_core.cnf",
+      "sha256": "2DD4F2F3359A78163B20B7103804A34E081F71CE436D8332DAE71309A54C0B6E"
+    },
+    "generator": {
+      "bytes": 44145,
+      "lines": 1129,
+      "name": "generate_cover6_d7_r34_core_semantic_payload.py",
+      "sha256": "9E361CDAA9ACE242A2518A67099359782BEDB39B6A2D3A359F9A91D5D3A5EE9F"
+    },
+    "master7_indexed_source": {
+      "bytes": 14239,
+      "lines": 384,
+      "name": "R44Cover6Master7R34IndexedSource.lean",
+      "sha256": "6B1650D87BE0F4CC931DF21F180C48451097180D6DFBE09866A0C0B8FCB25A60"
+    }
+  },
+  "lean_consumer_contract": {
+    "core_index_reference": {
+      "definition": "fgraveGowCoreZeroBasedIndices",
+      "entries": 5807,
+      "exactly_matches_mapping": true,
+      "module": {
+        "bytes": 57321,
+        "lines": 628,
+        "name": "R44Cover6Master7R34FgraveGowCore.lean",
+        "sha256": "3266F3DACE0854B665FA2374B0742D5FA0BBD0D4AB79B49BC32DDA21A4320C29"
+      },
+      "zero_based_indices_sha256": "885A59097FE3040D94FB920CA02751C46C242E8707D0652A87D88D051D4FDCD6"
+    },
+    "logical_chunk_size": 1800,
+    "logical_chunks": 8,
+    "raw_payload_is_ascii_include_str_compatible": true,
+    "rendered_pure_data_module_sha256": "E5D839EAF8BCA3EE543772BB38F8B755C548C45E50B2D55D5D9602C7797A8AD1",
+    "witness_table_reference": {
+      "chunk_size": 1800,
+      "chunks": 8,
+      "definition": "d7CoreWitnessChunks",
+      "exactly_matches_generated_payload_and_chunks": true,
+      "module": {
+        "bytes": 48595,
+        "lines": 798,
+        "name": "R44Cover6Master7R34FgraveGowSemantics.lean",
+        "sha256": "9608990A7CD482A3526E7A7A788D8ED158F3FF3C34E9AA57087B331A4BB20493"
+      }
+    }
+  },
+  "schema_version": 1,
+  "scope": "Exact selected-core taxonomy, branchSource clause reconstruction, and orbit/full-lift witness generation only. No solver or S: access; no LRAT checking; no S7 catalogue composition, cover6-d7 theorem, global gluing, Ramsey-number bound, or discovery claim.",
+  "selection": {
+    "branch_source_clauses": 4312440,
+    "catalogue_index_zero_based": 5,
+    "incremental_position_one_based": 6,
+    "record": "F`GOW",
+    "representative_units": [
+      12,
+      -13,
+      -14,
+      -15,
+      -16,
+      -17,
+      -22,
+      -23,
+      -24,
+      -25,
+      -26,
+      31,
+      32,
+      -33,
+      -34,
+      -39,
+      40,
+      -41,
+      -46,
+      47,
+      52
+    ],
+    "slug": "FgraveGOW"
+  },
+  "status": "PASS_EXACT_D7_R34_SELECTED_CORE_SEMANTIC_PAYLOAD",
+  "taxonomy": {
+    "all_selected_clauses_equal_exact_python_reconstruction_of_branchSource": true,
+    "families": {
+      "base": {
+        "clause_widths": {
+          "3": 7,
+          "6": 161
+        },
+        "core_clause_id_span": [
+          1,
+          168
+        ],
+        "retained_clauses": 168,
+        "selected_source_clause_ids_sha256": "EDA77318BC1D4B7001CAF7D32B2E15C301568848DB8E1E60790F5CD4525833EA",
+        "source_clause_id_span": [
+          61,
+          699
+        ]
+      },
+      "root_containing_k6": {
+        "clause_widths": {
+          "10": 304,
+          "11": 907,
+          "12": 914,
+          "13": 271
+        },
+        "core_clause_id_span": [
+          3396,
+          5791
+        ],
+        "retained_clauses": 2396,
+        "selected_source_clause_ids_sha256": "0C37F1AA3FAAB190DEF7D5AA437199F3D6FFB091754CEEE1816400742F4DD33F",
+        "source_clause_id_span": [
+          4129745,
+          4312367
+        ]
+      },
+      "root_free_k7": {
+        "clause_widths": {
+          "15": 663,
+          "16": 1594,
+          "17": 970
+        },
+        "core_clause_id_span": [
+          169,
+          3395
+        ],
+        "retained_clauses": 3227,
+        "selected_source_clause_ids_sha256": "76ED34FBFCA2AD3BAE08C486385F5463D9D0045446D00C3089F84A59CDEF7AF6",
+        "source_clause_id_span": [
+          28087,
+          4128233
+        ]
+      },
+      "unit": {
+        "clause_widths": {
+          "1": 16
+        },
+        "core_clause_id_span": [
+          5792,
+          5807
+        ],
+        "retained_clauses": 16,
+        "selected_source_clause_ids_sha256": "B858C954ABB7E42DDCAC328EEDF5397D84AA07BD21110BD2BD0531FCBB058B19",
+        "source_clause_id_span": [
+          4312420,
+          4312436
+        ]
+      }
+    },
+    "family_counts": {
+      "base": 168,
+      "root_containing_k6": 2396,
+      "root_free_k7": 3227,
+      "unit": 16
+    },
+    "ordered_semantic_view_sha256": "9653388E6E8FD4F33DB69C9E3FDCD3DA677E197E68977D6E3ADBFF35E0C5C31E",
+    "ordering": "strict branchSource clause-id order",
+    "selected_clauses": 5807,
+    "unit_tail": {
+      "retained_literals": [
+        12,
+        -13,
+        -14,
+        -15,
+        -16,
+        -17,
+        -22,
+        -23,
+        -24,
+        -25,
+        -26,
+        31,
+        32,
+        -33,
+        -34,
+        40
+      ],
+      "retained_positions_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16
+      ]
+    }
+  },
+  "witness_payload": {
+    "characters": 14058,
+    "distinct_witnesses": 2195,
+    "encoding": "15-bit little-endian records packed into the alphabet 0-9A-Za-z-_ ; code = representative + 6 * itertools-permutation-rank",
+    "entries": 5623,
+    "name": "MASTER7_R34_FGRAVEGOW_CORE_SEMANTIC_WITNESSES_V1.bin",
+    "permutation_rank_span": [
+      0,
+      5038
+    ],
+    "representative_counts": {
+      "0": 1032,
+      "1": 435,
+      "2": 1366,
+      "3": 1083,
+      "4": 959,
+      "5": 748
+    },
+    "round_trip_exact": true,
+    "sections": {
+      "root_containing_k6": {
+        "canonical_lift_order": "minimum (fixed, ones)",
+        "entries": 2396,
+        "entry_offset": 3227,
+        "lift_multiplicity_counts": {
+          "1": 2396
+        }
+      },
+      "root_free_k7": {
+        "entries": 3227,
+        "entry_offset": 0
+      }
+    },
+    "sha256": "2CD6F423E9053A83E65D093FFB33BDAB53AB42FB2A0ABAE334BF51D364E62E38"
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "status": "PASS_EXACT_D7_MIN_CENTER_SOURCE_AUDIT",
+  "scope": "Deterministic F7 and normalized-master clause stream, conditioned payloads, and finite ten-variable partition only; no SAT, LRAT, Lean theorem, global normalization theorem, or new Ramsey bound.",
+  "implementation": {
+    "name": "audit_cover6_d7_min_center_source.py",
+    "stdlib_only": true,
+    "imports_project_generator": false,
+    "uses_lrat": false,
+    "uses_solver": false,
+    "writes_large_artifacts": false,
+    "formula_mode": "hash-only streaming; no CNF was written"
+  },
+  "inputs": {
+    "cover_tsv": "cover6_complement_closed.tsv",
+    "cover_tsv_sha256": "404E49E3218424FCB73314ADEE42CC873CD3F8D67E4615653A8BC0210F61AD16",
+    "cover_records": [
+      "F@h^g",
+      "FKDhw",
+      "FG`Xo",
+      "FdW}w",
+      "FHFLw",
+      "FIIXw"
+    ],
+    "labelled_masks": 25200,
+    "labelled_mask_sha256": "04B9688924BFC2EF6F92FB5734B19E7E771C37446DD3E442ECED8648BE1CBDD7",
+    "cube_closure": 25200,
+    "cube_closure_sha256": "0239E74AC009B28173E59C3293F7F9C9370A99832B19BB28205EF449E6238F7D",
+    "tracked_d8_witness_report": {
+      "name": "COVER6_CONDITIONED_ORBIT_WITNESSES_V1.json",
+      "sha256": "0F04DC3992BE3E87493E369305FB608DD44AE1205363CCBCCCAC601C5CDFB34B"
+    }
+  },
+  "dimacs_convention": {
+    "positive_literal": "edge present / raw graph6 adjacency bit 1",
+    "variables": "row-major upper-triangle K12 edge variables, one-based",
+    "root_edges": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "root_assignment": {
+      "positive_variables": [1, 2, 3, 4, 5, 6, 7],
+      "negative_variables": [8, 9, 10, 11]
+    },
+    "center_to_root_neighbour_block": [12, 13, 14, 15, 16, 17],
+    "center_to_root_nonneighbour_block": [18, 19, 20, 21],
+    "root_variables_absent_from_f7_body": true,
+    "blocker_polarity": "cube bit 1 becomes a negative literal; cube bit 0 becomes positive"
+  },
+  "normalization_boundary": {
+    "external_mathematical_argument": "In the seven-vertex root neighbourhood H, triangle-freeness and alpha(H)<=3 give Delta(H)<=3; odd order rules out all degrees 3, while R(3,3)=6 rules out an isolated vertex. A minimum-degree centre therefore has p in {1,2}. The global degree lower bound gives p+q>=2.",
+    "permutation_needed_before_using_f7": "send a degree-seven root to vertex 0, a minimum-degree H vertex to 1, then sort the two remaining blocks",
+    "formalized_here": false,
+    "clauses": [
+      [12],
+      [-14],
+      [14, -15],
+      [15, -16],
+      [16, -17],
+      [18, -19],
+      [19, -20],
+      [20, -21],
+      [13, 18]
+    ],
+    "partition": {
+      "models": 9,
+      "pairs": [
+        [1, 1],
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [2, 0],
+        [2, 1],
+        [2, 2],
+        [2, 3],
+        [2, 4]
+      ],
+      "all_models_are_two_sorted_prefixes": true,
+      "exactly_nine_minimum_center_cases": true,
+      "every_clause_is_semantically_essential": true
+    }
+  },
+  "clause_arithmetic": {
+    "base": 699,
+    "root_free_k7": 4127760,
+    "root_containing_k6": 183960,
+    "f7": 4312419,
+    "normalization_extras": 9,
+    "master7": 4312428
+  },
+  "local_cube_exactness": {
+    "cube_completions_checked": 806400,
+    "forbidden_r44_masks": 25200,
+    "covered_forbidden_masks": 25200,
+    "exact_on_local_r44": true
+  },
+  "payloads": {
+    "full_k7": {
+      "neighbour_counts": [3, 4, 5, 6, 7],
+      "section_entries": [15480, 15480, 10200, 4680, 2520],
+      "entries": 48360,
+      "packed_cube_ascii_characters": 338520,
+      "packed_cube_sha256": "50891F9AD69F4AA260835028BF750F7CD993DE6246178A46DA0D3D7CB21004F3",
+      "packed_witness_ascii_characters": 120900,
+      "packed_witness_sha256": "399C15C8989C78D6A47018F0334E99E6BB5494F4C9A42608F0C67231D4CF7D86",
+      "new_section": {
+        "neighbour_count": 3,
+        "entries": 15480,
+        "cube_sha256": "4270BF41C77025565EC6108F7F06A65C7ACD804AAA84FB8560508529F2DC1BF3",
+        "packed_cube_ascii_characters": 108360,
+        "packed_cube_sha256": "C0CBF568B5D75FEF9FBD0D09545EE96F6932CEC480C2966AED22FCD61D763A58",
+        "packed_witness_ascii_characters": 38700,
+        "packed_witness_sha256": "8C53D6371A29999B63A7D256431668274BEA33032E19A815B31A78BCDB392BB8"
+      },
+      "reused_d8_sections": [4, 5, 6, 7]
+    },
+    "projected_k6": {
+      "neighbour_counts": [2, 3, 4, 5],
+      "section_entries": [360, 540, 360, 300],
+      "entries": 1560,
+      "packed_cube_ascii_characters": 10920,
+      "packed_cube_sha256": "9C040F9FBDF2A6FE1EF214FED5C084B5EBB19D6EADB5E722AB7B8C417F42F81F",
+      "packed_witness_ascii_characters": 3900,
+      "packed_witness_sha256": "4B5798859ABAA6FB0612BC4BD294FBE96F63970C98E47C6B91BB63444EE6E054",
+      "new_section": {
+        "neighbour_count": 2,
+        "entries": 360,
+        "projected_cube_sha256": "C3EE8FB6BEA0BBD3E5C806D504AAA66474B2C129C61739B8E7B3956D27713B25",
+        "packed_cube_ascii_characters": 2520,
+        "packed_cube_sha256": "28D228113D7A70903E41389723892FFFF698C52989EAE80646F47E43C246B770",
+        "packed_witness_ascii_characters": 900,
+        "packed_witness_sha256": "8FFC8DBFC0ABFD571C5708A03FF5DE710BF9829264DE0B8E31E2D48938AFFFF0",
+        "full_lift_multiplicity_counts": {
+          "1": 360
+        }
+      },
+      "reused_d8_sections": [3, 4, 5]
+    },
+    "reuse_checks": {
+      "k7_a4_through_a7_cube_payload": true,
+      "k7_a4_through_a7_witness_payload": true,
+      "k6_a3_through_a5_cube_payload": true,
+      "k6_a3_through_a5_witness_payload": true
+    }
+  },
+  "fingerprints": {
+    "f7": {
+      "variables": 66,
+      "clauses": 4312419,
+      "bytes": 246507515,
+      "sha256": "85A93BEEA81BC890E3343A5A52094380446432F81AF9B28A2A35F9B76CAC920C",
+      "widths": {
+        "3": 39,
+        "6": 660,
+        "10": 20160,
+        "11": 70056,
+        "12": 62496,
+        "13": 31248,
+        "15": 962640,
+        "16": 1632960,
+        "17": 1532160
+      }
+    },
+    "master7_min_center": {
+      "variables": 66,
+      "clauses": 4312428,
+      "bytes": 246507588,
+      "sha256": "DFA3F7C3C1ADF2F6C8855FA5F08D11D54BFC826205246E68DAD5F4F5D46A5BBE",
+      "widths": {
+        "1": 2,
+        "2": 7,
+        "3": 39,
+        "6": 660,
+        "10": 20160,
+        "11": 70056,
+        "12": 62496,
+        "13": 31248,
+        "15": 962640,
+        "16": 1632960,
+        "17": 1532160
+      }
+    },
+    "second_implementation_cross_check": {
+      "implementation": "existing generate_complement_closed_cover6_branches.py catalogue and clause path",
+      "f7_byte_for_byte_fingerprint_equal": true,
+      "master7_byte_for_byte_fingerprint_equal": true
+    },
+    "corrected_stale_prediction": {
+      "old_bytes": 246507579,
+      "exact_bytes": 246507588,
+      "difference_bytes": 9,
+      "cause": "the old eight-extra estimate omitted one two-literal DIMACS line; the exact normalization has nine clauses"
+    }
+  },
+  "resources": {
+    "full_audit_observed_wall_seconds": 13.9,
+    "full_audit_observed_peak_working_set_bytes": 119934976,
+    "full_audit_observed_peak_working_set_mib": 114.4,
+    "python_processes": 1,
+    "used_s_drive": false,
+    "large_artifacts_written": 0
+  },
+  "commands": {
+    "quick": "python -B -m scripts.r45_d12_cover9_universal.audit_cover6_d7_min_center_source quick",
+    "full": "python -B -m scripts.r45_d12_cover9_universal.audit_cover6_d7_min_center_source audit",
+    "tests": "python -B -m unittest scripts.r45_d12_cover9_universal.test_audit_cover6_d7_min_center_source"
+  }
+}

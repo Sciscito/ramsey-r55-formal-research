@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "date": "2026-08-07",
+  "claim": {
+    "minimum_complement_pairs": 3,
+    "minimum_order7_motif_classes": 6,
+    "upper_scope": "frozen exhaustive official R(4,4,12) catalogue",
+    "lower_scope": "absolute on 30 explicit directly checked R(4,4,12) graphs"
+  },
+  "sources": {
+    "r44_7.g6": {
+      "records": 362,
+      "sha256": "6A3DA7F0687C392420F190DB0643B5C5B7ECB1A3C5ED098C7D96200185A5F010"
+    },
+    "r44_12.g6": {
+      "records": 1449166,
+      "sha256": "C6A60EE177E00C1168259A5BD464F9CFA5A5B471AE2BA1811E7B3FAF23144E7A"
+    },
+    "full_order7_incidence": {
+      "bytes": 65585768,
+      "sha256": "B14A1693C28CFED8965149ADB8C4410B993F86688466BC18736089E7D6735523"
+    }
+  },
+  "cover": {
+    "path": "cover6_complement_closed.tsv",
+    "bytes": 109,
+    "sha256": "404E49E3218424FCB73314ADEE42CC873CD3F8D67E4615653A8BC0210F61AD16",
+    "records": ["F@h^g", "FKDhw", "FG`Xo", "FdW}w", "FHFLw", "FIIXw"],
+    "official_candidate_ids_zero_based": [41, 220, 174, 323, 185, 194],
+    "complement_pair_ids_zero_based": [40, 138, 144],
+    "orbit_sizes": [5040, 5040, 2520, 2520, 5040, 5040],
+    "labelled_closure": 25200,
+    "labelled_closure_sha256": "04B9688924BFC2EF6F92FB5734B19E7E771C37446DD3E442ECED8648BE1CBDD7",
+    "pair_coverage": [1445286, 1448695, 1443465],
+    "pair_removal_holes": [22, 446, 40]
+  },
+  "lower_bound": {
+    "kernel_path": "kernel30_r44_12.g6",
+    "kernel_graphs": 30,
+    "kernel_bytes": 390,
+    "kernel_sha256": "EB61306B5DA0F15DC1112D82007BB29CD2FD3AEE460FD1C0D62E24401C66C8CC",
+    "all_labelled_order7_graphs_examined": 2097152,
+    "labelled_r44_order7": 923012,
+    "complement_pairs": 181,
+    "induced_subgraphs_checked": 23760,
+    "at_most_two_pair_selections_excluded": 16471,
+    "signature_sha256": "FD92B41FAD600EEC47FA5214EA1F36D9E7B1B6D44DDBE8EADFD029F41EFD89A9",
+    "deletion_irredundant": true,
+    "deletion_witness_sha256": "0A813D1203A9A6F2E16AC0E4BA1E73C4F39928EAFF372468F2267EA40930AEDF",
+    "full_incidence_search_states": 9436
+  },
+  "upper_bound_audits": {
+    "direct_stdlib": {
+      "covered": 1449166,
+      "uncovered": 0,
+      "incidence_read": false,
+      "witness_read": false,
+      "first_hit_distribution": [46679, 347807, 698002, 36774, 108486, 211418],
+      "observed_elapsed_seconds": 167.14
+    },
+    "native_incidence": {
+      "artifact_path": "cover6_incidence.bin",
+      "bytes": 1087112,
+      "sha256": "0CBBDB0072FF8315B9652AE786C99510371D1D233D89AB07D34CAA7A2022164D"
+    },
+    "native_witness": {
+      "artifact_path": "cover6_witness.bin",
+      "bytes": 4347674,
+      "entries": 1449166,
+      "sha256": "EBE83390F1E006EB18A11DB8D8612EB8AC2D512EDE75DF1C06376517A04E563A",
+      "independent_replay": "PASS"
+    }
+  },
+  "program_sha256": {
+    "search_complement_closed_minimum.py": "66C2A4A4215ED9359F4CD256EF3ED0B920090020BA071123BA4143ABD73C6A82",
+    "derive_lower_kernel.py": "89EFE944F73D7770F75039028C0961D0C894A83774899DAE7411126C3BABD9BA",
+    "optimize_lower_kernel.py": "5442D8422ABA99AC7B71EEC022B423035D5E63566FA6303BAE95AABE9D557FD5",
+    "verify_minimum.py": "EA7D6B57AEE2FC26C5A443561AA1A175DAD48D90A29F8AC88363F26F57B73F1B",
+    "verify_cover6.py": "615F5538E233ABEADF21F4A0D6A3BFDA7D745AF4E329E2E50B67AA604FD8A5F2"
+  },
+  "novelty_status": "Apparently new within the limited audit; no priority claim is made."
+}

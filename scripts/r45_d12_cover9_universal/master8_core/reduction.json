@@ -1,0 +1,61 @@
+{
+  "core": {
+    "dependency_edges": 71235,
+    "derived_additions": 7061,
+    "initial_clauses": 6152,
+    "retained_deleted_identifiers": 7643,
+    "retained_deletion_actions": 6268
+  },
+  "input": {
+    "cnf": {
+      "bytes": 189298375,
+      "sha256": "3E725132C29E1CAA9D5FD5EA0AD67D8A5A80E61A1241768D36A910DD23FD329D"
+    },
+    "initial_clauses": 3367459,
+    "lrat": {
+      "bytes": 128131809,
+      "sha256": "B2ECDACD2D99CD6EA2929C0B370C6AAFD74FE78FDE20FFBDFE68B7D0EF860505"
+    },
+    "variables": 66
+  },
+  "output": {
+    "cnf": {
+      "bytes": 292093,
+      "clauses": 6152,
+      "lines": 6153,
+      "name": "cover6_closed_master_d8_bounded13_core.cnf",
+      "sha256": "1841CD85484FF0726D051B0064510FD8C422374F6B6A909F52DEF962504910DC",
+      "variables": 66
+    },
+    "initial_clause_mapping": {
+      "bytes": 475303,
+      "lines": 6153,
+      "name": "core_clause_map.tsv",
+      "rows": 6152,
+      "sha256": "37E838EC7CCB9DA0883D8F21867896436FC72FEB0E511CAC093240C6A3B4A636"
+    },
+    "lrat": {
+      "additions": 7061,
+      "bytes": 754043,
+      "deleted_identifiers": 7643,
+      "deletion_actions": 6268,
+      "lines": 13329,
+      "name": "cover6_closed_master_d8_bounded13_core.lrat",
+      "sha256": "9FE477B84F20893CDCD7DBAB6942838FCF17E11B82A4C355A30042136C417E01"
+    }
+  },
+  "proof": {
+    "additions": 1182841,
+    "deleted_identifiers": 2502973,
+    "deletion_actions": 1179726,
+    "final_empty_id": 4550300,
+    "first_addition_id": 3367460,
+    "lines": 2362567,
+    "rat_additions": 0,
+    "rup_additions": 1182841
+  },
+  "rat_policy": "safe RUP-only remap; RAT input is detected and reduction is refused",
+  "schema_version": 1,
+  "scope": "syntactic LRAT dependency extraction only; the reduced pair must be replayed by a trusted LRAT checker",
+  "status": "REDUCED_PAIR_WRITTEN_REPLAY_REQUIRED"
+}

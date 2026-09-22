@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "TOY_CHAIN_FORMALLY_CLOSED",
+  "proof_level": 4,
+  "scope_warning": "This closes only the K5/P3 toy theorem. It does not certify any cover6-d8 residual formula or any new Ramsey bound.",
+  "mathematical_statement": "Every red/blue colouring of K5 with no monochromatic triangle contains an induced positive P3.",
+  "color_convention": "A true Lean value and a positive one-based DIMACS literal both mean a raw positive/red edge.",
+  "encoding": {
+    "variables": 10,
+    "ramsey_clauses": 20,
+    "injective_p3_embedding_blockers": 60,
+    "clauses": 80,
+    "exhaustive_assignments_checked": 1024,
+    "ramsey_free_models": 12,
+    "counterexamples": 0,
+    "component_semantics_exact": true
+  },
+  "artifacts": {
+    "cnf": {
+      "name": "cover6_toy_p3.cnf",
+      "bytes": 826,
+      "sha256": "3B01FC465184466A2B5E9F10966A4E28D3D2CB25D4728B9A1471A5060CC96313"
+    },
+    "lrat": {
+      "name": "cover6_toy_p3.lrat",
+      "bytes": 379,
+      "sha256": "EDF122CE124CD6FAF367D5989B024D8E41CB18CD7D0EDDAB287DA179B600C4C5"
+    }
+  },
+  "solver": {
+    "name": "CaDiCaL",
+    "version": "2.1.2",
+    "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "flags": ["--lrat", "--no-binary", "--checkproof=2", "--unsat", "--walk=false", "-c", "10000"],
+    "result": "UNSATISFIABLE",
+    "return_code": 20,
+    "conflicts": 14,
+    "maximum_resident_set_mb": 5.46,
+    "proof_internally_checked": true
+  },
+  "lean": {
+    "module": "LRATCatcher.Tests.R44Cover6ToyChain",
+    "source": "../../../vendor/lrat-catcher/LRATCatcher/Tests/R44Cover6ToyChain.lean",
+    "source_bytes": 6388,
+    "source_sha256": "76406ADA3948E93209C8907F682BBA4C1C7DAD9982DD92A664AD6C634E53B2F8",
+    "parsed_formula_equality": "certifiedToyFormula_eq_decomposition",
+    "terminal_theorem": "every_r33_order_five_contains_induced_positive_p3",
+    "build": "PASS",
+    "sorry_or_admit": false,
+    "observed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound",
+      "native_decide axioms tied to the exact LRAT replay, formula equality, and finite embedding enumeration"
+    ]
+  },
+  "program": {
+    "name": "../cover6_toy_chain.py",
+    "bytes": 13780,
+    "sha256": "1EB1ADFFDB7B04CEDDD016C4C0CFD507B02CF1A32F3D4D1EE3986B39E54E1016"
+  },
+  "negative_tests": [
+    "a flipped Ramsey literal is rejected by exhaustive component semantics",
+    "a flipped induced-motif polarity is rejected by exhaustive component semantics",
+    "a zero-based DIMACS literal is rejected by the parser",
+    "a trivially UNSAT formula obtained by adding an empty clause is rejected as the wrong mathematical encoding before replay",
+    "a one-byte LRAT mutation is rejected by the frozen identity guard"
+  ],
+  "trust_boundary": "Lean kernel plus the standard axioms listed above and the native compiler/runtime used by LRAT-Catcher and native_decide. CaDiCaL's checkproof=2 was also run, but the independent decisive replay is LRAT-Catcher/Lean."
+}

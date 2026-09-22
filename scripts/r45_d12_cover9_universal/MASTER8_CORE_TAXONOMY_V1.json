@@ -1,0 +1,1305 @@
+{
+  "compression": {
+    "conditioned_blocker_instances_retained": 5923,
+    "conditioned_stabilizer_orbits_touched": 30,
+    "distinct_conditioned_template_positions": 1355,
+    "lean_strategy": "classify by arithmetic Master8 index; reuse the six proved S7 cube roots for root-free blockers and the existing equivariant projected-lift bridge for root-containing blockers",
+    "semantic_orbit_roots_available": 6,
+    "warning": "the core-selected templates need not be whole stabilizer orbits; exact slice/template-position witnesses remain necessary for clause equality"
+  },
+  "core": {
+    "clauses": 6152,
+    "exact_taxonomy_row_sha256": "CAB3314CD354215997823CC7FB37CC315DCDCAE4CA4684F5647AAAF46291EB67",
+    "root_variable_1_to_11_occurrences": 0,
+    "widths": {
+      "1": 1,
+      "2": 7,
+      "3": 39,
+      "6": 182,
+      "10": 1661,
+      "11": 748,
+      "15": 1544,
+      "16": 1402,
+      "17": 568
+    }
+  },
+  "declarative_layout": {
+    "base_ramsey": [
+      1,
+      717
+    ],
+    "final_22": [
+      3367438,
+      3367459
+    ],
+    "root_containing_blockers": [
+      3211198,
+      3367437
+    ],
+    "root_free_blockers": [
+      718,
+      3211197
+    ],
+    "total_clauses": 3367459
+  },
+  "inputs": {
+    "core_clause_mapping": {
+      "bytes": 475303,
+      "rows": 6152,
+      "sha256": "37E838EC7CCB9DA0883D8F21867896436FC72FEB0E511CAC093240C6A3B4A636"
+    },
+    "core_cnf": {
+      "bytes": 292093,
+      "clauses": 6152,
+      "sha256": "1841CD85484FF0726D051B0064510FD8C422374F6B6A909F52DEF962504910DC"
+    },
+    "master8": {
+      "clauses": 3367459,
+      "sha256": "3E725132C29E1CAA9D5FD5EA0AD67D8A5A80E61A1241768D36A910DD23FD329D",
+      "variables": 66
+    }
+  },
+  "normalized_core8_variant": {
+    "construction": "F8 followed by the eight final clauses used by the LRAT core",
+    "existing_lean_route": {
+      "positive_degree_lower_bound_needed": false,
+      "prefix_sort": [
+        "secondSort_left_edge",
+        "secondSort_right_edge"
+      ],
+      "qValue_le_three_needed": false,
+      "thirteen_cases_needed": false,
+      "transport": [
+        "twoCenter_isRamseyFree_iff",
+        "twoCenter_inducedMotifOccurrence_iff"
+      ],
+      "unit_minus_15": "pValue_le_three plus twoCenter_second_left at position 3"
+    },
+    "extra_clauses": [
+      [
+        12,
+        -13
+      ],
+      [
+        13,
+        -14
+      ],
+      [
+        15,
+        -16
+      ],
+      [
+        16,
+        -17
+      ],
+      [
+        17,
+        -18
+      ],
+      [
+        19,
+        -20
+      ],
+      [
+        20,
+        -21
+      ],
+      [
+        -15
+      ]
+    ],
+    "extra_master8_clause_ids": [
+      3367449,
+      3367450,
+      3367452,
+      3367453,
+      3367454,
+      3367455,
+      3367456,
+      3367457
+    ],
+    "finite_normalization": {
+      "cross_lower_bound_p_plus_q_ge_two_used": false,
+      "exact_pair_set": "0 <= p <= 3 and 0 <= q <= 3",
+      "model_pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "models_over_variables_12_to_21": 16,
+      "omitted_prefix_clause": [
+        14,
+        -15
+      ],
+      "omitted_prefix_implied_by_retained_unit_minus_15": true,
+      "omitted_prefix_position": 3,
+      "retained_prefix_positions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "status": "PASS_EXACT_CORE8_FINITE_NORMALIZATION",
+      "thirteen_case_partition_used": false
+    },
+    "formal_status": "the finite extras, the lazy Lean F8 generator, and the exact core selection are now formalized; a full theorem still needs the graph-level semantic satisfaction proof for the four clause families",
+    "formula": {
+      "bytes": 189298301,
+      "clauses": 3367445,
+      "sha256": "0133D40DC0458E7CD426F22DA08B525B4197467E539E4446AE94A38E84D7341E",
+      "variables": 66,
+      "widths": {
+        "1": 1,
+        "2": 7,
+        "3": 57,
+        "6": 660,
+        "10": 32256,
+        "11": 69552,
+        "12": 36288,
+        "13": 18144,
+        "15": 912240,
+        "16": 1209600,
+        "17": 1088640
+      }
+    },
+    "name": "cover6_closed_core8_d8_normalized.cnf",
+    "reason_root_units_are_absent": "F8 and the eight retained extras mention only DIMACS variables 12..66; the root block is supplied semantically by rootSort_exact_eight",
+    "root_units_used": false
+  },
+  "schema_version": 1,
+  "scope": "Exact syntactic taxonomy of the replayed dependency core plus deterministic cube-provenance and formula-fingerprint checks. The separate Lean indexed-source module now defines and refutes this formula; this report does not itself prove the graph-to-formula semantic bridge.",
+  "sections": {
+    "base_ramsey": {
+      "core_id_span": [
+        1,
+        221
+      ],
+      "distinct_k4_vertex_slices": 176,
+      "generated_clauses": 717,
+      "master8_id_span": [
+        36,
+        717
+      ],
+      "master8_range": [
+        1,
+        717
+      ],
+      "retained_clauses": 221,
+      "retained_fraction": "221/717",
+      "selected_master_id_sha256": "EC7F93C0ECB4E286C4FEC56BCACF9A1DD45699A2F14A780D069F2E3B137249B8",
+      "subfamilies": [
+        {
+          "master8_id_span": [
+            67,
+            653
+          ],
+          "name": "ramsey_k4_negative",
+          "retained_clauses": 43,
+          "vertex_slice_sha256": "0093C4CF1D9D4C15C81A0504C89709AC12B395CC6C497400950874BCC9F0C608",
+          "widths": {
+            "6": 43
+          }
+        },
+        {
+          "master8_id_span": [
+            36,
+            576
+          ],
+          "name": "ramsey_k4_positive",
+          "retained_clauses": 139,
+          "vertex_slice_sha256": "7C8D022AE6DE264CA5327A63EEF94DDFBE737131221EEACFD46C8D36536DB0C5",
+          "widths": {
+            "6": 139
+          }
+        },
+        {
+          "master8_id_span": [
+            661,
+            716
+          ],
+          "name": "root_neighbour_triangle_negative",
+          "retained_clauses": 38,
+          "vertex_slice_sha256": "40FBBEB14B774E90D14EBC4CDAC38B455A6B3F74E3BE2ACC7BF4FDFB43733B46",
+          "widths": {
+            "3": 38
+          }
+        },
+        {
+          "master8_id_span": [
+            717,
+            717
+          ],
+          "name": "root_nonneighbour_triangle_positive",
+          "retained_clauses": 1,
+          "vertex_slice_sha256": "6C99E1F2FF8C154F463CA6C019891B3C591DC0B79AB0321A48827A95BC4A8BFA",
+          "widths": {
+            "3": 1
+          }
+        }
+      ],
+      "widths": {
+        "3": 39,
+        "6": 182
+      }
+    },
+    "final_22": {
+      "arithmetic_bounds_retained": 1,
+      "core_id_span": [
+        6145,
+        6152
+      ],
+      "details": [
+        {
+          "category": "root_unit",
+          "category_position": 1,
+          "clause": [
+            1
+          ],
+          "core_clause_id": null,
+          "final_position": 1,
+          "master8_clause_id": 3367438,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 2,
+          "clause": [
+            2
+          ],
+          "core_clause_id": null,
+          "final_position": 2,
+          "master8_clause_id": 3367439,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 3,
+          "clause": [
+            3
+          ],
+          "core_clause_id": null,
+          "final_position": 3,
+          "master8_clause_id": 3367440,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 4,
+          "clause": [
+            4
+          ],
+          "core_clause_id": null,
+          "final_position": 4,
+          "master8_clause_id": 3367441,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 5,
+          "clause": [
+            5
+          ],
+          "core_clause_id": null,
+          "final_position": 5,
+          "master8_clause_id": 3367442,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 6,
+          "clause": [
+            6
+          ],
+          "core_clause_id": null,
+          "final_position": 6,
+          "master8_clause_id": 3367443,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 7,
+          "clause": [
+            7
+          ],
+          "core_clause_id": null,
+          "final_position": 7,
+          "master8_clause_id": 3367444,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 8,
+          "clause": [
+            8
+          ],
+          "core_clause_id": null,
+          "final_position": 8,
+          "master8_clause_id": 3367445,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 9,
+          "clause": [
+            -9
+          ],
+          "core_clause_id": null,
+          "final_position": 9,
+          "master8_clause_id": 3367446,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 10,
+          "clause": [
+            -10
+          ],
+          "core_clause_id": null,
+          "final_position": 10,
+          "master8_clause_id": 3367447,
+          "retained": false
+        },
+        {
+          "category": "root_unit",
+          "category_position": 11,
+          "clause": [
+            -11
+          ],
+          "core_clause_id": null,
+          "final_position": 11,
+          "master8_clause_id": 3367448,
+          "retained": false
+        },
+        {
+          "category": "prefix_sort",
+          "category_position": 1,
+          "clause": [
+            12,
+            -13
+          ],
+          "core_clause_id": 6145,
+          "final_position": 12,
+          "master8_clause_id": 3367449,
+          "retained": true
+        },
+        {
+          "category": "prefix_sort",
+          "category_position": 2,
+          "clause": [
+            13,
+            -14
+          ],
+          "core_clause_id": 6146,
+          "final_position": 13,
+          "master8_clause_id": 3367450,
+          "retained": true
+        },
+        {
+          "category": "prefix_sort",
+          "category_position": 3,
+          "clause": [
+            14,
+            -15
+          ],
+          "core_clause_id": null,
+          "final_position": 14,
+          "master8_clause_id": 3367451,
+          "retained": false
+        },
+        {
+          "category": "prefix_sort",
+          "category_position": 4,
+          "clause": [
+            15,
+            -16
+          ],
+          "core_clause_id": 6147,
+          "final_position": 15,
+          "master8_clause_id": 3367452,
+          "retained": true
+        },
+        {
+          "category": "prefix_sort",
+          "category_position": 5,
+          "clause": [
+            16,
+            -17
+          ],
+          "core_clause_id": 6148,
+          "final_position": 16,
+          "master8_clause_id": 3367453,
+          "retained": true
+        },
+        {
+          "category": "prefix_sort",
+          "category_position": 6,
+          "clause": [
+            17,
+            -18
+          ],
+          "core_clause_id": 6149,
+          "final_position": 17,
+          "master8_clause_id": 3367454,
+          "retained": true
+        },
+        {
+          "category": "prefix_sort",
+          "category_position": 7,
+          "clause": [
+            19,
+            -20
+          ],
+          "core_clause_id": 6150,
+          "final_position": 18,
+          "master8_clause_id": 3367455,
+          "retained": true
+        },
+        {
+          "category": "prefix_sort",
+          "category_position": 8,
+          "clause": [
+            20,
+            -21
+          ],
+          "core_clause_id": 6151,
+          "final_position": 19,
+          "master8_clause_id": 3367456,
+          "retained": true
+        },
+        {
+          "category": "arithmetic_bound",
+          "category_position": 1,
+          "clause": [
+            -15
+          ],
+          "core_clause_id": 6152,
+          "final_position": 20,
+          "master8_clause_id": 3367457,
+          "retained": true
+        },
+        {
+          "category": "arithmetic_bound",
+          "category_position": 2,
+          "clause": [
+            13,
+            19
+          ],
+          "core_clause_id": null,
+          "final_position": 21,
+          "master8_clause_id": 3367458,
+          "retained": false
+        },
+        {
+          "category": "arithmetic_bound",
+          "category_position": 3,
+          "clause": [
+            12,
+            20
+          ],
+          "core_clause_id": null,
+          "final_position": 22,
+          "master8_clause_id": 3367459,
+          "retained": false
+        }
+      ],
+      "generated_clauses": 22,
+      "master8_id_span": [
+        3367449,
+        3367457
+      ],
+      "master8_range": [
+        3367438,
+        3367459
+      ],
+      "prefix_sort_clauses_retained": 7,
+      "retained_clauses": 8,
+      "retained_fraction": "8/22",
+      "retained_of_22": 8,
+      "root_units_retained": 0,
+      "selected_master_id_sha256": "775194A96C93FA1AE01429CD25835860EE48C26E19BA39CCE5D5DF8D5E02B13B",
+      "widths": {
+        "1": 1,
+        "2": 7
+      }
+    },
+    "root_containing_blockers": {
+      "conditions": [
+        {
+          "condition": 3,
+          "core_id_span": [],
+          "cube_compression": {
+            "all_stabilizer_representatives_sha256": "AB7E2F9C68C42E6D84AAEDDA00A67F96A8CAC0DAF63F57EB16A54B1F51767A5E",
+            "conditioned_stabilizer_orbits_total": 16,
+            "conditioned_stabilizer_orbits_touched": 0,
+            "distinct_conditioned_templates": 0,
+            "distinct_template_widths": {},
+            "six_s7_representative_distinct_template_counts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 0,
+              "5": 0
+            },
+            "six_s7_representative_occurrence_counts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 0,
+              "5": 0
+            },
+            "touched_orbit_index_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          },
+          "exact_location_witness_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+          "generated_clauses": 30240,
+          "generated_slices": 56,
+          "master8_id_span": [],
+          "retained_clauses": 0,
+          "retained_clauses_with_second_center_vertex_1": 0,
+          "retained_slices": 0,
+          "retained_slices_with_second_center_vertex_1": 0,
+          "selected_slice_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+          "slice_occupancy_counts": {},
+          "template_positions": {
+            "distinct": 0,
+            "intervals": 0,
+            "occurrence_multiplicity_counts": {},
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+            "span": []
+          },
+          "templates_per_slice": 540,
+          "widths": {}
+        },
+        {
+          "condition": 4,
+          "core_id_span": [
+            3894,
+            6144
+          ],
+          "cube_compression": {
+            "all_stabilizer_representatives_sha256": "0118E4CB94E6CB3A39CA4392A3CE480DEEF4E787BC5F9E036B2E9212C865C890",
+            "conditioned_stabilizer_orbits_total": 8,
+            "conditioned_stabilizer_orbits_touched": 3,
+            "distinct_conditioned_templates": 24,
+            "distinct_template_widths": {
+              "11": 24
+            },
+            "six_s7_representative_distinct_template_counts": {
+              "0": 0,
+              "1": 23,
+              "2": 0,
+              "3": 1,
+              "4": 0,
+              "5": 0
+            },
+            "six_s7_representative_occurrence_counts": {
+              "0": 0,
+              "1": 38,
+              "2": 0,
+              "3": 1,
+              "4": 0,
+              "5": 0
+            },
+            "touched_orbit_index_sha256": "A85EAE761D1D0F64429FA6FE0AA3614CE0081BA3F9A6F3515D318F9D5D13532B"
+          },
+          "exact_location_witness_sha256": "FEF3EDC52ADA50F0B1329DEC23CC13E01B7A5F656FBE0DA9F5447896200A92F9",
+          "generated_clauses": 75600,
+          "generated_slices": 210,
+          "master8_id_span": [
+            3219423,
+            3364737
+          ],
+          "retained_clauses": 39,
+          "retained_clauses_with_second_center_vertex_1": 18,
+          "retained_slices": 34,
+          "retained_slices_with_second_center_vertex_1": 17,
+          "selected_slice_sha256": "5CF89B165B76569B191A1AEF3BB9989B214301955107EB19DAECBE7814A0F30C",
+          "slice_occupancy_counts": {
+            "1": 30,
+            "2": 3,
+            "3": 1
+          },
+          "template_positions": {
+            "distinct": 24,
+            "intervals": 15,
+            "occurrence_multiplicity_counts": {
+              "1": 15,
+              "2": 4,
+              "3": 4,
+              "4": 1
+            },
+            "sha256": "B84E95FF1EBD1DE68AD82DA80E696F8588D92A4141443FD574EF5CBCF8B3D235",
+            "span": [
+              4,
+              180
+            ]
+          },
+          "templates_per_slice": 360,
+          "widths": {
+            "11": 39
+          }
+        },
+        {
+          "condition": 5,
+          "core_id_span": [
+            3736,
+            6139
+          ],
+          "cube_compression": {
+            "all_stabilizer_representatives_sha256": "6297B35715BBE67CAF1CAEA0B091904055F639D78A2B7452BC1A51B4CD911C36",
+            "conditioned_stabilizer_orbits_total": 3,
+            "conditioned_stabilizer_orbits_touched": 3,
+            "distinct_conditioned_templates": 242,
+            "distinct_template_widths": {
+              "10": 162,
+              "11": 80
+            },
+            "six_s7_representative_distinct_template_counts": {
+              "0": 0,
+              "1": 60,
+              "2": 0,
+              "3": 102,
+              "4": 0,
+              "5": 80
+            },
+            "six_s7_representative_occurrence_counts": {
+              "0": 0,
+              "1": 993,
+              "2": 0,
+              "3": 668,
+              "4": 0,
+              "5": 709
+            },
+            "touched_orbit_index_sha256": "B78A1987BCBDC0903BA6BA29EE3E1F4E7CC1CA868A60889BEB141E26E06CB005"
+          },
+          "exact_location_witness_sha256": "CB18BD19B2044A27CD332582F2712195F25F1EF1AB4ED2F78AEAEF5AABF54FB5",
+          "generated_clauses": 50400,
+          "generated_slices": 168,
+          "master8_id_span": [
+            3211505,
+            3356512
+          ],
+          "retained_clauses": 2370,
+          "retained_clauses_with_second_center_vertex_1": 1290,
+          "retained_slices": 163,
+          "retained_slices_with_second_center_vertex_1": 100,
+          "selected_slice_sha256": "45E53CB6945240D4317E61A94EFF446F098BE1ECA1C289FE97C1645F991972FA",
+          "slice_occupancy_counts": {
+            "1": 7,
+            "2": 15,
+            "3": 9,
+            "4": 6,
+            "5": 7,
+            "6": 4,
+            "7": 2,
+            "8": 4,
+            "9": 5,
+            "10": 3,
+            "11": 5,
+            "12": 3,
+            "13": 5,
+            "14": 3,
+            "15": 3,
+            "16": 7,
+            "17": 4,
+            "18": 6,
+            "19": 5,
+            "20": 10,
+            "21": 11,
+            "22": 9,
+            "23": 3,
+            "24": 2,
+            "25": 6,
+            "26": 4,
+            "27": 3,
+            "28": 2,
+            "29": 3,
+            "30": 1,
+            "31": 1,
+            "32": 1,
+            "37": 1,
+            "39": 1,
+            "40": 1,
+            "43": 1
+          },
+          "template_positions": {
+            "distinct": 242,
+            "intervals": 42,
+            "occurrence_multiplicity_counts": {
+              "1": 26,
+              "2": 29,
+              "3": 19,
+              "4": 16,
+              "5": 19,
+              "6": 13,
+              "7": 8,
+              "8": 15,
+              "9": 9,
+              "10": 9,
+              "11": 9,
+              "12": 7,
+              "13": 4,
+              "14": 2,
+              "15": 10,
+              "16": 3,
+              "17": 5,
+              "18": 4,
+              "19": 5,
+              "20": 3,
+              "21": 4,
+              "22": 1,
+              "23": 3,
+              "24": 1,
+              "25": 3,
+              "26": 1,
+              "27": 1,
+              "28": 2,
+              "32": 1,
+              "42": 1,
+              "43": 2,
+              "45": 1,
+              "46": 1,
+              "47": 2,
+              "48": 3
+            },
+            "sha256": "F7DECAEDD01654ED0423F03D7588A5DCF0B1BB1AC6E5143B6D31BB13EC31CAAC",
+            "span": [
+              1,
+              300
+            ]
+          },
+          "templates_per_slice": 300,
+          "widths": {
+            "10": 1661,
+            "11": 709
+          }
+        },
+        {
+          "condition": 6,
+          "core_id_span": [],
+          "cube_compression": {
+            "all_stabilizer_representatives_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+            "conditioned_stabilizer_orbits_total": 0,
+            "conditioned_stabilizer_orbits_touched": 0,
+            "distinct_conditioned_templates": 0,
+            "distinct_template_widths": {},
+            "six_s7_representative_distinct_template_counts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 0,
+              "5": 0
+            },
+            "six_s7_representative_occurrence_counts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 0,
+              "5": 0
+            },
+            "touched_orbit_index_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+          },
+          "exact_location_witness_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+          "generated_clauses": 0,
+          "generated_slices": 28,
+          "master8_id_span": [],
+          "retained_clauses": 0,
+          "retained_clauses_with_second_center_vertex_1": 0,
+          "retained_slices": 0,
+          "retained_slices_with_second_center_vertex_1": 0,
+          "selected_slice_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+          "slice_occupancy_counts": {},
+          "template_positions": {
+            "distinct": 0,
+            "intervals": 0,
+            "occurrence_multiplicity_counts": {},
+            "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+            "span": []
+          },
+          "templates_per_slice": 0,
+          "widths": {}
+        }
+      ],
+      "core_id_span": [
+        3736,
+        6144
+      ],
+      "generated_clauses": 156240,
+      "master8_id_span": [
+        3211505,
+        3364737
+      ],
+      "master8_range": [
+        3211198,
+        3367437
+      ],
+      "retained_clauses": 2409,
+      "retained_fraction": "2409/156240",
+      "selected_master_id_sha256": "D8CB70C3AE587091D90A7FF24CFC415F6D7A49FC42E5FBAC5B604F1E57F6AB29",
+      "slice_order": "lexicographic 6-subsets of vertices 1..11; root 0 is implicit",
+      "template_order": "(fixed.bit_count, fixed, ones) after root-edge projection",
+      "widths": {
+        "10": 1661,
+        "11": 748
+      }
+    },
+    "root_free_blockers": {
+      "conditions": [
+        {
+          "condition": 4,
+          "core_id_span": [
+            1300,
+            3735
+          ],
+          "cube_compression": {
+            "all_stabilizer_representatives_sha256": "70B098D56DE246276BE89CD010182F3DD99E1A9A4EF5E262B1076857077460BE",
+            "conditioned_stabilizer_orbits_total": 112,
+            "conditioned_stabilizer_orbits_touched": 5,
+            "distinct_conditioned_templates": 11,
+            "distinct_template_widths": {
+              "15": 7,
+              "16": 4
+            },
+            "six_s7_representative_distinct_template_counts": {
+              "0": 0,
+              "1": 7,
+              "2": 1,
+              "3": 3,
+              "4": 0,
+              "5": 0
+            },
+            "six_s7_representative_occurrence_counts": {
+              "0": 0,
+              "1": 9,
+              "2": 1,
+              "3": 3,
+              "4": 0,
+              "5": 0
+            },
+            "touched_orbit_index_sha256": "E2EAA071FE56729821BE7E0BD1CE10304E5FCA1116A5CD8954159E87D048487A"
+          },
+          "exact_location_witness_sha256": "C510FD1675CADA8C8686CB335A85704DD113FEBBE524FE4E63EC5D4A3A006085",
+          "generated_clauses": 1083600,
+          "generated_slices": 70,
+          "master8_id_span": [
+            369453,
+            3150945
+          ],
+          "retained_clauses": 13,
+          "retained_clauses_with_second_center_vertex_1": 9,
+          "retained_slices": 12,
+          "retained_slices_with_second_center_vertex_1": 8,
+          "selected_slice_sha256": "27AEB2FF0D98035B26C2EEE32E5B317D206B3F3AC77EFD4A439927363D835249",
+          "slice_occupancy_counts": {
+            "1": 11,
+            "2": 1
+          },
+          "template_positions": {
+            "distinct": 11,
+            "intervals": 11,
+            "occurrence_multiplicity_counts": {
+              "1": 9,
+              "2": 2
+            },
+            "sha256": "40B09D59BA3F494E5126FFAE4E6122E5B96B275AC94157A82F81204A81B69C66",
+            "span": [
+              96,
+              7127
+            ]
+          },
+          "templates_per_slice": 15480,
+          "widths": {
+            "15": 9,
+            "16": 4
+          }
+        },
+        {
+          "condition": 5,
+          "core_id_span": [
+            630,
+            3734
+          ],
+          "cube_compression": {
+            "all_stabilizer_representatives_sha256": "8874FFCDBB085F127C17891B0D230300CF03B33BBC1DA22E97394BBA7254B02E",
+            "conditioned_stabilizer_orbits_total": 46,
+            "conditioned_stabilizer_orbits_touched": 10,
+            "distinct_conditioned_templates": 213,
+            "distinct_template_widths": {
+              "15": 82,
+              "16": 64,
+              "17": 67
+            },
+            "six_s7_representative_distinct_template_counts": {
+              "0": 0,
+              "1": 82,
+              "2": 3,
+              "3": 61,
+              "4": 0,
+              "5": 67
+            },
+            "six_s7_representative_occurrence_counts": {
+              "0": 0,
+              "1": 290,
+              "2": 3,
+              "3": 88,
+              "4": 0,
+              "5": 97
+            },
+            "touched_orbit_index_sha256": "0061248AEF4C465F51A24152B3A58A6E65782F5CDB19CE12A5A92D0025F7D7F6"
+          },
+          "exact_location_witness_sha256": "1025EEC4FF0B596F2E89BBAD6CFE0B4BF7E907DD218A72A6AE42659BF36BA606",
+          "generated_clauses": 1713600,
+          "generated_slices": 168,
+          "master8_id_span": [
+            54676,
+            3114235
+          ],
+          "retained_clauses": 478,
+          "retained_clauses_with_second_center_vertex_1": 268,
+          "retained_slices": 105,
+          "retained_slices_with_second_center_vertex_1": 64,
+          "selected_slice_sha256": "95D733338C12222A04040C75D7C3B2E7AD7AC62FBD530B9198D39BB6EC800898",
+          "slice_occupancy_counts": {
+            "1": 28,
+            "2": 24,
+            "3": 9,
+            "4": 3,
+            "5": 8,
+            "6": 5,
+            "7": 3,
+            "8": 6,
+            "9": 4,
+            "10": 1,
+            "11": 2,
+            "12": 7,
+            "13": 1,
+            "14": 1,
+            "15": 3
+          },
+          "template_positions": {
+            "distinct": 213,
+            "intervals": 164,
+            "occurrence_multiplicity_counts": {
+              "1": 126,
+              "2": 42,
+              "3": 12,
+              "4": 13,
+              "5": 3,
+              "6": 2,
+              "7": 3,
+              "8": 2,
+              "9": 1,
+              "10": 4,
+              "11": 1,
+              "12": 1,
+              "13": 1,
+              "15": 1,
+              "16": 1
+            },
+            "sha256": "260004E07D7363268DAA8EAA0A5EAD4EDC6E63ACEEF6D2957F6C0C81178BAB7D",
+            "span": [
+              609,
+              10190
+            ]
+          },
+          "templates_per_slice": 10200,
+          "widths": {
+            "15": 290,
+            "16": 91,
+            "17": 97
+          }
+        },
+        {
+          "condition": 6,
+          "core_id_span": [
+            340,
+            3672
+          ],
+          "cube_compression": {
+            "all_stabilizer_representatives_sha256": "633963BDA1C3921D1553DEFC5338717A231EDF10365C87A1E0308C83F80B0BF0",
+            "conditioned_stabilizer_orbits_total": 8,
+            "conditioned_stabilizer_orbits_touched": 8,
+            "distinct_conditioned_templates": 675,
+            "distinct_template_widths": {
+              "15": 235,
+              "16": 292,
+              "17": 148
+            },
+            "six_s7_representative_distinct_template_counts": {
+              "0": 235,
+              "1": 0,
+              "2": 138,
+              "3": 154,
+              "4": 0,
+              "5": 148
+            },
+            "six_s7_representative_occurrence_counts": {
+              "0": 824,
+              "1": 0,
+              "2": 578,
+              "3": 729,
+              "4": 0,
+              "5": 471
+            },
+            "touched_orbit_index_sha256": "D59784813BBF8E9A47929BBD4195498A43979C690F9E799CFE2E14522217C48D"
+          },
+          "exact_location_witness_sha256": "5C9201F639B13D412517179ED06BF4FBA757A26842809CF21E0A5D47DB9025C1",
+          "generated_clauses": 393120,
+          "generated_slices": 84,
+          "master8_id_span": [
+            5920,
+            2795054
+          ],
+          "retained_clauses": 2602,
+          "retained_clauses_with_second_center_vertex_1": 2046,
+          "retained_slices": 79,
+          "retained_slices_with_second_center_vertex_1": 63,
+          "selected_slice_sha256": "0CD462B086AC08C2B6594BAFC6631F153631FA0A1E46F4D3219702E54FA92A9A",
+          "slice_occupancy_counts": {
+            "1": 3,
+            "2": 2,
+            "3": 2,
+            "4": 3,
+            "5": 3,
+            "6": 4,
+            "7": 2,
+            "9": 4,
+            "10": 3,
+            "12": 1,
+            "14": 2,
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "33": 1,
+            "34": 1,
+            "35": 4,
+            "36": 3,
+            "38": 2,
+            "39": 2,
+            "40": 2,
+            "41": 1,
+            "42": 2,
+            "43": 3,
+            "44": 1,
+            "45": 1,
+            "46": 2,
+            "48": 1,
+            "50": 2,
+            "52": 2,
+            "55": 2,
+            "57": 2,
+            "59": 1,
+            "60": 2,
+            "61": 1,
+            "62": 2,
+            "63": 2,
+            "66": 1,
+            "69": 1,
+            "70": 1,
+            "75": 1,
+            "98": 1
+          },
+          "template_positions": {
+            "distinct": 675,
+            "intervals": 521,
+            "occurrence_multiplicity_counts": {
+              "1": 135,
+              "2": 165,
+              "3": 100,
+              "4": 60,
+              "5": 43,
+              "6": 49,
+              "7": 36,
+              "8": 30,
+              "9": 21,
+              "10": 14,
+              "11": 10,
+              "12": 5,
+              "13": 4,
+              "14": 1,
+              "15": 1,
+              "16": 1
+            },
+            "sha256": "2760EE5B25E59365ECFF1B4AF9A0827C562ECDD724F2A2885BFCCE0BBCE31C18",
+            "span": [
+              2,
+              4666
+            ]
+          },
+          "templates_per_slice": 4680,
+          "widths": {
+            "15": 824,
+            "16": 1307,
+            "17": 471
+          }
+        },
+        {
+          "condition": 7,
+          "core_id_span": [
+            222,
+            2965
+          ],
+          "cube_compression": {
+            "all_stabilizer_representatives_sha256": "92072ED8873B77F42C91A70C160BA312579EA0609F76FB886F7DF9F89D85B949",
+            "conditioned_stabilizer_orbits_total": 1,
+            "conditioned_stabilizer_orbits_touched": 1,
+            "distinct_conditioned_templates": 190,
+            "distinct_template_widths": {
+              "15": 190
+            },
+            "six_s7_representative_distinct_template_counts": {
+              "0": 190,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 0,
+              "5": 0
+            },
+            "six_s7_representative_occurrence_counts": {
+              "0": 421,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 0,
+              "5": 0
+            },
+            "touched_orbit_index_sha256": "9A271F2A916B0B6EE6CECB2426F0B3206EF074578BE55D9BC94F6F3FE3AB86AA"
+          },
+          "exact_location_witness_sha256": "CA09E73955590F8C1A6E8BE00F638A6AF1B31D39F98D0808965692CD421AA701",
+          "generated_clauses": 20160,
+          "generated_slices": 8,
+          "master8_id_span": [
+            846,
+            1928477
+          ],
+          "retained_clauses": 421,
+          "retained_clauses_with_second_center_vertex_1": 391,
+          "retained_slices": 8,
+          "retained_slices_with_second_center_vertex_1": 7,
+          "selected_slice_sha256": "A8D0F02D2E242A682369AB93EFD6F1ABA4473258840F97E66D76FD0783BC87B7",
+          "slice_occupancy_counts": {
+            "27": 1,
+            "30": 1,
+            "55": 2,
+            "59": 1,
+            "60": 1,
+            "63": 1,
+            "72": 1
+          },
+          "template_positions": {
+            "distinct": 190,
+            "intervals": 139,
+            "occurrence_multiplicity_counts": {
+              "1": 72,
+              "2": 43,
+              "3": 42,
+              "4": 29,
+              "5": 3,
+              "6": 1
+            },
+            "sha256": "097BCAAF7FE0B68880EFC9BE7771C846A54B2E3CA49322F2CD6CBE7878980154",
+            "span": [
+              2,
+              2480
+            ]
+          },
+          "templates_per_slice": 2520,
+          "widths": {
+            "15": 421
+          }
+        }
+      ],
+      "core_id_span": [
+        222,
+        3735
+      ],
+      "generated_clauses": 3210480,
+      "master8_id_span": [
+        846,
+        3150945
+      ],
+      "master8_range": [
+        718,
+        3211197
+      ],
+      "retained_clauses": 3514,
+      "retained_fraction": "3514/3210480",
+      "selected_master_id_sha256": "559839B11FBF83267685A111C262EB7F4E778C926A0DA46A511364AC61C24F44",
+      "slice_order": "lexicographic 7-subsets of vertices 1..11",
+      "template_order": "(fixed.bit_count, fixed, ones)",
+      "widths": {
+        "15": 1544,
+        "16": 1402,
+        "17": 568
+      }
+    }
+  },
+  "status": "PASS_EXACT_MASTER8_CORE_TAXONOMY"
+}

@@ -1,0 +1,337 @@
+{
+    "schema_version":  1,
+    "status":  "COMPLETE_FULL_COVER_RUN_AND_LEAN_REPLAYED",
+    "scope":  "59 Cover.Cube.leafCNF LRAT certificates plus one negated-cover LRAT certificate for the R(4,5,25) red-degree-eight guarded master",
+    "source_artifacts":  {
+                             "cover_icnf_sha256":  "FFC4BABBE9C3DA11EA8C27CD76B3B77D16F2BC25FC31087DFEF936C9BE1B7864",
+                             "cube_manifest_sha256":  "B13936DC8704395985EC1DE3FADF0EBAD67A9790DC4BEE24583432030F28BCD6",
+                             "guarded_master_cnf_sha256":  "8839387C95EFCE9C9E98D4131679794B370DE8AE12962F4EA1D288E7566532B0",
+                             "metadata_sha256":  "A4CCDCE8E1ED95817C3C2289130EC21C9DD56175F2E6700968CE732340DC3792",
+                             "negated_cover_cnf_sha256":  "9A1F6F3260453AE2E6F514F2B83E611E427B7BC65E051972E062721F88A94B79"
+                         },
+    "producer":  {
+                     "solver":  "CaDiCaL 2.1.2",
+                     "solver_sha256":  "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+                     "flags":  [
+                                   "--lrat",
+                                   "--no-binary",
+                                   "--unsat",
+                                   "--walk=false"
+                               ]
+                 },
+    "bundle":  {
+                   "lrat_files":  60,
+                   "leaf_lrat_files":  59,
+                   "cover_lrat_files":  1,
+                   "total_lrat_bytes":  2405113598,
+                   "required_relative_directory":  "scripts/r45_d8_pilot/guarded_master/proofs"
+               },
+    "lean_replay":  {
+                        "target":  "LRATCatcher.Tests.R45DegreeEightGuardedMaster",
+                        "build_jobs":  56,
+                        "status":  "PASS",
+                        "date":  "2026-08-06"
+                    },
+    "files":  [
+                  {
+                      "name":  "leaf_1.lrat",
+                      "bytes":  24356254,
+                      "sha256":  "CFF822DCD099B02A729487E2568DDF551A3852A0A6F9FEA38A9B5A0EDE9227EF"
+                  },
+                  {
+                      "name":  "leaf_2.lrat",
+                      "bytes":  27023101,
+                      "sha256":  "34A30B7775D53BF5A6731EC958EFD8C08BB4481FD3A8602D92E99FC823400C43"
+                  },
+                  {
+                      "name":  "leaf_3.lrat",
+                      "bytes":  27719417,
+                      "sha256":  "22711B1F19CA1D04553D317A1D515AC6A0C6A123CAEE15CEE1107EAB71A44110"
+                  },
+                  {
+                      "name":  "leaf_4.lrat",
+                      "bytes":  31454465,
+                      "sha256":  "3D7407DE249203F9B2866F882ECECF4C2841CBB3BFEE7C5ED1FD4251FB046760"
+                  },
+                  {
+                      "name":  "leaf_5.lrat",
+                      "bytes":  25542606,
+                      "sha256":  "90AB3C0014DD2A3722E30DFD41AF08225C4A54B307FE612E6C08A7C7464F2336"
+                  },
+                  {
+                      "name":  "leaf_6.lrat",
+                      "bytes":  31707181,
+                      "sha256":  "C57B3EE1C71A366E251D0E3597F78F483273F8D1F82686347BC997F0CD1C9439"
+                  },
+                  {
+                      "name":  "leaf_7.lrat",
+                      "bytes":  30033826,
+                      "sha256":  "62D976DF465AE49707D78FCD4658000629D18261233E94C298BB69C57845D67E"
+                  },
+                  {
+                      "name":  "leaf_8.lrat",
+                      "bytes":  44677313,
+                      "sha256":  "452AF8B2D422174CC4984A2E4606FA51835FF6ED6C8B6D21938148BADF4BC756"
+                  },
+                  {
+                      "name":  "leaf_9.lrat",
+                      "bytes":  24917927,
+                      "sha256":  "E23C05C3377432DD79CBC473DF3DBE1A08E4AA8C38202A44C0741859F6F8A976"
+                  },
+                  {
+                      "name":  "leaf_10.lrat",
+                      "bytes":  27639362,
+                      "sha256":  "342C298BE897E4658B0BEE1666E34DF1FED534ECEFD5FC95BDAD45F2078E3965"
+                  },
+                  {
+                      "name":  "leaf_11.lrat",
+                      "bytes":  28043913,
+                      "sha256":  "CB3431F5374306E5972EE3DED53508C964208ED961D5E1F571ACF7BF1BD0527F"
+                  },
+                  {
+                      "name":  "leaf_12.lrat",
+                      "bytes":  58753941,
+                      "sha256":  "21191363B08CB5BD3582BFC2ADFC0B6401C524D408AAE19C29B3BD00B2211128"
+                  },
+                  {
+                      "name":  "leaf_13.lrat",
+                      "bytes":  24011410,
+                      "sha256":  "6E6D61EBE4A48F31D94A9C6445635F5F6085DE22B2506F445BA91DAA8500EF6B"
+                  },
+                  {
+                      "name":  "leaf_14.lrat",
+                      "bytes":  31478162,
+                      "sha256":  "13BAAA377E9987C2D4BC5A8F9198ED95A8A587F5A7A712CFE064230A7AA668EE"
+                  },
+                  {
+                      "name":  "leaf_15.lrat",
+                      "bytes":  52164241,
+                      "sha256":  "AC76006D07CB76CFBEF47A3E0BC32154E20F013729B9474D300A74B12C3FA3C8"
+                  },
+                  {
+                      "name":  "leaf_16.lrat",
+                      "bytes":  109918026,
+                      "sha256":  "1540D3D0F5E82EA468DE8E17E59617E3A978A35AF5CBA79664D253072392D3BF"
+                  },
+                  {
+                      "name":  "leaf_17.lrat",
+                      "bytes":  27807999,
+                      "sha256":  "B21DF6555B3F7EB411CB67D70B6A067ED82ADA90B4D2C1D564894866F0A01A2C"
+                  },
+                  {
+                      "name":  "leaf_18.lrat",
+                      "bytes":  29964167,
+                      "sha256":  "CEA2ABDFBC410C34A200CC50E4FCF5265D77BEC040B4374661D764A5D25C5DDF"
+                  },
+                  {
+                      "name":  "leaf_19.lrat",
+                      "bytes":  29684905,
+                      "sha256":  "531F29FFF336986777271331F997D2401FCDF9E282ECB0586458BF0DA2D86CAA"
+                  },
+                  {
+                      "name":  "leaf_20.lrat",
+                      "bytes":  63402374,
+                      "sha256":  "816B09819F0392F23D1F6BC04ED868507F179011AE6F2E88FA4524170C6AD281"
+                  },
+                  {
+                      "name":  "leaf_21.lrat",
+                      "bytes":  140675222,
+                      "sha256":  "092897980704FA83EF3A910322D404D5103273988332F63EC83A0D82E8E645D8"
+                  },
+                  {
+                      "name":  "leaf_22.lrat",
+                      "bytes":  526737560,
+                      "sha256":  "B617860DDF81284F65B8B42BD478098A68F76803D33DE24CC49E8D82A58C8F4E"
+                  },
+                  {
+                      "name":  "leaf_23.lrat",
+                      "bytes":  26469753,
+                      "sha256":  "5D426FFE044368D982A5F0EE3A3B931344F8D14242DA101AD141E618E7384B60"
+                  },
+                  {
+                      "name":  "leaf_24.lrat",
+                      "bytes":  37168428,
+                      "sha256":  "A043CCB9640195C72F342CA188952977F75CA6B915207A4BFA51D30A08DF8B7B"
+                  },
+                  {
+                      "name":  "leaf_25.lrat",
+                      "bytes":  39440418,
+                      "sha256":  "D55328563248260329AB407EF251C5549C1278A65DEFA8EFBA3B41CA058B2BF0"
+                  },
+                  {
+                      "name":  "leaf_26.lrat",
+                      "bytes":  127283574,
+                      "sha256":  "8E4F47DEEBE50BA51CBE83FF8B0B46B4BBA2E474C0ED76E068A779C46935110C"
+                  },
+                  {
+                      "name":  "leaf_27.lrat",
+                      "bytes":  27158487,
+                      "sha256":  "C557E307FA5D99929DE642EEC94B939E7C079A46B31E65EA0682AF38647BA8B2"
+                  },
+                  {
+                      "name":  "leaf_28.lrat",
+                      "bytes":  31833278,
+                      "sha256":  "E1FE2419F17ECDCE4B756D59645D2FE55A2D1DF99AC1B54020071598FC47B5A2"
+                  },
+                  {
+                      "name":  "leaf_29.lrat",
+                      "bytes":  27799167,
+                      "sha256":  "571F08804F714D3E7949416A11C21B5F3945DB8F4E01552D1BB670B8042F58DD"
+                  },
+                  {
+                      "name":  "leaf_30.lrat",
+                      "bytes":  26135851,
+                      "sha256":  "7CA149A3023D049F41656ECA04705DEE9F697BD60E1E036DC6A1DE53D23EAA06"
+                  },
+                  {
+                      "name":  "leaf_31.lrat",
+                      "bytes":  23865325,
+                      "sha256":  "6E662AC96A20EB5D7BA1E3B66D0CEF3D3FE5AF5A257C4C02DC7CDCCFA1D704C4"
+                  },
+                  {
+                      "name":  "leaf_32.lrat",
+                      "bytes":  29113315,
+                      "sha256":  "E0718896659CDB20D594BC9FA7F8CAE748EA636A43CBDA3C09A3D3F9F50362F1"
+                  },
+                  {
+                      "name":  "leaf_33.lrat",
+                      "bytes":  27283668,
+                      "sha256":  "92A6C086332D0F59DA1CACD16CB7999221B154AE2B5666F81C662315C91C9D61"
+                  },
+                  {
+                      "name":  "leaf_34.lrat",
+                      "bytes":  39935143,
+                      "sha256":  "947D277D55A79050A033B48C86DD5954DE9DBAE96E652C0E06579D1F7ECDA42F"
+                  },
+                  {
+                      "name":  "leaf_35.lrat",
+                      "bytes":  24531927,
+                      "sha256":  "A8C754B0C8889B1EA6EE90D8BA0DE0919A70DF81AF478F26EA034489B83C2574"
+                  },
+                  {
+                      "name":  "leaf_36.lrat",
+                      "bytes":  35892893,
+                      "sha256":  "04C66AAF82AF25B9C9BA1947A9377BFC7E81339ADD43939FAFF7F4B115E04C65"
+                  },
+                  {
+                      "name":  "leaf_37.lrat",
+                      "bytes":  25148991,
+                      "sha256":  "EACBDE1A6C2BC0D4F1CDF2CBDF1E3F21470C963D74E9A3DAB5B68361391EEC41"
+                  },
+                  {
+                      "name":  "leaf_38.lrat",
+                      "bytes":  26048130,
+                      "sha256":  "C2E5DC7256A0A457187DCE5AF3716E94F798792A3C1B28C9425C8F1B11DF11CE"
+                  },
+                  {
+                      "name":  "leaf_39.lrat",
+                      "bytes":  30840746,
+                      "sha256":  "CAFFB9AD66A36DF1642D5161502C03AC3C4F92675625871B0B2C31239CCBC662"
+                  },
+                  {
+                      "name":  "leaf_40.lrat",
+                      "bytes":  43280535,
+                      "sha256":  "B0AE058B61FA9030BA6702216A8D0B49E9453810FC3D13383F779A169CEC4CCF"
+                  },
+                  {
+                      "name":  "leaf_41.lrat",
+                      "bytes":  23725751,
+                      "sha256":  "00F182E9FF23DC57AB351B28268E02B4FC509A557FD6A687BB58C2DD2ACE856C"
+                  },
+                  {
+                      "name":  "leaf_42.lrat",
+                      "bytes":  28592592,
+                      "sha256":  "DB275CAA4239584CB8A768C37D75B41CA9D211E1277A77FBCC798184529D67F9"
+                  },
+                  {
+                      "name":  "leaf_43.lrat",
+                      "bytes":  24668886,
+                      "sha256":  "CD8FDEF028768E4A92490718FACDCF6EE16393081D68012B07A4AD9DEE9B4EC8"
+                  },
+                  {
+                      "name":  "leaf_44.lrat",
+                      "bytes":  28366014,
+                      "sha256":  "12AE39E3C7D42AC7AC6F9D90BDB059E1253A845BBE18E696FF5BDB319930B367"
+                  },
+                  {
+                      "name":  "leaf_45.lrat",
+                      "bytes":  9615386,
+                      "sha256":  "B7FF078B73B9E4E3123CE50777225234157C5BF4FF206510F15F4F70DE33925B"
+                  },
+                  {
+                      "name":  "leaf_46.lrat",
+                      "bytes":  8366744,
+                      "sha256":  "AF519C6A0A6AAFBB06356DF9BBDD3673E603C6DF2E494CAB941330EF66268202"
+                  },
+                  {
+                      "name":  "leaf_47.lrat",
+                      "bytes":  30466791,
+                      "sha256":  "B824DAFC1069EADFA5F04B268CE57215936E9E096A4D066EA36DC6A51860EEC0"
+                  },
+                  {
+                      "name":  "leaf_48.lrat",
+                      "bytes":  33259397,
+                      "sha256":  "CFEE211838608660643DB0CEC29141B1EEFBC3C655D6FC73011C5F76A3A2107F"
+                  },
+                  {
+                      "name":  "leaf_49.lrat",
+                      "bytes":  26230295,
+                      "sha256":  "F1FA2B33A59024E66A6800E981D6E6AEC9C4D27B24BA65082612A9E16C3167CD"
+                  },
+                  {
+                      "name":  "leaf_50.lrat",
+                      "bytes":  30313998,
+                      "sha256":  "09ADC29B3CFFA7D6889661D85EF9A9E28F725659E4BECEE0300B1B4164A36FD2"
+                  },
+                  {
+                      "name":  "leaf_51.lrat",
+                      "bytes":  26915585,
+                      "sha256":  "65AA2E5646DF6C60D2E6D1157AB96756C7A29559E1B73C4BC48C2D4F6E6F30A8"
+                  },
+                  {
+                      "name":  "leaf_52.lrat",
+                      "bytes":  25926987,
+                      "sha256":  "D890E0998A25AE726D75F13F0DBD680360409AC47BE378D07A51C9808FAF2007"
+                  },
+                  {
+                      "name":  "leaf_53.lrat",
+                      "bytes":  24861778,
+                      "sha256":  "FAA67AD80D623D8C3F5C9D8EF3476171A82A0087DC0FA4FF24CA8A5B6734DFA3"
+                  },
+                  {
+                      "name":  "leaf_54.lrat",
+                      "bytes":  16837657,
+                      "sha256":  "DB4CE751E6E76DF5C2EA62E8DBD114A4413BF6C041329F0E1CEFC641278F534E"
+                  },
+                  {
+                      "name":  "leaf_55.lrat",
+                      "bytes":  4086,
+                      "sha256":  "FF37DED20833AD306888291CF447EC471FC732B27870BCC2A34A0C06F91A8958"
+                  },
+                  {
+                      "name":  "leaf_56.lrat",
+                      "bytes":  4092,
+                      "sha256":  "CC8BDC901BF571EFF875CDEF05A15DA0FFAD22228750E496BE298C3907D6E13A"
+                  },
+                  {
+                      "name":  "leaf_57.lrat",
+                      "bytes":  4098,
+                      "sha256":  "E4FA2E63FB59BD2D7D9FC625A9CC16304022CE7DC9BA28A69D397A04A1FF4DFD"
+                  },
+                  {
+                      "name":  "leaf_58.lrat",
+                      "bytes":  4104,
+                      "sha256":  "8B6D7233CFBF9415A8EFEAA33361D7C44889062146552DD643BC514122B59D8F"
+                  },
+                  {
+                      "name":  "leaf_59.lrat",
+                      "bytes":  4110,
+                      "sha256":  "26B702FAE2D08538989AF8CCE48C151C389779B292C89287EF8A9F9602244973"
+                  },
+                  {
+                      "name":  "cover.lrat",
+                      "bytes":  2246,
+                      "sha256":  "4179F0D4546C93DC2EA978DF2D5A07A6BD5C8001A2634E10C4E0661A9581A681"
+                  }
+              ]
+}

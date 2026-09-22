@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Quest HUD</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="quest-page">
+    <aside id="quest-hud" class="quest-hud" aria-label="Suivi ludique du projet">
+      <header class="quest-header">
+        <div>
+          <p id="quest-kicker" class="quest-kicker">SIDE QUEST</p>
+          <h1 id="quest-title">Chargement…</h1>
+        </div>
+        <div id="quest-mode" class="mode-chip" data-mode="idle">VEILLE</div>
+      </header>
+
+      <section class="current-quest" aria-labelledby="current-title">
+        <div class="current-quest__topline">
+          <span class="pixel-beacon" aria-hidden="true"></span>
+          <span id="current-eyebrow">QUÊTE ACTUELLE</span>
+          <span id="current-gate" class="gate-count"></span>
+        </div>
+        <h2 id="current-title">Lecture de l’état…</h2>
+        <p id="current-detail"></p>
+      </section>
+
+      <section class="route" aria-labelledby="route-title">
+        <div class="section-heading">
+          <h2 id="route-title">CARTE DES PORTES</h2>
+          <span id="checkpoint-label"></span>
+        </div>
+        <div class="route-grid">
+          <div class="quest-rail" aria-hidden="true">
+            <div class="quest-rail__track"></div>
+            <div class="quest-rail__fill"></div>
+            <div class="pixel-hero" id="pixel-hero">
+              <span class="pixel-hero__head"></span>
+              <span class="pixel-hero__body"></span>
+              <span class="pixel-hero__feet"></span>
+            </div>
+          </div>
+          <ol id="stage-list" class="stage-list"></ol>
+        </div>
+      </section>
+
+      <section class="event-console" aria-labelledby="event-label" aria-live="polite">
+        <div class="event-console__glyph" id="event-glyph" aria-hidden="true">✦</div>
+        <div class="event-console__copy">
+          <p id="event-label" class="event-console__label">JOURNAL VIVANT</p>
+          <strong id="event-title">Synchronisation…</strong>
+          <p id="event-detail"></p>
+        </div>
+        <div id="spark-field" class="spark-field" aria-hidden="true"></div>
+      </section>
+
+      <section class="inventory" aria-labelledby="inventory-title">
+        <div class="section-heading">
+          <h2 id="inventory-title">ACQUIS REMARQUABLES</h2>
+          <span id="inventory-count"></span>
+        </div>
+        <ul id="inventory-list" class="inventory-list"></ul>
+      </section>
+
+      <section class="selected-detail" aria-labelledby="selected-title">
+        <p id="selected-rarity" class="selected-detail__rarity"></p>
+        <h2 id="selected-title">Détail du palier</h2>
+        <p id="selected-copy"></p>
+      </section>
+
+      <footer class="truth-box">
+        <strong id="truth-label">RÈGLE D’HONNÊTETÉ</strong>
+        <p id="truth-detail"></p>
+        <div class="truth-box__bottom">
+          <span id="bound-label"></span>
+          <span id="updated-label"></span>
+        </div>
+      </footer>
+
+      <noscript>Activez JavaScript pour afficher le journal de quête.</noscript>
+    </aside>
+  </main>
+
+  <script src="ramsey-state.js?v=20260808-fcuj-closed"></script>
+  <script src="hud.js"></script>
+</body>
+</html>

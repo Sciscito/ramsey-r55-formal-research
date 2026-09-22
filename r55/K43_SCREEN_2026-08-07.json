@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "status": "BOUNDED_PROOF_FREE_SCREEN_COMPLETE",
+  "warning": "UNSAT is solver evidence without LRAT; UNKNOWN proves nothing about satisfiability.",
+  "scope": "Eight representative branches of the 1196 non-vacuous minimum-anchor K43 branches.",
+  "configuration": {
+    "conflict_limit": 100000,
+    "timeout_seconds": 120,
+    "jobs": 2,
+    "cadical_options": ["--unsat", "--walk=false"],
+    "generator_options": {
+      "max_colour_degree": 24,
+      "degree_encoding": "rooted",
+      "anchor_minimum_degree_specialized": true,
+      "signature_lex": true
+    }
+  },
+  "identities": {
+    "typed_manifest_tight_sha256": "6480F59552D21446BE448DC50CC85395BB711746193848E3291164CADEFE9E26",
+    "ramsey_py_sha256": "38AAC47F9D6BD0EB414EE4BABF486CC391401463902F5B58582CC1E60B81F9FF",
+    "cadical_sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "external_journal": "S:\\CodexResearchCache\\ramsey-r55-k43-screen\\pilot-v1\\results.jsonl",
+    "external_journal_bytes": 55466,
+    "external_journal_sha256": "4B8F4F8ED8A7A937AA0127FB7732F375202E68CDF818EAA6F3EF1D511074A5C6"
+  },
+  "summary": {
+    "selected": 8,
+    "unsat_without_lrat": 1,
+    "unknown_at_conflict_limit": 7,
+    "cnfs_retained": 0,
+    "maximum_rss_mb": 386.4
+  },
+  "results": [
+    {"branch": "d18_c9_t195", "status": "UNSAT_WITHOUT_LRAT", "conflicts": 95, "solver_seconds": 2.17, "generation_seconds": 7.203, "max_rss_mb": 285.78, "cnf_sha256": "CCFF8D408CDBBD0E391C0DEB56BFEF8B1F29931E61F101F53ED74F2F2F8BAD5C"},
+    {"branch": "d18_c2_t0", "status": "UNKNOWN", "conflicts": 100001, "solver_seconds": 37.22, "generation_seconds": 7.672, "max_rss_mb": 370.19, "cnf_sha256": "C75DFE9638909E83B03403EFED18731499EF04CA4499EA34811862DB1010059C"},
+    {"branch": "d18_c3_t0", "status": "UNKNOWN", "conflicts": 100000, "solver_seconds": 54.52, "generation_seconds": 7.703, "max_rss_mb": 380.46, "cnf_sha256": "D74746D77E4AA4A366080365CA038AD0B0BEEBABDFF4B26A4765634FE8704F5B"},
+    {"branch": "d18_c8_t48", "status": "UNKNOWN", "conflicts": 100003, "solver_seconds": 54.76, "generation_seconds": 7.5, "max_rss_mb": 371.47, "cnf_sha256": "ED99E70B2CF7C3A50F519CF2230DDEE88291AF75B017A3AC2A24F63817375614"},
+    {"branch": "d20_c2_t0", "status": "UNKNOWN", "conflicts": 100002, "solver_seconds": 35.31, "generation_seconds": 7.0, "max_rss_mb": 386.4, "cnf_sha256": "94262B75CA96F5F2811EC88AF66401DBB7D6472A57F31D62A57747CB1AEA54CC"},
+    {"branch": "d20_c3_t1", "status": "UNKNOWN", "conflicts": 100000, "solver_seconds": 35.19, "generation_seconds": 7.094, "max_rss_mb": 383.39, "cnf_sha256": "F519EEF37989D34E55189162FE874E620D4EA423BB1083DCB08D426DDA0159BA"},
+    {"branch": "d20_c4_t4", "status": "UNKNOWN", "conflicts": 100003, "solver_seconds": 38.42, "generation_seconds": 7.313, "max_rss_mb": 377.68, "cnf_sha256": "2F8D8E7690BE32775054DF83AF34CD8B47D0A5BB07B3A1D2B777DF3B9EB5226E"},
+    {"branch": "d20_c7_t40", "status": "UNKNOWN", "conflicts": 100000, "solver_seconds": 48.66, "generation_seconds": 7.797, "max_rss_mb": 358.78, "cnf_sha256": "6E443A3F3B2112A36D4FC0A4E8E8184883D1B0DF8ED72530006ED6D32482574F"}
+  ]
+}

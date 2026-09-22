@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "status": "UNSAT_WITHOUT_PROOF_ALL_NINE_R34_CUBES",
+  "date": "2026-08-08",
+  "scope": "Bounded incremental CaDiCaL pilot on the exact F7 body under nine ordered R(3,4) order-seven catalogue cubes; solver evidence only. No LRAT or other proof certificate, no composed S7 transport from an arbitrary degree-seven neighbourhood, no Lean cover6-d7 theorem, no global gluing, and no new Ramsey-number bound.",
+  "proof_level": {
+    "level": 2,
+    "label": "solver result without mechanically replayable certificate",
+    "upper_bound": "The result must not be reported as a formal cover6-d7 theorem."
+  },
+  "source": {
+    "f7": {
+      "name": "cover6_closed_block_degree_d7.cnf",
+      "variables": 66,
+      "clauses": 4312419,
+      "bytes": 246507515,
+      "lines": 4312420,
+      "sha256": "85A93BEEA81BC890E3343A5A52094380446432F81AF9B28A2A35F9B76CAC920C"
+    },
+    "r34_catalogue": {
+      "name": "r35_7.g6",
+      "source_records": 71,
+      "filtered_records": 9,
+      "bytes": 426,
+      "sha256": "DB838EEDFFE06069481E392FB6635C616A38A3C42BD130BA945B51B9B47A7AC2"
+    },
+    "cover6_catalogue": {
+      "name": "cover6_complement_closed.tsv",
+      "sha256": "404E49E3218424FCB73314ADEE42CC873CD3F8D67E4615653A8BC0210F61AD16"
+    }
+  },
+  "incremental_formula": {
+    "name": "cover6_closed_f7_r34_catalogue9.inccnf",
+    "header": "p inccnf",
+    "bytes": 246508227,
+    "lines": 4312429,
+    "sha256": "CD4C3BB7D0850F75028346B6CD1AA4493D9FD837BFC595503D3E5DA750703180",
+    "construction": {
+      "f7_clause_body_reused_byte_for_byte": true,
+      "source_header_replaced": true,
+      "cubes": 9,
+      "assumption_literals_per_cube": 21,
+      "cube_payload_bytes": 720,
+      "cube_payload_sha256": "78EC8EE01955937D451617A4F5D1D302E880A09F24A2582338A15C0D1496652C",
+      "materializer": "materialize_cover6_d7_r34_catalogue_icnf.py",
+      "materializer_sha256": "AAC85AC180E3C1EAE7A9A47F5CB3BD1B124E8B58F652AC4C28CC5800EE9BF7FD",
+      "large_copies_written": 1,
+      "nine_separate_f7_copies_written": false
+    },
+    "external_cache_directory": "S:\\CodexResearchCache\\ramsey-formal\\lrat-work\\r45-cover6-master7-mincenter-v1"
+  },
+  "cube_order": [
+    {
+      "index_one_based": 1,
+      "record": "FG\u0060Xo",
+      "degree_sequence": [1, 2, 2, 2, 3, 3, 3],
+      "is_exact_cover6_oracle": true,
+      "elapsed_seconds": 0.172,
+      "cumulative_conflicts": 0,
+      "cube_conflicts": 0,
+      "failed_assumptions": 14,
+      "status": "UNSATISFIABLE"
+    },
+    {
+      "index_one_based": 2,
+      "record": "FCUj_",
+      "degree_sequence": [2, 2, 2, 3, 3, 3, 3],
+      "is_exact_cover6_oracle": false,
+      "elapsed_seconds": 0.938,
+      "cumulative_conflicts": 507,
+      "cube_conflicts": 507,
+      "failed_assumptions": 15,
+      "status": "UNSATISFIABLE"
+    },
+    {
+      "index_one_based": 3,
+      "record": "FK\u0060Xo",
+      "degree_sequence": [2, 2, 2, 3, 3, 3, 3],
+      "is_exact_cover6_oracle": false,
+      "elapsed_seconds": 2.469,
+      "cumulative_conflicts": 2599,
+      "cube_conflicts": 2092,
+      "failed_assumptions": 15,
+      "status": "UNSATISFIABLE"
+    },
+    {
+      "index_one_based": 4,
+      "record": "F_GZ_",
+      "degree_sequence": [1, 2, 2, 2, 2, 2, 3],
+      "is_exact_cover6_oracle": false,
+      "elapsed_seconds": 1.547,
+      "cumulative_conflicts": 4203,
+      "cube_conflicts": 1604,
+      "failed_assumptions": 16,
+      "status": "UNSATISFIABLE"
+    },
+    {
+      "index_one_based": 5,
+      "record": "F\u0060AZO",
+      "degree_sequence": [2, 2, 2, 2, 2, 3, 3],
+      "is_exact_cover6_oracle": false,
+      "elapsed_seconds": 2.516,
+      "cumulative_conflicts": 5011,
+      "cube_conflicts": 808,
+      "failed_assumptions": 14,
+      "status": "UNSATISFIABLE"
+    },
+    {
+      "index_one_based": 6,
+      "record": "F\u0060GOW",
+      "degree_sequence": [1, 1, 2, 2, 2, 2, 2],
+      "is_exact_cover6_oracle": false,
+      "elapsed_seconds": 5.781,
+      "cumulative_conflicts": 8955,
+      "cube_conflicts": 3944,
+      "failed_assumptions": 19,
+      "status": "UNSATISFIABLE"
+    },
+    {
+      "index_one_based": 7,
+      "record": "FoDPO",
+      "degree_sequence": [2, 2, 2, 2, 2, 2, 2],
+      "is_exact_cover6_oracle": false,
+      "elapsed_seconds": 4.297,
+      "cumulative_conflicts": 12429,
+      "cube_conflicts": 3474,
+      "failed_assumptions": 17,
+      "status": "UNSATISFIABLE"
+    },
+    {
+      "index_one_based": 8,
+      "record": "FoDPW",
+      "degree_sequence": [2, 2, 2, 2, 2, 3, 3],
+      "is_exact_cover6_oracle": false,
+      "elapsed_seconds": 1.047,
+      "cumulative_conflicts": 13709,
+      "cube_conflicts": 1280,
+      "failed_assumptions": 15,
+      "status": "UNSATISFIABLE"
+    },
+    {
+      "index_one_based": 9,
+      "record": "FqOxo",
+      "degree_sequence": [2, 3, 3, 3, 3, 3, 3],
+      "is_exact_cover6_oracle": false,
+      "elapsed_seconds": 4.375,
+      "cumulative_conflicts": 16893,
+      "cube_conflicts": 3184,
+      "failed_assumptions": 11,
+      "status": "UNSATISFIABLE"
+    }
+  ],
+  "solver": {
+    "name": "CaDiCaL",
+    "version": "2.1.2",
+    "binary_sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "flags": [
+      "--unsat",
+      "--walk=false",
+      "--verbose=1",
+      "-c",
+      "5000"
+    ],
+    "conflict_limit_semantics": "5000 conflicts per incremental cube",
+    "jobs": 1,
+    "lrat_requested": false,
+    "drat_requested": false,
+    "incremental_learning": "Later cube metrics are order-dependent: after each UNSAT cube CaDiCaL adds a clause from its failed assumptions and retains globally valid learned information."
+  },
+  "supervision": {
+    "wall_limit_seconds": 300,
+    "rss_limit_mib": 1536,
+    "log_limit_mib": 64,
+    "limits_triggered": false
+  },
+  "result": {
+    "solver_status": "UNSATISFIABLE",
+    "returncode": 20,
+    "cubes_solved": 9,
+    "cubes_unsatisfiable": 9,
+    "cubes_inconclusive": 0,
+    "cubes_satisfiable": 0,
+    "conflicts": 16893,
+    "decisions": 18490,
+    "learned_clauses": 16723,
+    "solve_process_seconds": 23.14,
+    "search_process_seconds": 21.70,
+    "parse_process_seconds": 5.55,
+    "total_process_seconds": 28.75,
+    "total_real_seconds": 29.16,
+    "maximum_resident_set_mib": 1083.19,
+    "proof_status": "none",
+    "oracle_check": "Cube 1, the exact shared cover6 record FG\u0060Xo, was UNSAT with zero CDCL conflicts.",
+    "scientific_interpretation": "The complete nine-cube catalogue screen is dramatically easier for CaDiCaL than the earlier weak nine-pair Master7 formula and gives strong level-2 evidence for the degree-seven target. It is not a formal proof."
+  },
+  "logs": {
+    "stdout": {
+      "name": "r34_catalogue9_5k.stdout.log",
+      "bytes": 32819,
+      "sha256": "72FFBEBDB4E260366B0708D4B3A58C9F1583089BE64361FA49CAAB39B4B0402E"
+    },
+    "stderr": {
+      "name": "r34_catalogue9_5k.stderr.log",
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    }
+  },
+  "formal_boundary": {
+    "catalogue_fact_available": "A certified order-seven R(3,4) catalogue exists.",
+    "missing_composition": "The transport of every arbitrary degree-seven root neighbourhood to one of these nine concrete F7 cubes, including preservation of the F7 semantics modulo the S7 action, has not been composed into the terminal Lean theorem.",
+    "certificate_missing": "The incremental solver run emitted no LRAT, DRAT, LIDRUP, or other replayable proof.",
+    "claim_forbidden": "Do not claim a Lean cover6-d7 theorem or any improved Ramsey bound from this pilot."
+  },
+  "next_action": "Choose a certifiable leaf route for the nine catalogue cases, obtain replayable UNSAT certificates, prove the exact F7 clause-index bridge, and compose the S7 catalogue transport before upgrading beyond proof level 2."
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "SUPERSEDED_BY_REDUCED_CORE_DUAL_REPLAY",
+  "warning": "The full LRAT still exceeds the 3 GiB Lean pilot limit. Its exact RUP dependency core has since been replayed by Lean with two compact certificates, but the bridge from the frozen Master8 clause stream to a Lean-defined generator is still open; this is not yet a formal cover6-d8 theorem.",
+  "formula": {
+    "name": "cover6_closed_master_d8_bounded13.cnf",
+    "variables": 66,
+    "clauses": 3367459,
+    "bytes": 189298375,
+    "sha256": "3E725132C29E1CAA9D5FD5EA0AD67D8A5A80E61A1241768D36A910DD23FD329D",
+    "construction_report": "MASTER8_PREFIX_PILOT_V1.json",
+    "extra_clauses_over_f8": 22,
+    "exact_second_center_assignments": 13
+  },
+  "solver": {
+    "name": "CaDiCaL",
+    "version": "2.1.2",
+    "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "flags": [
+      "--lrat",
+      "--no-binary",
+      "--checkproof=2",
+      "--unsat",
+      "--walk=false",
+      "-c",
+      "100000"
+    ],
+    "returncode": 20,
+    "result": "UNSATISFIABLE",
+    "conflicts": 4598,
+    "decisions": 4888,
+    "real_seconds": 16.26,
+    "reported_maximum_resident_mb": 833.33,
+    "proof_checked_during_generation": true
+  },
+  "lrat": {
+    "name": "cover6_closed_master_d8_bounded13.lrat",
+    "bytes": 128131809,
+    "sha256": "B2ECDACD2D99CD6EA2929C0B370C6AAFD74FE78FDE20FFBDFE68B7D0EF860505",
+    "added_clauses": 1182841,
+    "deleted_clauses": 2502973,
+    "stored_outside_git": true
+  },
+  "lean_replay_pilot": {
+    "command": "lrat_reflect_trim",
+    "status": "RSS_LIMIT_BEFORE_THEOREM",
+    "elapsed_seconds": 170.932,
+    "family_peak_rss_bytes": 3229577216,
+    "rss_limit_bytes": 3221225472,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0,
+    "theorem_produced": false
+  },
+  "superseded_by": "master8_core/MANIFEST.json",
+  "claim_boundary": "Lean now proves UNSAT for an exact 6,152-clause ordered subsequence of the frozen Master8 DIMACS stream. No formal UNSAT theorem for a Lean-defined Master8 generator, and no cover6-d8 theorem, is claimed until the indexed-source and semantic bridges are composed.",
+  "next_required_step": "Define the indexed Master8 source in Lean, prove that the tracked core indices select its exact clauses, and compose that transfer with the cube, motif, and TwoCenter semantic bridges."
+}

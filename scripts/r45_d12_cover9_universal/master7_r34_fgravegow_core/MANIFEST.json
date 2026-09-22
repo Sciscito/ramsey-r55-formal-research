@@ -1,0 +1,274 @@
+{
+  "artifacts": {
+    "cnf": {
+      "bytes": 289163,
+      "lines": 5808,
+      "name": "cover6_closed_f7_r34_i6_FgraveGOW_core.cnf",
+      "sha256": "2DD4F2F3359A78163B20B7103804A34E081F71CE436D8332DAE71309A54C0B6E"
+    },
+    "gitattributes": {
+      "bytes": 78,
+      "lines": 6,
+      "name": ".gitattributes",
+      "sha256": "0D3A87415F0DD8A34B869279597919CB8F2F7843D82BD4AAEDA98C1307F19650"
+    },
+    "lean_log": {
+      "bytes": 202,
+      "lines": 4,
+      "name": "lean_replay.log",
+      "sha256": "8FC2F5C4F8C37914211C8C2A6414CF1942C553D2014A91F77F5EBAFDB5621C6B"
+    },
+    "lrat": {
+      "bytes": 864692,
+      "lines": 17758,
+      "name": "cover6_closed_f7_r34_i6_FgraveGOW_core.lrat",
+      "sha256": "2663E5943CE593EB7E9C3E21D588601AFFD528C419C946CE3B337D4649A1D188"
+    },
+    "mapping": {
+      "bytes": 450424,
+      "lines": 5808,
+      "name": "core_clause_map.tsv",
+      "sha256": "4324BD649921CA8EF00673A002D051C7046FE0B5D31144B59A07FAD7BF73D992"
+    },
+    "reduction": {
+      "bytes": 4725,
+      "lines": 149,
+      "name": "reduction.json",
+      "sha256": "FD9A9191DAA2D9CA86903E28A5FF0EF2B52320920D569C50F91F8AC26825C52A"
+    },
+    "replay": {
+      "bytes": 520,
+      "lines": 12,
+      "name": "Replay.lean",
+      "sha256": "B4FC1D0B115D6A334C19B1B1D55F5B29916DBDEBD5D955AD18D3DB05FCEADAAD"
+    }
+  },
+  "caps": {
+    "limits": {
+      "clauses": 50000,
+      "cnf_bytes": 33554432,
+      "lrat_bytes": 134217728
+    },
+    "observed": {
+      "clauses": 5807,
+      "cnf_bytes": 289163,
+      "lrat_bytes": 864692
+    },
+    "status": "PASS_COMPACT_CORE_CAPS"
+  },
+  "dependency_core": {
+    "dependency_edges": 72001,
+    "derived_additions": 9475,
+    "initial_clauses": 5807,
+    "retained_deleted_identifiers": 9758,
+    "retained_deletion_actions": 8283
+  },
+  "eol_policy": "CNF, LRAT, and TSV are Git binary; JSON, Lean, and log are -text so frozen byte hashes are not rewritten",
+  "formal_boundary": "Lean proves UNSAT only for the exact tracked ordered-subsequence core of the frozen F`GOW leaf CNF. This does not prove encoder semantics, S7 orbit coverage/composition, a cover6-d7 theorem, global gluing, a Ramsey-number bound, or a major discovery.",
+  "schema_version": 1,
+  "selection": {
+    "conditioned_level": 2,
+    "incremental_position_one_based": 6,
+    "record": "F`GOW",
+    "source_catalogue_index_zero_based": 5
+  },
+  "source_fgravegow_leaf": {
+    "cnf": {
+      "bytes": 246507635,
+      "clauses": 4312440,
+      "name": "cover6_closed_f7_r34_i6_FgraveGOW.cnf",
+      "sha256": "78D066E03B1F55FACBF8839BCC409E0D45BABF93FA6D266628BB526D2F5E5971",
+      "variables": 66
+    },
+    "external_core_manifest": {
+      "bytes": 9715,
+      "name": "MANIFEST.json",
+      "sha256": "4D0BABD9CED3154291B7C81675EE8E4F644A649AFE8315E7BB773E9D26412036",
+      "storage": "external cache, not tracked"
+    },
+    "lrat": {
+      "additions": 399094,
+      "bytes": 73928822,
+      "name": "cover6_closed_f7_r34_i6_FgraveGOW_c25k.lrat",
+      "rat_additions": 0,
+      "sha256": "580D4B8FC24BCE446D2DF22370C4D56397EE54E7272A4A48796A86962E5D5A3A"
+    },
+    "run_report": {
+      "bytes": 4898,
+      "name": "cover6_closed_f7_r34_i6_FgraveGOW_c25k.lrat-run.json",
+      "sha256": "BEB9352364B9EA0B860E69B7FB65DD142207F935C73D0B488AD4E3086C5A5DFD"
+    }
+  },
+  "status": "PASS_TRACKED_FGRAVEGOW_COMPACT_CORE_LEAN_REPLAY",
+  "validation": {
+    "backward_closure": "unique final empty-clause dependency closure",
+    "forward_hint_policy": "all forward hints rejected during full indexing",
+    "lean": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound",
+        "cover6_d7_fgravegow_core_unsat._native.native_decide.ax_1_1"
+      ],
+      "axioms_allowed": true,
+      "frozen_stack": {
+        "identity_scope": {
+          "not_exhaustive": "Lean.olean and the full transitive imported module closure are not exhaustively hashed; this is reproducibility provenance, not an adversarial full-stack immutability guarantee",
+          "pinned": "complete toolchain bin tree; direct Std LRAT/CNF modules; LRATCatcher Basic/Kernel/Reflect source and compiled modules",
+          "runtime_import_path": "direct S: build target; the repository .lake/build junction is bypassed"
+        },
+        "lean_executable": {
+          "bytes": 84480,
+          "name": "lean.exe",
+          "sha256": "8132256D484B8ECC4561BEC70ABD1271F4C0D03BADBC3BC272F6C4053AF9FDBC"
+        },
+        "lean_version": "4.30.0",
+        "lratcatcher_build_files": [
+          {
+            "bytes": 228248,
+            "relative_path": "lib/lean/LRATCatcher/Basic.olean",
+            "sha256": "85147C8B959621FD1683BE57AF6945F69C322449C2A916D1EE31BD1EEEF3502D"
+          },
+          {
+            "bytes": 790584,
+            "relative_path": "lib/lean/LRATCatcher/Kernel.olean",
+            "sha256": "FD8A073996EEBDFC97F82DC8D2BB34729AEE1FEEB2557EFC9D8ED074CF745E32"
+          },
+          {
+            "bytes": 1326392,
+            "relative_path": "lib/lean/LRATCatcher/Reflect.olean",
+            "sha256": "FC4356F894B609D5EDC12DCAAA856E8372618682B0E76B10D1500F575764F251"
+          }
+        ],
+        "lratcatcher_source_files": [
+          {
+            "bytes": 2914,
+            "relative_path": "LRATCatcher/Basic.lean",
+            "sha256": "EBA596F276AE5E54C6CF7AD0092DD30513127574C7DC5E4BC5D70CE376D144BE"
+          },
+          {
+            "bytes": 13147,
+            "relative_path": "LRATCatcher/Kernel.lean",
+            "sha256": "03E3A3F07A623158F9DA69444E4C82CD0B6F73CC64EAAF13B493BEFF95C8CD9D"
+          },
+          {
+            "bytes": 12029,
+            "relative_path": "LRATCatcher/Reflect.lean",
+            "sha256": "1DB3676E4AE0C96B079E79A5AD2CBCC870FAA2731B6B424681B3AFFD228BB1B2"
+          },
+          {
+            "bytes": 346,
+            "relative_path": "lakefile.toml",
+            "sha256": "E75C93ADC0C4F72A0932FD3F84E17BB075ADA99B8B6E3708D2BDDDA22D553DDF"
+          },
+          {
+            "bytes": 25,
+            "relative_path": "lean-toolchain",
+            "sha256": "54727EEC5CBA149C18842E6DEB5C41B369D66455C93CE135D7D5347C782B2325"
+          },
+          {
+            "bytes": 143,
+            "relative_path": "lake-manifest.json",
+            "sha256": "CD4356C2CBDF289ED5CB7643E5DFCDB3C73EA0A84461EFD52305604889CB48AE"
+          }
+        ],
+        "standard_modules": [
+          {
+            "bytes": 1608,
+            "relative_path": "lib/lean/Std/Tactic/BVDecide/LRAT.olean",
+            "sha256": "E176AE5339E181A2FD16B64912B8043824585F84D279B860D52B9451000CCB6E"
+          },
+          {
+            "bytes": 1744,
+            "relative_path": "lib/lean/Std/Sat/CNF.olean",
+            "sha256": "76CD0AF7E0D670E294A38F2C67A556D02442B44F5E96866D37311A76B65D2746"
+          }
+        ],
+        "status": "PASS_PINNED_SELECTED_LEAN_LRATCATCHER_IDENTITIES",
+        "toolchain_bin_tree": {
+          "algorithm": "casefold-sorted relative_path<TAB>bytes<TAB>SHA256<LF>",
+          "bytes": 381505372,
+          "files": 21,
+          "sha256": "EE2F0D219C4AE65CC06A247A7555869D22067479A4B3AC74F0764FBE96139DDB"
+        },
+        "toolchain_identifier": "leanprover/lean4:v4.30.0"
+      },
+      "status": "LEAN_LRAT_REPLAY_PASS",
+      "supervision": {
+        "command": [
+          "lean.exe",
+          "Replay.lean"
+        ],
+        "environment_policy": {
+          "inherited": false,
+          "lean_path": "frozen LRATCatcher build recorded in frozen_stack",
+          "path": "frozen Lean bin plus Windows System32",
+          "temporary_directory": "external S: cache (not tracked)"
+        },
+        "job_memory_limit_bytes": 1610612736,
+        "job_memory_scope": "lean plus every descendant process",
+        "job_object_assigned": true,
+        "kill_on_job_close": true,
+        "launch_error": null,
+        "launch_suspended_until_job_assignment": true,
+        "log_limit_bytes": 8388608,
+        "peak_job_memory_bytes": 209424384,
+        "returncode": 0,
+        "stop_reason": null,
+        "wall_limit_seconds": 600.0,
+        "wall_seconds": 2.9858,
+        "working_directory": "vendor/lrat-catcher"
+      },
+      "theorem": "LRATCatcher.Tests.Cover6D7FgraveGowCoreReplay.cover6_d7_fgravegow_core_unsat"
+    },
+    "mapping": {
+      "core_clauses": 5807,
+      "core_variables": 66,
+      "mapping": {
+        "bytes": 450424,
+        "sha256": "4324BD649921CA8EF00673A002D051C7046FE0B5D31144B59A07FAD7BF73D992"
+      },
+      "master_clauses": 4312440,
+      "master_variables": 66,
+      "rows": 5807,
+      "status": "PASS_EXACT_ORDERED_SUBSEQUENCE"
+    },
+    "post_replay_artifacts_unchanged": true,
+    "reduced_pair": {
+      "core": {
+        "dependency_edges": 72001,
+        "derived_additions": 9475,
+        "initial_clauses": 5807,
+        "retained_deleted_identifiers": 9758,
+        "retained_deletion_actions": 8283
+      },
+      "input": {
+        "cnf": {
+          "bytes": 289163,
+          "sha256": "2DD4F2F3359A78163B20B7103804A34E081F71CE436D8332DAE71309A54C0B6E"
+        },
+        "initial_clauses": 5807,
+        "lrat": {
+          "bytes": 864692,
+          "sha256": "2663E5943CE593EB7E9C3E21D588601AFFD528C419C946CE3B337D4649A1D188"
+        },
+        "variables": 66
+      },
+      "proof": {
+        "additions": 9475,
+        "deleted_identifiers": 9758,
+        "deletion_actions": 8283,
+        "final_empty_id": 15282,
+        "first_addition_id": 5808,
+        "lines": 17758,
+        "rat_additions": 0,
+        "rup_additions": 9475
+      },
+      "rat_policy": "safe RUP-only remap; RAT input is detected and reduction is refused",
+      "schema_version": 1,
+      "scope": "syntactic LRAT dependency extraction only; the reduced pair must be replayed by a trusted LRAT checker",
+      "status": "PASS_CLOSED_RUP_DEPENDENCY_CORE_REPLAY_STILL_REQUIRED"
+    },
+    "source_proof_syntax": "399094 RUP additions, zero RAT"
+  }
+}

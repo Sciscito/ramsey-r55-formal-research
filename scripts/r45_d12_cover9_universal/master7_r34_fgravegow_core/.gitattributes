@@ -1,0 +1,6 @@
+*.cnf binary
+*.lrat binary
+*.tsv binary
+*.json -text
+*.lean -text
+*.log -text

@@ -15,3 +15,7 @@ root = "Gen"
 [[lean_exe]]
 name = "lratcatch-cover-parallel"
 root = "CoverParallel"
+
+[[lean_exe]]
+name = "lratcatch-cover-parallel-trim"
+root = "CoverParallelTrim"

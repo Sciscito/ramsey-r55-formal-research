@@ -3,9 +3,80 @@
 ## Proven and not to be redone
 
 `R35CatalogCompleteness.lean` proves semantic completeness of every recorded
-`R(3,5,n)` catalogue through order 10 using `GraphIsomorphicFin`.
+`R(3,5,n)` catalogue through order 14 using `GraphIsomorphicFin`.
 
-## Immediate target
+The complete right-hand classification for the degree-eight `R(4,5,25)` split
+is also closed. `R44Gen4416Classification.lean` proves:
+
+```lean
+ramseyFree_isomorphic_to_gen4416
+    (coloring : Nat → Bool)
+    (hfree : isRamseyFree 16 4 4 coloring) :
+    ∃ targetIndex,
+      targetIndex < gen4416GraphIds.length ∧
+        GraphIsomorphicFin (coloringGraph 16 coloring)
+          (gen4416Graph targetIndex)
+```
+
+This theorem already includes the rooted degree split, the `9 × 3` exhaustive
+block catalogues, the semantics of the exact 10,880-clause CNF, its LRAT
+replay, the 64 mask permutations and complementation. Do not rebuild an
+`R(4,4,15)` catalogue or reopen the semantic right-cover obligation.
+
+## Completed checkpoint — red-degree-eight branch
+
+The complete red-degree-eight branch of the `R(4,5,25)` split is now closed
+and should not be redone. The compiled chain contains:
+
+- the exhaustive `gen358` and `gen4416` catalogue covers;
+- the block-preserving ambient permutation and literal-level unit bridges;
+- the generic 54-pair semantic assembly;
+- `R45DegreeEightGuardedMasterSemantics`, which proves that UNSAT of the
+  exact 282-variable, 55,926-clause guarded master implies
+  `AllAdmissibleDegreeEightPairsContradictory`;
+- `R45DegreeEightGuardedMaster`, which replays 59 trimmed leaf LRAT proofs
+  plus the cover proof, checks exact CNF equality, and proves:
+
+```lean
+no_root_has_redDegree_eight_certified
+    {coloring : Nat → Bool}
+    (hfree : isRamseyFree 25 4 5 coloring) :
+    ∀ root, root < 25 →
+      (colorNeighbors coloring root false).length ≠ 8
+```
+
+The targeted terminal build completed 56/56 with no `sorryAx`. This is an
+independent Lean/LRAT certification of one structural branch, not a proof of
+`R(4,5) ≤ 25` and not a claim of new mathematics.
+
+`R45RemainingDegrees` is also compiled. It combines the pre-existing checked
+handshaking reduction to `{8, 10, 12}` with the new exclusion and proves
+`certified_exists_red_degree_ten_or_twelve`: every hypothetical counterexample
+has a red-degree-10 or red-degree-12 root.
+
+The 59 leaf proofs total about 2.4 GB and currently live outside Git behind the
+ignored `guarded_master/proofs/` junction. The generated `metadata.json` is a
+frozen pre-solver metadata snapshot; its proof-artifact inventory records the
+state before the full certificate run and is not a post-run completeness
+claim. `proof_bundle_manifest.json` is the post-certification manifest: it
+records the 59 leaf LRAT files, the cover LRAT file, their hashes and the
+successful Lean replay. A portable release must provide the external bundle
+matching that manifest and automate its retrieval and verification.
+
+## Immediate target — remaining `R(4,5,25)` root degrees
+
+Use the degree-eight guarded-master architecture as a template for exactly the
+red-degree-10 and red-degree-12 branches. The checked global dispatch to those
+two cases is already proved in `R45RemainingDegrees`: these are exactly the
+remaining red-root-degree cases. Do not reopen the earlier `7..13` window or
+rebuild a broader degree split. Do not reopen the degree-eight local
+catalogues, its 54 pair contradictions, or its terminal composition.
+
+Closing these remaining degree branches would establish `R(4,5) ≤ 25`.
+Until that composition exists, the degree-eight theorem is only one completed
+case of the upper-bound proof.
+
+## Subsequent global target — `R(5,5)`
 
 Prove a Lean coverage theorem of the following shape:
 
@@ -36,10 +107,14 @@ the coverage and composition steps above.
 The naive `R(4,5,25)` CNF is not a viable monolithic LRAT target: it remains
 `UNKNOWN` after five million conflicts, and one million conflicts already
 generate 448 MB of incomplete textual proof. See
-`RAMSEY_BOUND_DIAGNOSTICS.md`. A promising finite split fixes a root, uses
+`RAMSEY_BOUND_DIAGNOSTICS.md`. The finite split fixes a root, uses
 `R(3,5) ≤ 14` and the now-certified `R(4,4) ≤ 18` to restrict its red degree
-to `7..13`, canonically relabels the two neighbourhoods, and certifies those
-seven branches plus the relabeling/coverage theorem.
+to `7..13`; parity then selects an even red degree in `{8, 10, 12}`. For
+degree 8, both local catalogue covers, the generic unit/permutation assembly,
+the guarded master and all 54 pair contradictions are now certified.
+`no_root_has_redDegree_eight_certified` closes that branch unconditionally,
+and `R45RemainingDegrees` leaves exactly the red-degree-10 and red-degree-12
+branches and their checked composition.
 
 The canonical local constructor is now complete. `LocalD20C10Witness` asks
 only for `degree(root)=20`, `anchor ∈ N(root)` and
@@ -47,10 +122,10 @@ only for `degree(root)=20`, `anchor ∈ N(root)` and
 lists and induced graph, and
 `LocalD20C10Witness.covered_by_orderTenCatalogue` proves catalogue coverage.
 
-The immediate Lean lemma is therefore the global/branch reduction producing
-such a witness from `isRamseyFree 43 5 5` plus the selected `d=20,c=10`
-branch. After that, identify the representative index and connect it to the
-manifest/CNF branch semantics.
+For this separate `K43` line, the next Lean lemma is the global/branch
+reduction producing such a witness from `isRamseyFree 43 5 5` plus the
+selected `d=20,c=10` branch. After that, identify the representative index and
+connect it to the manifest/CNF branch semantics.
 
 For the canonically labelled branch,
 `LocalD20C10Witness.ofCanonicalBranch` and
@@ -93,3 +168,43 @@ explicit hypothesis `CounterBlocksSatisfied`. Consequently the semantic
 residue for this leaf is no longer vague: prove soundness and witness
 extension for exactly the rooted-degree counter block (116,928 clauses) and
 minimum-internal-degree block (5,149 clauses).
+
+## Verification and publication threshold
+
+The targeted reproduction commands are:
+
+```powershell
+python -m unittest scripts.r45_d8_pilot.test_gen4416_rooted_classifier `
+  scripts.r45_d8_pilot.test_gen4416_rooted_proof_artifacts
+python scripts\r45_d8_pilot\gen4416_rooted_classifier.py verify
+
+cd vendor\lrat-catcher
+lake build LRATCatcher.Tests.R44Gen4416TargetAudit `
+  LRATCatcher.Tests.R44Gen4416Classification `
+  LRATCatcher.Tests.R45DegreeEightGen4416Bridge `
+  LRATCatcher.Tests.R45DegreeEightGlobalPermutation `
+  LRATCatcher.Tests.R45DegreeEightRawGen4416Bridge `
+  LRATCatcher.Tests.R45DegreeEightGen358UnitsBridge `
+  LRATCatcher.Tests.R45DegreeEightGen4416UnitsBridge `
+  LRATCatcher.Tests.R45DegreeEightLeafAssemblyCore `
+  LRATCatcher.Tests.R45DegreeEightReducedAssignment `
+  LRATCatcher.Tests.R45DegreeEightPilotAssembly `
+  LRATCatcher.Tests.R45DegreeEightBranchComposition `
+  LRATCatcher.Tests.R45DegreeEightGuardedMasterSemantics `
+  LRATCatcher.Tests.R45DegreeEightGuardedMaster
+```
+
+The literature audit rules out claims of a first classification, a first
+formalization or a new mathematical result. McKay's
+[Ramsey graph catalogue](https://users.cecs.anu.edu.au/~bdm/data/ramsey.html)
+already lists two `R(4,4,16)` graphs, while Gauthier–Brown's
+[*A Formal Proof of R(4,5)=25*](https://arxiv.org/abs/2404.01761) formalizes
+the relevant enumeration and coverage in HOL4. Describe this checkpoint as an
+independent Lean/LRAT certification. Publication is plausible only if its
+architecture, compositional proof design or certificate methodology is
+sufficiently distinct from that prior work.
+
+Do not describe it as a new Ramsey bound or as evidence that `R(5,5)=43`. Its
+explicit trust boundary is the Lean kernel, standard classical/quotient
+axioms, and the native LRAT/`native_decide` bridges used for the finite
+certificates; there is no `sorryAx`.

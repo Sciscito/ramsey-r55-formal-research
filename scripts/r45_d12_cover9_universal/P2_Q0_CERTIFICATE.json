@@ -1,0 +1,60 @@
+{
+  "case": {
+    "p": 2,
+    "q": 0,
+    "scope": "degree-eight root, two-centre restricted universal cover9 CNF"
+  },
+  "claim": "The exact frozen CNF is unsatisfiable.",
+  "formula": {
+    "bytes": 44764698,
+    "clauses": 758924,
+    "lines": 758925,
+    "sha256": "D9CF9356230E6624BED5AB3AC58FACDC98AE96428CF953BD5F8DB1EB3284D315",
+    "variables": 66
+  },
+  "lrat": {
+    "bytes": 10683195,
+    "final_clause_id": 859522,
+    "original_actions": 201068,
+    "sha256": "4C65A4480E9BDD8B0F526DE496A774795905C23DD1067D1B4574D267388403C5",
+    "trimmed_actions": 285,
+    "trimmed_utf8_bytes": 17386
+  },
+  "reproducibility": {
+    "cadical_command_flags": [
+      "--lrat",
+      "--no-binary",
+      "--checkproof=2",
+      "--unsat",
+      "--walk=false",
+      "-c",
+      "1000000"
+    ],
+    "cadical_conflicts": 174,
+    "cadical_log_sha256": "E576783E7F05278455B965EC91C26EA8F21E68492632563BD0BDCA2DA87A46DF",
+    "cadical_sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "cadical_version": "2.1.2",
+    "second_generation_identical": true
+  },
+  "lean_replay": {
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound",
+      "native_decide"
+    ],
+    "lean_source_sha256": "D7A98BA64EB493E1F81C8EEFE479C0843DC83E484D28B99AD7A9E307B9887B86",
+    "log_sha256": "73918BAA31F9D53A327BAD3FA44537D6F78348E8100966D028D4B81F621AC8C3",
+    "report_sha256": "CB95B0D3F20546508B8CE97811062F8FD325AEBC0296378F0A79A9B6A2FCBED3",
+    "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+    "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP2Q0Replay.cover9_d8_two_center_p2_q0_unsat",
+    "wall_seconds": 84.675
+  },
+  "limitations": [
+    "This certifies one labelled residual CNF, not all 13 two-centre cases.",
+    "The Lean semantic bridge from graph restrictions to this simplified CNF is not yet formalized.",
+    "This is not a complete universal induced-cover theorem or a new Ramsey-number bound."
+  ],
+  "schema_version": 1,
+  "status": "EXACT_CNF_UNSAT_CERTIFIED_BY_LEAN_LRAT"
+}

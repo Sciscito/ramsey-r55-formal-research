@@ -1,0 +1,1112 @@
+{
+  "artifact_root_policy": {
+    "path_encoding": "artifact_path is POSIX-style relative to --output",
+    "required_storage": "absolute path on drive S:",
+    "root_argument": "--output"
+  },
+  "cases": [
+    {
+      "case": [
+        0,
+        2
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p0_q2.cnf",
+        "bytes": 45849047,
+        "clauses": 782090,
+        "name": "cover9_d8_two_center_p0_q2.cnf",
+        "sha256": "135D6FBC93D564D8A8CC188B9F8CB051250EC0FEE4A84B2064C41056CDB3DBB0",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p0_q2_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p0_q2_v1/p0_q2/Replay.lean",
+          "bytes": 513,
+          "sha256": "027540FFCDD024B57409ACFE78494857E521192A6721E60329BBDDC5B309939F"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p0_q2_v1/p0_q2/lean_replay.log",
+          "bytes": 282,
+          "sha256": "AFA92CD1887337864FEB33430B155A3E2EDD00E6A9B0307EA9BD898A7D19969C"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP0Q2Replay.cover9_d8_two_center_p0_q2_unsat",
+        "trim": {
+          "original_actions": 188,
+          "original_utf8_bytes": 15887,
+          "trimmed_actions": 57,
+          "trimmed_utf8_bytes": 2639
+        },
+        "wall_seconds": 86.598
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p0_q2_v1/p0_q2/cover9_d8_two_center_p0_q2.lrat",
+        "bytes": 15887,
+        "name": "cover9_d8_two_center_p0_q2.lrat",
+        "sha256": "07B0F40D94210713A74C11F16160B6BDDF7F2A1B77C9387E1B97FB397823E215"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 1.315798,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p0_q2_v1/p0_q2/cadical.log",
+          "bytes": 4952,
+          "sha256": "9FE2B3A9ECCEDC1CC06EF29398589CF3AB5C1E67C03F8C382647E854B1D47D91"
+        },
+        "metrics": {
+          "conflicts": 141,
+          "last_solver_seconds": 1.19,
+          "parse_seconds": 1.09,
+          "search_seconds": 0.09
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p0_q2_v1/batch_manifest.json",
+        "bytes": 3862,
+        "sha256": "9D09F108806B52A41359562CAE438F2BA452173421D462507C559D436168261F"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p0_q2_v1/p0_q2/certificate.json",
+        "bytes": 2393,
+        "sha256": "4AE7814D38A60712ADB9CE78294F5A7338F5E5276EA9E116CA04107E056B59C4"
+      }
+    },
+    {
+      "case": [
+        0,
+        3
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p0_q3.cnf",
+        "bytes": 46565434,
+        "clauses": 796308,
+        "name": "cover9_d8_two_center_p0_q3.cnf",
+        "sha256": "C4D975965816FA0ED42D3C625550C5F60B209F3842B3F6584ED1721D206CC480",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p0_q3_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p0_q3_v1/p0_q3/Replay.lean",
+          "bytes": 513,
+          "sha256": "6162B90A96533A472BA40883845A5126C95FC3907FA19F2F688E41E4DDA26CFE"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p0_q3_v1/p0_q3/lean_replay.log",
+          "bytes": 282,
+          "sha256": "2F977D6B0F64A5B3B3F7E85D235E8D95E0ED4F250F901EB210A1A1E5CF739C6C"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP0Q3Replay.cover9_d8_two_center_p0_q3_unsat",
+        "trim": {
+          "original_actions": 183,
+          "original_utf8_bytes": 14867,
+          "trimmed_actions": 51,
+          "trimmed_utf8_bytes": 1789
+        },
+        "wall_seconds": 88.879
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p0_q3_v1/p0_q3/cover9_d8_two_center_p0_q3.lrat",
+        "bytes": 14867,
+        "name": "cover9_d8_two_center_p0_q3.lrat",
+        "sha256": "DF9777F2FE017D4FB9FAEBE47B17E87200C96B15E7869B3964C306DAE4159FC8"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 1.314507,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p0_q3_v1/p0_q3/cadical.log",
+          "bytes": 4842,
+          "sha256": "D28C806492BC66E3B936E0C48E682BBB16C47B82D632320D6D89F2C7F88D0D92"
+        },
+        "metrics": {
+          "conflicts": 134,
+          "last_solver_seconds": 1.22,
+          "parse_seconds": 1.14,
+          "search_seconds": 0.08
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p0_q3_v1/batch_manifest.json",
+        "bytes": 3862,
+        "sha256": "7D1152FE9858CFBC44846FA8F458EF5AD87879B5A1668AD6A61D7A422F402315"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p0_q3_v1/p0_q3/certificate.json",
+        "bytes": 2393,
+        "sha256": "4303769F5E63AAC1B08DFAF2EE91AFBC53A938F6AF44548CCA3EAA99273533E8"
+      }
+    },
+    {
+      "case": [
+        1,
+        1
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p1_q1.cnf",
+        "bytes": 45401795,
+        "clauses": 772886,
+        "name": "cover9_d8_two_center_p1_q1.cnf",
+        "sha256": "DB45053508935CD06BD044A63FAB7D84EBAF6E9EEECCDC6A610C4906AC463313",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p1_q1_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p1_q1_v1/p1_q1/Replay.lean",
+          "bytes": 513,
+          "sha256": "8D4557D909A5282FC53FBAA00CB5277D11C984838D4581D463142877CC33F1D5"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p1_q1_v1/p1_q1/lean_replay.log",
+          "bytes": 282,
+          "sha256": "BDF3FBDD71EA35783CA3EE0288AFA5F7EAB9F68D1B96075DF4AC7BA965F374AE"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP1Q1Replay.cover9_d8_two_center_p1_q1_unsat",
+        "trim": {
+          "original_actions": 218,
+          "original_utf8_bytes": 14404,
+          "trimmed_actions": 69,
+          "trimmed_utf8_bytes": 2934
+        },
+        "wall_seconds": 86.951
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p1_q1_v1/p1_q1/cover9_d8_two_center_p1_q1.lrat",
+        "bytes": 14404,
+        "name": "cover9_d8_two_center_p1_q1.lrat",
+        "sha256": "4A9BE522F1EBF997547660677A6AF95FA04549F9CF7515A89878E49EB0438103"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 1.315546,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p1_q1_v1/p1_q1/cadical.log",
+          "bytes": 5062,
+          "sha256": "30D81A74A4B363DB03EDCAA8A46C57B19B208F05E3AD4673F0B80EBBA8490138"
+        },
+        "metrics": {
+          "conflicts": 143,
+          "last_solver_seconds": 1.19,
+          "parse_seconds": 1.09,
+          "search_seconds": 0.09
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p1_q1_v1/batch_manifest.json",
+        "bytes": 3862,
+        "sha256": "422CB1FB08689805133ED5DCD984B5B84CDBF82DC079CA1B15DD4CD69B9E21A7"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p1_q1_v1/p1_q1/certificate.json",
+        "bytes": 2393,
+        "sha256": "23326655BB9AB9F8FC5E8003F452D4F96EE6CF8CF746CFDC3C614B368B749508"
+      }
+    },
+    {
+      "case": [
+        1,
+        2
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p1_q2.cnf",
+        "bytes": 46277854,
+        "clauses": 791124,
+        "name": "cover9_d8_two_center_p1_q2.cnf",
+        "sha256": "FC14EFDFCE9EC724AA20E59685879141FC2215816949E3F4A7B72AB2C9BCC4A2",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p1_q2_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p1_q2_v1/p1_q2/Replay.lean",
+          "bytes": 513,
+          "sha256": "ED8057DE196617E347679A8206C961BB5DCECDBDD57C2384A3E9E8E8BC89F9C3"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p1_q2_v1/p1_q2/lean_replay.log",
+          "bytes": 282,
+          "sha256": "DC26861B48C9F8978137EE2A92780E83D82AD87DFC5E50C81D92C3CE55C8B2FE"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP1Q2Replay.cover9_d8_two_center_p1_q2_unsat",
+        "trim": {
+          "original_actions": 189,
+          "original_utf8_bytes": 15736,
+          "trimmed_actions": 62,
+          "trimmed_utf8_bytes": 2860
+        },
+        "wall_seconds": 87.99
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p1_q2_v1/p1_q2/cover9_d8_two_center_p1_q2.lrat",
+        "bytes": 15736,
+        "name": "cover9_d8_two_center_p1_q2.lrat",
+        "sha256": "845B3C828F503398C44EBAA74E244E0F3BD073F9C19D1BABEE5E5303A721BC9F"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 1.316973,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p1_q2_v1/p1_q2/cadical.log",
+          "bytes": 4897,
+          "sha256": "5E06A5DD508180958E55E39CA14B7817D80DC265144802FB24C63D9B89A629D0"
+        },
+        "metrics": {
+          "conflicts": 141,
+          "last_solver_seconds": 1.2,
+          "parse_seconds": 1.12,
+          "search_seconds": 0.08
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p1_q2_v1/batch_manifest.json",
+        "bytes": 3859,
+        "sha256": "2A4999BE529BE1C217109D77AAA9AC27A60DF544282B1DE3BBE9B321B998257F"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p1_q2_v1/p1_q2/certificate.json",
+        "bytes": 2391,
+        "sha256": "4456285B1E27C918A5CCB97052C85230192652677935C54AE0D046B326BEFCC5"
+      }
+    },
+    {
+      "case": [
+        1,
+        3
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p1_q3.cnf",
+        "bytes": 47163820,
+        "clauses": 809859,
+        "name": "cover9_d8_two_center_p1_q3.cnf",
+        "sha256": "E87F54E1B87155972321C22D79615AE94048C23342778E11DAE8DA15CA4F5AA0",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p1_q3_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p1_q3_v1/p1_q3/Replay.lean",
+          "bytes": 513,
+          "sha256": "4A09ACE99002F9EE6BC6B1553D9B2C7CBFD6E22656CE1B9160612C6056F9FE6F"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p1_q3_v1/p1_q3/lean_replay.log",
+          "bytes": 280,
+          "sha256": "A6FB7931C1E13F01B66A3C015349C69A97E43A462F35F09E87CC9D3EB5E49706"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP1Q3Replay.cover9_d8_two_center_p1_q3_unsat",
+        "trim": {
+          "original_actions": 84,
+          "original_utf8_bytes": 5969,
+          "trimmed_actions": 49,
+          "trimmed_utf8_bytes": 1955
+        },
+        "wall_seconds": 89.829
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p1_q3_v1/p1_q3/cover9_d8_two_center_p1_q3.lrat",
+        "bytes": 5969,
+        "name": "cover9_d8_two_center_p1_q3.lrat",
+        "sha256": "7337685653D67A64DC2E394FF18B04A029441E60479CFEE7811FBCD8CD65A467"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 1.314107,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p1_q3_v1/p1_q3/cadical.log",
+          "bytes": 4950,
+          "sha256": "70CCC4EE643FC7CD2D47C8F7D2F391B3D84BE7408AAA30D44EBFE1114DEA2A49"
+        },
+        "metrics": {
+          "conflicts": 65,
+          "last_solver_seconds": 1.2,
+          "parse_seconds": 1.12,
+          "search_seconds": 0.08
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p1_q3_v1/batch_manifest.json",
+        "bytes": 3856,
+        "sha256": "A9D1E86E43E949C8956B297AAA5E389BC2919AEAC9A696A96F0F12DDBFAC08AE"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p1_q3_v1/p1_q3/certificate.json",
+        "bytes": 2388,
+        "sha256": "3C314E6BB7F6A29F557A3B256D6C8AD74F26E6DC8A4E803232CB6480954CAE7F"
+      }
+    },
+    {
+      "case": [
+        2,
+        0
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p2_q0.cnf",
+        "bytes": 44764698,
+        "clauses": 758924,
+        "name": "cover9_d8_two_center_p2_q0.cnf",
+        "sha256": "D9CF9356230E6624BED5AB3AC58FACDC98AE96428CF953BD5F8DB1EB3284D315",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p2_q0_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p2_q0_canonical_v2/p2_q0/Replay.lean",
+          "bytes": 523,
+          "sha256": "390A489D539664C7D90A5702A2D6137E6069D9750EA1426AE35DE3C166902EDE"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p2_q0_canonical_v2/p2_q0/lean_replay.log",
+          "bytes": 290,
+          "sha256": "73918BAA31F9D53A327BAD3FA44537D6F78348E8100966D028D4B81F621AC8C3"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP2Q0Replay.cover9_d8_two_center_p2_q0_unsat",
+        "trim": {
+          "original_actions": 201068,
+          "original_utf8_bytes": 10683195,
+          "trimmed_actions": 285,
+          "trimmed_utf8_bytes": 17386
+        },
+        "wall_seconds": 85.316
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p2_q0_canonical_v2/p2_q0/cover9_d8_two_center_p2_q0.lrat",
+        "bytes": 10683195,
+        "name": "cover9_d8_two_center_p2_q0.lrat",
+        "sha256": "4C65A4480E9BDD8B0F526DE496A774795905C23DD1067D1B4574D267388403C5"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 1.516356,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p2_q0_canonical_v2/p2_q0/cadical.log",
+          "bytes": 5158,
+          "sha256": "0EFB383F060B8142937D28E86F4A6AD198589E497752D440760C9DBC013BE950"
+        },
+        "metrics": {
+          "conflicts": 174,
+          "last_solver_seconds": 1.34,
+          "parse_seconds": 1.27,
+          "search_seconds": 0.08
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p2_q0_canonical_v2/batch_manifest.json",
+        "bytes": 3875,
+        "sha256": "E943C4FA7CCD1CDF245BCF0ABE9C9CBA12661513E52F74BE7DCFD9F4673E11DC"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p2_q0_canonical_v2/p2_q0/certificate.json",
+        "bytes": 2404,
+        "sha256": "0C04692739074BE3593384DF657FF6D4861EBB79646686326924D0DAD2FFB8EF"
+      }
+    },
+    {
+      "case": [
+        2,
+        1
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p2_q1.cnf",
+        "bytes": 45681042,
+        "clauses": 778667,
+        "name": "cover9_d8_two_center_p2_q1.cnf",
+        "sha256": "9FAE831828CA81ADF06675B12EBE27402067D65E40B11B4FA66C6F49F7E97202",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p2_q1_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p2_q1_v1/p2_q1/Replay.lean",
+          "bytes": 513,
+          "sha256": "EB0CE197BB6DC6F0FF7AE7A30639C077B86D7A1D4C4D9E1DC8784DB0BC26FEDB"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p2_q1_v1/p2_q1/lean_replay.log",
+          "bytes": 293,
+          "sha256": "AD76EC2D055B0AD5161ECBA3C3BD423222F12F1550FE5A84DC0890EBF2B66B84"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP2Q1Replay.cover9_d8_two_center_p2_q1_unsat",
+        "trim": {
+          "original_actions": 402463,
+          "original_utf8_bytes": 22522302,
+          "trimmed_actions": 10313,
+          "trimmed_utf8_bytes": 795472
+        },
+        "wall_seconds": 90.632
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p2_q1_v1/p2_q1/cover9_d8_two_center_p2_q1.lrat",
+        "bytes": 22522302,
+        "name": "cover9_d8_two_center_p2_q1.lrat",
+        "sha256": "80B85075AF6ED1169F8B508A462983D5B200F922644634ACEDCC950EF76A8ABE"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 3.945844,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p2_q1_v1/p2_q1/cadical.log",
+          "bytes": 5794,
+          "sha256": "9CCDAC8D1582F9F3C4E3255321D0764CBFC48A4099B5A8E63AF7BB3B43578415"
+        },
+        "metrics": {
+          "conflicts": 4339,
+          "last_solver_seconds": 3.86,
+          "parse_seconds": 1.44,
+          "search_seconds": 2.42
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p2_q1_v1/batch_manifest.json",
+        "bytes": 3880,
+        "sha256": "EEE2B4CCFDD0A40D47356BB39991AEDD1382C5132B4A3D692E8C7D6E17B9E302"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p2_q1_v1/p2_q1/certificate.json",
+        "bytes": 2408,
+        "sha256": "B1B983C99939E12DD847F0AE9B1A183690C395CA68A8D82E9FF130D24E9F97A9"
+      }
+    },
+    {
+      "case": [
+        2,
+        2
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p2_q2.cnf",
+        "bytes": 46675347,
+        "clauses": 799922,
+        "name": "cover9_d8_two_center_p2_q2.cnf",
+        "sha256": "281D1F4BA3F3F36F2F9CFAD7D2D752332759F4A457C56F02900A08A94EA3DADE",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p2_q2_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p2_q2_v1/p2_q2/Replay.lean",
+          "bytes": 513,
+          "sha256": "E474B1E17AA4EA3E83A4976B24245F8BE53F804D40D525E52FB13B4BA6357595"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p2_q2_v1/p2_q2/lean_replay.log",
+          "bytes": 294,
+          "sha256": "FEA58749F35F3D7B76EC63659A83082F5EFE730FEE5CCBAC90BE9777C607B7AE"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP2Q2Replay.cover9_d8_two_center_p2_q2_unsat",
+        "trim": {
+          "original_actions": 378032,
+          "original_utf8_bytes": 20737293,
+          "trimmed_actions": 22039,
+          "trimmed_utf8_bytes": 1678977
+        },
+        "wall_seconds": 91.142
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p2_q2_v1/p2_q2/cover9_d8_two_center_p2_q2.lrat",
+        "bytes": 20737293,
+        "name": "cover9_d8_two_center_p2_q2.lrat",
+        "sha256": "9744A5E85A9208A8C731DA5D9814DA951D449B71A6D58CB9BCDE7C0982D82B99"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 12.976941,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p2_q2_v1/p2_q2/cadical.log",
+          "bytes": 6258,
+          "sha256": "3A41638E71D5E6B195A80C4364FC1930329F5AB9503387AC00A36AF87FD3B079"
+        },
+        "metrics": {
+          "conflicts": 9206,
+          "last_solver_seconds": 12.77,
+          "parse_seconds": 1.28,
+          "search_seconds": 11.48
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p2_q2_v1/batch_manifest.json",
+        "bytes": 3885,
+        "sha256": "085E917821E0AD1AC541CDAA92AF1440929A43FE0AA40028FB0396ECDF9CEF14"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p2_q2_v1/p2_q2/certificate.json",
+        "bytes": 2412,
+        "sha256": "B5F92917D5090D94BF68F579D1C82640255C383723E9C22361E9C70F47381FBF"
+      }
+    },
+    {
+      "case": [
+        2,
+        3
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p2_q3.cnf",
+        "bytes": 47717807,
+        "clauses": 823149,
+        "name": "cover9_d8_two_center_p2_q3.cnf",
+        "sha256": "0286CA13DD06852D0D02DDA6272AF023F2BB1B7623120E4E50506572DC12E4AB",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p2_q3_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p2_q3_v1/p2_q3/Replay.lean",
+          "bytes": 513,
+          "sha256": "242BE68BD8C7FD27246E606AA5A1BA2DFCE397ADA471F0918AC781EA1F05F873"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p2_q3_v1/p2_q3/lean_replay.log",
+          "bytes": 294,
+          "sha256": "12EF23CA3828A4323FEB7B80946C57918CC5217CFCFB51B578AB94AE0FDE0E92"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP2Q3Replay.cover9_d8_two_center_p2_q3_unsat",
+        "trim": {
+          "original_actions": 564461,
+          "original_utf8_bytes": 30739229,
+          "trimmed_actions": 25860,
+          "trimmed_utf8_bytes": 1915670
+        },
+        "wall_seconds": 94.028
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p2_q3_v1/p2_q3/cover9_d8_two_center_p2_q3.lrat",
+        "bytes": 30739229,
+        "name": "cover9_d8_two_center_p2_q3.lrat",
+        "sha256": "12D7C9A687B49F705EE708C048D68188D49DF08005DC2F9DD052A907C9DA1E47"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 14.187216,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p2_q3_v1/p2_q3/cadical.log",
+          "bytes": 6167,
+          "sha256": "94F71B9069E16BE7629D9ED2EF22728789B907FBC4764DAD5DEFBD201838F777"
+        },
+        "metrics": {
+          "conflicts": 9704,
+          "last_solver_seconds": 14.08,
+          "parse_seconds": 1.38,
+          "search_seconds": 12.7
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p2_q3_v1/batch_manifest.json",
+        "bytes": 3884,
+        "sha256": "AE675147D9F04DD0EC34960B9FF536F132944387CB4B86981001A27BB9A66998"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p2_q3_v1/p2_q3/certificate.json",
+        "bytes": 2411,
+        "sha256": "E05EF70BC6F3F749323E0E6E0B2E946DB832B688E14A552E92157A6413007FF2"
+      }
+    },
+    {
+      "case": [
+        3,
+        0
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p3_q0.cnf",
+        "bytes": 44886711,
+        "clauses": 761533,
+        "name": "cover9_d8_two_center_p3_q0.cnf",
+        "sha256": "F3B8FD5393B46114D9992B27AD5060F5D5C7A99CCE9C0CD17039CCAF366FD904",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p3_q0_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p3_q0_v1/p3_q0/Replay.lean",
+          "bytes": 513,
+          "sha256": "F164EBF53618032F2054EC45FBDC510CADB187E4C3FD28B5FFA0A38E9277C10E"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p3_q0_v1/p3_q0/lean_replay.log",
+          "bytes": 292,
+          "sha256": "EE6E7D47865299B697E0CC2F9A88495437489746649CCA9212B13851B8E204B7"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP3Q0Replay.cover9_d8_two_center_p3_q0_unsat",
+        "trim": {
+          "original_actions": 660543,
+          "original_utf8_bytes": 35993189,
+          "trimmed_actions": 8335,
+          "trimmed_utf8_bytes": 525793
+        },
+        "wall_seconds": 86.968
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p3_q0_v1/p3_q0/cover9_d8_two_center_p3_q0.lrat",
+        "bytes": 35993189,
+        "name": "cover9_d8_two_center_p3_q0.lrat",
+        "sha256": "962EEC6EB178DC42C810EDB02D21E2850B8FDA3E4515991DB7153E7E4F58B491"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 4.065383,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p3_q0_v1/p3_q0/cadical.log",
+          "bytes": 5788,
+          "sha256": "1FBB9166A1FF905AC5418078B80DFE5D7791BC04AA6FEBDA2C89C47FB33EB1B2"
+        },
+        "metrics": {
+          "conflicts": 3083,
+          "last_solver_seconds": 3.89,
+          "parse_seconds": 1.38,
+          "search_seconds": 2.52
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p3_q0_v1/batch_manifest.json",
+        "bytes": 3879,
+        "sha256": "633A0CD5D4C5D55E9E8333D4C05431EEB477B70BFBA8C25FFD4042478FA5697F"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p3_q0_v1/p3_q0/certificate.json",
+        "bytes": 2407,
+        "sha256": "42E1DD5FACB120735E8358DEBDAA456B7360555A197BFBC3F6F1D738235F3A4B"
+      }
+    },
+    {
+      "case": [
+        3,
+        1
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p3_q1.cnf",
+        "bytes": 45880826,
+        "clauses": 782957,
+        "name": "cover9_d8_two_center_p3_q1.cnf",
+        "sha256": "0FDB749F6022601BF94C766356FAB6216F81DFCE5708A97B9109D0FAAD6F8180",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p3_q1_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p3_q1_v1/p3_q1/Replay.lean",
+          "bytes": 513,
+          "sha256": "964D09E230F48CEE68B677C27C38C014F82654037F7B099D948637370350B474"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p3_q1_v1/p3_q1/lean_replay.log",
+          "bytes": 293,
+          "sha256": "026C542D016750AEACCD8CAE238798EAB3DDE5083B05C1908877FA73ED7381F9"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP3Q1Replay.cover9_d8_two_center_p3_q1_unsat",
+        "trim": {
+          "original_actions": 461102,
+          "original_utf8_bytes": 25317889,
+          "trimmed_actions": 12384,
+          "trimmed_utf8_bytes": 800081
+        },
+        "wall_seconds": 88.52
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p3_q1_v1/p3_q1/cover9_d8_two_center_p3_q1.lrat",
+        "bytes": 25317889,
+        "name": "cover9_d8_two_center_p3_q1.lrat",
+        "sha256": "747EE2845F10FDE0840C4533FE78EFBBF7D13DBF85B0B1C8129CAB883288D7F3"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 4.833388,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p3_q1_v1/p3_q1/cadical.log",
+          "bytes": 6062,
+          "sha256": "A9428D148ED5EF8522123BAAB12FA49ED43E44138409EC75FEEB81648A9CF4B7"
+        },
+        "metrics": {
+          "conflicts": 4491,
+          "last_solver_seconds": 4.77,
+          "parse_seconds": 1.44,
+          "search_seconds": 3.33
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p3_q1_v1/batch_manifest.json",
+        "bytes": 3879,
+        "sha256": "6F6900AAF94690A26B7F6BD20481E9FE0067A4327100302A9A1B52973740ED09"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p3_q1_v1/p3_q1/certificate.json",
+        "bytes": 2407,
+        "sha256": "EDB2E6AC6D0FACC42664B90D44217C1C04176E7F4A0FA9C0873A4870563B16A1"
+      }
+    },
+    {
+      "case": [
+        3,
+        2
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p3_q2.cnf",
+        "bytes": 46975647,
+        "clauses": 807070,
+        "name": "cover9_d8_two_center_p3_q2.cnf",
+        "sha256": "80B118D0B04425C0C7CD75C272A281DFD7A0CBDAA0A41308F37F6DD0AC3786FA",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p3_q2_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p3_q2_v1/p3_q2/Replay.lean",
+          "bytes": 513,
+          "sha256": "344C8E4C853B1F18981916F7D90B25A4C5692524DACFA089DA2B454EF8A50E30"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p3_q2_v1/p3_q2/lean_replay.log",
+          "bytes": 293,
+          "sha256": "9516A52C8BF463913398D9A0A225C82B94BEAADFF0C0B582FB959B11613F7C4F"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP3Q2Replay.cover9_d8_two_center_p3_q2_unsat",
+        "trim": {
+          "original_actions": 652249,
+          "original_utf8_bytes": 34539054,
+          "trimmed_actions": 11485,
+          "trimmed_utf8_bytes": 715215
+        },
+        "wall_seconds": 90.077
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p3_q2_v1/p3_q2/cover9_d8_two_center_p3_q2.lrat",
+        "bytes": 34539054,
+        "name": "cover9_d8_two_center_p3_q2.lrat",
+        "sha256": "8942BE5A2D5BA16D2EA7ADAA50D1ECEF83D8FB9C5C2B42957F83BDE944B1FA60"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 5.901746,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p3_q2_v1/p3_q2/cadical.log",
+          "bytes": 5788,
+          "sha256": "51E5BE4B3A4EA0097F7DD7DAFAA06B1A2F36D6EBA36731C0174FED21628EFE72"
+        },
+        "metrics": {
+          "conflicts": 4272,
+          "last_solver_seconds": 5.72,
+          "parse_seconds": 1.45,
+          "search_seconds": 4.27
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p3_q2_v1/batch_manifest.json",
+        "bytes": 3880,
+        "sha256": "5EC590169307E68B93A05E9F58E39BF6E0CC9AE6437E877CA94D2F50D4D0780B"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p3_q2_v1/p3_q2/certificate.json",
+        "bytes": 2408,
+        "sha256": "EF878E3DE9C3D87B4D922C4B55595CFDBD50F31FFB87DF1AFF7CDD0E68AE5076"
+      }
+    },
+    {
+      "case": [
+        3,
+        3
+      ],
+      "formula": {
+        "artifact_path": "two_center_d8/cover9_d8_two_center_p3_q3.cnf",
+        "bytes": 48129797,
+        "clauses": 833918,
+        "name": "cover9_d8_two_center_p3_q3.cnf",
+        "sha256": "8BB2DC78C8B2CA427665A1356A8DF4EF34DDC34F1CA4653611A8DAD8ED381155",
+        "variables": 66
+      },
+      "lean_replay": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound",
+          "cover9_d8_two_center_p3_q3_unsat._native.native_decide.ax_1_1"
+        ],
+        "axioms_allowed": true,
+        "lean_source": {
+          "artifact_path": "two_center_d8/cert_case_p3_q3_v1/p3_q3/Replay.lean",
+          "bytes": 513,
+          "sha256": "86DB2B985622C9C3CD299F0D0EFEE5206C40B46F530BFAFA8B9E34F448A17634"
+        },
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p3_q3_v1/p3_q3/lean_replay.log",
+          "bytes": 293,
+          "sha256": "172E60122297C1824DB5B75A2F2690E69B0870465E9D1203DE6DA1E496CEF5F8"
+        },
+        "status": "LEAN_LRAT_REPLAY_SUCCEEDED",
+        "theorem": "LRATCatcher.Tests.R45D12Cover9UniversalP3Q3Replay.cover9_d8_two_center_p3_q3_unsat",
+        "trim": {
+          "original_actions": 755458,
+          "original_utf8_bytes": 42141609,
+          "trimmed_actions": 13259,
+          "trimmed_utf8_bytes": 771098
+        },
+        "wall_seconds": 92.315
+      },
+      "lrat": {
+        "artifact_path": "two_center_d8/cert_case_p3_q3_v1/p3_q3/cover9_d8_two_center_p3_q3.lrat",
+        "bytes": 42141609,
+        "name": "cover9_d8_two_center_p3_q3.lrat",
+        "sha256": "5F8A28398B434FF1CAB3906A9591DB0B203063671E17C83D337592821F387BC2"
+      },
+      "solver": {
+        "conflict_limit": 100000,
+        "elapsed_seconds": 4.93567,
+        "flags": [
+          "--lrat",
+          "--no-binary",
+          "--checkproof=2",
+          "--unsat",
+          "--walk=false"
+        ],
+        "log": {
+          "artifact_path": "two_center_d8/cert_case_p3_q3_v1/p3_q3/cadical.log",
+          "bytes": 6009,
+          "sha256": "476E482DBBAF2AF0296E37660DA050E5A1446EBF1EC09C386E6D6ABE09537350"
+        },
+        "metrics": {
+          "conflicts": 4948,
+          "last_solver_seconds": 4.78,
+          "parse_seconds": 1.47,
+          "search_seconds": 3.31
+        },
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "source_batch_manifest": {
+        "artifact_path": "two_center_d8/cert_case_p3_q3_v1/batch_manifest.json",
+        "bytes": 3879,
+        "sha256": "5BAA3DA1C32F5B5A262A7A86DBE1C092D9C45176CF9700A468F3FC32F3FE0973"
+      },
+      "source_certificate": {
+        "artifact_path": "two_center_d8/cert_case_p3_q3_v1/p3_q3/certificate.json",
+        "bytes": 2407,
+        "sha256": "96FFAD7248BF508969059AFD7AD4C4F2A6D99FA495668DC7350C24825A415B57"
+      }
+    }
+  ],
+  "certificate_count": 13,
+  "lake_sha256": "B01D614F13CFD9851110841DE640DBF82A0F73936C55F47095BF7DAA449931AC",
+  "limitations": [
+    "The semantic bridge from graph restrictions to the simplified CNFs is not yet formalized in Lean.",
+    "This does not certify root degrees 3 through 7.",
+    "This is not yet the global universal induced-cover theorem or a new Ramsey-number bound."
+  ],
+  "maximum_lrat_bytes": 42141609,
+  "p2_q0_determinism_audit": {
+    "canonical": {
+      "artifact_path": "two_center_d8/cert_case_p2_q0_canonical_v2/p2_q0/cover9_d8_two_center_p2_q0.lrat",
+      "bytes": 10683195,
+      "name": "cover9_d8_two_center_p2_q0.lrat",
+      "sha256": "4C65A4480E9BDD8B0F526DE496A774795905C23DD1067D1B4574D267388403C5"
+    },
+    "historical": [
+      {
+        "artifact_path": "two_center_d8/p2_q0_cert_v1/cover9_d8_two_center_p2_q0.lrat",
+        "bytes": 10683195,
+        "sha256": "4C65A4480E9BDD8B0F526DE496A774795905C23DD1067D1B4574D267388403C5"
+      },
+      {
+        "artifact_path": "two_center_d8/p2_q0_cert_v1/cover9_d8_two_center_p2_q0_checked.lrat",
+        "bytes": 10683195,
+        "sha256": "4C65A4480E9BDD8B0F526DE496A774795905C23DD1067D1B4574D267388403C5"
+      }
+    ],
+    "historical_checked_log_sha256": "E576783E7F05278455B965EC91C26EA8F21E68492632563BD0BDCA2DA87A46DF",
+    "historical_replay_report_sha256": "CB95B0D3F20546508B8CE97811062F8FD325AEBC0296378F0A79A9B6A2FCBED3",
+    "identical_generations": 3
+  },
+  "schema_version": 2,
+  "scope": "All 13 labelled two-centre residual CNFs in the degree-eight universal cover9 split are unsatisfiable.",
+  "solver": {
+    "flags": [
+      "--lrat",
+      "--no-binary",
+      "--checkproof=2",
+      "--unsat",
+      "--walk=false"
+    ],
+    "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "version": "2.1.2"
+  },
+  "source_manifest": {
+    "artifact_path": "two_center_d8/manifest.json",
+    "sha256": "2D62D59D82643B43E218A58CCB762DAF02B6696F5B446D7AC16394B424B55B9A"
+  },
+  "status": "THIRTEEN_OF_THIRTEEN_EXACT_CNFS_LEAN_LRAT_CERTIFIED",
+  "total_lrat_bytes": 222740623
+}

@@ -1,0 +1,259 @@
+{
+  "algorithm": "cover6-d7-r34-selected-core-semantics-v1",
+  "inputs": {
+    "catalogue_payloads": {
+      "d7_new_cube_asset": {
+        "bytes": 110880,
+        "name": "COVER6_D7_NEW_CUBE_PAYLOAD_V1.bin",
+        "sha256": "D1C8FD62254BA0F4DE852F6817F1CA2BD68C12958F8C41AF733C732F321A0446"
+      },
+      "full_k7": {
+        "characters": 338520,
+        "entries": 48360,
+        "section_counts": {
+          "3": 15480,
+          "4": 15480,
+          "5": 10200,
+          "6": 4680,
+          "7": 2520
+        },
+        "sha256": "50891F9AD69F4AA260835028BF750F7CD993DE6246178A46DA0D3D7CB21004F3"
+      },
+      "master8_indexed_source": {
+        "bytes": 305809,
+        "lines": 814,
+        "name": "R44Cover6Master8IndexedSource.lean",
+        "sha256": "9B1430855269F2E1A9A12AF3B7D32CB3A579EC2036B24B85598DE8CD01D0C72E"
+      },
+      "projected_k6": {
+        "characters": 10920,
+        "entries": 1560,
+        "section_counts": {
+          "2": 360,
+          "3": 540,
+          "4": 360,
+          "5": 300
+        },
+        "sha256": "9C040F9FBDF2A6FE1EF214FED5C084B5EBB19D6EADB5E722AB7B8C417F42F81F"
+      }
+    },
+    "core_clause_mapping": {
+      "bytes": 84401,
+      "lines": 1105,
+      "name": "core_clause_map.tsv",
+      "sha256": "F8E4DA255A42846DFCBC5968B776CEE05560C4EFE8CCBD0699294A525199F723"
+    },
+    "core_cnf": {
+      "bytes": 51238,
+      "lines": 1105,
+      "name": "cover6_closed_f7_r34_i2_FCUj__core.cnf",
+      "sha256": "B166C31CD69B44D0480602DA904947588E71A7E70C13369E93CB61DD7C9DBC88"
+    },
+    "generator": {
+      "bytes": 44145,
+      "lines": 1129,
+      "name": "generate_cover6_d7_r34_core_semantic_payload.py",
+      "sha256": "9E361CDAA9ACE242A2518A67099359782BEDB39B6A2D3A359F9A91D5D3A5EE9F"
+    },
+    "master7_indexed_source": {
+      "bytes": 14239,
+      "lines": 384,
+      "name": "R44Cover6Master7R34IndexedSource.lean",
+      "sha256": "6B1650D87BE0F4CC931DF21F180C48451097180D6DFBE09866A0C0B8FCB25A60"
+    }
+  },
+  "lean_consumer_contract": {
+    "core_index_reference": null,
+    "logical_chunk_size": 1800,
+    "logical_chunks": 2,
+    "raw_payload_is_ascii_include_str_compatible": true,
+    "rendered_pure_data_module_sha256": "E41B12FC51A919D062B103917BC1B313490362CB9EE624EC564A49EC6EAE80C8",
+    "witness_table_reference": null
+  },
+  "schema_version": 1,
+  "scope": "Exact selected-core taxonomy, branchSource clause reconstruction, and orbit/full-lift witness generation only. No solver or S: access; no LRAT checking; no S7 catalogue composition, cover6-d7 theorem, global gluing, Ramsey-number bound, or discovery claim.",
+  "selection": {
+    "branch_source_clauses": 4312440,
+    "catalogue_index_zero_based": 0,
+    "incremental_position_one_based": 2,
+    "record": "FCUj_",
+    "representative_units": [
+      -12,
+      -13,
+      14,
+      -15,
+      16,
+      -17,
+      -22,
+      -23,
+      24,
+      -25,
+      26,
+      -31,
+      -32,
+      33,
+      34,
+      39,
+      -40,
+      41,
+      46,
+      -47,
+      -52
+    ],
+    "slug": "FCUj_"
+  },
+  "status": "PASS_EXACT_D7_R34_SELECTED_CORE_SEMANTIC_PAYLOAD",
+  "taxonomy": {
+    "all_selected_clauses_equal_exact_python_reconstruction_of_branchSource": true,
+    "families": {
+      "base": {
+        "clause_widths": {
+          "3": 7,
+          "6": 91
+        },
+        "core_clause_id_span": [
+          1,
+          98
+        ],
+        "retained_clauses": 98,
+        "selected_source_clause_ids_sha256": "BDC995AC6CDB0AF373B9230895097069E2693F35FE0AB8227E1D6070E0CC24EA",
+        "source_clause_id_span": [
+          10,
+          699
+        ]
+      },
+      "root_containing_k6": {
+        "clause_widths": {
+          "10": 114,
+          "11": 275,
+          "12": 69,
+          "13": 56
+        },
+        "core_clause_id_span": [
+          575,
+          1088
+        ],
+        "retained_clauses": 514,
+        "selected_source_clause_ids_sha256": "3E449DC1F5AA89887C8D5D9F1F89D43C0D913F5F4B37311B6111496D19BAD037",
+        "source_clause_id_span": [
+          4128703,
+          4312244
+        ]
+      },
+      "root_free_k7": {
+        "clause_widths": {
+          "15": 99,
+          "16": 240,
+          "17": 137
+        },
+        "core_clause_id_span": [
+          99,
+          574
+        ],
+        "retained_clauses": 476,
+        "selected_source_clause_ids_sha256": "7C4CF04B35E1050019A18A96527EA4861DA32286C3B21064BDE416448972E0D2",
+        "source_clause_id_span": [
+          4615,
+          4117918
+        ]
+      },
+      "unit": {
+        "clause_widths": {
+          "1": 16
+        },
+        "core_clause_id_span": [
+          1089,
+          1104
+        ],
+        "retained_clauses": 16,
+        "selected_source_clause_ids_sha256": "22C3DB450F9E6E8DF72405CC9236EB68C1A9BEC0F63AE36CA4805DE6BFF738B5",
+        "source_clause_id_span": [
+          4312420,
+          4312438
+        ]
+      }
+    },
+    "family_counts": {
+      "base": 98,
+      "root_containing_k6": 514,
+      "root_free_k7": 476,
+      "unit": 16
+    },
+    "ordered_semantic_view_sha256": "8EAFA4E28B838A3F9AEA39B358C9D60659EDD07A5ECDF6B7BA69B204CBB0EC53",
+    "ordering": "strict branchSource clause-id order",
+    "selected_clauses": 1104,
+    "unit_tail": {
+      "retained_literals": [
+        -12,
+        -13,
+        14,
+        -15,
+        16,
+        -17,
+        -22,
+        -23,
+        24,
+        -25,
+        26,
+        -31,
+        -32,
+        39,
+        41,
+        46
+      ],
+      "retained_positions_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        15,
+        17,
+        18
+      ]
+    }
+  },
+  "witness_payload": {
+    "characters": 2475,
+    "distinct_witnesses": 570,
+    "encoding": "15-bit little-endian records packed into the alphabet 0-9A-Za-z-_ ; code = representative + 6 * itertools-permutation-rank",
+    "entries": 990,
+    "name": null,
+    "permutation_rank_span": [
+      0,
+      5038
+    ],
+    "representative_counts": {
+      "0": 93,
+      "1": 250,
+      "2": 196,
+      "3": 215,
+      "4": 83,
+      "5": 153
+    },
+    "round_trip_exact": true,
+    "sections": {
+      "root_containing_k6": {
+        "canonical_lift_order": "minimum (fixed, ones)",
+        "entries": 514,
+        "entry_offset": 476,
+        "lift_multiplicity_counts": {
+          "1": 514
+        }
+      },
+      "root_free_k7": {
+        "entries": 476,
+        "entry_offset": 0
+      }
+    },
+    "sha256": "1509D60BF036DB9C8333357EA18B9C0E57C7FA14DF186F6C32EAE765F22DF97D"
+  }
+}

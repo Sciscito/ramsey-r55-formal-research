@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "status": "PASS_REDUCED_MASTER8_CORE_DUAL_REPLAY",
+  "supersedes": "reduction.json status REDUCED_PAIR_WRITTEN_REPLAY_REQUIRED",
+  "source_master8": {
+    "cnf": {
+      "bytes": 189298375,
+      "clauses": 3367459,
+      "sha256": "3E725132C29E1CAA9D5FD5EA0AD67D8A5A80E61A1241768D36A910DD23FD329D",
+      "variables": 66
+    },
+    "lrat": {
+      "additions": 1182841,
+      "bytes": 128131809,
+      "rat_additions": 0,
+      "sha256": "B2ECDACD2D99CD6EA2929C0B370C6AAFD74FE78FDE20FFBDFE68B7D0EF860505"
+    }
+  },
+  "dependency_core": {
+    "dependency_edges": 71235,
+    "derived_additions": 7061,
+    "initial_clauses": 6152,
+    "mapping_claim": "exact ordered subsequence of the frozen Master8 DIMACS clause stream",
+    "mapping_verification": "PASS_EXACT_ORDERED_SUBSEQUENCE",
+    "rat_policy": "the reducer refuses every proof containing a RAT addition",
+    "retained_deleted_identifiers": 7643,
+    "retained_deletion_actions": 6268
+  },
+  "artifacts": {
+    "cnf": {
+      "bytes": 292093,
+      "clauses": 6152,
+      "lines": 6153,
+      "name": "cover6_closed_master_d8_bounded13_core.cnf",
+      "sha256": "1841CD85484FF0726D051B0064510FD8C422374F6B6A909F52DEF962504910DC",
+      "variables": 66
+    },
+    "remapped_lrat": {
+      "additions": 7061,
+      "bytes": 754043,
+      "deleted_identifiers": 7643,
+      "deletion_actions": 6268,
+      "lines": 13329,
+      "name": "cover6_closed_master_d8_bounded13_core.lrat",
+      "sha256": "9FE477B84F20893CDCD7DBAB6942838FCF17E11B82A4C355A30042136C417E01"
+    },
+    "initial_clause_mapping": {
+      "bytes": 475303,
+      "lines": 6153,
+      "name": "core_clause_map.tsv",
+      "rows": 6152,
+      "sha256": "37E838EC7CCB9DA0883D8F21867896436FC72FEB0E511CAC093240C6A3B4A636"
+    },
+    "cadical_regenerated_lrat": {
+      "additions": 7171,
+      "bytes": 777661,
+      "lines": 11587,
+      "name": "cadical_regenerated_checked.lrat",
+      "rat_additions": 0,
+      "sha256": "DD9DCD94086A860470B99780B9B4825A7593CC8252082ABADDFE499F58E3E08B"
+    },
+    "reducer_report": {
+      "bytes": 1848,
+      "lines": 61,
+      "name": "reduction.json",
+      "sha256": "00C504A7F8620141AD2475D9345407FC489EE2C8C2FA83DAA3136D3FB43D72E8"
+    },
+    "lean_replay_module": {
+      "bytes": 1014,
+      "lines": 21,
+      "name": "Replay.lean",
+      "sha256": "CA68E188DD552D7DE2C0FD3DE32937A18AA72948134B7C40ADA811CED247CAF6"
+    },
+    "cadical_regeneration_log": {
+      "bytes": 6366,
+      "lines": 129,
+      "name": "cadical_regeneration.log",
+      "sha256": "9634569EC49CA4A4132D2BC7538A093ECA00497C9B124B63182FC330747F775D"
+    }
+  },
+  "validation": {
+    "remapped_lrat": {
+      "status": "LEAN_LRAT_REPLAY_PASS",
+      "theorem": "LRATCatcher.Tests.Master8CoreReplay.master8_core_remapped_unsat"
+    },
+    "cadical_regenerated_lrat": {
+      "cadical_exit": 20,
+      "cadical_binary": {
+        "bytes": 1151488,
+        "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B"
+      },
+      "cadical_flags": [
+        "--lrat",
+        "--no-binary",
+        "--check=true",
+        "--checkproof=2"
+      ],
+      "cadical_status": "UNSAT_WITH_INTERNAL_LRAT_CHECK_PASS",
+      "cadical_version": "2.1.2",
+      "lean_status": "LEAN_LRAT_REPLAY_PASS",
+      "regeneration_log": "cadical_regeneration.log",
+      "regenerated_proof_matches_tracked_sha256": true,
+      "theorem": "LRATCatcher.Tests.Master8CoreReplay.master8_core_cadical_regenerated_unsat"
+    },
+    "direct_lean_command": "lake env lean ../../scripts/r45_d12_cover9_universal/master8_core/Replay.lean",
+    "eol_policy": "CNF, LRAT, and TSV are tracked as binary; JSON and Lean are marked -text so frozen byte hashes are not rewritten"
+  },
+  "scope": "the core is certified only as an exact clause subsequence of the frozen Master8 CNF; the separate bridge from that frozen CNF to a Lean-defined generator is not claimed here"
+}

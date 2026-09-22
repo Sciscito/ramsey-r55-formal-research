@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "COMPLETE_PROOF_FREE_TWO_CENTER_CASE_SET",
+  "warning": "All 13 results are solver-level UNSAT without LRAT. This is not yet a certified universal theorem.",
+  "degree": 8,
+  "case_order": [[0,2],[0,3],[1,1],[1,2],[1,3],[2,0],[2,1],[2,2],[2,3],[3,0],[3,1],[3,2],[3,3]],
+  "artifact_root": "S:\\CodexResearchCache\\ramsey-formal\\lrat-work\\r45-d12-cover5-closed-universal\\cover6_closed_two_center_d8",
+  "source_formula": {
+    "name": "cover6_closed_block_degree_d8.cnf",
+    "variables": 66,
+    "clauses": 3367437,
+    "bytes": 189298232,
+    "sha256": "64E411A23778972A85DE7C8613A1977F98115E2EC3C9B1711D129932A4ECBB5A"
+  },
+  "formula_manifest": {
+    "name": "manifest.json",
+    "bytes": 10741,
+    "sha256": "DDAF42888C6A77C432EC9AA4799D6A24EEDB2088AA25C97C251A82D3986DFB8C"
+  },
+  "formula_totals": {
+    "cases": 13,
+    "clauses": 19657663,
+    "bytes": 1077652051,
+    "exact_units_per_case": 21
+  },
+  "finite_cnf_replay": {
+    "report": "COVER6_D8_SEMANTIC_REPLAY_V1.json",
+    "bytes": 8464,
+    "sha256": "5D8D129A2431B7F473AF24B4BE21864FA6CCBE05DB4D347665FCE0749EB35024",
+    "implementation": "standalone deterministic reimplementation with shared frozen representatives and hashes",
+    "local_cube_semantics": "PASS_EXACT_ON_ALL_2097152_ASSIGNMENTS",
+    "ordered_source_comparison": "PASS_BYTE_FOR_BYTE",
+    "source_to_residual_comparisons": 13,
+    "all_residual_comparisons": "PASS_BYTE_FOR_BYTE",
+    "claim_boundary": "Finite CNF source and reduction audit only; no SAT certificate, LRAT, Lean semantic composition, or cover6-d8 theorem."
+  },
+  "solver": {
+    "name": "CaDiCaL",
+    "version": "2.1.2",
+    "sha256": "AE6156A9C3BB46D8AC5E0A3892A5F11999EF6FD5F346304FD53DB9160FD5743B",
+    "flags": ["--unsat"],
+    "conflict_limit": 100000,
+    "timeout_seconds_per_case": 60,
+    "proof_emitted": false
+  },
+  "solver_batch": {
+    "directory": "complete13_prooffree_c100k_20260807",
+    "manifest": "batch_manifest.json",
+    "bytes": 29249,
+    "sha256": "AA5E11028D9B8A228E2F6EB7E5F11D0C740BBFDEED9315134C3F1DED8BB1E492",
+    "total_conflicts": 9889,
+    "sum_case_elapsed_seconds": 42.144,
+    "batch_elapsed_seconds": 42.516421099950094
+  },
+  "results": [
+    {"p":0,"q":2,"clauses":1583681,"bytes":85636007,"sha256":"3FB10F899BE8887090DF7C9A440F04765AAC8FF05E803AFA1265C626AC0EC423","conflicts":79,"seconds":2.499},
+    {"p":0,"q":3,"clauses":1553085,"bytes":84743919,"sha256":"2D03534CE14E55C20C96AEB2015D05BA83BA8FAAB1022B101BAC1A4EE0E68AE8","conflicts":110,"seconds":2.486},
+    {"p":1,"q":1,"clauses":1558127,"bytes":84437459,"sha256":"2A18FFC8600C7E955A4ACC85EF1A15EEBA1181B97D9F0950093E4422C7C588D4","conflicts":305,"seconds":3.124},
+    {"p":1,"q":2,"clauses":1531509,"bytes":83727795,"sha256":"FF45ADE6E6B0C1D82ABA5FA79E759CD9BE509836842D6BC70BAA111CC97DF1D4","conflicts":58,"seconds":2.484},
+    {"p":1,"q":3,"clauses":1518153,"bytes":83431811,"sha256":"2337D8B2AAEFF130E4B838D602973DB63AB5EBA918FA684FD4B65D1FF25722D2","conflicts":125,"seconds":2.392},
+    {"p":2,"q":0,"clauses":1527527,"bytes":83021526,"sha256":"59FE553DBB88E433F8B853B2CEBFF6AECFA2748CEAD9C5B76DA1963C800EC905","conflicts":609,"seconds":2.754},
+    {"p":2,"q":1,"clauses":1506520,"bytes":82549815,"sha256":"2BD3AEE53473C6EAC92F9A1AC67D9996A934C8269904BCA1044F0AD878A58F17","conflicts":437,"seconds":3.188},
+    {"p":2,"q":2,"clauses":1494714,"bytes":82333115,"sha256":"75ACAFD7F236EC1DDA666772B7E807D816AEC0B2A699C32B6E7EC2C724D90006","conflicts":321,"seconds":3.028},
+    {"p":2,"q":3,"clauses":1494540,"bytes":82494602,"sha256":"EF30A1487D03AD23580BAE0A66666AE5D67D0F02597749FCAF30DA1F7CA8640D","conflicts":275,"seconds":2.651},
+    {"p":3,"q":0,"clauses":1476640,"bytes":81164828,"sha256":"49BEF032975CDAB73B6B63EDA21C387839B07389E5FCC5F8338C1EC8C4A8132E","conflicts":1130,"seconds":2.852},
+    {"p":3,"q":1,"clauses":1467869,"bytes":81082995,"sha256":"3D577F1F24C05115221601D21CB03D1FA5CFF25E15F00B751E47FA3B0BA45940","conflicts":1991,"seconds":4.621},
+    {"p":3,"q":2,"clauses":1467823,"bytes":81265278,"sha256":"B8940A85F2881BA8EFE3783C5948D124C5BC0BFC30F31595C1DF133DE50F44C1","conflicts":1376,"seconds":3.368},
+    {"p":3,"q":3,"clauses":1477475,"bytes":81762901,"sha256":"DDBE87B5B39D03BB9ACE059FC996D5B4437D8CEA65994FBAFCCF3BE4877D0719","conflicts":3073,"seconds":6.696}
+  ],
+  "result_status_for_every_case": "UNSAT_WITHOUT_PROOF",
+  "formal_bridge_status": "The finite source formula and all 13 reductions are reconstructed exactly. Lean now formalizes the six motifs and full 21-literal blocker semantics. Partial-cube expansion, global formula equality, TwoCenterBranch composition, and UNSAT certificates remain unconnected.",
+  "next_required_step": "Connect conditioned partial cubes and the global source to the formal blocker, then compose the 13 branches; generate and replay LRAT only against that exact bridge before claiming universal UNSAT."
+}

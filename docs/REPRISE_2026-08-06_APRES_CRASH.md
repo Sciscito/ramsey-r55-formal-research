@@ -1,5 +1,12 @@
 # Reprise R(5,5) après le crash — 6 août 2026
 
+> **Archive historique.** Les étapes ci-dessous décrivent la reprise initiale
+> et sont dépassées. Pour l'état courant et le prochain verrou exact, utiliser
+> [`../STATUS.md`](../STATUS.md) et [`RESEARCH_NEXT.md`](RESEARCH_NEXT.md) ; la
+> classification `gen4416`, l'assemblage générique des 54 couples et la
+> fermeture inconditionnelle du cas degré 8 sont maintenant acquis; la
+> réduction certifiée restante porte exactement sur les degrés 10 et 12.
+
 ## Point de départ sûr
 
 Dépôt privé :
@@ -57,6 +64,8 @@ degré 8 est léger et déjà entièrement dans Git sous
 | degrés 8, 10 ou 12 pour `K25` | preuve Lean | Réduit le certificat `R(4,5) ≤ 25` à trois cas |
 | bloc des 116 928 clauses | preuve Lean | Les compteurs externes sont reconstruits exactement |
 | 54/54 feuilles degré 8 UNSAT | résultat solveur reproductible | Très bon signal, mais pas encore un théorème |
+| pont local degré 8 vers `gen358` et `R(4,4,16)` | preuve Lean | Raccorde une vraie branche `K25` aux deux blocs locaux |
+| classifieur enraciné `gen4416` | CNF/LRAT rejoué dans Lean | UNSAT exact certifié ; composition sémantique encore ouverte |
 | `R(5,5)=43` | non prouvé | L'intervalle public reste `43 ≤ R(5,5) ≤ 46` |
 
 Aucun de ces nouveaux commits ne change encore une borne Ramsey publiée.
@@ -104,15 +113,21 @@ Rapport détaillé :
 
 ## Verrou exact restant pour le degré 8
 
-Deux choses manquent avant d'écrire « preuve » :
+Trois obligations principales manquent avant d'écrire « preuve » :
 
-1. des traces LRAT pour les 54 feuilles, chacune rejouée par LRATCatcher ;
-2. un théorème de complétude des deux couvertures modulo les isomorphismes qui
-   préservent les blocs.
+1. des traces LRAT pour les 53 feuilles restantes, chacune rejouée par
+   LRATCatcher ;
+2. un théorème de complétude de la couverture droite `gen4416` ;
+3. le transport des deux isomorphismes locaux en une permutation qui préserve
+   les blocs, puis le raccord aux unités des feuilles.
 
-La couverture gauche est la plus accessible : le projet possède déjà la
-complétude Lean du catalogue `R(3,5,8)`. Il faut relier les 27 parents aux
-179 graphes certifiés.
+La couverture gauche est maintenant certifiée par
+`every_r35_order_eight_graph_enters_gen358` : tout graphe valide d'ordre 8
+entre, à isomorphisme près, dans l'un des 27 parents, via une table de 179
+témoins vérifiée par Lean. Le théorème `degree_eight_local_split` raccorde
+aussi le voisinage induit d'une vraie branche `K25` à cette couverture et
+construit le bloc bleu complémenté `(4,4,16)`. Le relèvement de la permutation
+locale à `K25` et le raccord aux unités appartiennent encore au point 3.
 
 La couverture droite est le vrai verrou. `gen4416` contient exactement les
 deux graphes connus à 16 sommets, mais ce petit fichier de 312 octets n'est pas
@@ -121,21 +136,35 @@ trouvé ni export OpenTheory, ni LRAT, ni théorie compilée publiée. La
 reconstruction officielle complète est annoncée avec un besoin pouvant
 atteindre environ 500 Go de RAM.
 
-La voie courte identifiée consiste à certifier d'abord la transition des 640
-graphes d'ordre 15 vers les 2 graphes d'ordre 16, puis à traiter la complétude
-d'ordre 15 séparément, ou à obtenir des auteurs un export de la preuve HOL4.
+Une voie autonome beaucoup plus courte est maintenant identifiée. Dans tout
+graphe `(4,4)`-libre d'ordre 16, les degrés sont 7 ou 8 grâce à
+`R(3,4) ≤ 9`. Après complémentation éventuelle, une racine de degré 7 sépare
+le graphe en un bloc `R(3,4,7)` et le complément d'un bloc `R(3,4,8)`. Le
+filtrage des catalogues `R(3,5)` déjà certifiés ne laisse que `9 × 3 = 27`
+paires. Un prototype SAT gardé de 83 variables et 10 880 clauses ne laisse
+que 64 affectations, toutes isomorphes aux deux graphes `gen4416`.
+
+Le filtrage et les deux théorèmes de complétude sont certifiés dans
+`R44RootedR34Catalogue`. Le CNF gardé et son LRAT sont eux aussi rejoués dans
+Lean par `r44_rooted_gen4416_classifier_unsat`. La classification n'est pas
+encore un théorème sur les graphes tant que les 64 témoins d'isomorphisme, la
+sémantique des clauses et la complémentation ne sont pas composés. Cette voie
+évite toutefois les 640 graphes d'ordre 15 et l'énumération HOL4 à grande
+mémoire.
 
 ## Ordre de travail recommandé
 
-1. Générer un LRAT sur une petite feuille degré 8 et le rejouer dans Lean pour
-   mesurer la taille réelle et valider l'interface.
-2. Formaliser la couverture gauche `gen358` grâce au catalogue
-   `R(3,5,8)` déjà certifié.
-3. Choisir la stratégie de couverture droite : traduction HOL4, certificat
-   d'énumération propre, ou export demandé aux auteurs.
-4. Produire et rejouer les 54 LRAT seulement après validation du prototype.
-5. Répéter ensuite pour les degrés 10 et 12.
-6. En parallèle, terminer le témoin auxiliaire partagé du bloc des 116 928
+1. **Terminé :** générer et rejouer dans Lean le LRAT d'une petite feuille
+   degré 8 afin de valider l'interface.
+2. **Terminé :** formaliser la couverture gauche `gen358` grâce au catalogue
+   `R(3,5,8)` certifié.
+3. **Partiel avancé :** filtre 9 × 3 et LRAT des 27 cas certifiés ; composer
+   les 64 témoins, la sémantique des clauses et la complémentation.
+4. **Partiel :** raccord du voisinage d'ordre 8 terminé ; formaliser maintenant
+   la permutation des blocs et les unités.
+5. Produire et rejouer les 53 LRAT restants.
+6. Répéter ensuite pour les degrés 10 et 12.
+7. En parallèle, terminer le témoin auxiliaire partagé du bloc des 116 928
    clauses pour la branche `R(5,5)`.
 
 Ne jamais annoncer une avancée mondiale ou `R(5,5)=43` avant la composition

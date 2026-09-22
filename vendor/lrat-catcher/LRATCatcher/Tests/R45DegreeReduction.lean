@@ -271,18 +271,22 @@ theorem mapped_false_related
 
 /-! ## The two neighbourhood restrictions used by the degree argument -/
 
-/-- Fourteen red neighbours inherit a `(3,5)`-free coloring. -/
-theorem red_induced_isRamseyFree
+/-- Any injectively embedded red neighbourhood inherits a `(3,5)`-free
+coloring, once the finite local edge decoder is known to round-trip. -/
+theorem red_induced_isRamseyFree_of_decoder
+    {order : Nat} [NeZero order]
     {coloring : Nat → Bool}
     (hfree : isRamseyFree 25 4 5 coloring)
-    (embedding : Fin 14 → AmbientVertex)
+    (embedding : Fin order → AmbientVertex)
     (hinjective : Function.Injective embedding)
+    (hdecoder : ∀ left right : Fin order, left < right →
+      localEdgePair order (edgeVar order left.val right.val) = (left, right))
     (root : AmbientVertex)
     (hrootNe : ∀ index, root.val ≠ (embedding index).val)
     (hneighbour : ∀ index,
       ramseyEdge 25 coloring root.val (embedding index).val = true) :
-    isRamseyFree 14 3 5
-      (inducedColoring 14 embedding coloring false) := by
+    isRamseyFree order 3 5
+      (inducedColoring order embedding coloring false) := by
   constructor
   · intro vertices hlength hbound hnodup hall
     let mapped := vertices.map (embedNat embedding)
@@ -312,7 +316,7 @@ theorem red_induced_isRamseyFree
       exact ⟨hrootNotMapped, hmappedNodup⟩
     have hlocal := local_true_related embedding coloring false hall
     have hmapped := mapped_true_related embedding coloring false
-      localEdgePair_edgeVar_fourteen hbound hlocal
+      hdecoder hbound hlocal
     have hmappedRed :
         AllDistinctRelated (ramseyEdge 25 coloring) mapped := by
       simpa using hmapped
@@ -340,7 +344,7 @@ theorem red_induced_isRamseyFree
       exact mapped_bound embedding hbound
     have hlocal := local_false_related embedding coloring false hall
     have hmapped := mapped_false_related embedding coloring false
-      localEdgePair_edgeVar_fourteen hbound hlocal
+      hdecoder hbound hlocal
     have hmappedBlue :
         AllDistinctRelated
           (fun left right => !(ramseyEdge 25 coloring left right))
@@ -353,19 +357,37 @@ theorem red_induced_isRamseyFree
       (Nat.ne_of_lt hordered)
     simpa [ramseyEdge, hordered] using hedge
 
-/-- Eighteen blue neighbours, after complementation, inherit a
-`(4,4)`-free coloring. -/
-theorem blue_induced_isRamseyFree
+/-- Fourteen red neighbours inherit a `(3,5)`-free coloring. -/
+theorem red_induced_isRamseyFree
     {coloring : Nat → Bool}
     (hfree : isRamseyFree 25 4 5 coloring)
-    (embedding : Fin 18 → AmbientVertex)
+    (embedding : Fin 14 → AmbientVertex)
     (hinjective : Function.Injective embedding)
     (root : AmbientVertex)
     (hrootNe : ∀ index, root.val ≠ (embedding index).val)
     (hneighbour : ∀ index,
+      ramseyEdge 25 coloring root.val (embedding index).val = true) :
+    isRamseyFree 14 3 5
+      (inducedColoring 14 embedding coloring false) := by
+  exact red_induced_isRamseyFree_of_decoder hfree embedding hinjective
+    localEdgePair_edgeVar_fourteen root hrootNe hneighbour
+
+/-- Any blue-neighbour restriction with a certified local edge decoder,
+after complementation, inherits a `(4,4)`-free coloring. -/
+theorem blue_induced_isRamseyFree_of_decoder
+    {order : Nat} [NeZero order]
+    {coloring : Nat → Bool}
+    (hfree : isRamseyFree 25 4 5 coloring)
+    (embedding : Fin order → AmbientVertex)
+    (hinjective : Function.Injective embedding)
+    (hdecoder : ∀ left right : Fin order, left < right →
+      localEdgePair order (edgeVar order left.val right.val) = (left, right))
+    (root : AmbientVertex)
+    (hrootNe : ∀ index, root.val ≠ (embedding index).val)
+    (hneighbour : ∀ index,
       ramseyEdge 25 coloring root.val (embedding index).val = false) :
-    isRamseyFree 18 4 4
-      (inducedColoring 18 embedding coloring true) := by
+    isRamseyFree order 4 4
+      (inducedColoring order embedding coloring true) := by
   constructor
   · intro vertices hlength hbound hnodup hall
     let mapped := vertices.map (embedNat embedding)
@@ -395,7 +417,7 @@ theorem blue_induced_isRamseyFree
       exact ⟨hrootNotMapped, hmappedNodup⟩
     have hlocal := local_true_related embedding coloring true hall
     have hmapped := mapped_true_related embedding coloring true
-      localEdgePair_edgeVar_eighteen hbound hlocal
+      hdecoder hbound hlocal
     have hmappedBlue :
         AllDistinctRelated
           (fun left right => !(ramseyEdge 25 coloring left right))
@@ -429,7 +451,7 @@ theorem blue_induced_isRamseyFree
       exact mapped_bound embedding hbound
     have hlocal := local_false_related embedding coloring true hall
     have hmapped := mapped_false_related embedding coloring true
-      localEdgePair_edgeVar_eighteen hbound hlocal
+      hdecoder hbound hlocal
     have hmappedRed :
         AllDistinctRelated (ramseyEdge 25 coloring) mapped := by
       simpa using hmapped
@@ -439,6 +461,22 @@ theorem blue_induced_isRamseyFree
     have hedge := hmappedRed left hleft right hright
       (Nat.ne_of_lt hordered)
     simpa [ramseyEdge, hordered] using hedge
+
+/-- Eighteen blue neighbours, after complementation, inherit a
+`(4,4)`-free coloring. -/
+theorem blue_induced_isRamseyFree
+    {coloring : Nat → Bool}
+    (hfree : isRamseyFree 25 4 5 coloring)
+    (embedding : Fin 18 → AmbientVertex)
+    (hinjective : Function.Injective embedding)
+    (root : AmbientVertex)
+    (hrootNe : ∀ index, root.val ≠ (embedding index).val)
+    (hneighbour : ∀ index,
+      ramseyEdge 25 coloring root.val (embedding index).val = false) :
+    isRamseyFree 18 4 4
+      (inducedColoring 18 embedding coloring true) := by
+  exact blue_induced_isRamseyFree_of_decoder hfree embedding hinjective
+    localEdgePair_edgeVar_eighteen root hrootNe hneighbour
 
 /-! ## Canonical red and blue neighbourhoods in `K_25` -/
 

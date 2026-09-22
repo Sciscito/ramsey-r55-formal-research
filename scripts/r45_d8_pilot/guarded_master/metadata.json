@@ -1,0 +1,115 @@
+{
+  "cnf": {
+    "bytes": 2003546,
+    "clause_breakdown": {
+      "fixed_root_base": 55006,
+      "guarded_gen358_units": 675,
+      "guarded_gen4416_units": 240,
+      "invalid_gen358_codes": 5
+    },
+    "clauses": 55926,
+    "sha256": "8839387C95EFCE9C9E98D4131679794B370DE8AE12962F4EA1D288E7566532B0",
+    "variables": 282
+  },
+  "coverage_audit": {
+    "each_invalid_assignment_matches_exactly_one_left_only_cube": true,
+    "each_valid_assignment_matches_exactly_one_full_cube": true,
+    "maximum_matching_cubes": 1,
+    "minimum_matching_cubes": 1,
+    "parseICnf_round_trip": true,
+    "selector_assignments_checked": 64
+  },
+  "cube_manifest": {
+    "cover_cubes": 59,
+    "cover_icnf_sha256": "FFC4BABBE9C3DA11EA8C27CD76B3B77D16F2BC25FC31087DFEF936C9BE1B7864",
+    "invalid_code_cubes": 5,
+    "leaf_certificate_formula": {
+      "clause_order": "cube unit clauses first, then guarded_master clauses",
+      "definition": "Cover.Cube.leafCNF cube guarded_master",
+      "warning": "direct-leaf hashes audit selector specialization only; those CNFs are not byte-identical Cover leaf inputs"
+    },
+    "proof_order": "indices 1..54 are valid leaves in lexicographic (left_record,right_record) order; indices 55..59 are invalid left codes 27..31 with wildcard right selector",
+    "sha256": "B13936DC8704395985EC1DE3FADF0EBAD67A9790DC4BEE24583432030F28BCD6",
+    "valid_leaf_assumptions_sha256": "6CF05EB3E9069E59B43316569C6E50D597F46811D239CAA9B8E8A3695ED23829",
+    "valid_leaf_cubes": 54
+  },
+  "negated_cover_cnf": {
+    "bytes": 1694,
+    "clauses": 59,
+    "matches_Cover_negCubesCNF_order": true,
+    "selector_assignments_exhaustively_false": 64,
+    "sha256": "9A1F6F3260453AE2E6F514F2B83E611E427B7BC65E051972E062721F88A94B79",
+    "variables": 282
+  },
+  "orientation": {
+    "HOL_blue_1": "Lean red / DIMACS positive",
+    "HOL_red_2": "Lean blue / DIMACS negative"
+  },
+  "proof_artifacts": {
+    "cover_certificate_required": true,
+    "cover_leaf_certificates_required": 59,
+    "invalid_code_leaf_lrat_present": 0,
+    "lrat_files_present": 1,
+    "lrat_leaves": [
+      "d8_l22_r01"
+    ],
+    "missing_valid_direct_leaf_lrat_count": 53,
+    "warning": "No cover LRAT, no 59 Cover leaf LRAT set, and no claim of 53 additional valid direct-leaf LRAT traces."
+  },
+  "schema_version": 2,
+  "scope": "compact target for the 27 x 2 degree-eight case split; solver statuses are evidence, not proof traces",
+  "selectors": {
+    "edge_variables": [
+      1,
+      276
+    ],
+    "gen358_parent": {
+      "invalid_codes_blocked": [
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "valid_codes": [
+        0,
+        26
+      ],
+      "variables": [
+        277,
+        278,
+        279,
+        280,
+        281
+      ]
+    },
+    "gen4416_target": {
+      "invalid_codes_blocked": [],
+      "valid_codes": [
+        0,
+        1
+      ],
+      "variables": [
+        282
+      ]
+    }
+  },
+  "source_hashes": {
+    "gen358": "E785C585979CB058460ECBC0DBB8FEE2167F390600DEC3BDBB4FBC89E9CDDFC8",
+    "gen4416": "D342D951433311239BA7AB5C0EEF809A7588B41C0E8A472E8930BD77D5489C6C",
+    "hard_leaf_result_json": "D67F75DD5A383698B1CE59AD668D594AA1184D6C6C7C37BD3EB939F6F44E6D3B",
+    "results_c1000000_csv": "B6A14A92069F0222950B61AEC23BC26EB3E5B35EEC6741F9197ADDBCCCB6013F"
+  },
+  "specialization_audit": {
+    "all_54_clause_sequences_equal_direct_leaf": true,
+    "all_54_dimacs_hashes_match_recorded_leaf_hashes": true,
+    "evidence_status_counts": {
+      "UNSAT": 54
+    },
+    "maximum_specialized_clauses": 55154,
+    "maximum_specialized_units": 148,
+    "minimum_specialized_clauses": 55150,
+    "minimum_specialized_units": 144
+  },
+  "status": "MASTER_CNF_GENERATED_NOT_YET_SOLVED_OR_LRAT_CERTIFIED"
+}
